@@ -1,0 +1,72 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.mineral_trader",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 4.5,
+				"visible_bounds_offset": [0, 1.75, 0]
+			},
+			"bones": [
+				{
+					"name": "leg1",
+					"pivot": [-2, 6, 0],
+					"cubes": [
+						{"origin": [-4, 0, -2], "size": [4, 12, 4], "uv": [56, 56]}
+					]
+				},
+				{
+					"name": "leg2",
+					"pivot": [2, 6, 0],
+					"cubes": [
+						{"origin": [0, 0, -2], "size": [4, 12, 4], "uv": [0, 54]}
+					]
+				},
+				{
+					"name": "body",
+					"pivot": [0, 14, 0],
+					"cubes": [
+						{"origin": [-4.75, 5, -3], "size": [9.5, 17, 6], "uv": [0, 29]},
+						{"origin": [-3.5, 8, 3], "size": [7, 11, 4], "uv": [17, 60]}
+					]
+				},
+				{
+					"name": "arm1",
+					"pivot": [-6.25, 16, -0.25],
+					"cubes": [
+						{"origin": [-8, 10, -2], "size": [3.5, 12, 3.5], "uv": [56, 13]},
+						{"origin": [6.5, 4, -1.75], "size": [0, 7, 3], "uv": [33, 19]}
+					]
+				},
+				{
+					"name": "arm2",
+					"pivot": [6.25, 16, -0.25],
+					"cubes": [
+						{"origin": [4.5, 10, -2], "size": [3.5, 12, 3.5], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "head",
+					"pivot": [0, 27.925, 0.9375],
+					"cubes": [
+						{"origin": [-4, 23, -4], "size": [8, 10, 8], "uv": [31, 21]},
+						{"origin": [-5, 22, -4.5], "size": [10, 1, 8.75], "uv": [23, 50]},
+						{"origin": [-5, 32.75, -4.5], "size": [10, 1, 8.75], "uv": [31, 40]},
+						{"origin": [-4.75, 25.75, -10.25], "size": [9.5, 1, 9.75], "pivot": [0, 22.5, 0], "rotation": [-90, 0, 0], "uv": [23, 2]},
+						{"origin": [-0.25, 33.75, -17], "size": [0, 12, 16], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "lamp",
+					"pivot": [0, 30.75, -16],
+					"cubes": [
+						{"origin": [-2, 27.75, -18], "size": [4, 6, 4], "uv": [51, 0]}
+					]
+				}
+			]
+		}
+	]
+}

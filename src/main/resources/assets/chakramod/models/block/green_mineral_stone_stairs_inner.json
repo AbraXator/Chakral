@@ -1,0 +1,8 @@
+{
+    "parent": "minecraft:block/inner_stairs",
+    "textures": {
+        "bottom": "chakramod:block/green_mineral_stone",
+        "top": "chakramod:block/green_mineral_stone",
+        "side": "chakramod:block/green_mineral_stone"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/template_wall_post",
+    "textures": {
+        "wall": "chakramod:block/black_mineral_stone"
+    }
+}

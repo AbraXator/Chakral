@@ -1,0 +1,9 @@
+{
+  "chakra_cave_noise1": {
+    "category": "ambient",
+    "subtitle": "chakramod.cave_noise1",
+    "sounds": [
+      "chakramod:chakra_cave_noise1"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "facing=up": {
+      "model": "chakramod:block/green_crystal"
+    },
+    "facing=down": {
+      "model": "chakramod:block/green_crystal",
+      "x": 180
+    }
+  }
+}

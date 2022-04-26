@@ -1,0 +1,8 @@
+{
+    "parent": "minecraft:block/slab_top",
+    "textures": {
+        "bottom": "chakramod:block/black_mineral_stone_bricks",
+        "top": "chakramod:block/black_mineral_stone_bricks",
+        "side": "chakramod:block/black_mineral_stone_bricks"
+    }
+}
