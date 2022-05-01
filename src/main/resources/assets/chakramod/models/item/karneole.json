@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "chakramod:item/heliotrop"
+    "layer0": "chakramod:item/karneole"
   }
 }

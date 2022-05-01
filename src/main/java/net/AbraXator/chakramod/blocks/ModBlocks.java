@@ -24,6 +24,25 @@ public class ModBlocks {
     public static final RegistryObject<Block> BLACK_MINERAL = registerBlock("black_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> GREEN_MINERAL = registerBlock("green_mineral",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> RED_MINERAL = registerBlock("red_mineral",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> BLUE_MINERAL = registerBlock("blue_mineral",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> ORANGE_MINERAL = registerBlock("orange_mineral",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> LIGHT_BLUE_MINERAL = registerBlock("light_blue_mineral",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> PURPLE_MINERAL = registerBlock("purple_mineral",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

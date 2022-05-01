@@ -33,7 +33,7 @@ public class ModItems {
             new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> RHODONITE = ITEMS.register("rhodonite", () ->
             new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
-    public static final RegistryObject<Item> TOURMELINE = ITEMS.register("tourmeline", () ->
+    public static final RegistryObject<Item> TOURMALINE = ITEMS.register("tourmaline", () ->
             new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
 
     public static void register(IEventBus eventBus){

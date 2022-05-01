@@ -1,5 +1,6 @@
 package net.AbraXator.chakramod.items;
 
+import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
