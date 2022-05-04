@@ -12,5 +12,7 @@
     "item.chakramod.rhodonite": "Rhodonite",
     "item.chakramod.tourmaline": "Tourmeline",
 
-    "itemGroup.chakramod": "Chakra Mod"
+    "itemGroup.chakramod": "Chakra Mod",
+
+    "entity.chakramod.mineral_snail": "Mineral Snail"
 }
