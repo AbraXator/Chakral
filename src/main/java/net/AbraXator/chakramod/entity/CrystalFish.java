@@ -5,6 +5,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.AbstractSchoolingFish;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.animal.WaterAnimal;
@@ -17,6 +20,10 @@ public class CrystalFish extends AbstractSchoolingFish {
         super(entityType, level);
     }
 
+    public static AttributeSupplier.Builder createAttributes(){
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 5D).add(Attributes.MOVEMENT_SPEED, 0.30D);
+    }
+
     @Override
     protected SoundEvent getFlopSound() {
         return SoundEvents.COD_FLOP;
@@ -24,6 +31,6 @@ public class CrystalFish extends AbstractSchoolingFish {
 
     @Override
     public ItemStack getBucketItemStack() {
-        return new ItemStack(ModItems.CRYSTAL_FISH_BUCKET);
+        return new ItemStack(ModItems.CRYSTAL_FISH_BUCKET.get());
     }
 }

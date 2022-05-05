@@ -48,8 +48,8 @@ public class ModItems {
             new GoldenNecklace(new Item.Properties().tab(Tab.CHAKRA_TAB)));
    //public static final RegistryObject<Item> CRYSTAL_FISH_BUCKET = ITEMS.register("crystal_fish_bucket", () ->
    //        new MobBucketItem(ModEntity.CRYSTAL_FISH, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().tab(Tab.CHAKRA_TAB).stacksTo(1)));
-    public static final Item CRYSTAL_FISH_BUCKET = register("crystal_fish_bucket",
-           new MobBucketItem(ModEntity.CRYSTAL_FISH, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH,
+    public static final RegistryObject<MobBucketItem> CRYSTAL_FISH_BUCKET = register("crystal_fish_bucket", () ->
+           new MobBucketItem(() -> ModEntity.CRYSTAL_FISH.get(), () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH,
                    new Item.Properties().tab(Tab.CHAKRA_TAB).stacksTo(1)));
 
     private static <T extends Item> RegistryObject<T> register(final String name, final Supplier<T> item){

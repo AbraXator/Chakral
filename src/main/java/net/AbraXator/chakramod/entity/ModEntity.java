@@ -16,7 +16,7 @@ public class ModEntity {
     public static final RegistryObject<EntityType<MineralSnail>> MINERAL_SNAIL = ENTITIES.register("mineral_snail",
             () -> EntityType.Builder.of(MineralSnail::new, MobCategory.AMBIENT).sized(0.5F, 0.5F)
                     .build(new ResourceLocation(ChakraMod.MOD_ID, "mineral_snail").toString()));
-    public static final RegistryObject<EntityType<CrystalFish>> CRYSTAL_FISH = ENTITIES.register("mineral_snail",
+    public static final RegistryObject<EntityType<CrystalFish>> CRYSTAL_FISH = ENTITIES.register("crystal_fish",
             () -> EntityType.Builder.of(CrystalFish::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F)
                     .build(new ResourceLocation(ChakraMod.MOD_ID, "mineral_snail").toString()));
 }

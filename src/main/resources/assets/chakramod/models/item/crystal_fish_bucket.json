@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "chakramod:item/crystal_fish_bucket"
+  }
+}

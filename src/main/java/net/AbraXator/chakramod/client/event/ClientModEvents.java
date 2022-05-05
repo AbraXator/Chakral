@@ -1,7 +1,9 @@
 package net.AbraXator.chakramod.client.event;
 
 import net.AbraXator.chakramod.ChakraMod;
+import net.AbraXator.chakramod.client.renderer.CrystalFishRenderer;
 import net.AbraXator.chakramod.client.renderer.MineralSnailRenderer;
+import net.AbraXator.chakramod.client.renderer.model.CrystalFishModel;
 import net.AbraXator.chakramod.client.renderer.model.MineralSnailModel;
 import net.AbraXator.chakramod.entity.ModEntity;
 import net.minecraftforge.api.distmarker.Dist;
@@ -17,10 +19,12 @@ public final class ClientModEvents {
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event){
         event.registerLayerDefinition(MineralSnailModel.LAYER_LOCATION, MineralSnailModel::createBodyLayer);
+        event.registerLayerDefinition(CrystalFishModel.LAYER_LOCATION, CrystalFishModel::createBodyLayer);
     }
 
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event){
         event.registerEntityRenderer(ModEntity.MINERAL_SNAIL.get(), MineralSnailRenderer::new);
+        event.registerEntityRenderer(ModEntity.CRYSTAL_FISH.get(), CrystalFishRenderer::new);
     }
 }

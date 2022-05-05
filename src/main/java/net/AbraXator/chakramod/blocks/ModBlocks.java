@@ -1,6 +1,7 @@
 package net.AbraXator.chakramod.blocks;
 
 import net.AbraXator.chakramod.ChakraMod;
+import net.AbraXator.chakramod.blocks.custom.GlowstoneCrystal;
 import net.AbraXator.chakramod.items.ModItems;
 import net.AbraXator.chakramod.items.Tab;
 import net.minecraft.world.item.BlockItem;
@@ -42,6 +43,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> PURPLE_MINERAL = registerBlock("purple_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+
+    public static final RegistryObject<Block> GLOWSTONE_CRYSTAL = registerBlock("glowstone_crystal",
+            () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.AMETHYST)
+                    .strength(9f).lightLevel(value -> 15).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
