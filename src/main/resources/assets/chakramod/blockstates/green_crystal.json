@@ -6,6 +6,25 @@
     "facing=down": {
       "model": "chakramod:block/green_crystal",
       "x": 180
+    },
+    "facing=north": {
+      "model": "chakramod:block/green_crystal",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "chakramod:block/green_crystal",
+      "x": 90,
+      "y": 180
+    },
+    "facing=east": {
+      "model": "chakramod:block/green_crystal",
+      "x": 90,
+      "y": 90
+    },
+    "facing=west": {
+      "model": "chakramod:block/green_crystal",
+      "x": 90,
+      "y": 270
     }
   }
 }

@@ -40,6 +40,7 @@ public class ChakraMod {
 
     private void clientSetup(final FMLClientSetupEvent event){
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLOWSTONE_CRYSTAL.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GREEN_CRYSTAL.get(), RenderType.cutout());
     }
 
     private void setup(final FMLCommonSetupEvent event) {

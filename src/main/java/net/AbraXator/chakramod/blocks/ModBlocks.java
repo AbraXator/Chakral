@@ -47,6 +47,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> GLOWSTONE_CRYSTAL = registerBlock("glowstone_crystal",
             () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.AMETHYST)
                     .strength(9f).lightLevel(value -> 15).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> GREEN_CRYSTAL = registerBlock("green_crystal",
+            () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.AMETHYST)
+                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {

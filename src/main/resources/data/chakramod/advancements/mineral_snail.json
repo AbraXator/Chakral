@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "item": "chakramod:green_crystal"
+    },
+    "title": {
+      "translate": "advancements.mineral_snail.hurt"
+    },
+    "description": ""
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:player_hurt_entity",
+      "conditions": {
+        "player": [],
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "chakramod:mineral_snail"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 50
+  }
+}
