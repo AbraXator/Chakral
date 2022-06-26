@@ -1,10 +1,10 @@
-package net.AbraXator.chakramod.client.event;
+package net.AbraXator.chakramod.event;
 
 import net.AbraXator.chakramod.ChakraMod;
-import net.AbraXator.chakramod.client.renderer.CrystalFishRenderer;
-import net.AbraXator.chakramod.client.renderer.MineralSnailRenderer;
-import net.AbraXator.chakramod.client.renderer.model.CrystalFishModel;
-import net.AbraXator.chakramod.client.renderer.model.MineralSnailModel;
+import net.AbraXator.chakramod.renderer.CrystalFishRenderer;
+import net.AbraXator.chakramod.renderer.MineralSnailRenderer;
+import net.AbraXator.chakramod.renderer.model.CrystalFishModel;
+import net.AbraXator.chakramod.renderer.model.MineralSnailModel;
 import net.AbraXator.chakramod.entity.ModEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;

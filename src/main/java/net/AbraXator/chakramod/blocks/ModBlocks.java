@@ -51,6 +51,11 @@ public class ModBlocks {
             () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.AMETHYST)
                     .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
 
+    public static final RegistryObject<Block> STONE_BENCH = registerBlock("stone_bench",
+            () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+
+
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

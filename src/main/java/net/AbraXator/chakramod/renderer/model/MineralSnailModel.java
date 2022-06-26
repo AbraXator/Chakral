@@ -1,4 +1,4 @@
-package net.AbraXator.chakramod.client.renderer.model;
+package net.AbraXator.chakramod.renderer.model;
 
 
 import com.mojang.blaze3d.vertex.PoseStack;

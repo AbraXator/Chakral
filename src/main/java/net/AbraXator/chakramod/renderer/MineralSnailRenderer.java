@@ -1,7 +1,7 @@
-package net.AbraXator.chakramod.client.renderer;
+package net.AbraXator.chakramod.renderer;
 
 import net.AbraXator.chakramod.ChakraMod;
-import net.AbraXator.chakramod.client.renderer.model.MineralSnailModel;
+import net.AbraXator.chakramod.renderer.model.MineralSnailModel;
 import net.AbraXator.chakramod.entity.MineralSnail;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;

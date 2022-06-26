@@ -2,6 +2,7 @@ package net.AbraXator.chakramod;
 
 import com.mojang.logging.LogUtils;
 import net.AbraXator.chakramod.blocks.ModBlocks;
+import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakramod.entity.ModEntity;
 import net.AbraXator.chakramod.items.ModItems;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -30,6 +31,7 @@ public class ChakraMod {
         ModItems.ITEMS.register(eventBus);
         ModBlocks.register(eventBus);
         ModEntity.ENTITIES.register(eventBus);
+        ModBlockEntities.register(eventBus);
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
 
@@ -46,6 +48,6 @@ public class ChakraMod {
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getName().toString());
     }
 }

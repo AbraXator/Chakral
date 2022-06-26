@@ -1,4 +1,4 @@
-package net.AbraXator.chakramod.client.renderer.model;// Made with Blockbench 4.2.4
+package net.AbraXator.chakramod.renderer.model;// Made with Blockbench 4.2.4
 // Exported for Minecraft version 1.17 - 1.18 with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
