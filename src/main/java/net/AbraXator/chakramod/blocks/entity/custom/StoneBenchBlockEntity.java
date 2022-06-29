@@ -48,7 +48,7 @@ public class StoneBenchBlockEntity extends BlockEntity implements MenuProvider {
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-        return
+
     }
 
     @Override
