@@ -5,6 +5,9 @@ import net.AbraXator.chakramod.blocks.ModBlocks;
 import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakramod.entity.ModEntity;
 import net.AbraXator.chakramod.items.ModItems;
+import net.AbraXator.chakramod.screen.ModMenuTypes;
+import net.AbraXator.chakramod.screen.StoneBenchScreen;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Blocks;
@@ -32,9 +35,11 @@ public class ChakraMod {
         ModBlocks.register(eventBus);
         ModEntity.ENTITIES.register(eventBus);
         ModBlockEntities.register(eventBus);
+        ModMenuTypes.register(eventBus);
+
+
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
-
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -43,6 +48,8 @@ public class ChakraMod {
     private void clientSetup(final FMLClientSetupEvent event){
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLOWSTONE_CRYSTAL.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.GREEN_CRYSTAL.get(), RenderType.cutout());
+
+        MenuScreens.register(ModMenuTypes.STONE_BENCH_MENU.get(), StoneBenchScreen::new);
     }
 
     private void setup(final FMLCommonSetupEvent event) {

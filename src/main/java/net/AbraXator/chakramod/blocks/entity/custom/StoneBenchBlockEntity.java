@@ -1,10 +1,14 @@
 package net.AbraXator.chakramod.blocks.entity.custom;
 
 import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
+import net.AbraXator.chakramod.items.ModItems;
+import net.AbraXator.chakramod.screen.StoneBenchMenu;
+import net.AbraXator.chakramod.utils.ModItemTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
@@ -13,9 +17,14 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.MinecartItem;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -48,7 +57,7 @@ public class StoneBenchBlockEntity extends BlockEntity implements MenuProvider {
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-
+        return new StoneBenchMenu(pContainerId, pInventory, this);
     }
 
     @Override
@@ -90,5 +99,30 @@ public class StoneBenchBlockEntity extends BlockEntity implements MenuProvider {
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
         Containers.dropContents(this.level, this.worldPosition, inventory);
+    }
+
+    public static void tick(Level level, BlockPos blockPos, BlockState state, StoneBenchBlockEntity blockEntity){
+        if(hasRecipe(blockEntity) && hasNotReachedStackLimit(blockEntity)){
+            craftItem(blockEntity);
+        }
+    }
+
+    public static void craftItem(StoneBenchBlockEntity entity){
+        entity.itemHandler.extractItem(0, 1, false);
+        entity.itemHandler.extractItem(1, 1, false);
+        entity.itemHandler.setStackInSlot(2,  new ItemStack(ModItems.GOLDEN_NECKLACE.get(),
+                entity.itemHandler.getStackInSlot(2).getCount() + 1));
+    }
+
+    private static boolean hasRecipe(StoneBenchBlockEntity blockEntity){
+        //boolean hasGemInSlot = blockEntity.itemHandler.getStackInSlot(0).getItem() == blockEntity.itemHandler.getStackInSlot(0).is(ModItemTags.Items.MINERALS);
+        boolean hasNecklaceInSlot = blockEntity.itemHandler.getStackInSlot(1).getItem() == ModItems.GOLDEN_NECKLACE.get();
+
+        return hasNecklaceInSlot;
+    }
+
+    public static boolean hasNotReachedStackLimit(StoneBenchBlockEntity blockEntity){
+        return blockEntity.itemHandler.getStackInSlot(2).getCount()
+                < blockEntity.itemHandler.getStackInSlot(2).getMaxStackSize();
     }
 }

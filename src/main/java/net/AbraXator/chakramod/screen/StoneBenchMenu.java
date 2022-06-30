@@ -25,7 +25,7 @@ public class StoneBenchMenu extends AbstractContainerMenu {
     }
 
     public StoneBenchMenu(int pContainerId, Inventory inv, BlockEntity entity) {
-        super(pMenuType, pContainerId);
+        super(ModMenuTypes.STONE_BENCH_MENU.get(), pContainerId);
         checkContainerSize(inv, 3);
         blockEntity = ((StoneBenchBlockEntity) entity);
         this.level = inv.player.level;
@@ -33,7 +33,9 @@ public class StoneBenchMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
         addPlayerHotbar(inv);
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, ))
+            this.addSlot(new SlotItemHandler(iItemHandler, 0, 26, 52));
+            this.addSlot(new SlotItemHandler(iItemHandler, 1, 75, 52));
+            this.addSlot(new SlotItemHandler(iItemHandler, 2, 133, 52));
         });
     }
 
@@ -104,7 +106,7 @@ public class StoneBenchMenu extends AbstractContainerMenu {
 
     private void addPlayerHotbar(Inventory inventory){
         for(int i = 0; i < 9; ++i){
-            this.addSlot(new Slot(inventory, 1, 8 + 1 * 18, 144));
+            this.addSlot(new Slot(inventory, 1, 8 + i * 18, 144));
         }
     }
 }
