@@ -2,6 +2,7 @@ package net.AbraXator.chakramod.blocks;
 
 import net.AbraXator.chakramod.ChakraMod;
 import net.AbraXator.chakramod.blocks.custom.GlowstoneCrystal;
+import net.AbraXator.chakramod.blocks.custom.StoneBenchBlock;
 import net.AbraXator.chakramod.items.ModItems;
 import net.AbraXator.chakramod.items.Tab;
 import net.minecraft.world.item.BlockItem;
@@ -52,7 +53,7 @@ public class ModBlocks {
                     .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
 
     public static final RegistryObject<Block> STONE_BENCH = registerBlock("stone_bench",
-            () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new StoneBenchBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
 
 

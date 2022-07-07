@@ -7,6 +7,7 @@ import net.AbraXator.chakramod.utils.ModItemTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Container;
@@ -16,6 +17,7 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -44,6 +46,9 @@ public class StoneBenchBlockEntity extends BlockEntity implements MenuProvider {
     };
 
     private LazyOptional<IItemHandler> lazyOptional = LazyOptional.empty();
+
+    private int progress = 0;
+    private int maxProgress;
 
     public StoneBenchBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlockEntities.STONE_BENCH_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
@@ -107,16 +112,19 @@ public class StoneBenchBlockEntity extends BlockEntity implements MenuProvider {
         }
     }
 
+    public static CompoundTag getTag(ItemStack stone){
+
+    }
+
     public static void craftItem(StoneBenchBlockEntity entity){
         entity.itemHandler.extractItem(0, 1, false);
         entity.itemHandler.extractItem(1, 1, false);
-        entity.itemHandler.setStackInSlot(2,  new ItemStack(ModItems.GOLDEN_NECKLACE.get(),
-                entity.itemHandler.getStackInSlot(2).getCount() + 1));
+        entity.itemHandler.setStackInSlot(2,  new ItemStack(ModItems.GOLDEN_NECKLACE.get()).setTag());
     }
 
     private static boolean hasRecipe(StoneBenchBlockEntity blockEntity){
-        //boolean hasGemInSlot = blockEntity.itemHandler.getStackInSlot(0).getItem() == blockEntity.itemHandler.getStackInSlot(0).is(ModItemTags.Items.MINERALS);
         boolean hasNecklaceInSlot = blockEntity.itemHandler.getStackInSlot(1).getItem() == ModItems.GOLDEN_NECKLACE.get();
+        //boolean hasGemInSlot = blockEntity.itemHandler.getStackInSlot(0).getItem() == blockEntity.itemHandler.getStackInSlot(0).is(ModItemTags.Items.MINERALS);
 
         return hasNecklaceInSlot;
     }

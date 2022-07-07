@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class StoneBenchScreen extends AbstractContainerScreen<StoneBenchMenu> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(ChakraMod.MOD_ID, "textures/gui/container/stone_work_bench_gui");
+            new ResourceLocation(ChakraMod.MOD_ID, "textures/gui/container/stone_bench_gui.png");
 
     public StoneBenchScreen(StoneBenchMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
