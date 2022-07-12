@@ -3,6 +3,7 @@ package net.AbraXator.chakramod.items;
 import net.AbraXator.chakramod.ChakraMod;
 import net.AbraXator.chakramod.entity.ModEntity;
 import net.AbraXator.chakramod.items.custom.GoldenNecklace;
+import net.AbraXator.chakramod.items.custom.TestItem;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
@@ -46,8 +47,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> GOLDEN_NECKLACE = ITEMS.register("golden_necklace", () ->
             new GoldenNecklace(new Item.Properties().tab(Tab.CHAKRA_TAB)));
-   //public static final RegistryObject<Item> CRYSTAL_FISH_BUCKET = ITEMS.register("crystal_fish_bucket", () ->
-   //        new MobBucketItem(ModEntity.CRYSTAL_FISH, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().tab(Tab.CHAKRA_TAB).stacksTo(1)));
+    public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item", () ->
+            new TestItem(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+
     public static final RegistryObject<MobBucketItem> CRYSTAL_FISH_BUCKET = register("crystal_fish_bucket", () ->
            new MobBucketItem(() -> ModEntity.CRYSTAL_FISH.get(), () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH,
                    new Item.Properties().tab(Tab.CHAKRA_TAB).stacksTo(1)));

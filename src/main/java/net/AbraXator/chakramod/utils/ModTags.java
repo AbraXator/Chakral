@@ -9,7 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 
-public class ModItemTags {
+public class ModTags {
     public static class Items{
         public static final TagKey<Item> MINERALS = tag("minerals");
 

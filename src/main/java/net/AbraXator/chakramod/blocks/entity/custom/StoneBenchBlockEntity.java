@@ -1,30 +1,25 @@
 package net.AbraXator.chakramod.blocks.entity.custom;
 
+import com.google.common.collect.Lists;
 import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakramod.items.ModItems;
 import net.AbraXator.chakramod.screen.StoneBenchMenu;
-import net.AbraXator.chakramod.utils.ModItemTags;
+import net.AbraXator.chakramod.utils.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.data.Main;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.MinecartItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
@@ -32,9 +27,13 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 
 public class StoneBenchBlockEntity extends BlockEntity implements MenuProvider {
@@ -112,19 +111,22 @@ public class StoneBenchBlockEntity extends BlockEntity implements MenuProvider {
         }
     }
 
-    public static CompoundTag getTag(ItemStack stone){
-
+    public static List<Item> getStones(){
+        List<Item> stones = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.MINERALS).stream().toList();
+        return stones;
     }
+
+
 
     public static void craftItem(StoneBenchBlockEntity entity){
         entity.itemHandler.extractItem(0, 1, false);
         entity.itemHandler.extractItem(1, 1, false);
-        entity.itemHandler.setStackInSlot(2,  new ItemStack(ModItems.GOLDEN_NECKLACE.get()).setTag());
+        entity.itemHandler.setStackInSlot(2,  new ItemStack(ModItems.GOLDEN_NECKLACE.get()));
     }
 
     private static boolean hasRecipe(StoneBenchBlockEntity blockEntity){
         boolean hasNecklaceInSlot = blockEntity.itemHandler.getStackInSlot(1).getItem() == ModItems.GOLDEN_NECKLACE.get();
-        //boolean hasGemInSlot = blockEntity.itemHandler.getStackInSlot(0).getItem() == blockEntity.itemHandler.getStackInSlot(0).is(ModItemTags.Items.MINERALS);
+        //boolean hasGemInSlot = blockEntity.itemHandler.getStackInSlot(0).getItem() == blockEntity.itemHandler.getStackInSlot(0).is(getStones().get());
 
         return hasNecklaceInSlot;
     }
