@@ -12,7 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class    ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
-            DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, ChakraMod.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, ChakraMod.MOD_ID);
 
     public static final RegistryObject<BlockEntityType<StoneBenchBlockEntity>> STONE_BENCH_BLOCK_ENTITY =
             BLOCK_ENTITIES.register("stone_bench_block_entity", () ->

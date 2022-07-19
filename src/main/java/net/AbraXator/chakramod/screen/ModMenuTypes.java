@@ -12,7 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
-            DeferredRegister.create(ForgeRegistries.CONTAINERS, ChakraMod.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.MENU_TYPES, ChakraMod.MOD_ID);
 
     public static final RegistryObject<MenuType<StoneBenchMenu>> STONE_BENCH_MENU =
             registerMenuType(StoneBenchMenu::new, "stone_bench_menu");

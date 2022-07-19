@@ -82,7 +82,7 @@ public class StoneBenchBlock extends BaseEntityBlock {
         if(!pLevel.isClientSide()){
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if (entity instanceof StoneBenchBlockEntity){
-                NetworkHooks.openGui(((ServerPlayer)pPlayer), (StoneBenchBlockEntity)entity, pPos);
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (StoneBenchBlockEntity)entity, pPos);
             }else {
                 throw new IllegalStateException("Our container provider is missing!");
             }

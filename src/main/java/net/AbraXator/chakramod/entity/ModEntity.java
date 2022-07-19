@@ -10,7 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModEntity {
 
-    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES,
+    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES ,
             ChakraMod.MOD_ID);
 
     public static final RegistryObject<EntityType<MineralSnail>> MINERAL_SNAIL = ENTITIES.register("mineral_snail",
