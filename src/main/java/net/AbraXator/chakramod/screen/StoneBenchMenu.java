@@ -1,41 +1,70 @@
 package net.AbraXator.chakramod.screen;
 
 import net.AbraXator.chakramod.blocks.ModBlocks;
-import net.AbraXator.chakramod.blocks.entity.custom.StoneBenchBlockEntity;
-import net.AbraXator.chakramod.screen.slot.StoneBenchResult;
+import net.AbraXator.chakramod.items.ModItems;
+import net.AbraXator.chakramod.utils.ModTags;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
-import org.jetbrains.annotations.Nullable;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class StoneBenchMenu extends AbstractContainerMenu {
-    private final StoneBenchBlockEntity blockEntity;
-    private final Level level;
+    private final Container resultSlots = new ResultContainer();
+    final Container IngrSlots = new SimpleContainer(2) {
+        public void setChanged() {
+            super.setChanged();
+            StoneBenchMenu.this.slotsChanged(this);
+        }
+    };
+    private final ContainerLevelAccess access;
 
-    public StoneBenchMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()));
+    public StoneBenchMenu(int pContainerId, Inventory inv, FriendlyByteBuf friendlyByteBuf) {
+        this(pContainerId, inv, ContainerLevelAccess.NULL);
     }
 
-    public StoneBenchMenu(int pContainerId, Inventory inv, BlockEntity entity) {
+    public StoneBenchMenu(int pContainerId, Inventory inv, final ContainerLevelAccess levelAccess) {
         super(ModMenuTypes.STONE_BENCH_MENU.get(), pContainerId);
-        checkContainerSize(inv, 3);
-        blockEntity = ((StoneBenchBlockEntity) entity);
-        this.level = inv.player.level;
-
-        addPlayerInventory(inv);
-        addPlayerHotbar(inv);
-        this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 27, 53));
-            this.addSlot(new SlotItemHandler(iItemHandler, 1, 76, 53));
-            this.addSlot(new StoneBenchResult(iItemHandler, 2, 134, 53));
+        this.access = levelAccess;
+        this.addSlot(new Slot(this.IngrSlots, 0, 27, 53) {
+            @Override
+            public boolean mayPlace(ItemStack necklace) {
+                return necklace.is(ModItems.GOLDEN_NECKLACE.get());
+            }
         });
+        this.addSlot(new Slot(this.IngrSlots, 1, 76, 53){
+            @Override
+            public boolean mayPlace(ItemStack stone){
+                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.MINERALS).contains(stone.getItem());
+            }
+        });
+        this.addSlot(new Slot(this.resultSlots, 2, 134, 53){
+            @Override
+            public boolean mayPlace(ItemStack pStack) {
+                return false;
+            }
+
+            @Override
+            public void onTake(Player pPlayer, ItemStack pStack) {
+                StoneBenchMenu.this.IngrSlots.setItem(0, ItemStack.EMPTY);
+                StoneBenchMenu.this.IngrSlots.setItem(1, ItemStack.EMPTY);
+            }
+        });
+
+        for(int i = 0; i < 3; ++i) {
+            for(int j = 0; j < 9; ++j) {
+                this.addSlot(new Slot(inv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+            }
+        }
+
+        for(int k = 0; k < 9; ++k) {
+            this.addSlot(new Slot(inv, k, 8 + k * 18, 142));
+        }
     }
+
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.
@@ -90,21 +119,6 @@ public class StoneBenchMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player pPlayer) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.STONE_BENCH.get());
-    }
-
-    private void addPlayerInventory(Inventory playerInventory) {
-        for (int i = 0; i < 3; ++i) {
-            for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
-            }
-        }
-    }
-
-    private void addPlayerHotbar(Inventory playerInventory) {
-        for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
-        }
+        return stillValid(this.access, pPlayer, ModBlocks.STONE_BENCH.get());
     }
 }
