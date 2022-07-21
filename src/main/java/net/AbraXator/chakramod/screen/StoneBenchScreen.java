@@ -3,13 +3,17 @@ package net.AbraXator.chakramod.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakramod.ChakraMod;
+import net.AbraXator.chakramod.blocks.entity.custom.StoneBenchBlockEntity;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
 
 public class StoneBenchScreen extends AbstractContainerScreen<StoneBenchMenu> {
+    //public static ItemStack itemStack = StoneBenchBlockEntity.getStoneInSlot();
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(ChakraMod.MOD_ID, "textures/gui/container/stone_bench_gui.png");
 

@@ -1,9 +1,11 @@
 package net.AbraXator.chakramod.items.custom;
 
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TextComponentTagVisitor;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -33,7 +35,7 @@ public class GoldenNecklace extends Item {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if(pStack.hasTag()){
             String stones = pStack.getTag().getString("chakramod.stones");
-            pTooltipComponents.add(Component.literal(stones));
+            pTooltipComponents.add(Component.literal(stones).withStyle(ChatFormatting.DARK_AQUA));
         }
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);

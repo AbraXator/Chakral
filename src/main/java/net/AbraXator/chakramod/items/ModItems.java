@@ -21,40 +21,42 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, ChakraMod.MOD_ID);
 
     public static final RegistryObject<Item> AMAZONITE = ITEMS.register("amazonite", () ->
-            new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> AQUAMARINE = ITEMS.register("aquamarine", () ->
-            new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> BLUE_HOWLITE = ITEMS.register("blue_howlite", () ->
-            new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> BLUE_LACE_AGATE = ITEMS.register("blue_lace_agate", () ->
-            new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> GREEN_OPAL = ITEMS.register("green_opal", () ->
-            new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> HELIOTROPE = ITEMS.register("heliotrope", () ->
-            new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> KARNEOLE = ITEMS.register("karneole", () ->
-            new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> KYANITE = ITEMS.register("kyanite", () ->
-            new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> MAHOGANY = ITEMS.register("mahogany", () ->
-            new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> MALACHITE = ITEMS.register("malachite", () ->
-            new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> RHODONITE = ITEMS.register("rhodonite", () ->
-            new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+    public static final RegistryObject<Item> TIGER_EYE = ITEMS.register("tiger_eye", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> TOURMALINE = ITEMS.register("tourmaline", () ->
-            new Item(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
 
     public static final RegistryObject<Item> GOLDEN_NECKLACE = ITEMS.register("golden_necklace", () ->
-            new GoldenNecklace(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+            new GoldenNecklace(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB).stacksTo(1)));
     public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item", () ->
-            new TestItem(new Item.Properties().tab(Tab.CHAKRA_TAB)));
+            new TestItem(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
 
-    public static final RegistryObject<MobBucketItem> CRYSTAL_FISH_BUCKET = register("crystal_fish_bucket", () ->
-           new MobBucketItem(() -> ModEntity.CRYSTAL_FISH.get(), () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH,
-                   new Item.Properties().tab(Tab.CHAKRA_TAB).stacksTo(1)));
+    public static final RegistryObject<MobBucketItem> CRYSTAL_FISH_BUCKET = ITEMS.register("crystal_fish_bucket", () ->
+           new MobBucketItem(ModEntity.CRYSTAL_FISH, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH,
+                   new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB).stacksTo(1)));
 
-    private static <T extends Item> RegistryObject<T> register(final String name, final Supplier<T> item){
-        return ITEMS.register(name, item);
+    public static void register(IEventBus eventBus){
+        ITEMS.register(eventBus);
     }
 }

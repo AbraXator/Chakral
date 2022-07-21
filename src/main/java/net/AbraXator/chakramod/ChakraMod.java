@@ -3,6 +3,7 @@ package net.AbraXator.chakramod;
 import com.mojang.logging.LogUtils;
 import net.AbraXator.chakramod.blocks.ModBlocks;
 import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
+import net.AbraXator.chakramod.blocks.entity.custom.StoneBenchBlockEntity;
 import net.AbraXator.chakramod.entity.ModEntity;
 import net.AbraXator.chakramod.items.ModItems;
 import net.AbraXator.chakramod.screen.ModMenuTypes;
@@ -10,6 +11,8 @@ import net.AbraXator.chakramod.screen.StoneBenchScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -31,12 +34,11 @@ public class ChakraMod {
         // Register the setup method for modloading
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModItems.ITEMS.register(eventBus);
-        ModBlocks.register(eventBus);
-        ModEntity.ENTITIES.register(eventBus);
-        ModBlockEntities.register(eventBus);
-        ModMenuTypes.register(eventBus);
-
+        ModItems.           register(eventBus);
+        ModBlocks.          register(eventBus);
+        ModEntity.          register(eventBus);
+        ModBlockEntities.   register(eventBus);
+        ModMenuTypes.       register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
@@ -46,9 +48,6 @@ public class ChakraMod {
     }
 
     private void clientSetup(final FMLClientSetupEvent event){
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLOWSTONE_CRYSTAL.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GREEN_CRYSTAL.get(), RenderType.cutout());
-
         MenuScreens.register(ModMenuTypes.STONE_BENCH_MENU.get(), StoneBenchScreen::new);
     }
 
@@ -56,5 +55,14 @@ public class ChakraMod {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getName().toString());
+    }
+
+    public class Tab {
+        public static final CreativeModeTab CHAKRA_TAB = new CreativeModeTab("chakramod") {
+            @Override
+            public ItemStack makeIcon() {
+                return new ItemStack(ModItems.MALACHITE.get());
+            }
+        };
     }
 }

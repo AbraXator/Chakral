@@ -4,7 +4,6 @@ import net.AbraXator.chakramod.ChakraMod;
 import net.AbraXator.chakramod.blocks.custom.GlowstoneCrystal;
 import net.AbraXator.chakramod.blocks.custom.StoneBenchBlock;
 import net.AbraXator.chakramod.items.ModItems;
-import net.AbraXator.chakramod.items.Tab;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -12,7 +11,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -25,36 +23,36 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> BLACK_MINERAL = registerBlock("black_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> GREEN_MINERAL = registerBlock("green_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> RED_MINERAL = registerBlock("red_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> BLUE_MINERAL = registerBlock("blue_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> ORANGE_MINERAL = registerBlock("orange_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> LIGHT_BLUE_MINERAL = registerBlock("light_blue_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> PURPLE_MINERAL = registerBlock("purple_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
 
     public static final RegistryObject<Block> GLOWSTONE_CRYSTAL = registerBlock("glowstone_crystal",
             () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.AMETHYST)
-                    .strength(9f).lightLevel(value -> 15).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+                    .strength(9f).lightLevel(value -> 15).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> GREEN_CRYSTAL = registerBlock("green_crystal",
             () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.AMETHYST)
-                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
 
     public static final RegistryObject<Block> STONE_BENCH = registerBlock("stone_bench",
             () -> new StoneBenchBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(9f).requiresCorrectToolForDrops()), Tab.CHAKRA_TAB);
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
 
 
 
