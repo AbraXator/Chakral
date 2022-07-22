@@ -1,18 +1,26 @@
 package net.AbraXator.chakramod.screen;
 
 import net.AbraXator.chakramod.blocks.ModBlocks;
+import net.AbraXator.chakramod.blocks.entity.custom.StoneBenchBlockEntity;
 import net.AbraXator.chakramod.items.ModItems;
 import net.AbraXator.chakramod.utils.ModTags;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class StoneBenchMenu extends AbstractContainerMenu {
+    private final StoneBenchBlockEntity blockEntity;
+    private final Level level;
     private final Container resultSlots = new ResultContainer();
     final Container IngrSlots = new SimpleContainer(2) {
         public void setChanged() {
@@ -20,37 +28,39 @@ public class StoneBenchMenu extends AbstractContainerMenu {
             StoneBenchMenu.this.slotsChanged(this);
         }
     };
-    private final ContainerLevelAccess access;
 
     public StoneBenchMenu(int pContainerId, Inventory inv, FriendlyByteBuf friendlyByteBuf) {
-        this(pContainerId, inv, ContainerLevelAccess.NULL);
+        this(pContainerId, inv, inv.player.level.getBlockEntity(friendlyByteBuf.readBlockPos()));
     }
 
-    public StoneBenchMenu(int pContainerId, Inventory inv, final ContainerLevelAccess levelAccess) {
+    public StoneBenchMenu(int pContainerId, Inventory inv, BlockEntity entity) {
         super(ModMenuTypes.STONE_BENCH_MENU.get(), pContainerId);
-        this.access = levelAccess;
-        this.addSlot(new Slot(this.IngrSlots, 0, 27, 53) {
+        blockEntity = ((StoneBenchBlockEntity) entity);
+        this.level = inv.player.level;
+        //slot 1 - necklace
+        this.addSlot(new Slot(this.IngrSlots, 0, 80, 22) {
+
             @Override
             public boolean mayPlace(ItemStack necklace) {
-                return necklace.is(ModItems.GOLDEN_NECKLACE.get());
-            }
-        });
-        this.addSlot(new Slot(this.IngrSlots, 1, 76, 53){
-            @Override
-            public boolean mayPlace(ItemStack stone){
-                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.MINERALS).contains(stone.getItem());
-            }
-        });
-        this.addSlot(new Slot(this.resultSlots, 2, 134, 53){
-            @Override
-            public boolean mayPlace(ItemStack pStack) {
-                return false;
+                return true;
             }
 
             @Override
             public void onTake(Player pPlayer, ItemStack pStack) {
-                StoneBenchMenu.this.IngrSlots.setItem(0, ItemStack.EMPTY);
+                ItemStack stone = StoneBenchMenu.this.IngrSlots.getItem(1);
+                CompoundTag nbt = new CompoundTag();
+                nbt.putString("chakramod.stones", stone.getDisplayName().getString());
+                pStack.setTag(nbt);
+
                 StoneBenchMenu.this.IngrSlots.setItem(1, ItemStack.EMPTY);
+            }
+        });
+        //slot 2 - stone
+        this.addSlot(new Slot(this.IngrSlots, 1, 80, 46){
+            @Override
+            public boolean mayPlace(ItemStack stone){
+                return true;
+                //return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.MINERALS).contains(stone.getItem());
             }
         });
 
@@ -82,7 +92,7 @@ public class StoneBenchMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
@@ -119,6 +129,6 @@ public class StoneBenchMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player pPlayer) {
-        return stillValid(this.access, pPlayer, ModBlocks.STONE_BENCH.get());
+        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, ModBlocks.STONE_BENCH.get());
     }
 }

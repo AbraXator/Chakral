@@ -27,6 +27,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> GREEN_MINERAL = registerBlock("green_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> HEART_ORE = registerBlock("heart_ore",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> RED_MINERAL = registerBlock("red_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);

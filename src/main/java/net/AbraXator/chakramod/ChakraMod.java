@@ -7,6 +7,7 @@ import net.AbraXator.chakramod.entity.ModEntity;
 import net.AbraXator.chakramod.items.ModItems;
 import net.AbraXator.chakramod.screen.ModMenuTypes;
 import net.AbraXator.chakramod.screen.StoneBenchScreen;
+import net.AbraXator.chakramod.world.feature.ModPlaceFeatures;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -34,6 +35,7 @@ public class ChakraMod {
         ModEntity.          register(eventBus);
         ModBlockEntities.   register(eventBus);
         ModMenuTypes.       register(eventBus);
+        ModPlaceFeatures.   register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);

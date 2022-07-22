@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"render_types": "cutout",
 	"textures": {
 		"0": "chakramod:block/green_crystal",
 		"particle": "chakramod:block/green_crystal"
@@ -23,6 +24,5 @@
 				"west": {"uv": [0, 5, 16, 16], "texture": "#0"}
 			}
 		}
-	],
-	"render_types": "cutout"
+	]
 }
