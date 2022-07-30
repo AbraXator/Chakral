@@ -1,7 +1,7 @@
 {
-    "variants": {
-        "": {
-            "model": "chakramod:block/black_mineral"
-        }
-    }
+ "variants": {
+  "": {
+   "model": "chakramod:block/black_mineral"
+  }
+ }
 }

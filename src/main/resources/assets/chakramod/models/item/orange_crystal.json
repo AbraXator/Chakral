@@ -1,3 +1,11 @@
 {
- "parent": "chakramod:item/orange_crystal"
+ "parent": "minecraft:item/generated",
+ "textures": {
+  "layer0": "chakramod:block/orange_crystal"
+ },
+ "display": {
+  "head": {
+   "translation": [ 0, 14, -5 ]
+  }
+ }
 }

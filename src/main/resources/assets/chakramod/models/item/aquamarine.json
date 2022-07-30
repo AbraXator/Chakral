@@ -1,3 +1,6 @@
 {
-    "parent": "chakramod:item/aquamarine"
+ "parent": "item/generated",
+ "textures": {
+  "layer0": "chakramod:item/aquamarine"
+ }
 }

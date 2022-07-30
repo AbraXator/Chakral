@@ -1,0 +1,13 @@
+{
+ "variants": {
+  "": {
+   "model": "chakramod:block/red_mineral_stone"
+  }
+ }
+}{
+ "variants": {
+  "": {
+   "model": "chakramod:block/red_mineral"
+  }
+ }
+}

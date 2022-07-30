@@ -2,6 +2,7 @@ package net.AbraXator.chakramod.blocks;
 
 import net.AbraXator.chakramod.ChakraMod;
 import net.AbraXator.chakramod.blocks.custom.GlowstoneCrystal;
+import net.AbraXator.chakramod.blocks.custom.ShardRefinerBlock;
 import net.AbraXator.chakramod.blocks.custom.StoneBenchBlock;
 import net.AbraXator.chakramod.items.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -24,13 +25,28 @@ public class ModBlocks {
     public static final RegistryObject<Block> BLACK_MINERAL = registerBlock("black_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> CRACKED_BLACK_MINERAL_BRICKS = registerBlock("cracked_black_mineral_bricks",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> SMOOTH_BLACK_MINERAL = registerBlock("smooth_black_mineral",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> GREEN_MINERAL = registerBlock("green_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
-    public static final RegistryObject<Block> HEART_ORE = registerBlock("heart_ore",
+    public static final RegistryObject<Block> GREEN_MINERAL_BRICKS = registerBlock("green_mineral_bricks",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(9).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> POLISHED_GREEN_MINERAL = registerBlock("polished_green_mineral",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> RED_MINERAL = registerBlock("red_mineral",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> RED_MINERAL_BRICKS = registerBlock("red_mineral_bricks",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> SMOOTH_RED_MINERAL = registerBlock("smooth_red_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> BLUE_MINERAL = registerBlock("blue_mineral",
@@ -42,7 +58,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> LIGHT_BLUE_MINERAL = registerBlock("light_blue_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
-    public static final RegistryObject<Block> PURPLE_MINERAL = registerBlock("purple_mineral",
+    public static final RegistryObject<Block> LIGHT_BLUE_MINERAL_BRICKS = registerBlock("light_blue_mineral_bricks",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> YELLOW_MINERAL = registerBlock("yellow_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
 
@@ -52,9 +71,18 @@ public class ModBlocks {
     public static final RegistryObject<Block> GREEN_CRYSTAL = registerBlock("green_crystal",
             () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.AMETHYST)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> ORANGE_CRYSTAL = registerBlock("orange_crystal",
+            () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> BLUE_CRYSTAL = registerBlock("blue_crystal",
+            () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
 
     public static final RegistryObject<Block> STONE_BENCH = registerBlock("stone_bench",
             () -> new StoneBenchBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> SHARD_REFINER = registerBlock("shard_refiner",
+            () -> new ShardRefinerBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
 
 

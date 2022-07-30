@@ -1,11 +1,7 @@
 {
-  "variants": {
-    "facing=up": {
-      "model": "chakramod:block/glowstone_crystal"
-    },
-    "facing=down": {
-      "model": "chakramod:block/glowstone_crystal",
-      "x": 180
-    }
+ "variants": {
+  "": {
+   "model": "chakramod:block/glowstone_crystal"
   }
+ }
 }

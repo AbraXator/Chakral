@@ -1,3 +1,6 @@
 {
- "parent": "chakramod:item/dumortierite"
+ "parent": "item/generated",
+ "textures": {
+  "layer0": "chakramod:item/dumortierite"
+ }
 }

@@ -1,7 +1,7 @@
 {
-    "variants": {
-        "": {
-            "model": "chakramod:block/stone_bench"
-        }
-    }
+ "variants": {
+  "": {
+   "model": "chakramod:block/stone_bench"
+  }
+ }
 }

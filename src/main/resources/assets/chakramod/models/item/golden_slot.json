@@ -1,3 +1,6 @@
 {
- "parent": "chakramod:item/golden_slot"
+ "parent": "item/generated",
+ "textures": {
+  "layer0": "chakramod:item/golden_slot"
+ }
 }

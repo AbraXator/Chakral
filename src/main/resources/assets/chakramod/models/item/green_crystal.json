@@ -1,6 +1,11 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "chakramod:block/green_crystal"
-    }
+ "parent": "minecraft:item/generated",
+ "textures": {
+  "layer0": "chakramod:block/green_crystal"
+ },
+ "display": {
+  "head": {
+   "translation": [ 0, 14, -5 ]
+  }
+ }
 }

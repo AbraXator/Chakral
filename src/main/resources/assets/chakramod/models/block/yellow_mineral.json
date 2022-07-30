@@ -1,0 +1,11 @@
+{
+ "parent": "block/cube_all",
+ "textures": {
+  "all": "chakramod:block/yellow_mineral"
+ }
+}{
+ "parent": "block/cube_all",
+ "textures": {
+  "all": "chakramod:block/yellow_mineral"
+ }
+}

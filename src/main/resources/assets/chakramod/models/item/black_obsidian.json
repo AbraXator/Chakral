@@ -1,3 +1,6 @@
 {
- "parent": "chakramod:item/black_obsidian"
+ "parent": "item/generated",
+ "textures": {
+  "layer0": "chakramod:item/black_obsidian"
+ }
 }

@@ -1,3 +1,6 @@
 {
- "parent": "chakramod:item/citrine"
+ "parent": "item/generated",
+ "textures": {
+  "layer0": "chakramod:item/citrine"
+ }
 }

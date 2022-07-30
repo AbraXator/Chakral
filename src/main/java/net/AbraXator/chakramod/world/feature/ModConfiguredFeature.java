@@ -26,7 +26,7 @@ public class ModConfiguredFeature {
     public static final Holder<ConfiguredFeature<GeodeConfiguration, ?>> HEART_GEODE =
             FeatureUtils.register("heart_geode", Feature.GEODE,
                     new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
-                            BlockStateProvider.simple(ModBlocks.HEART_ORE.get()),
+                            BlockStateProvider.simple(ModBlocks.ORANGE_CRYSTAL.get()),
                             BlockStateProvider.simple(ModBlocks.GREEN_CRYSTAL.get()),
                             BlockStateProvider.simple(ModBlocks.GREEN_MINERAL.get()),
                             BlockStateProvider.simple(ModBlocks.BLACK_MINERAL.get()),

@@ -1,7 +1,13 @@
 {
-    "variants": {
-        "": {
-            "model": "chakramod:block/smooth_black_mineral"
-        }
-    }
+ "variants": {
+  "": {
+   "model": "chakramod:block/smooth_black_mineral"
+  }
+ }
+}{
+ "variants": {
+  "": {
+   "model": "chakramod:block/smooth_black_mineral"
+  }
+ }
 }
