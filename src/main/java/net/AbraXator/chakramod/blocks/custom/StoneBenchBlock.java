@@ -3,6 +3,7 @@ package net.AbraXator.chakramod.blocks.custom;
 import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakramod.blocks.entity.custom.StoneBenchBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -21,22 +22,44 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class StoneBenchBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final VoxelShape SHAPE_BASE = Block.box(4.0D, 0.0D, 3.0D, 12.0D, 2.0D, 11.0D);
+    public static final VoxelShape SHAPE_POST = Block.box(6.0D, 0.0D, 5.0D, 10.0D, 14.0D, 9.0D);
+    public static final VoxelShape SHAPE_COMMON = Shapes.or(SHAPE_BASE, SHAPE_POST);
+    public static final VoxelShape SHAPE_TOP_PLATE = Block.box(0.0D, 15.0D, 0.0D, 16.0D, 15.0D, 16.0D);
+    public static final VoxelShape SHAPE_COLLISION = Shapes.or(SHAPE_COMMON, SHAPE_TOP_PLATE);
+    public static final VoxelShape SHAPE_WEST = Shapes.or(Block.box(1.0D, 10.0D, 0.0D, 5.333333D, 13.0D, 16.0D), Block.box(5.333333D, 12.0D, 0.0D, 9.666667D, 15.0D, 16.0D), Block.box(9.666667D, 14.0D, 0.0D, 14.0D, 17.0D, 16.0D), SHAPE_COMMON);
+    public static final VoxelShape SHAPE_NORTH = Shapes.or(Block.box(0.0D, 10.0D, 1.0D, 16.0D, 13.0D, 5.333333D), Block.box(0.0D, 12.0D, 5.333333D, 16.0D, 15.0D, 9.666667D), Block.box(0.0D, 14.0D, 9.666667D, 16.0D, 17.0D, 14.0D), SHAPE_COMMON);
+    public static final VoxelShape SHAPE_EAST = Shapes.or(Block.box(10.666667D, 10.0D, 0.0D, 15.0D, 13.0D, 16.0D), Block.box(6.333333D, 12.0D, 0.0D, 10.666667D, 15.0D, 16.0D), Block.box(2.0D, 14.0D, 0.0D, 6.333333D, 17.0D, 16.0D), SHAPE_COMMON);
+    public static final VoxelShape SHAPE_SOUTH = Shapes.or(Block.box(0.0D, 10.0D, 10.666667D, 16.0D, 13.0D, 15.0D), Block.box(0.0D, 12.0D, 6.333333D, 16.0D, 15.0D, 10.666667D), Block.box(0.0D, 14.0D, 2.0D, 16.0D, 17.0D, 6.333333D), SHAPE_COMMON);
 
     public StoneBenchBlock(Properties properties) {
         super(properties);
     }
 
-    private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 8, 16);
+    public VoxelShape getOcclusionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+        return SHAPE_COMMON;
+    }
+
+    public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return SHAPE_COLLISION;
+    }
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return SHAPE;
+        return switch (pState.getValue(FACING)) {
+            case EAST -> SHAPE_EAST;
+            case NORTH -> SHAPE_NORTH;
+            case SOUTH -> SHAPE_SOUTH;
+            case WEST -> SHAPE_WEST;
+            default -> SHAPE_COMMON;
+        };
     }
 
     @Nullable

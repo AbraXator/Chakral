@@ -23,7 +23,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 
-public class GreenCrystal extends Block {
+public class Crystal extends Block {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     protected final VoxelShape upS;
@@ -33,7 +33,7 @@ public class GreenCrystal extends Block {
     protected final VoxelShape westS;
     protected final VoxelShape eastS;
 
-    public GreenCrystal(Properties properties) {
+    public Crystal(Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(FACING, Direction.UP));
         //this.northS = Block.box(16, 0, 16, 0, 16, 0);

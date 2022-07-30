@@ -4,7 +4,7 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"3": "chakramod:block/stone_bench",
-		"particle": "black_mineral_bricks"
+		"particle": "chakramod:block/smooth_black_mineral"
 	},
 	"elements": [
 		{

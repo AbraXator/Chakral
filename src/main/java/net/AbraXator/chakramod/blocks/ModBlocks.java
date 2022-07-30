@@ -1,7 +1,7 @@
 package net.AbraXator.chakramod.blocks;
 
 import net.AbraXator.chakramod.ChakraMod;
-import net.AbraXator.chakramod.blocks.custom.GlowstoneCrystal;
+import net.AbraXator.chakramod.blocks.custom.Crystal;
 import net.AbraXator.chakramod.blocks.custom.ShardRefinerBlock;
 import net.AbraXator.chakramod.blocks.custom.StoneBenchBlock;
 import net.AbraXator.chakramod.items.ModItems;
@@ -66,16 +66,16 @@ public class ModBlocks {
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
 
     public static final RegistryObject<Block> GLOWSTONE_CRYSTAL = registerBlock("glowstone_crystal",
-            () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.AMETHYST)
+            () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST)
                     .strength(9f).lightLevel(value -> 15).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> GREEN_CRYSTAL = registerBlock("green_crystal",
-            () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.AMETHYST)
+            () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> ORANGE_CRYSTAL = registerBlock("orange_crystal",
-            () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Crystal(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> BLUE_CRYSTAL = registerBlock("blue_crystal",
-            () -> new GlowstoneCrystal(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Crystal(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
 
     public static final RegistryObject<Block> STONE_BENCH = registerBlock("stone_bench",
