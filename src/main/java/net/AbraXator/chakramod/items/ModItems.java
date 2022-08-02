@@ -3,8 +3,6 @@ package net.AbraXator.chakramod.items;
 import net.AbraXator.chakramod.ChakraMod;
 import net.AbraXator.chakramod.entity.ModEntity;
 import net.AbraXator.chakramod.items.custom.GoldenNecklace;
-import net.AbraXator.chakramod.items.custom.TestItem;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.MobBucketItem;
@@ -13,8 +11,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-import java.util.function.Supplier;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
