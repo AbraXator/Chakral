@@ -2,8 +2,8 @@
   "replace": false,
   "values": [
     "chakramod:mahogany",
-    "minecraft:obsidian",
+    "chakramod:black_obsidian",
     "chakramod:tourmaline",
-    "chakramod:karneole"
+    "chakramod:heliotrope"
   ]
 }

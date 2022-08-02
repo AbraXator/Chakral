@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
-    "minecraft:lapis_lazuli"
+    "minecraft:lapis_lazuli",
+    "chakramod:azurite",
+    "chakramod:sapphire",
+    "chakramod:dumortierite"
+
   ]
 }

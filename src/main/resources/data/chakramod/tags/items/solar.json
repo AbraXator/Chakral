@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "chakramod:heliotrope"
+    "chakramod:citrine",
+    "chakramod:heliolite",
+    "chakramod:amber",
+    "chakramod:fire_opal"
   ]
 }

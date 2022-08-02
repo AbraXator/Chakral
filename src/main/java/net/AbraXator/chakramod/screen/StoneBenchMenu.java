@@ -5,6 +5,7 @@ import net.AbraXator.chakramod.blocks.entity.custom.StoneBenchBlockEntity;
 import net.AbraXator.chakramod.items.ModItems;
 import net.AbraXator.chakramod.utils.ModTags;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.Container;

@@ -7,9 +7,12 @@ import net.AbraXator.chakramod.entity.ModEntity;
 import net.AbraXator.chakramod.items.ModItems;
 import net.AbraXator.chakramod.screen.ModMenuTypes;
 import net.AbraXator.chakramod.screen.StoneBenchScreen;
+import net.AbraXator.chakramod.utils.ModItemProperties;
 import net.AbraXator.chakramod.world.feature.ModPlaceFeatures;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -18,7 +21,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("chakramod")
@@ -46,6 +54,7 @@ public class ChakraMod {
 
     private void clientSetup(final FMLClientSetupEvent event){
         MenuScreens.register(ModMenuTypes.STONE_BENCH_MENU.get(), StoneBenchScreen::new);
+        ModItemProperties.addCustomProperties();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -59,6 +68,16 @@ public class ChakraMod {
             @Override
             public ItemStack makeIcon() {
                 return new ItemStack(ModItems.MALACHITE.get());
+            }
+
+            @Override
+            public void fillItemList(NonNullList<ItemStack> pItems) {
+                for(int i = 0; i < ModItems.ITEMS.getEntries().stream().toList().size(); i++){
+                    pItems.add(ModItems.ITEMS.getEntries().stream().toList().get(i).get().getDefaultInstance());
+                }
+                //for(int i = 0; i < ModBlocks.BLOCKS.getEntries().stream().toList().size(); i++){
+                //    pItems.add(ModBlocks.BLOCKS.getEntries().stream().toList().get(i).get().asItem().getDefaultInstance());
+                //}
             }
         };
     }

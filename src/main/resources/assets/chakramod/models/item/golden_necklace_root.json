@@ -1,0 +1,6 @@
+{
+ "parent": "chakramod:item/golden_necklace",
+ "textures": {
+  "layer0": "chakramod:item/golden_necklace_root"
+ }
+}
