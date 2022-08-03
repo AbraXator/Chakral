@@ -3,16 +3,13 @@ package net.AbraXator.chakramod.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakramod.ChakraMod;
-import net.AbraXator.chakramod.blocks.entity.custom.StoneBenchBlockEntity;
 import net.AbraXator.chakramod.utils.ModTags;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class StoneBenchScreen extends AbstractContainerScreen<StoneBenchMenu> {
@@ -33,7 +30,7 @@ public class StoneBenchScreen extends AbstractContainerScreen<StoneBenchMenu> {
         int y = (height - imageHeight) / 2;
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
 
-        Item stone = this.menu.IngrSlots.getItem(1).getItem();
+        Item stone = this.menu.necklaceSlot.getItem(1).getItem();
         if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.CROWN).contains(stone)){
             this.blit(pPoseStack, x + 70, y + 40, 220, 125, 35, 29);
         }

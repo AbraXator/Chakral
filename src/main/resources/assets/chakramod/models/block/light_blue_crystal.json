@@ -1,0 +1,7 @@
+{
+ "parent": "minecraft:block/cross",
+ "textures": {
+  "cross": "chakramod:block/light_blue_crystal"
+ },
+ "render_type": "cutout"
+}

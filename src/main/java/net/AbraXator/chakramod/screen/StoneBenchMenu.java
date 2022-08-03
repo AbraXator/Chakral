@@ -5,25 +5,27 @@ import net.AbraXator.chakramod.blocks.entity.custom.StoneBenchBlockEntity;
 import net.AbraXator.chakramod.items.ModItems;
 import net.AbraXator.chakramod.utils.ModTags;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.ExtraCodecs;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 public class StoneBenchMenu extends AbstractContainerMenu {
     private final StoneBenchBlockEntity blockEntity;
     private final Level level;
-    private final Container resultSlots = new ResultContainer();
-    final Container IngrSlots = new SimpleContainer(2) {
+    final Container necklaceSlot = new SimpleContainer(2) {
         public void setChanged() {
             super.setChanged();
             StoneBenchMenu.this.slotsChanged(this);
@@ -39,29 +41,65 @@ public class StoneBenchMenu extends AbstractContainerMenu {
         blockEntity = ((StoneBenchBlockEntity) entity);
         this.level = inv.player.level;
         //slot 1 - necklace
-        this.addSlot(new Slot(this.IngrSlots, 0, 80, 22) {
+        this.addSlot(new Slot(this.necklaceSlot, 0, 80, 22) {
 
             @Override
             public boolean mayPlace(ItemStack necklace) {
-                return true;
+                if(necklace.is(ModItems.GOLDEN_NECKLACE.get())){
+                    return true;
+                }else {
+                    return false;
+                }
             }
 
             @Override
             public void onTake(Player pPlayer, ItemStack pStack) {
-                ItemStack stone = StoneBenchMenu.this.IngrSlots.getItem(1);
-                CompoundTag nbt = new CompoundTag();
-                nbt.putString("chakramod.stones", stone.getDisplayName().getString());
-                pStack.setTag(nbt);
+                ItemStack stone = StoneBenchMenu.this.necklaceSlot.getItem(1);
+                List<Item> tagList = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream().toList();
+                Stream<Item> tagStream = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream();;
+                if(tagList.contains(stone.getItem())){
+                    CompoundTag nbt = new CompoundTag();
+                    nbt.putString("chakramod.stones", stone.getDisplayName().getString());
+                    pStack.setTag(nbt);
+                    StoneBenchMenu.this.necklaceSlot.removeItem(1, 1);
+                }
+            }
 
-                StoneBenchMenu.this.IngrSlots.setItem(1, ItemStack.EMPTY);
+            @Override
+            public void setChanged() {
+                if(StoneBenchMenu.this.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())) {
+                    ItemStack necklace = StoneBenchMenu.this.getSlot(0).getItem();
+                    if (necklace.hasTag()) {
+                        String nbt = necklace.getTag().getString("chakramod.stones").toString().replace("[", "").replace("]", "").toLowerCase();
+                        ItemStack stone = ForgeRegistries.ITEMS.getValue(new ResourceLocation("chakramod:" + nbt)).getDefaultInstance();
+                        if(!StoneBenchMenu.this.getSlot(1).hasItem()){
+                            StoneBenchMenu.this.setItem(1, 1, stone);
+                        }
+                    }
+                }
             }
         });
         //slot 2 - stone
-        this.addSlot(new Slot(this.IngrSlots, 1, 80, 46){
+        this.addSlot(new Slot(this.necklaceSlot, 1, 80, 46){
             @Override
             public boolean mayPlace(ItemStack stone){
-                return true;
-                //return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.MINERALS).contains(stone.getItem());
+                if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream().toList().contains(stone.getItem()) && StoneBenchMenu.this.getSlot(0).hasItem()){
+                    return true;
+                }else {
+                    return false;
+                }
+            }
+
+            @Override
+            public void onTake(Player pPlayer, ItemStack pStack) {
+                if (StoneBenchMenu.this.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())) {
+                    ItemStack necklace = StoneBenchMenu.this.getSlot(0).getItem();
+                    if (necklace.hasTag()) {
+                        CompoundTag tag = new CompoundTag();
+                        tag.putString("chakramod.stones", "empty");
+                        necklace.setTag(tag);
+                    }
+                }
             }
         });
 
@@ -76,6 +114,18 @@ public class StoneBenchMenu extends AbstractContainerMenu {
         }
     }
 
+    @Override
+    public void removed(Player pPlayer) {
+        super.removed(pPlayer);
+        if(!pPlayer.level.isClientSide){
+            ItemStack necklace = this.necklaceSlot.removeItem(0, this.necklaceSlot.getMaxStackSize());
+            ItemStack stone = this.necklaceSlot.removeItem(1, this.necklaceSlot.getMaxStackSize());
+            if(!stone.isEmpty() || !necklace.isEmpty()){
+                pPlayer.addItem(necklace);
+                pPlayer.addItem(stone);
+            }
+        }
+    }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number  to each of the slots used by the GUI.

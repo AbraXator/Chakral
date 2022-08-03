@@ -33,7 +33,7 @@ public class ModItemProperties {
         });
         ItemProperties.register(item, new ResourceLocation("root"), (itemStack, p_234979_, p_234980_, p_234981_) -> {
             List<String> listRoot = new ArrayList<>();
-            Collections.addAll(listRoot, "Mahogany", "Black Obsidian", "Tourmaline" , "Heliotrope");
+            Collections.addAll(listRoot, "Mahogany", "Black Obsidian", "Tourmeline" , "Heliotrope");
             String nbtData = itemStack.hasTag() ? itemStack.getTag().getString("chakramod.stones") : "";
             nbtData = nbtData.replace("[", "").replace("]", "");
             return itemStack != null && itemStack.hasTag() && listRoot.contains(nbtData) ? 1.0F : 0.0F;
@@ -47,7 +47,7 @@ public class ModItemProperties {
         });
         ItemProperties.register(item, new ResourceLocation("solar"), (itemStack, p_234979_, p_234980_, p_234981_) -> {
             List<String> listSoral = new ArrayList<>();
-            Collections.addAll(listSoral, "Citrine", "Heliotrope", "Amber", "Fire Opal");
+            Collections.addAll(listSoral, "Citrine", "Heliolite", "Amber", "Fire Opal");
             String nbtData = itemStack.hasTag() ? itemStack.getTag().getString("chakramod.stones") : "";
             nbtData = nbtData.replace("[", "").replace("]", "");
             return itemStack != null && itemStack.hasTag() && listSoral.contains(nbtData) ? 1.0F : 0.0F;

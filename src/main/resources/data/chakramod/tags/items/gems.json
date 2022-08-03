@@ -1,0 +1,33 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:amethyst_shard",
+    "minecraft:quartz",
+    "chakramod:labbradorite",
+    "chakramod:moon_stone",
+    "chakramod:rhodonite",
+    "chakramod:amazonite",
+    "chakramod:green_opal",
+    "chakramod:malachite",
+    "chakramod:mahogany",
+    "chakramod:black_obsidian",
+    "chakramod:tourmaline",
+    "chakramod:heliotrope",
+    "chakramod:garnet_spessartine",
+    "chakramod:golden_tigers_eye",
+    "chakramod:stillbite",
+    "chakramod:carnelian",
+    "chakramod:citrine",
+    "chakramod:heliolite",
+    "chakramod:amber",
+    "chakramod:fire_opal",
+    "minecraft:lapis_lazuli",
+    "chakramod:azurite",
+    "chakramod:sapphire",
+    "chakramod:dumortierite",
+    "chakramod:blue_lace_agate",
+    "chakramod:aquamarine",
+    "chakramod:blue_howlite",
+    "chakramod:kyanite"
+  ]
+}

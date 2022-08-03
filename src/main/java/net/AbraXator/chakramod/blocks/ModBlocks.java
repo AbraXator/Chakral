@@ -64,6 +64,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> YELLOW_MINERAL = registerBlock("yellow_mineral",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> SMOOTH_YELLOW_MINERAL = registerBlock("smooth_yellow_mineral",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
 
     public static final RegistryObject<Block> GLOWSTONE_CRYSTAL = registerBlock("glowstone_crystal",
             () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST)
@@ -75,6 +78,12 @@ public class ModBlocks {
             () -> new Crystal(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> BLUE_CRYSTAL = registerBlock("blue_crystal",
+            () -> new Crystal(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> YELLOW_CRYSTAL = registerBlock("yellow_crystal",
+            () -> new Crystal(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> LIGHT_BLUE_CRYSTAL = registerBlock("light_blue_crystal",
             () -> new Crystal(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
 

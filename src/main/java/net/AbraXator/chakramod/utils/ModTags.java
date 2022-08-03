@@ -11,7 +11,7 @@ import net.minecraftforge.common.Tags;
 
 public class ModTags {
     public static class Items{
-        public static final TagKey<Item> MINERALS = tag("minerals");
+        public static final TagKey<Item> GEMS = tag("gems");
         public static final TagKey<Item> CROWN = tag("crown");
         public static final TagKey<Item> THIRD_EYE = tag("third_eye");
         public static final TagKey<Item> THORAT = tag("throat");
