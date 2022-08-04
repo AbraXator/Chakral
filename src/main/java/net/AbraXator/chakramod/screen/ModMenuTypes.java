@@ -16,8 +16,8 @@ public class ModMenuTypes {
 
     public static final RegistryObject<MenuType<StoneBenchMenu>> STONE_BENCH_MENU =
             registerMenuType(StoneBenchMenu::new, "stone_bench_menu");
-    //public static final RegistryObject<MenuType<StoneBenchMenu>> SHARD_REFINER_MENU =
-    //        registerMenuType(ShardRefinerMenu::new, "shard_refiner_menu");
+    //      public static final RegistryObject<MenuType<ShardRefinerMenu>> SHARD_REFINER_MENU =
+    //              registerMenuType(ShardRefinerMenu::new, "shard_refiner_menu");
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>>
     registerMenuType(IContainerFactory<T> factory, String name){

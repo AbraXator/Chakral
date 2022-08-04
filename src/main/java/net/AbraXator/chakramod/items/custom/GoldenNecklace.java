@@ -37,6 +37,8 @@ public class GoldenNecklace extends Item {
         if(pStack.hasTag()){
             String stones = pStack.getTag().getString("chakramod.stones");
             pTooltipComponents.add(Component.literal(stones).withStyle(ChatFormatting.DARK_AQUA));
+        }else {
+            pTooltipComponents.add(Component.literal("Empty").withStyle(ChatFormatting.GRAY));
         }
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }

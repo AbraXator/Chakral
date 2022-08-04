@@ -1,6 +1,7 @@
 package net.AbraXator.chakramod.blocks.entity.custom;
 
 import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
+import net.AbraXator.chakramod.screen.ModMenuTypes;
 import net.AbraXator.chakramod.screen.ShardRefinerMenu;
 import net.AbraXator.chakramod.screen.StoneBenchMenu;
 import net.minecraft.core.BlockPos;
@@ -21,9 +22,10 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(2){
+    private final ItemStackHandler itemHandler = new ItemStackHandler(3){
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -41,11 +43,11 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         return Component.literal(" ");
     }
 
-    @javax.annotation.Nullable
-    @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-        return new StoneBenchMenu(pContainerId, pInventory, this);
-    }
+   // @javax.annotation.Nullable
+   // @Override
+   // public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
+   //     return new ShardRefinerMenu(ModMenuTypes.SHARD_REFINER_MENU.get(), pContainerId);
+   // }
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @org.jetbrains.annotations.Nullable Direction side) {
@@ -86,5 +88,11 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
         Containers.dropContents(this.level, this.worldPosition, inventory);
+    }
+
+    @Nullable
+    @Override
+    public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
+        return null;
     }
 }

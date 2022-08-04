@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 public class ShardRefinerMenu extends AbstractContainerMenu {
-    protected ShardRefinerMenu(@Nullable MenuType<?> pMenuType, int pContainerId) {
+    public ShardRefinerMenu(@Nullable MenuType<?> pMenuType, int pContainerId) {
         super(pMenuType, pContainerId);
     }
 

@@ -1,5 +1,6 @@
 package net.AbraXator.chakramod.utils;
 
+import net.AbraXator.chakramod.ChakraMod;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.phys.Vec3;
 import org.w3c.dom.css.RGBColor;
@@ -39,8 +40,21 @@ public enum ChakraType {
         return null;
     }
 
-    public ChatFormatting getColorFromChakra(ChakraType type){
-        switch (type){
+    public String ChakraToString(ChakraType chakraType){
+        switch (chakraType){
+            case CROWN: return "CROWN";
+            case THIRD_EYE: return "THIRD_EYE";
+            case THROAT: return "THROAT";
+            case HEART: return "HEART";
+            case SOLAR: return "SOLAR";
+            case SACRAL: return "SACRAL";
+            case ROOT: return "ROOT";
+            default: return "";
+        }
+    }
+
+    public ChatFormatting getColorFromChakra(ChakraType chakraType){
+        switch (chakraType){
             case CROWN: return ChatFormatting.DARK_PURPLE;
             case THIRD_EYE: return ChatFormatting.BLUE;
             case THROAT: return ChatFormatting.AQUA;

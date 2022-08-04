@@ -95,9 +95,7 @@ public class StoneBenchMenu extends AbstractContainerMenu {
                 if (StoneBenchMenu.this.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())) {
                     ItemStack necklace = StoneBenchMenu.this.getSlot(0).getItem();
                     if (necklace.hasTag()) {
-                        CompoundTag tag = new CompoundTag();
-                        tag.putString("chakramod.stones", "empty");
-                        necklace.setTag(tag);
+                        necklace.removeTagKey("chakramod.stones");
                     }
                 }
             }

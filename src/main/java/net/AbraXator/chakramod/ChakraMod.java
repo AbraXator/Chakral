@@ -5,6 +5,7 @@ import net.AbraXator.chakramod.blocks.ModBlocks;
 import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakramod.entity.ModEntity;
 import net.AbraXator.chakramod.items.ModItems;
+import net.AbraXator.chakramod.items.custom.Gem;
 import net.AbraXator.chakramod.screen.ModMenuTypes;
 import net.AbraXator.chakramod.screen.StoneBenchScreen;
 import net.AbraXator.chakramod.utils.ModItemProperties;
@@ -75,9 +76,6 @@ public class ChakraMod {
                 for(int i = 0; i < ModItems.ITEMS.getEntries().stream().toList().size(); i++){
                     pItems.add(ModItems.ITEMS.getEntries().stream().toList().get(i).get().getDefaultInstance());
                 }
-                //for(int i = 0; i < ModBlocks.BLOCKS.getEntries().stream().toList().size(); i++){
-                //    pItems.add(ModBlocks.BLOCKS.getEntries().stream().toList().get(i).get().asItem().getDefaultInstance());
-                //}
             }
         };
     }

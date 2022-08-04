@@ -1,5 +1,6 @@
 package net.AbraXator.chakramod.items.custom;
 
+import net.AbraXator.chakramod.ChakraMod;
 import net.AbraXator.chakramod.utils.ChakraType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -13,16 +14,17 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class Gem extends Item {
-    public ChakraType chakra = null;
+    public ChakraType chakraType;
 
     public Gem(Properties pProperties, ChakraType chakra) {
         super(pProperties);
-        this.chakra = chakra;
+        this.chakraType = chakra;
     }
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        pTooltipComponents.add(Component.literal("Chakra: " + chakra).withStyle(chakra.getColorFromChakra(chakra)));
+        //Component chakraComponent = Component.literal(chakraType.ChakraToString(chakraType)).withStyle(chakraType.getColorFromChakra(chakraType));
+        pTooltipComponents.add(Component.literal("Chakra: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
         pTooltipComponents.add(Component.literal("<Hold shift for more info>").withStyle(ChatFormatting.GOLD));
         if(Screen.hasShiftDown()){
 
