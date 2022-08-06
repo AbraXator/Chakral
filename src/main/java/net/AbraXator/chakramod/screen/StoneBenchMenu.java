@@ -70,7 +70,7 @@ public class StoneBenchMenu extends AbstractContainerMenu {
                 if(StoneBenchMenu.this.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())) {
                     ItemStack necklace = StoneBenchMenu.this.getSlot(0).getItem();
                     if (necklace.hasTag()) {
-                        String nbt = necklace.getTag().getString("chakramod.stones").toString().replace("[", "").replace("]", "").toLowerCase();
+                        String nbt = necklace.getTag().getString("chakramod.stones").toString().replace("[", "").replace("]", "").replace(" ", "_").toLowerCase();
                         ItemStack stone = ForgeRegistries.ITEMS.getValue(new ResourceLocation("chakramod:" + nbt)).getDefaultInstance();
                         if(!StoneBenchMenu.this.getSlot(1).hasItem()){
                             StoneBenchMenu.this.setItem(1, 1, stone);
