@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "chakramod:block/shard_refiner",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "chakramod:block/shard_refiner"
+    },
+    "facing=south": {
+      "model": "chakramod:block/shard_refiner",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "chakramod:block/shard_refiner",
+      "y": 270
+    }
+  }
+}
