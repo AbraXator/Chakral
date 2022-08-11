@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:amethyst_shard",
+    "chakramod:green_shard",
+    "chakramod:red_shard",
+    "chakramod:orange_shard",
+    "chakramod:yellow_shard",
+    "chakramod:blue_shard",
+    "chakramod:light_blue_shard"
+  ]
+}

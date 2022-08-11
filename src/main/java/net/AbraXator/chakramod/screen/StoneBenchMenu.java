@@ -91,6 +91,11 @@ public class StoneBenchMenu extends AbstractContainerMenu {
             }
 
             @Override
+            public int getMaxStackSize() {
+                return 1;
+            }
+
+            @Override
             public void onTake(Player pPlayer, ItemStack pStack) {
                 if (StoneBenchMenu.this.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())) {
                     ItemStack necklace = StoneBenchMenu.this.getSlot(0).getItem();
@@ -100,13 +105,11 @@ public class StoneBenchMenu extends AbstractContainerMenu {
                 }
             }
         });
-
         for(int i = 0; i < 3; ++i) {
             for(int j = 0; j < 9; ++j) {
                 this.addSlot(new Slot(inv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
-
         for(int k = 0; k < 9; ++k) {
             this.addSlot(new Slot(inv, k, 8 + k * 18, 142));
         }

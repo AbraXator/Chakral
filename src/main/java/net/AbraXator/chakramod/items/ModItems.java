@@ -69,6 +69,21 @@ public class ModItems {
     public static final RegistryObject<Item> TOURMALINE = ITEMS.register("tourmaline", () ->
             new Gem(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB), ChakraType.ROOT));
 
+    public static final RegistryObject<Item> GREEN_SHARD = ITEMS.register("green_shard", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+    public static final RegistryObject<Item> RED_SHARD = ITEMS.register("red_shard", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+    public static final RegistryObject<Item> ORANGE_SHARD = ITEMS.register("orange_shard", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+    public static final RegistryObject<Item> YELLOW_SHARD = ITEMS.register("yellow_shard", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+    public static final RegistryObject<Item> BLUE_SHARD = ITEMS.register("blue_shard", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+    public static final RegistryObject<Item> LIGHT_BLUE_SHARD = ITEMS.register("light_blue_shard", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+    public static final RegistryObject<Item> SHARD_DUST = ITEMS.register("shard_dust", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+
     public static final RegistryObject<Item> GOLDEN_NECKLACE = ITEMS.register("golden_necklace", () ->
             new GoldenNecklace(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB).stacksTo(1)));
     public static final RegistryObject<Item> DIAMOND_NECKLACE = ITEMS.register("diamond_necklace", () ->

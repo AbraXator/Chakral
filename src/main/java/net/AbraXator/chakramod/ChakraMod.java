@@ -7,6 +7,8 @@ import net.AbraXator.chakramod.entity.ModEntity;
 import net.AbraXator.chakramod.items.ModItems;
 import net.AbraXator.chakramod.items.custom.Gem;
 import net.AbraXator.chakramod.screen.ModMenuTypes;
+import net.AbraXator.chakramod.screen.ShardRefinerMenu;
+import net.AbraXator.chakramod.screen.ShardRefinerScreen;
 import net.AbraXator.chakramod.screen.StoneBenchScreen;
 import net.AbraXator.chakramod.utils.ModItemProperties;
 import net.AbraXator.chakramod.world.feature.ModPlaceFeatures;
@@ -55,6 +57,7 @@ public class ChakraMod {
 
     private void clientSetup(final FMLClientSetupEvent event){
         MenuScreens.register(ModMenuTypes.STONE_BENCH_MENU.get(), StoneBenchScreen::new);
+        MenuScreens.register(ModMenuTypes.SHARD_REFINER_MENU.get(), ShardRefinerScreen::new);
         ModItemProperties.addCustomProperties();
     }
 

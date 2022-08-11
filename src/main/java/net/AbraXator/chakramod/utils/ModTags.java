@@ -11,7 +11,6 @@ import net.minecraftforge.common.Tags;
 
 public class ModTags {
     public static class Items{
-        public static final TagKey<Item> GEMS = tag("gems");
         public static final TagKey<Item> CROWN = tag("crown");
         public static final TagKey<Item> THIRD_EYE = tag("third_eye");
         public static final TagKey<Item> THORAT = tag("throat");
@@ -19,6 +18,9 @@ public class ModTags {
         public static final TagKey<Item> SOLAR = tag("solar");
         public static final TagKey<Item> SACRAL = tag("sacral");
         public static final TagKey<Item> ROOT = tag("root");
+
+        public static final TagKey<Item> GEMS = tag("gems");
+        public static final TagKey<Item> SHARDS = tag("shards");
 
         private static TagKey<Item> tag(String name){
             return ItemTags.create(new ResourceLocation(ChakraMod.MOD_ID, name));

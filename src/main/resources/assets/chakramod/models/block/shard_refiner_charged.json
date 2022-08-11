@@ -3,7 +3,7 @@
 	"parent": "block/block",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "chakramod:block/shard_refiner",
+		"0": "chakramod:block/shard_refiner_charged",
 		"particle": "chakramod:block/shard_refiner"
 	},
 	"elements": [

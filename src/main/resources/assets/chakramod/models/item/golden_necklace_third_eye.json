@@ -1,5 +1,5 @@
 {
- "parent": "chakramod:item/golden_necklace",
+ "parent": "item/generated",
  "textures": {
   "layer0": "chakramod:item/golden_necklace_third_eye"
  }
