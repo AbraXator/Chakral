@@ -90,6 +90,8 @@ public class StoneBenchMenu extends AbstractContainerMenu {
                 }
             }
 
+            
+
             @Override
             public int getMaxStackSize() {
                 return 1;

@@ -12,22 +12,37 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Gem extends Item {
     public ChakraType chakraType;
+    String gemProperties;
+
+    public Gem(Properties pProperties, ChakraType chakra, String gemProperties) {
+        super(pProperties);
+        this.chakraType = chakra;
+        this.gemProperties = gemProperties;
+    }
 
     public Gem(Properties pProperties, ChakraType chakra) {
         super(pProperties);
         this.chakraType = chakra;
+        this.gemProperties = gemProperties;
     }
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        //Component chakraComponent = Component.literal(chakraType.ChakraToString(chakraType)).withStyle(chakraType.getColorFromChakra(chakraType));
+        Component moreInfo = Component.literal("<Hold shift for more info>").withStyle(ChatFormatting.GOLD);
         pTooltipComponents.add(Component.literal("Chakra: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
-        pTooltipComponents.add(Component.literal("<Hold shift for more info>").withStyle(ChatFormatting.GOLD));
+        pTooltipComponents.add(moreInfo);
         if(Screen.hasShiftDown()){
-
+            if(gemProperties == null){
+                pTooltipComponents.remove(moreInfo);
+                pTooltipComponents.add(Component.literal("WIP").withStyle(ChatFormatting.GOLD));
+            }else {
+                pTooltipComponents.remove(moreInfo);
+                pTooltipComponents.add(Component.literal(gemProperties).withStyle(ChatFormatting.GOLD));
+            }
         }
     }
 }

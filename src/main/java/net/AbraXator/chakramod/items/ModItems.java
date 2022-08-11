@@ -19,7 +19,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, ChakraMod.MOD_ID);
 
     public static final RegistryObject<Item> AMAZONITE = ITEMS.register("amazonite", () ->
-            new Gem(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB), ChakraType.HEART));
+            new Gem(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB), ChakraType.HEART, "Makes phantoms not spawn"));
     public static final RegistryObject<Item> AMBER = ITEMS.register("amber", () ->
             new Gem(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB), ChakraType.SOLAR));
     public static final RegistryObject<Item> AQUAMARINE = ITEMS.register("aquamarine", () ->
