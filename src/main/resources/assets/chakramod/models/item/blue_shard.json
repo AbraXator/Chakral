@@ -1,6 +1,6 @@
 {
  "parent": "item/generated",
  "textures": {
-  "layer0": "chakramod:item/throat_shard"
+  "layer0": "chakramod:item/blue_shard"
  }
 }

@@ -1,6 +1,7 @@
 {
     "item.chakramod.amazonite": "Amazonite",
     "item.chakramod.amber": "Amber",
+    "item.chakramod.amethyst_quartz": "Amethyst Quartz",
     "item.chakramod.aquamarine": "Aquamarine",
     "item.chakramod.azurite": "Azurite",
     "item.chakramod.black_obsidian": "Black Obsidian",
@@ -27,9 +28,13 @@
     "item.chakramod.golden_necklace": "Golden Necklace",
     "item.chakramod.diamond_necklace": "Diamond Necklace",
     "item.chakramod.netherite_necklace": "Netherite Necklace",
-    "item.chakramod.stillbite": "Stillbite",
-    "item.chakramod.stillbite": "Stillbite",
-    "block.chakramod.stillbite": "Stillbite",
+    "item.chakramod.green_shard": "Green Shard",
+    "item.chakramod.red_shard": "Red Shard",
+    "item.chakramod.light_blue_shard": "Light Blue Shard",
+    "item.chakramod.yellow_shard": "Yellow Shard",
+    "item.chakramod.orange_shard": "Orange Shard",
+    "item.chakramod.blue_shard": "Blue Shard",
+    "item.chakramod.shard_dust": "Mineral Shard Dust",
     "block.chakramod.black_mineral": "Black Mineral Block",
     "block.chakramod.black_mineral_bricks": "Black Mineral Bricks",
     "block.chakramod.green_mineral": "Green Mineral Block",
@@ -53,6 +58,7 @@
     "block.chakramod.orange_crystal": "Orange Crystal",
     "block.chakramod.shard_refiner": "Shard Refiner",
     "block.chakramod.stone_bench": "Necklace Slotter",
+    "block.chakramod.necklace_slotter": "Necklace Slotter",
 
     "itemGroup.chakramod": "Chakra Mod",
 
