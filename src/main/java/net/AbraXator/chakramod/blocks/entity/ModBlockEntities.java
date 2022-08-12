@@ -17,7 +17,7 @@ public class    ModBlockEntities {
     public static final RegistryObject<BlockEntityType<StoneBenchBlockEntity>> STONE_BENCH_BLOCK_ENTITY =
             BLOCK_ENTITIES.register("stone_bench_block_entity", () ->
                     BlockEntityType.Builder.of(StoneBenchBlockEntity::new,
-                            ModBlocks.STONE_BENCH.get()).build(null));
+                            ModBlocks.NECKLACE_SLOTTER.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<ShardRefinerBlockEntity>> SHARD_REFINER_BLOCK_ENTITY =
             BLOCK_ENTITIES.register("shard_refiner_block_entity", () ->

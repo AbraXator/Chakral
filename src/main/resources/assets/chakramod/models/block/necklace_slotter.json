@@ -3,8 +3,8 @@
 	"parent": "block/block",
 	"texture_size": [32, 32],
 	"textures": {
-		"3": "chakramod:block/stone_bench",
-		"particle": "chakramod:block/smooth_black_mineral"
+		"3": "chakramod:block/necklace_slotter",
+		"particle": "chakramod:block/necklace_slotter"
 	},
 	"elements": [
 		{

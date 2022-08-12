@@ -87,7 +87,7 @@ public class ModBlocks {
             () -> new Crystal(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
 
-    public static final RegistryObject<Block> STONE_BENCH = registerBlock("stone_bench",
+    public static final RegistryObject<Block> NECKLACE_SLOTTER = registerBlock("necklace_slotter",
             () -> new StoneBenchBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> SHARD_REFINER = registerBlock("shard_refiner",
