@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "chakramod:red_mineral"
+  },
+  "result": "chakramod:red_mineral_bricks",
+  "count": 1
+}
