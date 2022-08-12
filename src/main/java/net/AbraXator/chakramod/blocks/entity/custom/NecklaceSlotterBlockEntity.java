@@ -1,7 +1,7 @@
 package net.AbraXator.chakramod.blocks.entity.custom;
 
 import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
-import net.AbraXator.chakramod.screen.StoneBenchMenu;
+import net.AbraXator.chakramod.screen.NecklaceSlotterMenu;
 import net.AbraXator.chakramod.utils.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 
-public class StoneBenchBlockEntity extends BlockEntity implements MenuProvider {
+public class NecklaceSlotterBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(2){
         @Override
         protected void onContentsChanged(int slot) {
@@ -40,7 +40,7 @@ public class StoneBenchBlockEntity extends BlockEntity implements MenuProvider {
 
     private LazyOptional<IItemHandler> lazyOptional = LazyOptional.empty();
 
-    public StoneBenchBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
+    public NecklaceSlotterBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlockEntities.STONE_BENCH_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
     }
 
@@ -52,7 +52,7 @@ public class StoneBenchBlockEntity extends BlockEntity implements MenuProvider {
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-        return new StoneBenchMenu(pContainerId, pInventory, this);
+        return new NecklaceSlotterMenu(pContainerId, pInventory, this);
     }
 
     @Override
@@ -96,11 +96,11 @@ public class StoneBenchBlockEntity extends BlockEntity implements MenuProvider {
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
-    public static void tick(Level level, BlockPos blockPos, BlockState state, StoneBenchBlockEntity blockEntity){
+    public static void tick(Level level, BlockPos blockPos, BlockState state, NecklaceSlotterBlockEntity blockEntity){
         //craftItem(blockEntity);
     }
 
-    public static ItemStack getStoneInSlot(StoneBenchBlockEntity entity){
+    public static ItemStack getStoneInSlot(NecklaceSlotterBlockEntity entity){
         return entity.itemHandler.getStackInSlot(1);
     }
 
@@ -110,7 +110,7 @@ public class StoneBenchBlockEntity extends BlockEntity implements MenuProvider {
         return stones;
     }
 
-    //public static void craftItem(StoneBenchBlockEntity entity){
+    //public static void craftItem(NecklaceSlotterBlockEntity entity){
     //    ItemStack necklace = entity.itemHandler.getStackInSlot(0);
     //    CompoundTag nbtDataBefore = necklace.getTagElement("chakramod.stones");
     //    ItemStack stone = entity.itemHandler.getStackInSlot(1);
@@ -124,7 +124,7 @@ public class StoneBenchBlockEntity extends BlockEntity implements MenuProvider {
     //    entity.itemHandler.setStackInSlot(0, necklace);
     //}
 
-    //public static boolean hasNotReachedStackLimit(StoneBenchBlockEntity blockEntity){
+    //public static boolean hasNotReachedStackLimit(NecklaceSlotterBlockEntity blockEntity){
     //    return blockEntity.itemHandler.getStackInSlot(2).getCount()
     //            < blockEntity.itemHandler.getStackInSlot(2).getMaxStackSize();
     //}

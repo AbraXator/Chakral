@@ -5,17 +5,14 @@ import net.AbraXator.chakramod.blocks.ModBlocks;
 import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakramod.entity.ModEntity;
 import net.AbraXator.chakramod.items.ModItems;
-import net.AbraXator.chakramod.items.custom.Gem;
 import net.AbraXator.chakramod.screen.ModMenuTypes;
-import net.AbraXator.chakramod.screen.ShardRefinerMenu;
 import net.AbraXator.chakramod.screen.ShardRefinerScreen;
-import net.AbraXator.chakramod.screen.StoneBenchScreen;
+import net.AbraXator.chakramod.screen.NecklaceSlotterScreen;
 import net.AbraXator.chakramod.utils.ModItemProperties;
 import net.AbraXator.chakramod.world.feature.ModPlaceFeatures;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,12 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("chakramod")
@@ -56,7 +48,7 @@ public class ChakraMod {
     }
 
     private void clientSetup(final FMLClientSetupEvent event){
-        MenuScreens.register(ModMenuTypes.STONE_BENCH_MENU.get(), StoneBenchScreen::new);
+        MenuScreens.register(ModMenuTypes.STONE_BENCH_MENU.get(), NecklaceSlotterScreen::new);
         MenuScreens.register(ModMenuTypes.SHARD_REFINER_MENU.get(), ShardRefinerScreen::new);
         ModItemProperties.addCustomProperties();
     }

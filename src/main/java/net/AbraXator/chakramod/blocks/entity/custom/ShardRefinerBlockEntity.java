@@ -170,7 +170,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
     public static void loadFuel(ShardRefinerBlockEntity entity){
         if(entity.itemHandler.getStackInSlot(0).is(Items.DIAMOND) && entity.data.get(0)==0){
             entity.itemHandler.extractItem(0, 1, false);
-            entity.data.set(0, 5);
+            entity.data.set(0, 15);
         }
     }
 
@@ -202,55 +202,83 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
             System.out.println(entity.data.get(0));
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
-            entity.itemHandler.setStackInSlot(2, items.get(random.nextInt(items.size())).getDefaultInstance());
+            if(random.nextInt(5) == 1){
+                entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
+            }else {
+                entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
+            }
         }
         if(shard.is(ModItems.GREEN_SHARD.get())){
             entity.resetProgress();
-            List<Item> crownItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.HEART).stream().toList();
+            List<Item> items = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.HEART).stream().toList();
             System.out.println(entity.data.get(0));
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
-            entity.itemHandler.setStackInSlot(2, crownItems.get(random.nextInt(crownItems.size())).getDefaultInstance());
+            if(random.nextInt(5) == 1){
+                entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
+            }else {
+                entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
+            }
         }
         if(shard.is(ModItems.RED_SHARD.get())){
             entity.resetProgress();
-            List<Item> crownItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.ROOT).stream().toList();
+            List<Item> items = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.ROOT).stream().toList();
             System.out.println(entity.data.get(0));
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
-            entity.itemHandler.setStackInSlot(2, crownItems.get(random.nextInt(crownItems.size())).getDefaultInstance());
+            if(random.nextInt(5) == 1){
+                entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
+            }else {
+                entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
+            }
         }
         if(shard.is(ModItems.ORANGE_SHARD.get())){
             entity.resetProgress();
-            List<Item> crownItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SACRAL).stream().toList();
+            List<Item> items = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SACRAL).stream().toList();
             System.out.println(entity.data.get(0));
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
-            entity.itemHandler.setStackInSlot(2, crownItems.get(random.nextInt(crownItems.size())).getDefaultInstance());
+            if(random.nextInt(5) == 1){
+                entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
+            }else {
+                entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
+            }
         }
         if(shard.is(ModItems.YELLOW_SHARD.get())){
             entity.resetProgress();
-            List<Item> crownItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SOLAR).stream().toList();
+            List<Item> items = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SOLAR).stream().toList();
             System.out.println(entity.data.get(0));
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
-            entity.itemHandler.setStackInSlot(2, crownItems.get(random.nextInt(crownItems.size())).getDefaultInstance());
+            if(random.nextInt(5) == 1){
+                entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
+            }else {
+                entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
+            }
         }
         if(shard.is(ModItems.BLUE_SHARD.get())){
             entity.resetProgress();
-            List<Item> crownItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.THIRD_EYE).stream().toList();
+            List<Item> items = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.THIRD_EYE).stream().toList();
             System.out.println(entity.data.get(0));
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
-            entity.itemHandler.setStackInSlot(2, crownItems.get(random.nextInt(crownItems.size())).getDefaultInstance());
+            if(random.nextInt(5) == 1){
+                entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
+            }else {
+                entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
+            }
         }
         if(shard.is(ModItems.LIGHT_BLUE_SHARD.get())){
             entity.resetProgress();
-            List<Item> crownItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.THORAT).stream().toList();
+            List<Item> items = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.THORAT).stream().toList();
             System.out.println(entity.data.get(0));
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
-            entity.itemHandler.setStackInSlot(2, crownItems.get(random.nextInt(crownItems.size())).getDefaultInstance());
+            if(random.nextInt(5) == 1){
+                entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
+            }else {
+                entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
+            }
         }
     }
 

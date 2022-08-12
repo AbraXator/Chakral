@@ -14,8 +14,8 @@ public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, ChakraMod.MOD_ID);
 
-    public static final RegistryObject<MenuType<StoneBenchMenu>> STONE_BENCH_MENU =
-            registerMenuType(StoneBenchMenu::new, "stone_bench_menu");
+    public static final RegistryObject<MenuType<NecklaceSlotterMenu>> STONE_BENCH_MENU =
+            registerMenuType(NecklaceSlotterMenu::new, "stone_bench_menu");
 
     public static final RegistryObject<MenuType<ShardRefinerMenu>> SHARD_REFINER_MENU =
             registerMenuType(ShardRefinerMenu::new, "shard_refiner_menu");

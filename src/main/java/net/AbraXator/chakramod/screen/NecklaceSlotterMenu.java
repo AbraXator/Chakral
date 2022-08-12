@@ -1,7 +1,7 @@
 package net.AbraXator.chakramod.screen;
 
 import net.AbraXator.chakramod.blocks.ModBlocks;
-import net.AbraXator.chakramod.blocks.entity.custom.StoneBenchBlockEntity;
+import net.AbraXator.chakramod.blocks.entity.custom.NecklaceSlotterBlockEntity;
 import net.AbraXator.chakramod.items.ModItems;
 import net.AbraXator.chakramod.utils.ModTags;
 import net.minecraft.nbt.CompoundTag;
@@ -21,23 +21,23 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class StoneBenchMenu extends AbstractContainerMenu {
-    private final StoneBenchBlockEntity blockEntity;
+public class NecklaceSlotterMenu extends AbstractContainerMenu {
+    private final NecklaceSlotterBlockEntity blockEntity;
     private final Level level;
     final Container necklaceSlot = new SimpleContainer(2) {
         public void setChanged() {
             super.setChanged();
-            StoneBenchMenu.this.slotsChanged(this);
+            NecklaceSlotterMenu.this.slotsChanged(this);
         }
     };
 
-    public StoneBenchMenu(int pContainerId, Inventory inv, FriendlyByteBuf friendlyByteBuf) {
+    public NecklaceSlotterMenu(int pContainerId, Inventory inv, FriendlyByteBuf friendlyByteBuf) {
         this(pContainerId, inv, inv.player.level.getBlockEntity(friendlyByteBuf.readBlockPos()));
     }
 
-    public StoneBenchMenu(int pContainerId, Inventory inv, BlockEntity entity) {
+    public NecklaceSlotterMenu(int pContainerId, Inventory inv, BlockEntity entity) {
         super(ModMenuTypes.STONE_BENCH_MENU.get(), pContainerId);
-        blockEntity = ((StoneBenchBlockEntity) entity);
+        blockEntity = ((NecklaceSlotterBlockEntity) entity);
         this.level = inv.player.level;
         //slot 1 - necklace
         this.addSlot(new Slot(this.necklaceSlot, 0, 80, 22) {
@@ -53,26 +53,33 @@ public class StoneBenchMenu extends AbstractContainerMenu {
 
             @Override
             public void onTake(Player pPlayer, ItemStack pStack) {
-                ItemStack stone = StoneBenchMenu.this.necklaceSlot.getItem(1);
+                ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(1);
                 List<Item> tagList = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream().toList();
                 Stream<Item> tagStream = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream();;
                 if(tagList.contains(stone.getItem())){
                     CompoundTag nbt = new CompoundTag();
                     nbt.putString("chakramod.stones", stone.getDisplayName().getString());
                     pStack.setTag(nbt);
-                    StoneBenchMenu.this.necklaceSlot.removeItem(1, 1);
+                    NecklaceSlotterMenu.this.necklaceSlot.removeItem(1, 1);
                 }
             }
 
             @Override
             public void setChanged() {
-                if(StoneBenchMenu.this.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())) {
-                    ItemStack necklace = StoneBenchMenu.this.getSlot(0).getItem();
+                if(NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())) {
+                    ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
                     if (necklace.hasTag()) {
                         String nbt = necklace.getTag().getString("chakramod.stones").toString().replace("[", "").replace("]", "").replace(" ", "_").toLowerCase();
-                        ItemStack stone = ForgeRegistries.ITEMS.getValue(new ResourceLocation("chakramod:" + nbt)).getDefaultInstance();
-                        if(!StoneBenchMenu.this.getSlot(1).hasItem()){
-                            StoneBenchMenu.this.setItem(1, 1, stone);
+                        if(nbt.matches("lapis_lazuli") || nbt.matches("nether_quartz") || nbt.matches("amethyst_shard")){
+                            ItemStack stone = ForgeRegistries.ITEMS.getValue(new ResourceLocation("minecraft:" + nbt)).getDefaultInstance();
+                            if(!NecklaceSlotterMenu.this.getSlot(1).hasItem()){
+                                NecklaceSlotterMenu.this.setItem(1, 1, stone);
+                            }
+                        }else {
+                            ItemStack stone = ForgeRegistries.ITEMS.getValue(new ResourceLocation("chakramod:" + nbt)).getDefaultInstance();
+                            if(!NecklaceSlotterMenu.this.getSlot(1).hasItem()){
+                                NecklaceSlotterMenu.this.setItem(1, 1, stone);
+                            }
                         }
                     }
                 }
@@ -82,7 +89,7 @@ public class StoneBenchMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.necklaceSlot, 1, 80, 46){
             @Override
             public boolean mayPlace(ItemStack stone){
-                if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream().toList().contains(stone.getItem()) && StoneBenchMenu.this.getSlot(0).hasItem()){
+                if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream().toList().contains(stone.getItem()) && NecklaceSlotterMenu.this.getSlot(0).hasItem()){
                     return true;
                 }else {
                     return false;
@@ -98,8 +105,8 @@ public class StoneBenchMenu extends AbstractContainerMenu {
 
             @Override
             public void onTake(Player pPlayer, ItemStack pStack) {
-                if (StoneBenchMenu.this.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())) {
-                    ItemStack necklace = StoneBenchMenu.this.getSlot(0).getItem();
+                if (NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())) {
+                    ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
                     if (necklace.hasTag()) {
                         necklace.removeTagKey("chakramod.stones");
                     }

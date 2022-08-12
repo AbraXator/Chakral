@@ -2,11 +2,8 @@ package net.AbraXator.chakramod.blocks.custom;
 
 import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakramod.blocks.entity.custom.ShardRefinerBlockEntity;
-import net.AbraXator.chakramod.blocks.entity.custom.StoneBenchBlockEntity;
-import net.AbraXator.chakramod.screen.ShardRefinerMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -27,14 +24,13 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class ShardRefinerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final BooleanProperty CHARGED = BooleanProperty.create("charged");
+    public static final BooleanProperty CHARGED = BlockStateProperties.ENABLED;
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
 
     public ShardRefinerBlock(BlockBehaviour.Properties p_49224_) {
@@ -57,7 +53,7 @@ public class ShardRefinerBlock extends BaseEntityBlock {
             case NORTH ->SHAPE;
             case SOUTH ->SHAPE;
             case WEST -> SHAPE;
-            default -> SHAPE;
+            default ->   SHAPE;
         };
     }
 

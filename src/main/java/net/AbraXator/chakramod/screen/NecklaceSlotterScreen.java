@@ -12,12 +12,12 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class StoneBenchScreen extends AbstractContainerScreen<StoneBenchMenu> {
-    //public static ItemStack itemStack = StoneBenchBlockEntity.getStoneInSlot();
+public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlotterMenu> {
+    //public static ItemStack itemStack = NecklaceSlotterBlockEntity.getStoneInSlot();
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(ChakraMod.MOD_ID, "textures/gui/container/necklace_slotter.png");
 
-    public StoneBenchScreen(StoneBenchMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public NecklaceSlotterScreen(NecklaceSlotterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
 

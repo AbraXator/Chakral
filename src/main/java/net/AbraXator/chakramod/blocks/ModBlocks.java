@@ -3,7 +3,7 @@ package net.AbraXator.chakramod.blocks;
 import net.AbraXator.chakramod.ChakraMod;
 import net.AbraXator.chakramod.blocks.custom.Crystal;
 import net.AbraXator.chakramod.blocks.custom.ShardRefinerBlock;
-import net.AbraXator.chakramod.blocks.custom.StoneBenchBlock;
+import net.AbraXator.chakramod.blocks.custom.NecklaceSlotterBlock;
 import net.AbraXator.chakramod.items.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -88,7 +88,11 @@ public class ModBlocks {
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
 
     public static final RegistryObject<Block> NECKLACE_SLOTTER = registerBlock("necklace_slotter",
+<<<<<<< Updated upstream
             () -> new StoneBenchBlock(BlockBehaviour.Properties.of(Material.STONE)
+=======
+            () -> new NecklaceSlotterBlock(BlockBehaviour.Properties.of(Material.STONE)
+>>>>>>> Stashed changes
                     .strength(9f).requiresCorrectToolForDrops()), ChakraMod.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> SHARD_REFINER = registerBlock("shard_refiner",
             () -> new ShardRefinerBlock(BlockBehaviour.Properties.of(Material.STONE)

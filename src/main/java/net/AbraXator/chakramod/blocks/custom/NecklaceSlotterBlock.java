@@ -1,9 +1,8 @@
 package net.AbraXator.chakramod.blocks.custom;
 
 import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
-import net.AbraXator.chakramod.blocks.entity.custom.StoneBenchBlockEntity;
+import net.AbraXator.chakramod.blocks.entity.custom.NecklaceSlotterBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -27,7 +26,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
-public class StoneBenchBlock extends BaseEntityBlock {
+public class NecklaceSlotterBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final VoxelShape SHAPE_BASE = Block.box(4.0D, 0.0D, 3.0D, 12.0D, 2.0D, 11.0D);
     public static final VoxelShape SHAPE_POST = Block.box(6.0D, 0.0D, 5.0D, 10.0D, 14.0D, 9.0D);
@@ -39,7 +38,7 @@ public class StoneBenchBlock extends BaseEntityBlock {
     public static final VoxelShape SHAPE_EAST = Shapes.or(Block.box(10.666667D, 10.0D, 0.0D, 15.0D, 13.0D, 16.0D), Block.box(6.333333D, 12.0D, 0.0D, 10.666667D, 15.0D, 16.0D), Block.box(2.0D, 14.0D, 0.0D, 6.333333D, 17.0D, 16.0D), SHAPE_COMMON);
     public static final VoxelShape SHAPE_SOUTH = Shapes.or(Block.box(0.0D, 10.0D, 10.666667D, 16.0D, 13.0D, 15.0D), Block.box(0.0D, 12.0D, 6.333333D, 16.0D, 15.0D, 10.666667D), Block.box(0.0D, 14.0D, 2.0D, 16.0D, 17.0D, 6.333333D), SHAPE_COMMON);
 
-    public StoneBenchBlock(Properties properties) {
+    public NecklaceSlotterBlock(Properties properties) {
         super(properties);
     }
 
@@ -92,8 +91,8 @@ public class StoneBenchBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if(pState.getBlock() != pNewState.getBlock()){
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if(blockEntity instanceof StoneBenchBlockEntity){
-                ((StoneBenchBlockEntity) blockEntity).drops();
+            if(blockEntity instanceof NecklaceSlotterBlockEntity){
+                ((NecklaceSlotterBlockEntity) blockEntity).drops();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -104,8 +103,8 @@ public class StoneBenchBlock extends BaseEntityBlock {
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if(!pLevel.isClientSide()){
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if (entity instanceof StoneBenchBlockEntity){
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (StoneBenchBlockEntity)entity, pPos);
+            if (entity instanceof NecklaceSlotterBlockEntity){
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (NecklaceSlotterBlockEntity)entity, pPos);
             }else {
                 throw new IllegalStateException("Our container provider is missing!");
             }
@@ -116,13 +115,13 @@ public class StoneBenchBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new StoneBenchBlockEntity(pPos, pState);
+        return new NecklaceSlotterBlockEntity(pPos, pState);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
         return createTickerHelper(pBlockEntityType, ModBlockEntities.STONE_BENCH_BLOCK_ENTITY.get(),
-                StoneBenchBlockEntity::tick);
+                NecklaceSlotterBlockEntity::tick);
     }
 }
