@@ -89,7 +89,11 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> NECKLACE_SLOTTER = registerBlock("necklace_slotter",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             () -> new StoneBenchBlock(BlockBehaviour.Properties.of(Material.STONE)
+=======
+            () -> new NecklaceSlotterBlock(BlockBehaviour.Properties.of(Material.STONE)
+>>>>>>> Stashed changes
 =======
             () -> new NecklaceSlotterBlock(BlockBehaviour.Properties.of(Material.STONE)
 >>>>>>> Stashed changes

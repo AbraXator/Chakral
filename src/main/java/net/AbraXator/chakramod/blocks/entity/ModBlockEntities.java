@@ -17,7 +17,11 @@ public class    ModBlockEntities {
     public static final RegistryObject<BlockEntityType<NecklaceSlotterBlockEntity>> STONE_BENCH_BLOCK_ENTITY =
             BLOCK_ENTITIES.register("stone_bench_block_entity", () ->
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     BlockEntityType.Builder.of(StoneBenchBlockEntity::new,
+=======
+                    BlockEntityType.Builder.of(NecklaceSlotterBlockEntity::new,
+>>>>>>> Stashed changes
 =======
                     BlockEntityType.Builder.of(NecklaceSlotterBlockEntity::new,
 >>>>>>> Stashed changes
