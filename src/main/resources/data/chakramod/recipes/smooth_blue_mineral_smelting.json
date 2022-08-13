@@ -1,9 +1,0 @@
-{
- "type": "minecraft:smelting",
- "ingredient": {
-  "item": "chakramod:smooth_blue_mineral"
- },
- "result": "chakramod:smooth_blue_mineral",
- "experience": 0.1,
- "cookingtime": 200
-}
