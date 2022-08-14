@@ -20,16 +20,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -38,9 +32,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
-public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider {
+public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider{
     public int diamondCharge = 0;
     public int progress;
     public int maxProgress = 66;
@@ -61,7 +56,13 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         }
     };
 
-    private LazyOptional<IItemHandler> lazyOptional = LazyOptional.empty();
+    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+    private final Map<Direction, LazyOptional<WrappedHandler>> directionLazyOptionalMap =
+            Map.of(Direction.DOWN, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> i == 2, (i, s) -> false)),
+                    Direction.NORTH, LazyOptional.of(() -> new WrappedHandler(itemHandler, (index) -> index == 0, (index, stack) -> true)),
+                    Direction.SOUTH, LazyOptional.of(() -> new WrappedHandler(itemHandler, (index) -> index == 0, (index, stack) -> true)),
+                    Direction.WEST, LazyOptional.of(() -> new WrappedHandler(itemHandler, (index) -> index == 0, (index, stack) -> true)),
+                    Direction.EAST, LazyOptional.of(() -> new WrappedHandler(itemHandler, (index) -> index == 0, (index, stack) -> true)));
 
     protected final ContainerData data;
 
@@ -103,8 +104,25 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @org.jetbrains.annotations.Nullable Direction side) {
-        if(cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-            return lazyOptional.cast();
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            if (side == null) {
+                return lazyItemHandler.cast();
+            }
+
+            if (directionLazyOptionalMap.containsKey(side)) {
+                Direction localDir = this.getBlockState().getValue(ShardRefinerBlock.FACING);
+
+                if (side == Direction.UP || side == Direction.DOWN) {
+                    return directionLazyOptionalMap.get(side).cast();
+                }
+
+                return switch (localDir) {
+                    default -> directionLazyOptionalMap.get(side.getOpposite()).cast();
+                    case EAST -> directionLazyOptionalMap.get(side.getClockWise()).cast();
+                    case SOUTH -> directionLazyOptionalMap.get(side).cast();
+                    case WEST -> directionLazyOptionalMap.get(side.getCounterClockWise()).cast();
+                };
+            }
         }
 
         return super.getCapability(cap, side);
@@ -113,13 +131,13 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
     @Override
     public void onLoad() {
         super.onLoad();
-        lazyOptional = LazyOptional.of(() -> itemHandler);
+        lazyItemHandler = LazyOptional.of(() -> itemHandler);
     }
 
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
-        lazyOptional.invalidate();
+        lazyItemHandler.invalidate();
     }
 
     @Override
@@ -204,8 +222,10 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
             --entity.diamondCharge;
             if(random.nextInt(5) == 1){
                 entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
+                System.out.println("CRAFTED");
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
+                System.out.println("CRAFTED");
             }
         }
         if(shard.is(ModItems.GREEN_SHARD.get())){

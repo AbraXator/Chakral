@@ -38,7 +38,7 @@ public class ChakraMod {
         ModEntity.          register(eventBus);
         ModBlockEntities.   register(eventBus);
         ModMenuTypes.       register(eventBus);
-        ModPlaceFeatures.   register(eventBus);
+        ModPlaceFeatures.        register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);

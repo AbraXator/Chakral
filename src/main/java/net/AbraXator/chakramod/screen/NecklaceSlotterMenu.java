@@ -17,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -53,14 +54,8 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
 
             @Override
             public void onTake(Player pPlayer, ItemStack pStack) {
-                ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(1);
-                List<Item> tagList = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream().toList();
-                Stream<Item> tagStream = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream();;
-                if(tagList.contains(stone.getItem())){
-                    CompoundTag nbt = new CompoundTag();
-                    nbt.putString("chakramod.stones", stone.getDisplayName().getString());
-                    pStack.setTag(nbt);
-                    NecklaceSlotterMenu.this.necklaceSlot.removeItem(1, 1);
+                if(NecklaceSlotterMenu.this.getSlot(1).hasItem()){
+                    NecklaceSlotterMenu.this.getSlot(1).remove(1);
                 }
             }
 
@@ -96,7 +91,18 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                 }
             }
 
-            
+            @Override
+            public void setChanged() {
+                ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(1);
+                ItemStack necklace = NecklaceSlotterMenu.this.necklaceSlot.getItem(0);
+                List<Item> tagList = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream().toList();
+                Stream<Item> tagStream = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream();;
+                if(tagList.contains(stone.getItem())){
+                    CompoundTag nbt = new CompoundTag();
+                    nbt.putString("chakramod.stones", stone.getDisplayName().getString());
+                    necklace.setTag(nbt);
+                }
+            }
 
             @Override
             public int getMaxStackSize() {
@@ -129,9 +135,10 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
         if(!pPlayer.level.isClientSide){
             ItemStack necklace = this.necklaceSlot.removeItem(0, this.necklaceSlot.getMaxStackSize());
             ItemStack stone = this.necklaceSlot.removeItem(1, this.necklaceSlot.getMaxStackSize());
-            if(!stone.isEmpty() || !necklace.isEmpty()){
-                pPlayer.addItem(necklace);
+            if(!necklace.isEmpty() && !stone.isEmpty() && necklace.hasTag()){
+                necklace.removeTagKey("chakramod.stones");
                 pPlayer.addItem(stone);
+                pPlayer.addItem(necklace);
             }
         }
     }
