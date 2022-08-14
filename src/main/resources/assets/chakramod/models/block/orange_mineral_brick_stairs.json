@@ -1,8 +1,8 @@
 {
  "parent": "minecraft:block/stairs",
  "textures": {
-  "bottom": "minecraft:block/orange_mineral_bricks",
-  "top": "minecraft:block/orange_mineral_bricks",
-  "side": "minecraft:block/orange_mineral_bricks"
+  "bottom": "chakramod:block/orange_mineral_bricks",
+  "top": "chakramod:block/orange_mineral_bricks",
+  "side": "chakramod:block/orange_mineral_bricks"
  }
 }
