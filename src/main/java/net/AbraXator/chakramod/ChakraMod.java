@@ -9,7 +9,7 @@ import net.AbraXator.chakramod.screen.ModMenuTypes;
 import net.AbraXator.chakramod.screen.ShardRefinerScreen;
 import net.AbraXator.chakramod.screen.NecklaceSlotterScreen;
 import net.AbraXator.chakramod.utils.ModItemProperties;
-import net.AbraXator.chakramod.world.feature.ModPlaceFeatures;
+import net.AbraXator.chakramod.world.ModPlacedFeature;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
@@ -38,7 +38,7 @@ public class ChakraMod {
         ModEntity.          register(eventBus);
         ModBlockEntities.   register(eventBus);
         ModMenuTypes.       register(eventBus);
-        ModPlaceFeatures.        register(eventBus);
+        ModPlacedFeature.    register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);

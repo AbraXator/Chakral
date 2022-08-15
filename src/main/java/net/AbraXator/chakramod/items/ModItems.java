@@ -22,6 +22,8 @@ public class ModItems {
             new Gem(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB), ChakraType.HEART, "Makes phantoms not spawn"));
     public static final RegistryObject<Item> AMBER = ITEMS.register("amber", () ->
             new Gem(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB), ChakraType.SOLAR));
+    public static final RegistryObject<Item> AMETHYST_QUARTZ = ITEMS.register("amethyst_quartz", () ->
+            new Gem(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB), ChakraType.CROWN));
     public static final RegistryObject<Item> AQUAMARINE = ITEMS.register("aquamarine", () ->
             new Gem(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB), ChakraType.THROAT));
     public static final RegistryObject<Item> AZURITE = ITEMS.register("azurite", () ->

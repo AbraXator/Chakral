@@ -139,6 +139,8 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                 necklace.removeTagKey("chakramod.stones");
                 pPlayer.addItem(stone);
                 pPlayer.addItem(necklace);
+            }else if(!necklace.isEmpty()){
+                pPlayer.addItem(necklace);
             }
         }
     }

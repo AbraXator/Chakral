@@ -1,12 +1,6 @@
 {
  "variants": {
   "": {
-   "model": "chakramod:block/amthyst_bricks"
-  }
- }
-}{
- "variants": {
-  "": {
    "model": "chakramod:block/amethyst_bricks"
   }
  }
