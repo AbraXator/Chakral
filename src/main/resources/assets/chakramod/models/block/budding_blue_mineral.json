@@ -1,6 +1,6 @@
 {
  "parent": "block/cube_all",
  "textures": {
-  "all": "chakramod:block/blue_mineral"
+  "all": "chakramod:block/budding_blue_mineral"
  }
 }

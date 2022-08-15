@@ -40,10 +40,10 @@ public class Crystal extends Block {
         //this.southS = Block.box()
         this.downS = Block.box(2f, 5f, 2f, 14f, 16f,14f);
         this.upS = Block.box(2f, 0.0f, 2f, 14f, 5f, 14f);
-        this.northS = Block.box(0, 0, 0, 16, 16, 16);
-        this.southS = Block.box(0, 0, 0, 16, 16, 16);
-        this.westS = Block.box(0, 0, 0, 16, 16, 16);
-        this.eastS = Block.box(0, 0, 0, 16, 16, 16);
+        this.northS = Block.box(2, 2, 11, 14, 14, 16);
+        this.southS = Block.box(2, 2, 0, 14, 14, 5);
+        this.westS = Block.box(11, 2, 2, 16, 14, 14);
+        this.eastS = Block.box(0, 2, 2, 5, 14, 14);
     }
 
     @Override
