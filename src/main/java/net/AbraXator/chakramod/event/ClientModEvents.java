@@ -39,15 +39,6 @@ public final class ClientModEvents {
         event.registerEntityRenderer(ModEntity.CRYSTAL_FISH.get(), CrystalFishRenderer::new);
     }
 
-    @Mod.EventBusSubscriber(modid = ChakraMod.MOD_ID, value = Dist.CLIENT)
-    public static class ClientForgeEvents {
-        @SubscribeEvent
-        public static void onKeyInput(InputEvent.Key event) {
-            if(KeyBindings.STONE_FUNCTION_KEY.consumeClick()) {
-                Chakras.carnelian();
-            }
-        }
-    }
 
     @Mod.EventBusSubscriber(modid = ChakraMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ClientModBusEvents {
