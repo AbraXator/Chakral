@@ -1,4 +1,4 @@
-package net.AbraXator.chakramod.events;
+package net.AbraXator.chakramod.event;
 
 import net.AbraXator.chakramod.ChakraMod;
 import net.AbraXator.chakramod.entity.CrystalFish;

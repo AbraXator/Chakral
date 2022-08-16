@@ -1,8 +1,11 @@
 package net.AbraXator.chakramod.utils;
 
 import net.AbraXator.chakramod.items.ModItems;
+import net.AbraXator.chakramod.particles.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -22,16 +25,23 @@ import java.util.*;
 
 
 public class Chakras {
+    public static boolean PRESSED = false;
+
     public static void amazonite(Entity entity){
         ServerStatsCounter statsCounter = ((ServerPlayer) entity).getStats();
         statsCounter.setValue(((ServerPlayer) entity), Stats.CUSTOM.get(Stats.TIME_SINCE_REST), 1);
     }
 
     public static void amber(Player player, ItemStack stack, Level level){
+        boolean enabled = false;
         if(!level.isClientSide){
             String deathLoc = player.getLastDeathLocation().get().pos().toString();
             if(player.getRemovalReason() == Entity.RemovalReason.KILLED){
-                player.sendSystemMessage(Component.literal(player.getName().getString() + " died at " + deathLoc));
+                enabled = true;
+                if(enabled){
+                    player.sendSystemMessage(Component.literal(player.getName().getString() + " died at " + deathLoc));
+                    enabled = false;
+                }
             }
         }
     }
@@ -57,5 +67,16 @@ public class Chakras {
 
     public static void rhodonite(Player entity){
         entity.removeEffect(MobEffects.POISON);
+    }
+
+    public static void carnelian(Player player, Level level){
+        if(PRESSED){
+            for(int i = 0; i < 2 * Math.PI * 5; i++){
+                level.addParticle(ParticleTypes.FLAME, i, player.getY(), i/5, 1, 1, 1);
+                if(i < 2 * Math.PI * 5){
+                    PRESSED = false;
+                }
+            }
+        }
     }
 }

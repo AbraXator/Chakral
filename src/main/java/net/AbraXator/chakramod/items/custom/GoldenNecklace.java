@@ -68,6 +68,8 @@ public class GoldenNecklace extends Item {
                     Chakras.amazonite(pEntity);
                 case "rhodonite":
                     Chakras.rhodonite(((Player) pEntity));
+                case "carnelian":
+                    Chakras.carnelian((Player) pEntity, pLevel);
             }
         }
     }

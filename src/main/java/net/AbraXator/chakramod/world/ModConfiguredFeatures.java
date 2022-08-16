@@ -22,7 +22,7 @@ public class ModConfiguredFeatures {
                     new GeodeConfiguration(new GeodeBlockSettings(
                             BlockStateProvider.simple(Blocks.AIR),
                             BlockStateProvider.simple(ModBlocks.GREEN_MINERAL.get()),
-                            BlockStateProvider.simple(ModBlocks.GREEN_BUDDING_MINERAL.get()),
+                            BlockStateProvider.simple(ModBlocks.BUDDING_GREEN_MINERAL.get()),
                             BlockStateProvider.simple(Blocks.CALCITE),
                             BlockStateProvider.simple(ModBlocks.BLACK_MINERAL.get()),
                             List.of(ModBlocks.GREEN_CRYSTAL.get().defaultBlockState()),
