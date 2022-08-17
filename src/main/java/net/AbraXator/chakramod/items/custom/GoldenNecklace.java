@@ -64,8 +64,6 @@ public class GoldenNecklace extends Item {
             String nbtData = pStack.getTag().getString("chakramod.stones");
             nbtData = nbtData.replace("[", "").replace("]", "").toLowerCase();
             switch (nbtData){
-                case "amazonite":
-                    Chakras.amazonite(pEntity);
                 case "rhodonite":
                     Chakras.rhodonite(((Player) pEntity));
                 case "carnelian":

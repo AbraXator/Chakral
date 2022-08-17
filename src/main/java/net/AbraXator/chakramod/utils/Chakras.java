@@ -27,11 +27,6 @@ import java.util.*;
 public class Chakras {
     public static boolean PRESSED = false;
 
-    public static void amazonite(Entity entity){
-        ServerStatsCounter statsCounter = ((ServerPlayer) entity).getStats();
-        statsCounter.setValue(((ServerPlayer) entity), Stats.CUSTOM.get(Stats.TIME_SINCE_REST), 1);
-    }
-
     public static void amber(Player player, ItemStack stack, Level level){
         boolean enabled = false;
         if(!level.isClientSide){
