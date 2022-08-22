@@ -4,6 +4,7 @@ import net.AbraXator.chakramod.ChakraMod;
 import net.AbraXator.chakramod.entity.ModEntity;
 import net.AbraXator.chakramod.items.custom.Gem;
 import net.AbraXator.chakramod.items.custom.GoldenNecklace;
+import net.AbraXator.chakramod.items.custom.ModBook;
 import net.AbraXator.chakramod.utils.ChakraType;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
@@ -94,6 +95,9 @@ public class ModItems {
             new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> CRYSTAL_NECKLACE = ITEMS.register("crystal_necklace", () ->
             new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+
+    public static final RegistryObject<Item> MOD_BOOK = ITEMS.register("mod_book", () ->
+            new ModBook(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
 
     public static final RegistryObject<MobBucketItem> CRYSTAL_FISH_BUCKET = ITEMS.register("crystal_fish_bucket", () ->
            new MobBucketItem(ModEntity.CRYSTAL_FISH, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH,
