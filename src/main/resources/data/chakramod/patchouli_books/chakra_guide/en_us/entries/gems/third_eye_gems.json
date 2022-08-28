@@ -1,0 +1,31 @@
+{
+  "name": "Crown",
+  "icon": "chakramod:azurite",
+  "category": "chakramod:gems",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakramod:azurite",
+      "title": "Azurite",
+      "text": "Azurite does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakramod:dumortierite",
+      "title": "Dumortierite",
+      "text": "Dumortierite does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakramod:sapphire",
+      "title": "Sapphire",
+      "text": "Sapphire does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:lapis_lazuli",
+      "title": "Lapis Lazuli",
+      "text": "Lapis Lazuli does..."
+    }
+  ]
+}

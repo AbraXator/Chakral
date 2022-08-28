@@ -200,7 +200,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         loadFuel(pBlockEntity);
         if(hasRecipe(pBlockEntity)){
             pBlockEntity.progress++;
-            if(pBlockEntity.progress == pBlockEntity.maxProgress){
+            if(pBlockEntity.progress >= pBlockEntity.maxProgress){
                 craftItem(pBlockEntity);
             }
         }else {
@@ -212,92 +212,89 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
     public static void craftItem(ShardRefinerBlockEntity entity){
         Random random = new Random();
         ItemStack shard = entity.itemHandler.getStackInSlot(1);
+        double chance = 0.20D;
+        List<Item> crownItems =     ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.CROWN).stream().toList();
+        List<Item> heartItems =     ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.HEART).stream().toList();
+        List<Item> rootItems =      ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.ROOT).stream().toList();
+        List<Item> sacralItems =    ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SACRAL).stream().toList();
+        List<Item> solarItems =     ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SOLAR).stream().toList();
+        List<Item> thirdEyeItems =  ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.THIRD_EYE).stream().toList();
+        List<Item> throatItems =    ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.THORAT).stream().toList();
         if(shard.is(Items.AMETHYST_SHARD)){
-            entity.resetProgress();
-            List<Item> items = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.CROWN).stream().toList();
-            //items.add(items.size(), ModItems.SHARD_DUST.get());
-            //items.add(ModItems.SHARD_DUST.get());
-            System.out.println(entity.data.get(0));
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
-            if(random.nextInt(5) == 1){
-                entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
-                System.out.println("CRAFTED");
+            if(random.nextDouble() <= chance){
+                entity.itemHandler.insertItem(2, crownItems.get(random.nextInt(crownItems.size())).getDefaultInstance(), false);
+                entity.resetProgress();
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
-                System.out.println("CRAFTED");
+                entity.resetProgress();
             }
         }
         if(shard.is(ModItems.GREEN_SHARD.get())){
-            entity.resetProgress();
-            List<Item> items = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.HEART).stream().toList();
-            System.out.println(entity.data.get(0));
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
-            if(random.nextInt(5) == 1){
-                entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
+            if(random.nextDouble() <= chance){
+                entity.itemHandler.insertItem(2, heartItems.get(random.nextInt(heartItems.size())).getDefaultInstance(), false);
+                entity.resetProgress();
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
+                entity.resetProgress();
             }
         }
         if(shard.is(ModItems.RED_SHARD.get())){
-            entity.resetProgress();
-            List<Item> items = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.ROOT).stream().toList();
-            System.out.println(entity.data.get(0));
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
-            if(random.nextInt(5) == 1){
-                entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
+            if(random.nextDouble() <= chance){
+                entity.itemHandler.insertItem(2, rootItems.get(random.nextInt(rootItems.size())).getDefaultInstance(), false);
+                entity.resetProgress();
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
+                entity.resetProgress();
             }
         }
         if(shard.is(ModItems.ORANGE_SHARD.get())){
-            entity.resetProgress();
-            List<Item> items = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SACRAL).stream().toList();
-            System.out.println(entity.data.get(0));
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
-            if(random.nextInt(5) == 1){
-                entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
+            if(random.nextDouble() <= chance){
+                entity.itemHandler.insertItem(2, sacralItems.get(random.nextInt(sacralItems.size())).getDefaultInstance(), false);
+                entity.resetProgress();
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
+                entity.resetProgress();
             }
         }
         if(shard.is(ModItems.YELLOW_SHARD.get())){
-            entity.resetProgress();
-            List<Item> items = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SOLAR).stream().toList();
-            System.out.println(entity.data.get(0));
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
-            if(random.nextInt(5) == 1){
-                entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
+            if(random.nextDouble() <= chance){
+                entity.itemHandler.insertItem(2, solarItems.get(random.nextInt(solarItems.size())).getDefaultInstance(), false);
+                entity.resetProgress();
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
+                entity.resetProgress();
             }
         }
         if(shard.is(ModItems.BLUE_SHARD.get())){
-            entity.resetProgress();
-            List<Item> items = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.THIRD_EYE).stream().toList();
-            System.out.println(entity.data.get(0));
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
-            if(random.nextInt(5) == 1){
-                entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
+            if(random.nextDouble() <= chance){
+                entity.itemHandler.insertItem(2, thirdEyeItems.get(random.nextInt(thirdEyeItems.size())).getDefaultInstance(), false);
+                entity.resetProgress();
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
+                entity.resetProgress();
             }
         }
         if(shard.is(ModItems.LIGHT_BLUE_SHARD.get())){
-            entity.resetProgress();
-            List<Item> items = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.THORAT).stream().toList();
-            System.out.println(entity.data.get(0));
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
-            if(random.nextInt(5) == 1){
-                entity.itemHandler.insertItem(2, items.get(random.nextInt(items.size())).getDefaultInstance(), false);
+            if(random.nextDouble() <= chance){
+                entity.itemHandler.insertItem(2, throatItems.get(random.nextInt(throatItems.size())).getDefaultInstance(), false);
+                entity.resetProgress();
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
+                entity.resetProgress();
             }
         }
     }

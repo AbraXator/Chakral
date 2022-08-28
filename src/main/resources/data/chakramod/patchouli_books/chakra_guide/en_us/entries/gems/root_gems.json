@@ -1,0 +1,31 @@
+{
+  "name": "Crown",
+  "icon": "chakramod:tourmaline",
+  "category": "chakramod:gems",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakramod:black_obsidian",
+      "title": "Black Obsidian",
+      "text": "Black Obsidian does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakramod:heliotrope",
+      "title": "Heliotrope",
+      "text": "Heliotrope does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakramod:mahogany",
+      "title": "Mahogany",
+      "text": "Mahogany does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakramod:tourmaline",
+      "title": "Tourmaline",
+      "text": "Tourmaline does..."
+    }
+  ]
+}

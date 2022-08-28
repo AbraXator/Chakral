@@ -1,0 +1,31 @@
+{
+  "name": "Crown",
+  "icon": "chakramod:amber",
+  "category": "chakramod:gems",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakramod:amber",
+      "title": "Amber",
+      "text": "Amber does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakramod:citrine",
+      "title": "Citrine",
+      "text": "Citrine does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakramod:fire_opal",
+      "title": "Fire Opal",
+      "text": "Fire Opal does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakramod:heliolite",
+      "title": "Heliolite",
+      "text": "Heliolite does..."
+    }
+  ]
+}

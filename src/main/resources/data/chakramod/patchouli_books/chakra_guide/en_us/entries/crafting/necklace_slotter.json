@@ -1,0 +1,13 @@
+{
+  "name": "Necklace Slotter",
+  "icon": "chakramod:necklace_slotter",
+  "category": "chakramod:crafting",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakramod:necklace_slotter",
+      "title": "Necklace Slotter",
+      "text": "Necklace Slotter is used to put a gem into a necklace."
+    }
+    ]
+  }

@@ -1,0 +1,26 @@
+{
+  "components": [
+    {
+      "type": "patchouli:image",
+      "image": "chakramod:textures/patchouli/necklace_slotter_gui",
+      "x": 20,
+      "y": 30,
+      "u": 30,
+      "v": 32,
+      "texture_width": 70,
+      "texture_height": 60
+    },
+    {
+      "type": "patchouli:item",
+      "item": "minecraft:quartz, minecraft:lapis_lazuli,chakramod:labbradorite, chakramod:moon_stone,chakramod:rhodonite, chakramod:amazonite,chakramod:green_opal, chakramod:malachite,chakramod:mahogany, chakramod:black_obsidian,chakramod:tourmaline, chakramod:heliotrope,chakramod:garnet_spessartine, chakramod:golden_tigers_eye,chakramod:stillbite, chakramod:carnelian,chakramod:citrine, chakramod:heliolite,chakramod:amber, chakramod:fire_opal, chakramod:azurite,chakramod:sapphire, chakramod:dumortierite,chakramod:blue_lace_agate, chakramod:aquamarine,chakramod:blue_howlite, chakramod:kyanite"
+      "x": 47,
+      "y": 45
+    },
+    {
+      "type": "patchouli:item",
+      "item": "chakramod:golden_necklace",
+      "x": 48,
+      "y": 69
+    }
+  ]
+}
