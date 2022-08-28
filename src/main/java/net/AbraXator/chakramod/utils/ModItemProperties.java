@@ -19,7 +19,7 @@ public class ModItemProperties {
     private static void changeColors(Item item) {
         ItemProperties.register(item, new ResourceLocation("crown"), (itemStack, p_234979_, p_234980_, p_234981_) -> {
             List<String> listCrown = new ArrayList<>();
-            Collections.addAll(listCrown, "Amethyst Shard", "Quartz", "Labbradorite", "Moon Stone");
+            Collections.addAll(listCrown, "Amethyst Quartz", "Lepidolite", "Labbradorite", "Moon Stone");
             String nbtData = itemStack.hasTag() ? itemStack.getTag().getString("chakramod.stones") : "";
             nbtData = nbtData.replace("[", "").replace("]", "");
             return itemStack != null && itemStack.hasTag() && listCrown.contains(nbtData) ? 1.0F : 0.0F;
@@ -33,7 +33,7 @@ public class ModItemProperties {
         });
         ItemProperties.register(item, new ResourceLocation("root"), (itemStack, p_234979_, p_234980_, p_234981_) -> {
             List<String> listRoot = new ArrayList<>();
-            Collections.addAll(listRoot, "Mahogany", "Black Obsidian", "Tourmeline" , "Heliotrope");
+            Collections.addAll(listRoot, "Mahogany", "Black Onyx", "Tourmeline" , "Heliotrope");
             String nbtData = itemStack.hasTag() ? itemStack.getTag().getString("chakramod.stones") : "";
             nbtData = nbtData.replace("[", "").replace("]", "");
             return itemStack != null && itemStack.hasTag() && listRoot.contains(nbtData) ? 1.0F : 0.0F;
@@ -54,7 +54,7 @@ public class ModItemProperties {
         });
         ItemProperties.register(item, new ResourceLocation("third_eye"), (itemStack, p_234979_, p_234980_, p_234981_) -> {
             List<String> listThirdEye = new ArrayList<>();
-            Collections.addAll(listThirdEye, "Lapis Lazuli", "Azurite", "Sapphire", "Dumortierite");
+            Collections.addAll(listThirdEye, "Hag Stone", "Azurite", "Sugilite", "Dumortierite");
             String nbtData = itemStack.hasTag() ? itemStack.getTag().getString("chakramod.stones") : "";
             nbtData = nbtData.replace("[", "").replace("]", "");
             return itemStack != null && itemStack.hasTag() && listThirdEye.contains(nbtData) ? 1.0F : 0.0F;

@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "minecraft:lapis_lazuli",
+    "chakramod:hag_stone",
     "chakramod:azurite",
-    "chakramod:sapphire",
+    "chakramod:lepidolite",
     "chakramod:dumortierite"
   ]
 }
