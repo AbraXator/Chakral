@@ -44,7 +44,7 @@ public class Crystal extends Block {
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(FACING, Direction.UP));
         //this.northS = Block.box(16, 0, 16, 0, 16, 0);
         //this.southS = Block.box()
-        this.downS = Block.box(2f, 5f, 2f, 14f, 16f,14f);
+        this.downS = Block.box(2f, 11f, 2f, 14f, 16f,14f);
         this.upS = Block.box(2f, 0.0f, 2f, 14f, 5f, 14f);
         this.northS = Block.box(2, 2, 11, 14, 14, 16);
         this.southS = Block.box(2, 2, 0, 14, 14, 5);

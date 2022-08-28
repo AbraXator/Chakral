@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "minecraft:amethyst_shard",
-    "minecraft:quartz",
+    "chakramod:amethyst_quartz",
+    "chakramod:sugilite",
     "chakramod:labbradorite",
     "chakramod:moon_stone"
   ]

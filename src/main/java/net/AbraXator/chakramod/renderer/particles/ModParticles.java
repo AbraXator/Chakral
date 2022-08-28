@@ -1,4 +1,4 @@
-package net.AbraXator.chakramod.particles;
+package net.AbraXator.chakramod.renderer.particles;
 
 import net.AbraXator.chakramod.ChakraMod;
 import net.minecraft.core.particles.ParticleType;
