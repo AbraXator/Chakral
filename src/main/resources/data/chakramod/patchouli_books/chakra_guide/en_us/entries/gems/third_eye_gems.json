@@ -17,15 +17,15 @@
     },
     {
       "type": "patchouli:spotlight",
-      "item": "chakramod:sapphire",
-      "title": "Sapphire",
-      "text": "Sapphire does..."
+      "item": "chakramod:lepidolite",
+      "title": "Lepidolite",
+      "text": "Lepidolite does..."
     },
     {
       "type": "patchouli:spotlight",
-      "item": "minecraft:lapis_lazuli",
-      "title": "Lapis Lazuli",
-      "text": "Lapis Lazuli does..."
+      "item": "chakramod:hag_stone",
+      "title": "Hag Stone",
+      "text": "Hag Stone does..."
     }
   ]
 }

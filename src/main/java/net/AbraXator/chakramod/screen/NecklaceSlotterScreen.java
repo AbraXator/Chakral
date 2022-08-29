@@ -29,6 +29,9 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+        if(this.menu.getSlot(0).hasItem()){
+            this.blit(pPoseStack, x + 74, y + 44, 224, 220, 28, 20);
+        }
 
         Item stone = this.menu.necklaceSlot.getItem(1).getItem();
         if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.CROWN).contains(stone)){

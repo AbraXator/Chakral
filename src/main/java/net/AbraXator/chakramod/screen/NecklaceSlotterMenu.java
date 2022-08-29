@@ -4,6 +4,7 @@ import net.AbraXator.chakramod.blocks.ModBlocks;
 import net.AbraXator.chakramod.blocks.entity.custom.NecklaceSlotterBlockEntity;
 import net.AbraXator.chakramod.items.ModItems;
 import net.AbraXator.chakramod.utils.ModTags;
+import net.AbraXator.chakramod.utils.TagHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -17,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.tags.ITag;
 import org.checkerframework.checker.units.qual.C;
 
 import java.util.List;
@@ -65,16 +67,9 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                     ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
                     if (necklace.hasTag()) {
                         String nbt = necklace.getTag().getString("chakramod.stones").toString().replace("[", "").replace("]", "").replace(" ", "_").toLowerCase();
-                        if(nbt.matches("lapis_lazuli") || nbt.matches("nether_quartz") || nbt.matches("amethyst_shard")){
-                            ItemStack stone = ForgeRegistries.ITEMS.getValue(new ResourceLocation("minecraft:" + nbt)).getDefaultInstance();
-                            if(!NecklaceSlotterMenu.this.getSlot(1).hasItem()){
-                                NecklaceSlotterMenu.this.setItem(1, 1, stone);
-                            }
-                        }else {
-                            ItemStack stone = ForgeRegistries.ITEMS.getValue(new ResourceLocation("chakramod:" + nbt)).getDefaultInstance();
-                            if(!NecklaceSlotterMenu.this.getSlot(1).hasItem()){
-                                NecklaceSlotterMenu.this.setItem(1, 1, stone);
-                            }
+                        ItemStack stone = ForgeRegistries.ITEMS.getValue(new ResourceLocation("chakramod:" + nbt)).getDefaultInstance();
+                        if(!NecklaceSlotterMenu.this.getSlot(1).hasItem()){
+                            NecklaceSlotterMenu.this.setItem(1, 1, stone);
                         }
                     }
                 }
@@ -90,35 +85,95 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                     return false;
                 }
             }
-
             @Override
             public void setChanged() {
                 ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(1);
                 ItemStack necklace = NecklaceSlotterMenu.this.necklaceSlot.getItem(0);
                 List<Item> tagList = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream().toList();
+                ITag<Item> faintItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT);
+                ITag<Item> weakenedItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT);
+                ITag<Item> powerfulItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT);
+                ITag<Item> enlightenedItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT);
                 Stream<Item> tagStream = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream();;
                 if(tagList.contains(stone.getItem())){
-                    CompoundTag nbt = new CompoundTag();
-                    nbt.putString("chakramod.stones", stone.getDisplayName().getString());
-                    necklace.setTag(nbt);
+                    if(necklace.is(ModItems.GOLDEN_NECKLACE.get())){
+                        if(faintItems.contains(stone.getItem())){
+                            CompoundTag nbt = new CompoundTag();
+                            nbt.putString("chakramod.stones", stone.getDisplayName().getString());
+                            necklace.setTag(nbt);
+                        }
+                    }
+                    if(necklace.is(ModItems.DIAMOND_NECKLACE.get())){
+                        if(faintItems.contains(stone.getItem())){
+                            CompoundTag nbt = new CompoundTag();
+                            nbt.putString("chakramod.stones", stone.getDisplayName().getString());
+                            necklace.setTag(nbt);
+                        }
+                        if(weakenedItems.contains(stone.getItem())){
+                            CompoundTag nbt = new CompoundTag();
+                            nbt.putString("chakramod.stones.two", stone.getDisplayName().getString());
+                            necklace.setTag(nbt);
+                        }
+                    }
+                    //if(necklace.is(ModItems.NETHERITE_NECKLACE.get())){
+                    //    if(faintItems.contains(stone.getItem())){
+                    //        CompoundTag nbt = new CompoundTag();
+                    //        nbt.putString("chakramod.stones", stone.getDisplayName().getString());
+                    //        necklace.setTag(nbt);
+                    //    }
+                    //    if(weakenedItems.contains(stone.getItem())){
+                    //        CompoundTag nbt = new CompoundTag();
+                    //        nbt.putString("chakramod.stones.two", stone.getDisplayName().getString());
+                    //        necklace.setTag(nbt);
+                    //    }
+                    //    if(powerfulItems.contains(stone.getItem())){
+                    //        CompoundTag nbt = new CompoundTag();
+                    //        nbt.putString("chakramod.stones.three", stone.getDisplayName().getString());
+                    //        necklace.setTag(nbt);
+                    //    }
+                    //}
+                    //if(necklace.is(ModItems.RAINBOW_NECKLACE.get())){
+                    //    if(faintItems.contains(stone.getItem())){
+                    //        CompoundTag nbt = new CompoundTag();
+                    //        nbt.putString("chakramod.stones", stone.getDisplayName().getString());
+                    //        necklace.setTag(nbt);
+                    //    }
+                    //    if(weakenedItems.contains(stone.getItem())){
+                    //        CompoundTag nbt = new CompoundTag();
+                    //        nbt.putString("chakramod.stones.two", stone.getDisplayName().getString());
+                    //        necklace.setTag(nbt);
+                    //    }
+                    //    if(powerfulItems.contains(stone.getItem())){
+                    //        CompoundTag nbt = new CompoundTag();
+                    //        nbt.putString("chakramod.stones.three", stone.getDisplayName().getString());
+                    //        necklace.setTag(nbt);
+                    //    }
+                    //    if(enlightenedItems.contains(stone.getItem())){
+                    //        CompoundTag nbt = new CompoundTag();
+                    //        nbt.putString("chakramod.stones.four", stone.getDisplayName().getString());
+                    //        necklace.setTag(nbt);
+                    //    }
+                    //}
                 }
             }
-
             @Override
             public int getMaxStackSize() {
                 return 1;
             }
-
             @Override
             public void onTake(Player pPlayer, ItemStack pStack) {
                 if (NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())) {
                     ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
                     if (necklace.hasTag()) {
                         necklace.removeTagKey("chakramod.stones");
+                        necklace.removeTagKey("chakramod.stones.two");
+                        necklace.removeTagKey("chakramod.stones.three");
+                        necklace.removeTagKey("chakramod.stones.four");
                     }
                 }
             }
         });
+
         for(int i = 0; i < 3; ++i) {
             for(int j = 0; j < 9; ++j) {
                 this.addSlot(new Slot(inv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));

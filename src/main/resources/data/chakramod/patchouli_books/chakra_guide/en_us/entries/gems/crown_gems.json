@@ -5,25 +5,25 @@
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "item": "minecraft:quartz",
-      "title": "$(5)Nether Quartz",
-      "text": "Nether Quartz does..."
+      "item": "chakramod:sugilite",
+      "title": "Sugilite",
+      "text": "Sugilite does..."
     },
     {
       "type": "patchouli:spotlight",
       "item": "chakramod:amethyst_quartz",
-      "title": "$(5)Amethyst Quartz",
+      "title": "Amethyst Quartz",
       "text": "Amethyst Quartz does..."
     },
     {
       "type": "patchouli:spotlight",
       "item": "chakramod:labbradorite",
-      "title": "$(5)Labbradorite",
+      "title": "Labbradorite",
       "text": "Labbradorite does..."
     },    {
       "type": "patchouli:spotlight",
       "item": "chakramod:moon_stone",
-      "title": "$(5)Moon Stone",
+      "title": "Moon Stone",
       "text": "Moon Stone does..."
     }
 

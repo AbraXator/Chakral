@@ -19,6 +19,11 @@ public class ModTags {
         public static final TagKey<Item> SACRAL = tag("sacral");
         public static final TagKey<Item> ROOT = tag("root");
 
+        public static final TagKey<Item> FAINT = tag("faint");
+        public static final TagKey<Item> WEAKENED = tag("weakened");
+        public static final TagKey<Item> POWERFUL = tag("powerful");
+        public static final TagKey<Item> ENLIGHTENED = tag("enlightened");
+
         public static final TagKey<Item> GEMS = tag("gems");
         public static final TagKey<Item> SHARDS = tag("shards");
 
