@@ -1,6 +1,10 @@
 {
  "parent": "item/generated",
  "textures": {
-  "layer0": "chakramod:item/rainbow_necklace"
+  "layer0": "chakramod:item/necklace/rainbow_necklace",
+  "layer1": "chakramod:item/necklace/rainbow_necklace_slot1",
+  "layer2": "chakramod:item/necklace/rainbow_necklace_slot2",
+  "layer3": "chakramod:item/necklace/rainbow_necklace_slot3",
+  "layer4": "chakramod:item/necklace/rainbow_necklace_slot4"
  }
 }

@@ -1,7 +1,0 @@
-{
- "parent": "item/generated",
- "textures": {
-  "layer0": "chakramod:item/golden_necklace",
-  "layer1": "chakramod:item/golden_necklace_solar"
- }
-}
