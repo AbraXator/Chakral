@@ -40,7 +40,9 @@
     "item.chakramod.shard_dust": "Mineral Shard Dust",
 
     "tooltip.chakramod.amethyst_quartz": "Lessens most negative effects",
-
+   
+    "block.chakramod.white_mineral_bricks": "White Mineral Bricks",
+    "block.chakramod.white_mineral": "White Mineral Block",
     "block.chakramod.black_mineral": "Black Mineral Block",
     "block.chakramod.black_mineral_stairs": "Black Mineral Stairs",
     "block.chakramod.black_mineral_slab": "Black Mineral slab",
