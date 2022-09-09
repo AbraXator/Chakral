@@ -1,25 +1,16 @@
 package net.AbraXator.chakramod.screen;
 
-import com.ibm.icu.text.PluralRules;
 import net.AbraXator.chakramod.blocks.ModBlocks;
 import net.AbraXator.chakramod.blocks.entity.custom.ShardRefinerBlockEntity;
-import net.AbraXator.chakramod.utils.ChakraType;
-import net.AbraXator.chakramod.utils.ModTags;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.Container;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import org.jetbrains.annotations.Nullable;
 
 public class ShardRefinerMenu extends AbstractContainerMenu {
     public final ShardRefinerBlockEntity blockEntity;
@@ -41,9 +32,10 @@ public class ShardRefinerMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 26, 15));
+            this.addSlot(new SlotItemHandler(handler, 0, 26, 10));
             this.addSlot(new SlotItemHandler(handler, 1, 80, 35));
             this.addSlot(new SlotItemHandler(handler, 2, 134, 35));
+            this.addSlot(new SlotItemHandler(handler, 2, 134, 10));
         });
 
         addDataSlots(data);

@@ -1,7 +1,7 @@
 package net.AbraXator.chakramod.event;
 
 import net.AbraXator.chakramod.ChakraMod;
-import net.AbraXator.chakramod.utils.ChakraType;
+import net.AbraXator.chakramod.chakra.ChakraType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Items;
@@ -20,19 +20,19 @@ public class ForgeEvents {
         if(itemTooltipEvent.getItemStack().is(Items.AMETHYST_SHARD)){
             chakraType = ChakraType.CROWN;
             //chakraComponent = Component.literal(chakraType.ChakraToString(chakraType)).withStyle(chakraType.getColorFromChakra(chakraType));
-            itemTooltipEvent.getToolTip().add(Component.literal("Chakra: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
+            itemTooltipEvent.getToolTip().add(Component.literal("Gems: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
             itemTooltipEvent.getToolTip().add(Component.literal("<Hold shift for more info>").withStyle(ChatFormatting.GOLD));
         }
         if(itemTooltipEvent.getItemStack().is(Items.LAPIS_LAZULI)){
             chakraType = ChakraType.THIRD_EYE;
             //chakraComponent = Component.literal(chakraType.ChakraToString(chakraType)).withStyle(chakraType.getColorFromChakra(chakraType));
-            itemTooltipEvent.getToolTip().add(Component.literal("Chakra: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
+            itemTooltipEvent.getToolTip().add(Component.literal("Gems: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
             itemTooltipEvent.getToolTip().add(Component.literal("<Hold shift for more info>").withStyle(ChatFormatting.GOLD));
         }
         if(itemTooltipEvent.getItemStack().is(Items.QUARTZ)){
             chakraType = ChakraType.CROWN;
             //chakraComponent = Component.literal(chakraType.ChakraToString(chakraType)).withStyle(chakraType.getColorFromChakra(chakraType));
-            itemTooltipEvent.getToolTip().add(Component.literal("Chakra: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
+            itemTooltipEvent.getToolTip().add(Component.literal("Gems: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
             itemTooltipEvent.getToolTip().add(Component.literal("<Hold shift for more info>").withStyle(ChatFormatting.GOLD));
         }
     }

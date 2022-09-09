@@ -27,6 +27,10 @@ public class ModTags {
         public static final TagKey<Item> GEMS = tag("gems");
         public static final TagKey<Item> SHARDS = tag("shards");
 
+        public static final TagKey<Item> BLADES = tag("blades");
+        public static final TagKey<Item> NECKLACE = tag("necklace");
+
+
         private static TagKey<Item> tag(String name){
             return ItemTags.create(new ResourceLocation(ChakraMod.MOD_ID, name));
         }

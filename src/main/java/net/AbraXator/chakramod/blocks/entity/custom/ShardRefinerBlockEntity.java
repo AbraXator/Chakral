@@ -3,12 +3,14 @@ package net.AbraXator.chakramod.blocks.entity.custom;
 import net.AbraXator.chakramod.blocks.custom.ShardRefinerBlock;
 import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakramod.items.ModItems;
+import net.AbraXator.chakramod.recipes.ShardRefinerRecipe;
 import net.AbraXator.chakramod.screen.ShardRefinerMenu;
 import net.AbraXator.chakramod.utils.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -24,22 +26,27 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.tags.ITag;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
+import java.util.function.Predicate;
 
-public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider{
+public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider {
     public int diamondCharge = 0;
+    public int bladeTier = 0;
     public int progress;
     public int maxProgress = 66;
-    private final ItemStackHandler itemHandler = new ItemStackHandler(3){
+    private final ItemStackHandler itemHandler = new ItemStackHandler(4) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -47,10 +54,11 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
 
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return switch (slot){
+            return switch (slot) {
                 case 0 -> stack.is(Items.DIAMOND);
                 case 1 -> ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SHARDS).stream().toList().contains(stack.getItem());
-                case 2 -> true;
+                case 2 -> false;
+                case 3 -> ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.BLADES).contains(stack.getItem());
                 default -> super.isItemValid(slot, stack);
             };
         }
@@ -75,24 +83,28 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
                     case 0 -> diamondCharge;
                     case 1 -> progress;
                     case 2 -> shardToInt();
+                    case 3 -> bladeTier;
                     default -> 0;
                 };
             }
 
             @Override
             public void set(int pIndex, int pValue) {
-                switch (pIndex){
+                switch (pIndex) {
                     case 0:
                         diamondCharge = pValue;
                         break;
                     case 1:
                         progress = pValue;
-                };
+                    case 3:
+                        bladeTier = pValue;
+                }
+                ;
             }
 
             @Override
             public int getCount() {
-                return 3;
+                return 4;
             }
         };
     }
@@ -146,6 +158,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         pTag.putInt("shard_refiner.charge", diamondCharge);
         pTag.putInt("shard_refiner.crafting", progress);
         pTag.putInt("shard_refiner.shard", shardToInt());
+        pTag.putInt("shard_refiner.blade", bladeTier);
         super.saveAdditional(pTag);
     }
 
@@ -158,45 +171,89 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         pTag.getInt("shard_refiner.shard");
     }
 
-    public int shardToInt(){
+    public int shardToInt() {
         Item shard = this.itemHandler.getStackInSlot(1).getItem();
-        if(shard.getDefaultInstance().is(Items.AMETHYST_SHARD)){
+        if (shard.getDefaultInstance().is(Items.AMETHYST_SHARD)) {
             return 1;
         }
-        if(shard.getDefaultInstance().is(ModItems.BLUE_SHARD.get())){
+        if (shard.getDefaultInstance().is(ModItems.BLUE_SHARD.get())) {
             return 2;
         }
-        if(shard.getDefaultInstance().is(ModItems.LIGHT_BLUE_SHARD.get())){
+        if (shard.getDefaultInstance().is(ModItems.LIGHT_BLUE_SHARD.get())) {
             return 3;
         }
-        if(shard.getDefaultInstance().is(ModItems.GREEN_SHARD.get())){
+        if (shard.getDefaultInstance().is(ModItems.GREEN_SHARD.get())) {
             return 4;
         }
-        if(shard.getDefaultInstance().is(ModItems.YELLOW_SHARD.get())){
+        if (shard.getDefaultInstance().is(ModItems.YELLOW_SHARD.get())) {
             return 5;
         }
-        if(shard.getDefaultInstance().is(ModItems.ORANGE_SHARD.get())){
+        if (shard.getDefaultInstance().is(ModItems.ORANGE_SHARD.get())) {
             return 6;
         }
-        if(shard.getDefaultInstance().is(ModItems.RED_SHARD.get())){
+        if (shard.getDefaultInstance().is(ModItems.RED_SHARD.get())) {
             return 7;
-        }else {
+        } else {
             return 0;
         }
     }
 
-    public static void loadFuel(ShardRefinerBlockEntity entity){
-        if(entity.itemHandler.getStackInSlot(0).is(Items.DIAMOND) && entity.data.get(0)==0){
+    public static void loadFuel(ShardRefinerBlockEntity entity) {
+        if (entity.itemHandler.getStackInSlot(0).is(Items.DIAMOND) && entity.data.get(0) == 0) {
             entity.itemHandler.extractItem(0, 1, false);
             entity.data.set(0, 15);
         }
     }
 
-    public boolean isCharged(){
+    public boolean isCharged() {
         return this.data.get(0) > 0;
     }
 
+    public static void setBladeTier(ShardRefinerBlockEntity entity) {
+        ItemStack blade = entity.itemHandler.getStackInSlot(3);
+        if(blade.is(ModItems.DULL_BLADE.get())){
+            entity.data.set(3, 1);
+        }
+        if(blade.is(ModItems.BLUNT_BLADE.get())){
+            entity.data.set(3, 2);
+        }
+        if(blade.is(ModItems.SHARP_BLADE.get())){
+            entity.data.set(3, 3);
+        }
+        if(blade.is(ModItems.RAZOR_SHARP_BLADE.get())) {
+            entity.data.set(3, 4);
+        }
+    }
+
+    public int getBladeTier() {
+        return switch (bladeTier) {
+            case 1 -> 1;
+            case 2 -> 2;
+            case 3 -> 3;
+            case 4 -> 4;
+            default -> 0;
+        };
+    }
+
+    public static List<Item> getItemsBasedOnTier(int tier){
+        switch (tier){
+            case 1:
+                 return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).stream().toList();
+            case 2:
+                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED).stream().toList();
+            case 3:
+                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.POWERFUL).stream().toList();
+            case 4:
+                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.ENLIGHTENED).stream().toList();
+            default:
+                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream().toList();
+        }
+    }
+
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, ShardRefinerBlockEntity pBlockEntity) {
+        if(pLevel.isClientSide){
+            return;
+        }
         loadFuel(pBlockEntity);
         if(hasRecipe(pBlockEntity)){
             pBlockEntity.progress++;
@@ -213,18 +270,11 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         Random random = new Random();
         ItemStack shard = entity.itemHandler.getStackInSlot(1);
         double chance = 0.20D;
-        List<Item> crownItems =     ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.CROWN).stream().toList();
-        List<Item> heartItems =     ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.HEART).stream().toList();
-        List<Item> rootItems =      ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.ROOT).stream().toList();
-        List<Item> sacralItems =    ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SACRAL).stream().toList();
-        List<Item> solarItems =     ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SOLAR).stream().toList();
-        List<Item> thirdEyeItems =  ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.THIRD_EYE).stream().toList();
-        List<Item> throatItems =    ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.THORAT).stream().toList();
         if(shard.is(Items.AMETHYST_SHARD)){
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
             if(random.nextDouble() <= chance){
-                entity.itemHandler.insertItem(2, crownItems.get(random.nextInt(crownItems.size())).getDefaultInstance(), false);
+                entity.itemHandler.insertItem(2, getItemsBasedOnTier(entity.data.get(3)).get(random.nextInt(getItemsBasedOnTier(entity.data.get(3)).size())).getDefaultInstance(), false);
                 entity.resetProgress();
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
@@ -235,7 +285,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
             if(random.nextDouble() <= chance){
-                entity.itemHandler.insertItem(2, heartItems.get(random.nextInt(heartItems.size())).getDefaultInstance(), false);
+                entity.itemHandler.insertItem(2, getItemsBasedOnTier(entity.data.get(3)).get(random.nextInt(getItemsBasedOnTier(entity.data.get(3)).size())).getDefaultInstance(), false);
                 entity.resetProgress();
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
@@ -246,7 +296,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
             if(random.nextDouble() <= chance){
-                entity.itemHandler.insertItem(2, rootItems.get(random.nextInt(rootItems.size())).getDefaultInstance(), false);
+                entity.itemHandler.insertItem(2, getItemsBasedOnTier(entity.data.get(3)).get(random.nextInt(getItemsBasedOnTier(entity.data.get(3)).size())).getDefaultInstance(), false);
                 entity.resetProgress();
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
@@ -257,7 +307,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
             if(random.nextDouble() <= chance){
-                entity.itemHandler.insertItem(2, sacralItems.get(random.nextInt(sacralItems.size())).getDefaultInstance(), false);
+                entity.itemHandler.insertItem(2, getItemsBasedOnTier(entity.data.get(3)).get(random.nextInt(getItemsBasedOnTier(entity.data.get(3)).size())).getDefaultInstance(), false);
                 entity.resetProgress();
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
@@ -268,7 +318,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
             if(random.nextDouble() <= chance){
-                entity.itemHandler.insertItem(2, solarItems.get(random.nextInt(solarItems.size())).getDefaultInstance(), false);
+                entity.itemHandler.insertItem(2, getItemsBasedOnTier(entity.data.get(3)).get(random.nextInt(getItemsBasedOnTier(entity.data.get(3)).size())).getDefaultInstance(), false);
                 entity.resetProgress();
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
@@ -279,7 +329,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
             if(random.nextDouble() <= chance){
-                entity.itemHandler.insertItem(2, thirdEyeItems.get(random.nextInt(thirdEyeItems.size())).getDefaultInstance(), false);
+                entity.itemHandler.insertItem(2, getItemsBasedOnTier(entity.data.get(3)).get(random.nextInt(getItemsBasedOnTier(entity.data.get(3)).size())).getDefaultInstance(), false);
                 entity.resetProgress();
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
@@ -290,7 +340,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
             entity.itemHandler.extractItem(1, 1, false);
             --entity.diamondCharge;
             if(random.nextDouble() <= chance){
-                entity.itemHandler.insertItem(2, throatItems.get(random.nextInt(throatItems.size())).getDefaultInstance(), false);
+                entity.itemHandler.insertItem(2, getItemsBasedOnTier(entity.data.get(3)).get(random.nextInt(getItemsBasedOnTier(entity.data.get(3)).size())).getDefaultInstance(), false);
                 entity.resetProgress();
             }else {
                 entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
@@ -305,13 +355,13 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
                 && entity.data.get(0)>0;
     }
 
-    private void resetProgress(){
+    private void resetProgress() {
         this.progress = 0;
     }
 
-    public void drops(){
+    public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for(int i = 0; i < itemHandler.getSlots(); i++){
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
         Containers.dropContents(this.level, this.worldPosition, inventory);

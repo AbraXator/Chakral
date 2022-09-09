@@ -11,14 +11,12 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.AbraXator.chakramod.ChakraMod;
 import net.AbraXator.chakramod.blocks.ModBlocks;
 import net.AbraXator.chakramod.items.ModItems;
-import net.AbraXator.chakramod.utils.ChakraType;
 import net.AbraXator.chakramod.utils.ModTags;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;

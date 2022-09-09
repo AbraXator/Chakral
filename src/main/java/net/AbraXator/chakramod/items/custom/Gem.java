@@ -1,8 +1,7 @@
 package net.AbraXator.chakramod.items.custom;
 
-import net.AbraXator.chakramod.ChakraMod;
-import net.AbraXator.chakramod.utils.ChakraStrenght;
-import net.AbraXator.chakramod.utils.ChakraType;
+import net.AbraXator.chakramod.chakra.ChakraStrenght;
+import net.AbraXator.chakramod.chakra.ChakraType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -13,7 +12,6 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Optional;
 
 public class Gem extends Item {
     public ChakraType chakraType;

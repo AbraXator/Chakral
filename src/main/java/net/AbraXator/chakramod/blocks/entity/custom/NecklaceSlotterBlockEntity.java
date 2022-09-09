@@ -32,7 +32,7 @@ import java.util.List;
 
 
 public class NecklaceSlotterBlockEntity extends BlockEntity implements MenuProvider {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(2){
+    private final ItemStackHandler itemHandler = new ItemStackHandler(4){
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();

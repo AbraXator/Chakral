@@ -3,6 +3,7 @@ package net.AbraXator.chakramod.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakramod.ChakraMod;
+import net.AbraXator.chakramod.items.ModItems;
 import net.AbraXator.chakramod.utils.ModTags;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -29,9 +30,13 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
-        if(this.menu.getSlot(0).hasItem()){
+        if(this.menu.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())){
             this.blit(pPoseStack, x + 74, y + 44, 224, 220, 28, 20);
         }
+        if(this.menu.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get())){
+            this.blit(pPoseStack, x + 66, y + 40, 176, 0, 44, 33);
+        }
+
 
         Item stone = this.menu.necklaceSlot.getItem(1).getItem();
         if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.CROWN).contains(stone)){

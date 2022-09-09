@@ -2,10 +2,11 @@ package net.AbraXator.chakramod.items;
 
 import net.AbraXator.chakramod.ChakraMod;
 import net.AbraXator.chakramod.entity.ModEntity;
+import net.AbraXator.chakramod.items.custom.DiamondNecklace;
 import net.AbraXator.chakramod.items.custom.Gem;
 import net.AbraXator.chakramod.items.custom.GoldenNecklace;
-import net.AbraXator.chakramod.utils.ChakraStrenght;
-import net.AbraXator.chakramod.utils.ChakraType;
+import net.AbraXator.chakramod.chakra.ChakraStrenght;
+import net.AbraXator.chakramod.chakra.ChakraType;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.MobBucketItem;
@@ -76,8 +77,6 @@ public class ModItems {
     public static final RegistryObject<Item> TOURMALINE = ITEMS.register("tourmaline", () ->
             new Gem(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB), ChakraType.ROOT, "tourmaline", ChakraStrenght.ENLIGHTENED));
 
-
-
     public static final RegistryObject<Item> BLUE_SHARD = ITEMS.register("blue_shard", () ->
             new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> LIGHT_BLUE_SHARD = ITEMS.register("light_blue_shard", () ->
@@ -97,10 +96,19 @@ public class ModItems {
     public static final RegistryObject<Item> GOLDEN_NECKLACE = ITEMS.register("golden_necklace", () ->
             new GoldenNecklace(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB).stacksTo(1)));
     public static final RegistryObject<Item> DIAMOND_NECKLACE = ITEMS.register("diamond_necklace", () ->
-            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+            new DiamondNecklace(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> NETHERITE_NECKLACE = ITEMS.register("netherite_necklace", () ->
             new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> RAINBOW_NECKLACE = ITEMS.register("rainbow_necklace", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+
+    public static final RegistryObject<Item> DULL_BLADE = ITEMS.register("dull_blade", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+    public static final RegistryObject<Item> BLUNT_BLADE = ITEMS.register("blunt_blade", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+    public static final RegistryObject<Item> SHARP_BLADE = ITEMS.register("sharp_blade", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+    public static final RegistryObject<Item> RAZOR_SHARP_BLADE = ITEMS.register("razor_sharp_blade", () ->
             new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
 
     public static final RegistryObject<MobBucketItem> CRYSTAL_FISH_BUCKET = ITEMS.register("crystal_fish_bucket", () ->

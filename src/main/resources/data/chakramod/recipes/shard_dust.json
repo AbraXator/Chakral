@@ -1,0 +1,11 @@
+{
+  "type": "chakramod:shard_refining",
+  "ingredients": [
+    {
+      "tag": "chakramod:shards"
+    }
+  ],
+  "output": {
+    "item": "chakramod:shard_dust"
+  }
+}

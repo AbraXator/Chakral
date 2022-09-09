@@ -1,8 +1,6 @@
 package net.AbraXator.chakramod.items.custom;
 
 
-import net.AbraXator.chakramod.utils.Chakras;
-import net.AbraXator.chakramod.utils.InventoryUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -30,11 +28,36 @@ public class DiamondNecklace extends Item {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if(pStack.hasTag()){
-            String stones = pStack.getTag().getString("chakramod.stones");
-            pTooltipComponents.add(Component.literal(stones).withStyle(ChatFormatting.DARK_AQUA));
+            if(!pStack.getTag().getString("chakramod.stones").isEmpty()){
+                String stones = pStack.getTag().getString("chakramod.stones");
+                pTooltipComponents.add(Component.literal(stones));
+            }else {
+                pTooltipComponents.add(Component.literal("Empty"));
+            }
+            if(!pStack.getTag().getString("chakramod.stones.two").isEmpty()){
+                String stones2 = pStack.getTag().getString("chakramod.stones.two");
+                pTooltipComponents.add(Component.literal(stones2));
+            }else {
+                pTooltipComponents.add(Component.literal("Empty"));
+            }
         }else {
+            pTooltipComponents.add(Component.literal("Empty").withStyle(ChatFormatting.GRAY));
             pTooltipComponents.add(Component.literal("Empty").withStyle(ChatFormatting.GRAY));
         }
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
+        if(pStack.hasTag()) {
+            if (!pStack.getTag().getString("chakramod.stones").isEmpty()) {
+                String stones = pStack.getTag().getString("chakramod.stones");
+            } else {
+            }
+            if (!pStack.getTag().getString("chakramod.stones.two").isEmpty()) {
+                String stones2 = pStack.getTag().getString("chakramod.stones.two");
+            } else {
+            }
+        }
     }
 }

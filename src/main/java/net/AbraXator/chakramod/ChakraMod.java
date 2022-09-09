@@ -4,7 +4,10 @@ import com.mojang.logging.LogUtils;
 import net.AbraXator.chakramod.blocks.ModBlocks;
 import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakramod.entity.ModEntity;
+import net.AbraXator.chakramod.items.Gems;
 import net.AbraXator.chakramod.items.ModItems;
+import net.AbraXator.chakramod.networking.ModMessages;
+import net.AbraXator.chakramod.recipes.ModRecipes;
 import net.AbraXator.chakramod.screen.ModMenuTypes;
 import net.AbraXator.chakramod.screen.ShardRefinerScreen;
 import net.AbraXator.chakramod.screen.NecklaceSlotterScreen;
@@ -34,17 +37,26 @@ public class ChakraMod {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.           register(eventBus);
+        Gems.               register(eventBus);
         ModBlocks.          register(eventBus);
         ModEntity.          register(eventBus);
         ModBlockEntities.   register(eventBus);
         ModMenuTypes.       register(eventBus);
-        ModPlacedFeature.    register(eventBus);
+        ModRecipes.         register(eventBus);
+        ModPlacedFeature.   register(eventBus);
+
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
+    }
+
+    private void commonSetup(final FMLClientSetupEvent event){
+        event.enqueueWork(() ->{
+           ModMessages.register();
+        });
     }
 
     private void clientSetup(final FMLClientSetupEvent event){
@@ -70,6 +82,7 @@ public class ChakraMod {
             public void fillItemList(NonNullList<ItemStack> pItems) {
                 for(int i = 0; i < ModItems.ITEMS.getEntries().stream().toList().size(); i++){
                     pItems.add(ModItems.ITEMS.getEntries().stream().toList().get(i).get().getDefaultInstance());
+                    //pItems.add(Gems.ITEMS.getEntries().stream().toList().get(i).get().getDefaultInstance());
                 }
             }
         };
