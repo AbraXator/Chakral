@@ -102,15 +102,6 @@ public class ModItems {
     public static final RegistryObject<Item> RAINBOW_NECKLACE = ITEMS.register("rainbow_necklace", () ->
             new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
 
-    public static final RegistryObject<Item> DULL_BLADE = ITEMS.register("dull_blade", () ->
-            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
-    public static final RegistryObject<Item> BLUNT_BLADE = ITEMS.register("blunt_blade", () ->
-            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
-    public static final RegistryObject<Item> SHARP_BLADE = ITEMS.register("sharp_blade", () ->
-            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
-    public static final RegistryObject<Item> RAZOR_SHARP_BLADE = ITEMS.register("razor_sharp_blade", () ->
-            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
-
     public static final RegistryObject<MobBucketItem> CRYSTAL_FISH_BUCKET = ITEMS.register("crystal_fish_bucket", () ->
            new MobBucketItem(ModEntity.CRYSTAL_FISH, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH,
                    new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB).stacksTo(1)));

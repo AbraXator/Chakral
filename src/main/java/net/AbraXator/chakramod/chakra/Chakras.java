@@ -23,50 +23,51 @@ import java.util.List;
 
 
 public class Chakras {
+
     //------------------FAINT-------------
-    public static void hag_stone(Player player){
-        if(player.getY() < 50){
+    public static void hag_stone(Player player) {
+        if (player.getY() < 50) {
             player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2, 1));
         }
     }
 
-    public static void amazonite(Player player){
+    public static void amazonite(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 2, 4));
     }
 
-    public static void blue_lace_agate(Player player){
-        if(!player.getEyeInFluidType().isAir()){
+    public static void blue_lace_agate(Player player) {
+        if (!player.getEyeInFluidType().isAir()) {
             int j = player.getAirSupply();
             player.setAirSupply(j * 2);
         }
     }
 
-    public static void NOTblue_lace_agate(Player player){
-        if(!player.getEyeInFluidType().isAir()){
+    public static void NOTblue_lace_agate(Player player) {
+        if (!player.getEyeInFluidType().isAir()) {
             int j = player.getAirSupply();
             player.setAirSupply(j / 2);
         }
     }
 
-    public static void dumortierite(Player player){
-        if(player.getUseItem().is(Tags.Items.TOOLS_PICKAXES)){
+    public static void dumortierite(Player player) {
+        if (player.getUseItem().is(Tags.Items.TOOLS_PICKAXES)) {
             player.getAttribute(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier("attack_speed_boost", 0.15D, AttributeModifier.Operation.ADDITION));
         }
     }
 
-    public static void rhodonite(Player player){
+    public static void rhodonite(Player player) {
         double maxHealth = player.getMaxHealth();
         double health10 = maxHealth / 100 * 10;
-        if(player.getHealth() >= health10){
+        if (player.getHealth() >= health10) {
             player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 2, 1));
         }
     }
 
-    public static void malachite(Player player){
-        
+    public static void malachite(Player player) {
+
     }
 
-    public static void azurite(Player player, Level level){
+    public static void azurite(Player player, Level level) {
 
     }
 }

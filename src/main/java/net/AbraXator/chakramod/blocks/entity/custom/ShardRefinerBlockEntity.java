@@ -210,19 +210,19 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
     }
 
     public static void setBladeTier(ShardRefinerBlockEntity entity) {
-        ItemStack blade = entity.itemHandler.getStackInSlot(3);
-        if(blade.is(ModItems.DULL_BLADE.get())){
-            entity.data.set(3, 1);
-        }
-        if(blade.is(ModItems.BLUNT_BLADE.get())){
-            entity.data.set(3, 2);
-        }
-        if(blade.is(ModItems.SHARP_BLADE.get())){
-            entity.data.set(3, 3);
-        }
-        if(blade.is(ModItems.RAZOR_SHARP_BLADE.get())) {
-            entity.data.set(3, 4);
-        }
+        //ItemStack blade = entity.itemHandler.getStackInSlot(3);
+        //if(blade.is(ModItems.DULL_BLADE.get())){
+        //    entity.data.set(3, 1);
+        //}
+        //if(blade.is(ModItems.BLUNT_BLADE.get())){
+        //    entity.data.set(3, 2);
+        //}
+        //if(blade.is(ModItems.SHARP_BLADE.get())){
+        //    entity.data.set(3, 3);
+        //}
+        //if(blade.is(ModItems.RAZOR_SHARP_BLADE.get())) {
+        //    entity.data.set(3, 4);
+        //}
     }
 
     public int getBladeTier() {

@@ -4,7 +4,6 @@ import com.mojang.logging.LogUtils;
 import net.AbraXator.chakramod.blocks.ModBlocks;
 import net.AbraXator.chakramod.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakramod.entity.ModEntity;
-import net.AbraXator.chakramod.items.Gems;
 import net.AbraXator.chakramod.items.ModItems;
 import net.AbraXator.chakramod.networking.ModMessages;
 import net.AbraXator.chakramod.recipes.ModRecipes;
@@ -37,7 +36,6 @@ public class ChakraMod {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.           register(eventBus);
-        Gems.               register(eventBus);
         ModBlocks.          register(eventBus);
         ModEntity.          register(eventBus);
         ModBlockEntities.   register(eventBus);
