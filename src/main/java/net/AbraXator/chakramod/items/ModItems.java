@@ -102,6 +102,13 @@ public class ModItems {
     public static final RegistryObject<Item> RAINBOW_NECKLACE = ITEMS.register("rainbow_necklace", () ->
             new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
 
+    public static final RegistryObject<Item> WEAK_REFINER_KIT = ITEMS.register("weak_refiner_kit", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+    public static final RegistryObject<Item> POWERFUL_REFINER_KIT = ITEMS.register("powerful_refiner_kit", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+    public static final RegistryObject<Item> ENGLIGHTENED_REFINER_KIT = ITEMS.register("enlightened_refiner_kit", () ->
+            new Item(new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB)));
+
     public static final RegistryObject<MobBucketItem> CRYSTAL_FISH_BUCKET = ITEMS.register("crystal_fish_bucket", () ->
            new MobBucketItem(ModEntity.CRYSTAL_FISH, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH,
                    new Item.Properties().tab(ChakraMod.Tab.CHAKRA_TAB).stacksTo(1)));

@@ -31,7 +31,7 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         int y = (height - imageHeight) / 2;
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
         if(this.menu.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())){
-            this.blit(pPoseStack, x + 74, y + 44, 224, 220, 28, 20);
+            this.blit(pPoseStack, x + 70, y + 40, 220, 218, 35, 29);
         }
         if(this.menu.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get())){
             this.blit(pPoseStack, x + 66, y + 40, 176, 0, 44, 33);
