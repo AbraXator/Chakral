@@ -69,8 +69,10 @@ public class GoldenNecklace extends Item {
                 USED = true;
             }
             if(nbtData.equals("amazonite") && !USED){
-                System.out.println("USED");
-                USED = true;
+                Chakras.amazonite(((Player) pEntity));
+            }
+            if(nbtData.equals("heliolite") && !USED){
+                Chakras.heliolite(((Player) pEntity), pLevel);
             }
         }else {
             USED = false;

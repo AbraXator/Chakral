@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "ABA",
-    "CAC",
-    "CDC"
+    " A ",
+    " C "
   ],
   "key": {
     "A": {
@@ -13,10 +13,7 @@
       "tag": "chakramod:necklace"
     },
     "C": {
-      "item": "minecraft:air"
-    },
-    "D": {
-      "item": "chakramod:"
+      "item": "minecraft:light_weighted_pressure_plate"
     }
   },
   "result": {

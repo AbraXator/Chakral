@@ -15,8 +15,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlotterMenu> {
     //public static ItemStack itemStack = NecklaceSlotterBlockEntity.getStoneInSlot();
-    private static final ResourceLocation TEXTURE =
+    private static final ResourceLocation TEXTURE_GOLDEN =
             new ResourceLocation(ChakraMod.MOD_ID, "textures/gui/container/necklace_slotter.png");
+    private static final ResourceLocation TEXTURE_DIAMOND =
+            new ResourceLocation(ChakraMod.MOD_ID, "textures/gui/container/diamond_necklace_slotter.png");
 
     public NecklaceSlotterScreen(NecklaceSlotterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -26,16 +28,20 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
     protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1, 1, 1, 1);
-        RenderSystem.setShaderTexture(0, TEXTURE);
+        if(this.menu.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get())){
+            RenderSystem.setShaderTexture(0, TEXTURE_DIAMOND);
+        }else {
+            RenderSystem.setShaderTexture(0, TEXTURE_GOLDEN);
+        }
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
-        if(this.menu.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())){
-            this.blit(pPoseStack, x + 70, y + 40, 220, 218, 35, 29);
-        }
-        if(this.menu.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get())){
-            this.blit(pPoseStack, x + 66, y + 40, 176, 0, 44, 33);
-        }
+        //if(this.menu.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())){
+        //    this.blit(pPoseStack, x + 70, y + 40, 220, 218, 35, 29);
+        //}
+        //if(this.menu.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get())){
+        //    this.blit(pPoseStack, x + 66, y + 40, 176, 0, 44, 33);
+        //}
 
 
         Item stone = this.menu.necklaceSlot.getItem(1).getItem();

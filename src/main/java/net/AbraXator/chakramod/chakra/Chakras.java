@@ -13,6 +13,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -33,6 +34,14 @@ public class Chakras {
 
     public static void amazonite(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 2, 4));
+    }
+
+    public static void heliolite(Player player, Level level){
+        BlockPos blockPos = new BlockPos(player.getX(), player.getY() + 1, player.getZ());
+        int i = level.getBrightness(LightLayer.SKY, blockPos) - level.getSkyDarken();
+        if(i >= 15){
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2, 0));
+        }
     }
 
     public static void blue_lace_agate(Player player) {
