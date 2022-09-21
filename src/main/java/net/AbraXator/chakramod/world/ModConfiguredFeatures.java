@@ -1,7 +1,9 @@
 package net.AbraXator.chakramod.world;
 
+import net.AbraXator.chakramod.ChakraMod;
 import net.AbraXator.chakramod.blocks.ModBlocks;
 import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -13,23 +15,47 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 
 public class ModConfiguredFeatures {
-    public static final Holder<ConfiguredFeature<GeodeConfiguration, ?>> HEART_GEODE =
-            FeatureUtils.register("heart_geode", Feature.GEODE,
-                    new GeodeConfiguration(new GeodeBlockSettings(
-                            BlockStateProvider.simple(Blocks.AIR),
+    public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES =
+            DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, ChakraMod.MOD_ID);
+
+    public static final RegistryObject<ConfiguredFeature<?, ?>> GREEN_GEODE = CONFIGURED_FEATURES.register("green_geode",
+            () -> new ConfiguredFeature<>(Feature.GEODE,
+                    new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
                             BlockStateProvider.simple(ModBlocks.GREEN_MINERAL.get()),
                             BlockStateProvider.simple(ModBlocks.BUDDING_GREEN_MINERAL.get()),
-                            BlockStateProvider.simple(Blocks.CALCITE),
+                            BlockStateProvider.simple(ModBlocks.WHITE_MINERAL.get()),
                             BlockStateProvider.simple(ModBlocks.BLACK_MINERAL.get()),
                             List.of(ModBlocks.GREEN_CRYSTAL.get().defaultBlockState()),
-                            BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS),
-                            new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D),
-                            new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D,
+                            BlockTags.FEATURES_CANNOT_REPLACE , BlockTags.GEODE_INVALID_BLOCKS),
+                            new GeodeLayerSettings(1.7D, 1.2D, 2.5D, 3.5D),
+                            new GeodeCrackSettings(0.25D, 1.5D, 1), 0.5D, 0.1D,
                             true, UniformInt.of(3, 8),
                             UniformInt.of(2, 6), UniformInt.of(1, 2),
-                            -18, 18, 0.075D, 1));
+                            -18, 18, 0.075D, 1)));
+
+    public static final RegistryObject<ConfiguredFeature<?, ?>> BLUE_GEODE = CONFIGURED_FEATURES.register("blue_geode",
+            () -> new ConfiguredFeature<>(Feature.GEODE,
+                    new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.WATER),
+                            BlockStateProvider.simple(ModBlocks.BLUE_MINERAL.get()),
+                            BlockStateProvider.simple(ModBlocks.BUDDING_BLUE_MINERAL.get()),
+                            BlockStateProvider.simple(ModBlocks.WHITE_MINERAL.get()),
+                            BlockStateProvider.simple(ModBlocks.BLACK_MINERAL.get()),
+                            List.of(ModBlocks.BLUE_CRYSTAL.get().defaultBlockState()),
+                            BlockTags.FEATURES_CANNOT_REPLACE , BlockTags.GEODE_INVALID_BLOCKS),
+                            new GeodeLayerSettings(1.7D, 1.2D, 1.7D, 3.5D),
+                            new GeodeCrackSettings(0.25D, 1.5D, 1), 0.5D, 0.1D,
+                            true, UniformInt.of(3, 8),
+                            UniformInt.of(2, 6), UniformInt.of(1, 2),
+                            -18, 18, 0.075D, 1)));
+
+    public static void register(IEventBus eventBus) {
+        CONFIGURED_FEATURES.register(eventBus);
+    }
 }

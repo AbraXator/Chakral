@@ -43,7 +43,7 @@ import java.util.function.Predicate;
 
 public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider {
     public int diamondCharge = 0;
-    public int bladeTier = 0;
+    public int tier = 0;
     public int progress;
     public int maxProgress = 66;
     private final ItemStackHandler itemHandler = new ItemStackHandler(4) {
@@ -83,7 +83,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
                     case 0 -> diamondCharge;
                     case 1 -> progress;
                     case 2 -> shardToInt();
-                    case 3 -> bladeTier;
+                    case 3 -> tier;
                     default -> 0;
                 };
             }
@@ -97,7 +97,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
                     case 1:
                         progress = pValue;
                     case 3:
-                        bladeTier = pValue;
+                        tier = pValue;
                 }
                 ;
             }
@@ -158,7 +158,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         pTag.putInt("shard_refiner.charge", diamondCharge);
         pTag.putInt("shard_refiner.crafting", progress);
         pTag.putInt("shard_refiner.shard", shardToInt());
-        pTag.putInt("shard_refiner.blade", bladeTier);
+        pTag.putInt("shard_refiner.blade", tier);
         super.saveAdditional(pTag);
     }
 
@@ -209,32 +209,6 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         return this.data.get(0) > 0;
     }
 
-    public static void setBladeTier(ShardRefinerBlockEntity entity) {
-        //ItemStack blade = entity.itemHandler.getStackInSlot(3);
-        //if(blade.is(ModItems.DULL_BLADE.get())){
-        //    entity.data.set(3, 1);
-        //}
-        //if(blade.is(ModItems.BLUNT_BLADE.get())){
-        //    entity.data.set(3, 2);
-        //}
-        //if(blade.is(ModItems.SHARP_BLADE.get())){
-        //    entity.data.set(3, 3);
-        //}
-        //if(blade.is(ModItems.RAZOR_SHARP_BLADE.get())) {
-        //    entity.data.set(3, 4);
-        //}
-    }
-
-    public int getBladeTier() {
-        return switch (bladeTier) {
-            case 1 -> 1;
-            case 2 -> 2;
-            case 3 -> 3;
-            case 4 -> 4;
-            default -> 0;
-        };
-    }
-
     public static List<Item> getItemsBasedOnTier(int tier){
         switch (tier){
             case 1:
@@ -263,6 +237,15 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         }else {
             pBlockEntity.resetProgress();
             setChanged(pLevel, pPos, pState);
+        }
+    }
+
+    public void upgradeTier(int tier){
+        switch (tier){
+            case 1 -> this.data.set(3, 1);
+            case 2 -> this.data.set(3, 2);
+            case 3 -> this.data.set(3, 3);
+            default -> this.data.set(3, 0);
         }
     }
 

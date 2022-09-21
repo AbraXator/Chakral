@@ -5,5 +5,6 @@
   "book_texture": "chakramod:textures/patchouli/book_ui.png",
   "crafting_texture": "chakramod:textures/patchouli/crafting_ui.png",
   "model": "chakramod:chakra_guide",
-  "nameplate_color": "25252A"
+  "nameplate_color": "25252A",
+  "use_blocky_font": true
 }

@@ -1,12 +1,13 @@
 package net.AbraXator.chakramod.chakra;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.util.StringRepresentable;
 
-public enum ChakraStrenght {
-    FAINT,
-    WEAKENED,
-    POWERFUL,
-    ENLIGHTENED;
+public enum ChakraStrenght implements StringRepresentable {
+    FAINT("faint"),
+    WEAKENED("weakened"),
+    POWERFUL("powerful"),
+    ENLIGHTENED("enlightened");
 
     public ChatFormatting getColorFromChakra(ChakraStrenght chakra){
         return switch (chakra){
@@ -15,5 +16,20 @@ public enum ChakraStrenght {
             case WEAKENED -> ChatFormatting.DARK_GREEN;
             case FAINT -> ChatFormatting.DARK_GRAY;
         };
+    }
+
+    private final String name;
+
+    private ChakraStrenght(String p_156018_) {
+        this.name = p_156018_;
+    }
+
+    public String toString() {
+        return this.name;
+    }
+
+    @Override
+    public String getSerializedName() {
+        return this.name;
     }
 }
