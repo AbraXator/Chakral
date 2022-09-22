@@ -1,0 +1,10 @@
+{
+  "name": "Chakra Guide",
+  "landing_text": "LANDING TEXT",
+  "version": 1,
+  "book_texture": "chakral:textures/patchouli/book_ui.png",
+  "crafting_texture": "chakral:textures/patchouli/crafting_ui.png",
+  "model": "chakral:chakral_guide",
+  "nameplate_color": "25252A",
+  "use_blocky_font": true
+}

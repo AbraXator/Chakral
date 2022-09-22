@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "chakral:block/necklace_slotter",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "chakral:block/necklace_slotter"
+    },
+    "facing=south": {
+      "model": "chakral:block/necklace_slotter",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "chakral:block/necklace_slotter",
+      "y": 270
+    }
+  }
+}

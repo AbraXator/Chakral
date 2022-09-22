@@ -1,0 +1,31 @@
+{
+  "name": "Throat",
+  "icon": "chakral:aquamarine",
+  "category": "chakral:gems",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:aquamarine",
+      "title": "Aquamarine",
+      "text": "Aquamarine does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:blue_howlite",
+      "title": "Blue Howlite",
+      "text": "Blue Howlite does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:blue_lace_agate",
+      "title": "Blue Lace Agate",
+      "text": "Blue Lace Agate does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:kyanite",
+      "title": "kyanite",
+      "text": "kyanite does..."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA",
+    "AA"
+  ],
+  "key": {
+    "A": {
+      "item": "chakral:green_mineral"
+    }
+  },
+  "result": {
+    "item": "chakral:green_mineral_bricks",
+    "count": 4
+  }
+}

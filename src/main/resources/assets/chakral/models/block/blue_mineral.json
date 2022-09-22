@@ -1,0 +1,11 @@
+{
+ "parent": "block/cube_all",
+ "textures": {
+  "all": "chakral:block/blue_mineral"
+ }
+}{
+ "parent": "block/cube_all",
+ "textures": {
+  "all": "chakral:block/blue_mineral"
+ }
+}

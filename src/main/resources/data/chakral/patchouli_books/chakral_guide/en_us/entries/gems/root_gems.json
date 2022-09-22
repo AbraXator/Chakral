@@ -1,0 +1,31 @@
+{
+  "name": "Root",
+  "icon": "chakral:tourmaline",
+  "category": "chakral:gems",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:black_onyx",
+      "title": "Black Onyx",
+      "text": "Black Onyx does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:heliotrope",
+      "title": "Heliotrope",
+      "text": "Heliotrope does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:mahogany",
+      "title": "Mahogany",
+      "text": "Mahogany does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:tourmaline",
+      "title": "Tourmaline",
+      "text": "Tourmaline does..."
+    }
+  ]
+}

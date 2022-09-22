@@ -1,0 +1,31 @@
+{
+  "name": "Solar",
+  "icon": "chakral:amber",
+  "category": "chakral:gems",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:amber",
+      "title": "Amber",
+      "text": "Amber does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:citrine",
+      "title": "Citrine",
+      "text": "Citrine does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:fire_opal",
+      "title": "Fire Opal",
+      "text": "Fire Opal does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:heliolite",
+      "title": "Heliolite",
+      "text": "Heliolite does..."
+    }
+  ]
+}

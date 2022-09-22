@@ -1,0 +1,31 @@
+{
+  "name": "Third Eye",
+  "icon": "chakral:azurite",
+  "category": "chakral:gems",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:azurite",
+      "title": "Azurite",
+      "text": "Azurite does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:dumortierite",
+      "title": "Dumortierite",
+      "text": "Dumortierite does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:lepidolite",
+      "title": "Lepidolite",
+      "text": "Lepidolite does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:hag_stone",
+      "title": "Hag Stone",
+      "text": "Hag Stone does..."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "chakral:sugilite",
+    "chakral:dumortierite",
+    "chakral:kyanite",
+    "chakral:rhodonite",
+    "chakral:citrine",
+    "chakral:carnelian",
+    "chakral:mahogany"
+  ]
+}

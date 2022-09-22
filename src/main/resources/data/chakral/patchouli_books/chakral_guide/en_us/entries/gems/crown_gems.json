@@ -1,0 +1,32 @@
+{
+  "name": "Crown",
+  "icon": "chakral:labbradorite",
+  "category": "chakral:gems",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:sugilite",
+      "title": "Sugilite",
+      "text": "Sugilite does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:amethyst_quartz",
+      "title": "Amethyst Quartz",
+      "text": "Amethyst Quartz does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:labbradorite",
+      "title": "Labbradorite",
+      "text": "Labbradorite does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:moon_stone",
+      "title": "Moon Stone",
+      "text": "Moon Stone does..."
+    }
+
+  ]
+}

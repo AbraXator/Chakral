@@ -1,0 +1,13 @@
+{
+ "variants": {
+  "": {
+   "model": "chakral:block/yellow_mineral_bricks"
+  }
+ }
+}{
+ "variants": {
+  "": {
+   "model": "chakral:block/yellow_mineral_bricks"
+  }
+ }
+}

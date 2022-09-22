@@ -1,0 +1,31 @@
+{
+  "name": "Heart",
+  "icon": "chakral:malachite",
+  "category": "chakral:gems",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:malachite",
+      "title": "Malachite",
+      "text": "Malachite does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:amazonite",
+      "title": "Amazonite",
+      "text": "Amazonite does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:green_opal",
+      "title": "Green Opal",
+      "text": "Green Opal does..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chakral:rhodonite",
+      "title": "Rhodonite",
+      "text": "Rhodonite does..."
+    }
+  ]
+}

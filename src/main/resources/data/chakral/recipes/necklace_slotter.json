@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    " A ",
+    " C "
+  ],
+  "key": {
+    "A": {
+      "item": "chakral:black_mineral"
+    },
+    "B": {
+      "tag": "chakral:necklace"
+    },
+    "C": {
+      "item": "minecraft:light_weighted_pressure_plate"
+    }
+  },
+  "result": {
+    "item": "chakral:necklace_slotter",
+    "count": 4
+  }
+}

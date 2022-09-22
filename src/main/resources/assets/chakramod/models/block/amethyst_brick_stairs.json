@@ -1,8 +1,0 @@
-{
- "parent": "minecraft:block/stairs",
- "textures": {
-  "bottom": "chakramod:block/amethyst_bricks",
-  "top": "chakramod:block/amethyst_bricks",
-  "side": "chakramod:block/amethyst_bricks"
- }
-}

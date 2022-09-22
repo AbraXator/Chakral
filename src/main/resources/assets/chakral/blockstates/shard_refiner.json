@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "chakral:block/shard_refiner",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "chakral:block/shard_refiner"
+    },
+    "facing=south": {
+      "model": "chakral:block/shard_refiner",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "chakral:block/shard_refiner",
+      "y": 270
+    }
+  }
+}

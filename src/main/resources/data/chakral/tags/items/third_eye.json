@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "chakral:hag_stone",
+    "chakral:azurite",
+    "chakral:lepidolite",
+    "chakral:dumortierite"
+  ]
+}

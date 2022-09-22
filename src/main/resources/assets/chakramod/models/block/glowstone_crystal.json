@@ -1,7 +1,0 @@
-{
- "parent": "minecraft:block/cross",
- "textures": {
-  "cross": "chakramod:block/glowstone_crystal"
- },
- "render_type": "cutout"
-}
