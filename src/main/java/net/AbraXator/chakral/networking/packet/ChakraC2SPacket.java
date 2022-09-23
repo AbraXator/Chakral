@@ -27,7 +27,11 @@ public class ChakraC2SPacket {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.getLevel();
             ItemStack necklace = player.getInventory().getItem(1);
+            if(necklace.hasTag()) {
+                String nbtData = necklace.getTag().getString("chakral.stones");
+                nbtData = nbtData.replace("[", "").replace("]", "").replace(" ", "_").toLowerCase();
 
+            }
         });
         return true;
     }

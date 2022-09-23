@@ -94,7 +94,6 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                 ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(1);
                 ItemStack necklace = NecklaceSlotterMenu.this.necklaceSlot.getItem(0);
                 ITag<Item> faintItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT);
-                Stream<Item> tagStream = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream();;
                 if(necklace.is(ModItems.GOLDEN_NECKLACE.get())){
                     if(faintItems.contains(stone.getItem())){
                         CompoundTag nbt = new CompoundTag();
@@ -153,9 +152,6 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                     if (necklace.hasTag()) {
                         //GoldenNecklace goldenNecklace = pStack ? pStack.is(ModItems.GOLDEN_NECKLACE.get()) : null;
                         necklace.removeTagKey("chakral.stones");
-                        necklace.removeTagKey("chakral.stones.two");
-                        necklace.removeTagKey("chakral.stones.three");
-                        necklace.removeTagKey("chakral.stones.four");
                     }
                 }
             }
@@ -166,7 +162,6 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
             @Override
             public boolean mayPlace(ItemStack stone){
                 return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).contains(stone.getItem())
-                        || ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED).contains(stone.getItem())
                         && NecklaceSlotterMenu.this.getSlot(0).hasItem();
             }
 
@@ -177,66 +172,17 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
 
             @Override
             public void setChanged() {
-                ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(1);
+                ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(2);
                 ItemStack necklace = NecklaceSlotterMenu.this.necklaceSlot.getItem(0);
-                List<Item> tagList = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream().toList();
                 ITag<Item> faintItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT);
-                ITag<Item> weakenedItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT);
-                Stream<Item> tagStream = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream();;
                 if(necklace.is(ModItems.DIAMOND_NECKLACE.get())){
-                    CompoundTag nbt1 = new CompoundTag();
-                    nbt1.putString("chakral.stones", stone.getDisplayName().getString());
-                    necklace.setTag(nbt1);
                     if(faintItems.contains(stone.getItem())){
                         CompoundTag nbt = new CompoundTag();
                         nbt.putString("chakral.stones", stone.getDisplayName().getString());
                         necklace.setTag(nbt);
-                    }
-                    if(weakenedItems.contains(stone.getItem())){
-                        CompoundTag nbt = new CompoundTag();
-                        nbt.putString("chakral.stones.two", stone.getDisplayName().getString());
-                        necklace.setTag(nbt);
+                        System.out.println(nbt);
                     }
                 }
-                //if(necklace.is(ModItems.NETHERITE_NECKLACE.get())){
-                //    if(faintItems.contains(stone.getItem())){
-                //        CompoundTag nbt = new CompoundTag();
-                //        nbt.putString("chakral.stones", stone.getDisplayName().getString());
-                //        necklace.setTag(nbt);
-                //    }
-                //    if(weakenedItems.contains(stone.getItem())){
-                //        CompoundTag nbt = new CompoundTag();
-                //        nbt.putString("chakral.stones.two", stone.getDisplayName().getString());
-                //        necklace.setTag(nbt);
-                //    }
-                //    if(powerfulItems.contains(stone.getItem())){
-                //        CompoundTag nbt = new CompoundTag();
-                //        nbt.putString("chakral.stones.three", stone.getDisplayName().getString());
-                //        necklace.setTag(nbt);
-                //    }
-                //}
-                //if(necklace.is(ModItems.RAINBOW_NECKLACE.get())){
-                //    if(faintItems.contains(stone.getItem())){
-                //        CompoundTag nbt = new CompoundTag();
-                //        nbt.putString("chakral.stones", stone.getDisplayName().getString());
-                //        necklace.setTag(nbt);
-                //    }
-                //    if(weakenedItems.contains(stone.getItem())){
-                //        CompoundTag nbt = new CompoundTag();
-                //        nbt.putString("chakral.stones.two", stone.getDisplayName().getString());
-                //        necklace.setTag(nbt);
-                //    }
-                //    if(powerfulItems.contains(stone.getItem())){
-                //        CompoundTag nbt = new CompoundTag();
-                //        nbt.putString("chakral.stones.three", stone.getDisplayName().getString());
-                //        necklace.setTag(nbt);
-                //    }
-                //    if(enlightenedItems.contains(stone.getItem())){
-                //        CompoundTag nbt = new CompoundTag();
-                //        nbt.putString("chakral.stones.four", stone.getDisplayName().getString());
-                //        necklace.setTag(nbt);
-                //    }
-                //}
             }
             @Override
             public int getMaxStackSize() {
@@ -248,9 +194,6 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                     ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
                     if (necklace.hasTag()) {
                         necklace.removeTagKey("chakral.stones");
-                        necklace.removeTagKey("chakral.stones.two");
-                        necklace.removeTagKey("chakral.stones.three");
-                        necklace.removeTagKey("chakral.stones.four");
                     }
                 }
             }
@@ -260,8 +203,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.necklaceSlot, 3, 89, 50){
             @Override
             public boolean mayPlace(ItemStack stone){
-                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).contains(stone.getItem())
-                        || ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED).contains(stone.getItem())
+                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED).contains(stone.getItem())
                         && NecklaceSlotterMenu.this.getSlot(0).hasItem();
             }
 
@@ -272,63 +214,16 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
 
             @Override
             public void setChanged() {
-                ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(1);
+                ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(3);
                 ItemStack necklace = NecklaceSlotterMenu.this.necklaceSlot.getItem(0);
-                List<Item> tagList = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream().toList();
-                ITag<Item> faintItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT);
-                ITag<Item> weakenedItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT);
-                Stream<Item> tagStream = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream();;
+                ITag<Item> weakenedItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED);
                 if(necklace.is(ModItems.DIAMOND_NECKLACE.get())){
-                    if(faintItems.contains(stone.getItem())){
-                        CompoundTag nbt = new CompoundTag();
-                        nbt.putString("chakral.stones", stone.getDisplayName().getString());
-                        necklace.setTag(nbt);
-                    }
                     if(weakenedItems.contains(stone.getItem())){
                         CompoundTag nbt = new CompoundTag();
                         nbt.putString("chakral.stones.two", stone.getDisplayName().getString());
                         necklace.setTag(nbt);
                     }
                 }
-                //if(necklace.is(ModItems.NETHERITE_NECKLACE.get())){
-                //    if(faintItems.contains(stone.getItem())){
-                //        CompoundTag nbt = new CompoundTag();
-                //        nbt.putString("chakral.stones", stone.getDisplayName().getString());
-                //        necklace.setTag(nbt);
-                //    }
-                //    if(weakenedItems.contains(stone.getItem())){
-                //        CompoundTag nbt = new CompoundTag();
-                //        nbt.putString("chakral.stones.two", stone.getDisplayName().getString());
-                //        necklace.setTag(nbt);
-                //    }
-                //    if(powerfulItems.contains(stone.getItem())){
-                //        CompoundTag nbt = new CompoundTag();
-                //        nbt.putString("chakral.stones.three", stone.getDisplayName().getString());
-                //        necklace.setTag(nbt);
-                //    }
-                //}
-                //if(necklace.is(ModItems.RAINBOW_NECKLACE.get())){
-                //    if(faintItems.contains(stone.getItem())){
-                //        CompoundTag nbt = new CompoundTag();
-                //        nbt.putString("chakral.stones", stone.getDisplayName().getString());
-                //        necklace.setTag(nbt);
-                //    }
-                //    if(weakenedItems.contains(stone.getItem())){
-                //        CompoundTag nbt = new CompoundTag();
-                //        nbt.putString("chakral.stones.two", stone.getDisplayName().getString());
-                //        necklace.setTag(nbt);
-                //    }
-                //    if(powerfulItems.contains(stone.getItem())){
-                //        CompoundTag nbt = new CompoundTag();
-                //        nbt.putString("chakral.stones.three", stone.getDisplayName().getString());
-                //        necklace.setTag(nbt);
-                //    }
-                //    if(enlightenedItems.contains(stone.getItem())){
-                //        CompoundTag nbt = new CompoundTag();
-                //        nbt.putString("chakral.stones.four", stone.getDisplayName().getString());
-                //        necklace.setTag(nbt);
-                //    }
-                //}
             }
             @Override
             public int getMaxStackSize() {
@@ -339,10 +234,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                 if (NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get())) {
                     ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
                     if (necklace.hasTag()) {
-                        necklace.removeTagKey("chakral.stones");
                         necklace.removeTagKey("chakral.stones.two");
-                        necklace.removeTagKey("chakral.stones.three");
-                        necklace.removeTagKey("chakral.stones.four");
                     }
                 }
             }

@@ -6,6 +6,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.entity.living.EnderManAngerEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -35,5 +36,10 @@ public class ForgeEvents {
             itemTooltipEvent.getToolTip().add(Component.literal("Gems: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
             itemTooltipEvent.getToolTip().add(Component.literal("<Hold shift for more info>").withStyle(ChatFormatting.GOLD));
         }
+    }
+
+    @SubscribeEvent
+    public static void EnderManAngerReset(EnderManAngerEvent event){
+        event.setCanceled(true);
     }
 }

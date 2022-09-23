@@ -27,12 +27,12 @@ public class Gem extends Item {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        pTooltipComponents.add(Component.literal("Type: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
+        pTooltipComponents.add(Component.literal("Strength: " + chakraStrenght).withStyle(chakraStrenght.getColorFromChakra(chakraStrenght)));
         Component moreInfo = Component.literal("<Hold shift for more info>").withStyle(ChatFormatting.GOLD);
-        Component gemProperties = Component.translatable("tooltip.chakral." + name).withStyle(chakraType.getColorFromChakra(chakraType));
         pTooltipComponents.add(moreInfo);
         if(Screen.hasShiftDown()){
-            pTooltipComponents.add(Component.literal("Type: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
-            pTooltipComponents.add(Component.literal("Strength: " + chakraStrenght).withStyle(chakraStrenght.getColorFromChakra(chakraStrenght)));
+            Component gemProperties = Component.translatable("tooltip.chakral." + name).withStyle(chakraType.getColorFromChakra(chakraType));
             if(gemProperties == null){
                 pTooltipComponents.remove(moreInfo);
                 pTooltipComponents.add(Component.literal("WIP").withStyle(ChatFormatting.GOLD));

@@ -2,6 +2,7 @@ package net.AbraXator.chakral.items.custom;
 
 
 import net.AbraXator.chakral.chakra.Chakras;
+import net.AbraXator.chakral.event.ForgeEvents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.EnderManAngerEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -68,6 +70,9 @@ public class GoldenNecklace extends Item {
             }
             if(nbtData.equals("heliolite") && !USED){
                 Chakras.heliolite(((Player) pEntity), pLevel);
+            }
+            if(nbtData.equals("amethyst_quartz")){
+
             }
         }else {
             USED = false;
