@@ -26,7 +26,7 @@ public class ModBuddingBlock extends AmethystBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
         if(randomSource.nextInt(5) == 0){
             Direction direction = DIRECTIONS[randomSource.nextInt(DIRECTIONS.length)];
             BlockPos blockpos = pos.relative(direction);

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "chakral:orange_crystal",
+    "chakral:yellow_crystal",
+    "chakral:green_crystal",
+    "chakral:red_crystal"
+  ]
+}
