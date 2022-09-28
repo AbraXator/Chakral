@@ -41,7 +41,7 @@ public class ModTags {
         public static final TagKey<Item> SHARDS = tag("shards");
 
         public static final TagKey<Item> BLADES = tag("blades");
-        public static final TagKey<Item> NECKLACE = tag("necklace");
+        public static final TagKey<Item> NECKLACES = tag("necklaces");
 
 
         private static TagKey<Item> tag(String name){

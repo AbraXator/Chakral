@@ -45,7 +45,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
 
             @Override
             public boolean mayPlace(ItemStack necklace) {
-                if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.NECKLACE).contains(necklace.getItem())){
+                if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.NECKLACES).contains(necklace.getItem())){
                     return true;
                 }else {
                     return false;
@@ -62,7 +62,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
             @Override
             public void setChanged() {
                 ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
-                if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.NECKLACE).contains(necklace.getItem())) {
+                if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.NECKLACES).contains(necklace.getItem())) {
                     if (necklace.hasTag()) {
                         String nbt = necklace.getTag().getString("chakral.stones").toString().replace("[", "").replace("]", "").replace(" ", "_").toLowerCase();
                         ItemStack stone = ForgeRegistries.ITEMS.getValue(new ResourceLocation("chakral:" + nbt)).getDefaultInstance();

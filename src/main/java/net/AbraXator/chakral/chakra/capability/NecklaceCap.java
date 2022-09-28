@@ -1,15 +1,17 @@
 package net.AbraXator.chakral.chakra.capability;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.world.item.ItemStack;
 
 public class NecklaceCap {
-    private String necklace;
+    private ItemStack necklace;
 
-    public String getNecklace(){
+    public ItemStack getNecklace(){
         return necklace;
     }
 
-    public void setNecklace(String necklace){
+    public void setNecklace(ItemStack necklace){
         this.necklace = necklace;
     }
 
@@ -18,10 +20,10 @@ public class NecklaceCap {
     }
 
     public void saveNBT(CompoundTag tag){
-        tag.putString("player.necklace", necklace);
+        tag.put("player.necklace", necklace.serializeNBT());
     }
 
     public void loadNBT(CompoundTag tag){
-        necklace = tag.getString("player.necklace");
+        necklace = ItemStack.of(tag.getCompound("player.necklace"));
     }
 }

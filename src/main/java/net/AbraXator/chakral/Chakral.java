@@ -53,10 +53,6 @@ public class Chakral {
 
     }
 
-    private void commonSetup(final FMLClientSetupEvent event){
-        event.enqueueWork(ModMessages::register);
-    }
-
     private void clientSetup(final FMLClientSetupEvent event){
         MenuScreens.register(ModMenuTypes.STONE_BENCH_MENU.get(), NecklaceSlotterScreen::new);
         MenuScreens.register(ModMenuTypes.SHARD_REFINER_MENU.get(), ShardRefinerScreen::new);
@@ -67,6 +63,7 @@ public class Chakral {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getName().toString());
+        event.enqueueWork(ModMessages::register);
     }
 
     public class Tab {
