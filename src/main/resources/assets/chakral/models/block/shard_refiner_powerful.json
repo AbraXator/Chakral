@@ -3,7 +3,7 @@
 	"parent": "block/block",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "chakral:block/shard_refiner_powerfuk",
+		"0": "chakral:block/shard_refiner_powerful",
 		"particle": "minecraft:block/spruce_planks"
 	},
 	"elements": [
