@@ -54,9 +54,7 @@ public class Chakral {
     }
 
     private void commonSetup(final FMLClientSetupEvent event){
-        event.enqueueWork(() ->{
-           ModMessages.register();
-        });
+        event.enqueueWork(ModMessages::register);
     }
 
     private void clientSetup(final FMLClientSetupEvent event){

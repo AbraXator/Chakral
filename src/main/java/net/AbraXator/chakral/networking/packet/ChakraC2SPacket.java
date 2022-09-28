@@ -34,7 +34,7 @@ public class ChakraC2SPacket {
             if(necklace.hasTag()) {
                 String nbtData = necklace.getTag().getString("chakral.stones");
                 nbtData = nbtData.replace("[", "").replace("]", "").replace(" ", "_").toLowerCase();
-                
+
             }
         });
         return true;

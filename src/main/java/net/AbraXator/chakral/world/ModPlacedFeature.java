@@ -14,6 +14,18 @@ public class ModPlacedFeature {
     public static final DeferredRegister<PlacedFeature> PLACED_FEATURES =
             DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, Chakral.MOD_ID);
 
+    public static final RegistryObject<PlacedFeature> WHITE_MINERAL_ORE_PLACED = PLACED_FEATURES.register("white_mineral_ore_placed",
+            () -> new PlacedFeature(ModConfiguredFeatures.WHITE_MINERAL_ORE.getHolder().get(), List.of(
+                    RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(),
+                    HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(50)),
+                    BiomeFilter.biome())));
+
+    public static final RegistryObject<PlacedFeature> TRUE_WHITE_MINERAL_ORE_PLACED = PLACED_FEATURES.register("true_white_mineral_ore_placed",
+            () -> new PlacedFeature(ModConfiguredFeatures.TRUE_WHITE_MINERAL_ORE.getHolder().get(), List.of(
+                    RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(),
+                    HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(50)),
+                    BiomeFilter.biome())));
+
     public static final RegistryObject<PlacedFeature> BLUE_GEODE_PLACED = PLACED_FEATURES.register("blue_geode_placed",
             () -> new PlacedFeature(ModConfiguredFeatures.BLUE_GEODE.getHolder().get(), List.of(
                     RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(),

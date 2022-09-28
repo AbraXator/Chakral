@@ -3,6 +3,7 @@ package net.AbraXator.chakral.event;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.ChakraC2SPacket;
+import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.renderer.CrystalFishRenderer;
 import net.AbraXator.chakral.renderer.MineralSnailRenderer;
 import net.AbraXator.chakral.renderer.model.CrystalFishModel;
@@ -35,7 +36,7 @@ public final class ClientEvents {
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key event) {
             if(KeyBindings.STONE_FUNCTION_KEY.consumeClick()) {
-                ModMessages.sendToServer(new ChakraC2SPacket());
+                ModMessages.sendToServer(new NecklaceC2SPacket());
             }
         }
     }

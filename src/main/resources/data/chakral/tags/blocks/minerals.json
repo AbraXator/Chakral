@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:amethyst_block",
+    "chakral:blue_mineral",
+    "chakral:light_blue_mineral",
+    "chakral:green_mineral",
+    "chakral:yellow_mineral",
+    "chakral:orange_mineral",
+    "chakral:red_mineral",
+    "#chakral:bw_minerals"
+  ]
+}

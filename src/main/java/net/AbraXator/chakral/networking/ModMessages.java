@@ -2,6 +2,7 @@ package net.AbraXator.chakral.networking;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.networking.packet.ChakraC2SPacket;
+import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -31,6 +32,12 @@ public class ModMessages {
                 .decoder(ChakraC2SPacket::new)
                 .encoder(ChakraC2SPacket::toBytes)
                 .consumerMainThread(ChakraC2SPacket::handle)
+                .add();
+
+        net.messageBuilder(NecklaceC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(NecklaceC2SPacket::new)
+                .encoder(NecklaceC2SPacket::toBytes)
+                .consumerMainThread(NecklaceC2SPacket::handle)
                 .add();
     }
 

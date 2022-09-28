@@ -9,6 +9,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ambient.AmbientCreature;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -17,6 +18,12 @@ import org.jetbrains.annotations.Nullable;
 public class MineralSnail extends Animal {
     public MineralSnail(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
+    }
+
+    public static AttributeSupplier setAttributes(){
+        return AmbientCreature.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 10.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.5f).build();
     }
 
     @Override
@@ -34,10 +41,6 @@ public class MineralSnail extends Animal {
     @Override
     public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
         return ModEntity.MINERAL_SNAIL.get().create(level);
-    }
-
-    public static AttributeSupplier.Builder createAttributes(){
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 5D).add(Attributes.MOVEMENT_SPEED, 0.20D);
     }
 
     @Override

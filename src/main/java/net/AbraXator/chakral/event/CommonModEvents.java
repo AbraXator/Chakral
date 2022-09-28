@@ -4,16 +4,19 @@ import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.entity.CrystalFish;
 import net.AbraXator.chakral.entity.ModEntity;
 import net.AbraXator.chakral.entity.MineralSnail;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = Chakral.MOD_ID)
+import java.util.jar.Attributes;
+
+@Mod.EventBusSubscriber(modid = Chakral.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CommonModEvents {
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event){
-        event.put(ModEntity.MINERAL_SNAIL.get(), MineralSnail.createAttributes().build());
+        event.put(ModEntity.MINERAL_SNAIL.get(), MineralSnail.setAttributes());
         event.put(ModEntity.CRYSTAL_FISH.get(), CrystalFish.createAttributes().build());
     }
 

@@ -2,6 +2,7 @@ package net.AbraXator.chakral.world;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
+import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.core.Registry;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -12,7 +13,12 @@ import net.minecraft.world.level.levelgen.GeodeLayerSettings;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockStateMatchTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -22,6 +28,16 @@ import java.util.List;
 public class ModConfiguredFeatures {
     public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES =
             DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, Chakral.MOD_ID);
+
+    public static final RuleTest NATURAL_STONE = new TagMatchTest(BlockTags.BASE_STONE_OVERWORLD);
+    public static final RuleTest BW_MINERALS = new TagMatchTest(ModTags.Blocks.BW_MINERALS);
+    public static final RegistryObject<ConfiguredFeature<?, ?>> WHITE_MINERAL_ORE = CONFIGURED_FEATURES.register("white_mineral_ore",
+            () -> new ConfiguredFeature<>(Feature.ORE,
+                    new OreConfiguration(NATURAL_STONE, ModBlocks.WHITE_MINERAL.get().defaultBlockState(), 64)));
+
+    public static final RegistryObject<ConfiguredFeature<?, ?>> TRUE_WHITE_MINERAL_ORE = CONFIGURED_FEATURES.register("true_white_mineral_ore",
+            () -> new ConfiguredFeature<>(Feature.ORE,
+                    new OreConfiguration(BW_MINERALS, ModBlocks.TRUE_WHITE_MINERAL.get().defaultBlockState(), 16)));
 
     public static final RegistryObject<ConfiguredFeature<?, ?>> BLUE_GEODE = CONFIGURED_FEATURES.register("blue_geode",
             () -> new ConfiguredFeature<>(Feature.GEODE,
