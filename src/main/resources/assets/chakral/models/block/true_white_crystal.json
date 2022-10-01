@@ -1,0 +1,7 @@
+{
+ "parent": "minecraft:block/cross",
+ "textures": {
+  "cross": "chakral:block/true_white_crystal"
+ },
+ "render_type": "cutout"
+}
