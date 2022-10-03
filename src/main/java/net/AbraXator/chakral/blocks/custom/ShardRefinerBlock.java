@@ -3,12 +3,14 @@ package net.AbraXator.chakral.blocks.custom;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.blocks.entity.custom.ShardRefinerBlockEntity;
 import net.AbraXator.chakral.chakra.ChakraStrenght;
+import net.AbraXator.chakral.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.chunk.UpgradeData;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -29,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class ShardRefinerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final EnumProperty TIER = EnumProperty.create("tier", ChakraStrenght.class);
+    public static final EnumProperty<ChakraStrenght> TIER = EnumProperty.create("tier", ChakraStrenght.class);
     public static final BooleanProperty CHARGED = BlockStateProperties.ENABLED;
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
 
@@ -98,15 +101,24 @@ public class ShardRefinerBlock extends BaseEntityBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
-            BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof ShardRefinerBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (ShardRefinerBlockEntity)entity, pPos);
-            } else {
-                throw new IllegalStateException("Our Container provider is missing!");
-            }
-
-            if(pPlayer.isShiftKeyDown()){
-
+            if(!pPlayer.isShiftKeyDown()) {
+                BlockEntity entity = pLevel.getBlockEntity(pPos);
+                if (entity instanceof ShardRefinerBlockEntity) {
+                    NetworkHooks.openScreen(((ServerPlayer) pPlayer), (ShardRefinerBlockEntity) entity, pPos);
+                } else {
+                    throw new IllegalStateException("Our Container provider is missing!");
+                }
+            }else {
+                ItemStack stack = pPlayer.getItemInHand(pHand);
+                if(stack.is(ModItems.WEAK_REFINER_KIT.get())){
+                    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.WEAKENED), 3);
+                }else if(stack.is(ModItems.POWERFUL_REFINER_KIT.get())){
+                    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.POWERFUL), 3);
+                }else if(stack.is(ModItems.ENGLIGHTENED_REFINER_KIT.get())){
+                    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.ENLIGHTENED), 3);
+                }else {
+                    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.FAINT), 3);
+                }
             }
         }
         return InteractionResult.sidedSuccess(pLevel.isClientSide());

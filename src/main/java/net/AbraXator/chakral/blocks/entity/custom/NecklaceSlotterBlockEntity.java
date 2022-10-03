@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 
-public class NecklaceSlotterBlockEntity extends BlockEntity implements MenuProvider {
+public class NecklaceSlotterBlockEntity extends BlockEntity {
     private final ItemStackHandler itemHandler = new ItemStackHandler(4){
         @Override
         protected void onContentsChanged(int slot) {
@@ -42,17 +42,6 @@ public class NecklaceSlotterBlockEntity extends BlockEntity implements MenuProvi
 
     public NecklaceSlotterBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlockEntities.STONE_BENCH_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
-    }
-
-    @Override
-    public Component getDisplayName() {
-        return Component.literal(" ");
-    }
-
-    @Nullable
-    @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-        return new NecklaceSlotterMenu(pContainerId, pInventory, this);
     }
 
     @Override

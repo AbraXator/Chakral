@@ -3,6 +3,8 @@ package net.AbraXator.chakral.event;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.chakra.capability.NecklaceCap;
 import net.AbraXator.chakral.chakra.capability.NecklaceCapProvider;
+import net.AbraXator.chakral.chakra.capability.PlayerGemsCap;
+import net.AbraXator.chakral.chakra.capability.PlayerGemsCapProvider;
 import net.AbraXator.chakral.entity.CrystalFish;
 import net.AbraXator.chakral.entity.ModEntity;
 import net.AbraXator.chakral.entity.MineralSnail;
@@ -33,6 +35,7 @@ public class CommonModEvents {
         if(event.getObject() instanceof Player) {
             if(!event.getObject().getCapability(NecklaceCapProvider.NECKLACE).isPresent()) {
                 event.addCapability(new ResourceLocation(Chakral.MOD_ID, "properties"), new NecklaceCapProvider());
+                //event.addCapability(new ResourceLocation(Chakral.MOD_ID, "properties"), new PlayerGemsCapProvider());
             }
         }
     }
@@ -45,11 +48,17 @@ public class CommonModEvents {
                     newStore.copyFrom(oldStore);
                 });
             });
+           //event.getOriginal().getCapability(PlayerGemsCapProvider.GEMS_CAP).ifPresent(oldStore -> {
+           //    event.getOriginal().getCapability(PlayerGemsCapProvider.GEMS_CAP).ifPresent(newStore -> {
+           //        newStore.copyFrom(oldStore);
+           //    });
+           //});
         }
     }
 
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event){
         event.register(NecklaceCap.class);
+        //event.register(PlayerGemsCap.class);
     }
 }

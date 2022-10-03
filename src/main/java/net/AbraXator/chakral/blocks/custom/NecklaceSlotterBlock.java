@@ -2,11 +2,18 @@ package net.AbraXator.chakral.blocks.custom;
 
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.blocks.entity.custom.NecklaceSlotterBlockEntity;
+import net.AbraXator.chakral.screen.NecklaceSlotterMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.StonecutterMenu;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -98,18 +105,36 @@ public class NecklaceSlotterBlock extends BaseEntityBlock {
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 
-    @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
-                                 Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if(!pLevel.isClientSide()){
-            BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if (entity instanceof NecklaceSlotterBlockEntity){
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (NecklaceSlotterBlockEntity)entity, pPos);
-            }else {
-                throw new IllegalStateException("Our container provider is missing!");
-            }
+   //@Override
+   //public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
+   //                             Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+   //    if(!pLevel.isClientSide()){
+   //        BlockEntity entity = pLevel.getBlockEntity(pPos);
+   //        if (entity instanceof NecklaceSlotterBlockEntity){
+   //            NetworkHooks.openScreen(((ServerPlayer)pPlayer), (NecklaceSlotterBlockEntity)entity, pPos);
+   //        }else {
+   //            throw new IllegalStateException("Our container provider is missing!");
+   //        }
+   //    }
+   //    return InteractionResult.sidedSuccess(pLevel.isClientSide());
+   //}
+
+
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        if (pLevel.isClientSide) {
+            return InteractionResult.SUCCESS;
+        } else {
+            pPlayer.openMenu(pState.getMenuProvider(pLevel, pPos));
+            pPlayer.awardStat(Stats.INTERACT_WITH_STONECUTTER);
+            return InteractionResult.CONSUME;
         }
-        return InteractionResult.sidedSuccess(pLevel.isClientSide());
+    }
+
+    @javax.annotation.Nullable
+    public MenuProvider getMenuProvider(BlockState pState, Level pLevel, BlockPos pPos) {
+        return new SimpleMenuProvider((p_57074_, p_57075_, p_57076_) -> {
+            return new NecklaceSlotterMenu(p_57074_, p_57075_, ContainerLevelAccess.create(pLevel, pPos));
+        }, Component.literal(""));
     }
 
     @Nullable

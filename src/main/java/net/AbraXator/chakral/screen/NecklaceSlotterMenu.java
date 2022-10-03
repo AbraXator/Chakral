@@ -15,15 +15,11 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
 
-import java.util.List;
-import java.util.stream.Stream;
-
 public class NecklaceSlotterMenu extends AbstractContainerMenu {
-    private final NecklaceSlotterBlockEntity blockEntity;
+    private final ContainerLevelAccess access;
     private final Level level;
     final Container necklaceSlot = new SimpleContainer(4) {
         public void setChanged() {
@@ -32,13 +28,13 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
         }
     };
 
-    public NecklaceSlotterMenu(int pContainerId, Inventory inv, FriendlyByteBuf friendlyByteBuf) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(friendlyByteBuf.readBlockPos()));
+    public NecklaceSlotterMenu(int pContainerId, Inventory inv, FriendlyByteBuf buf) {
+        this(pContainerId, inv, ContainerLevelAccess.NULL);
     }
 
-    public NecklaceSlotterMenu(int pContainerId, Inventory inv, BlockEntity entity) {
+    public NecklaceSlotterMenu(int pContainerId, Inventory inv, final ContainerLevelAccess access) {
         super(ModMenuTypes.STONE_BENCH_MENU.get(), pContainerId);
-        blockEntity = ((NecklaceSlotterBlockEntity) entity);
+        this.access = access;
         this.level = inv.player.level;
         //slot 1 - necklace
         this.addSlot(new Slot(this.necklaceSlot, 0, 80, 22) {
@@ -319,6 +315,6 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player pPlayer) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, ModBlocks.NECKLACE_SLOTTER.get());
+        return stillValid(this.access, pPlayer, ModBlocks.NECKLACE_SLOTTER.get());
     }
 }

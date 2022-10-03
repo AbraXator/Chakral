@@ -4,6 +4,8 @@ import com.mojang.math.Vector3f;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.chakra.ChakraType;
+import net.AbraXator.chakral.chakra.capability.NecklaceCapProvider;
+import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -17,6 +19,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -34,35 +37,12 @@ import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ForgeEvents {
-
-    @SubscribeEvent
-    public static void onItemTooltip(ItemTooltipEvent itemTooltipEvent) {
-        ChakraType chakraType = null;
-        //Component chakraComponent;
-        if(itemTooltipEvent.getItemStack().is(Items.AMETHYST_SHARD)){
-            chakraType = ChakraType.CROWN;
-            //chakraComponent = Component.literal(chakraType.ChakraToString(chakraType)).withStyle(chakraType.getColorFromChakra(chakraType));
-            itemTooltipEvent.getToolTip().add(Component.literal("Gems: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
-            itemTooltipEvent.getToolTip().add(Component.literal("<Hold shift for more info>").withStyle(ChatFormatting.GOLD));
-        }
-        if(itemTooltipEvent.getItemStack().is(Items.LAPIS_LAZULI)){
-            chakraType = ChakraType.THIRD_EYE;
-            //chakraComponent = Component.literal(chakraType.ChakraToString(chakraType)).withStyle(chakraType.getColorFromChakra(chakraType));
-            itemTooltipEvent.getToolTip().add(Component.literal("Gems: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
-            itemTooltipEvent.getToolTip().add(Component.literal("<Hold shift for more info>").withStyle(ChatFormatting.GOLD));
-        }
-        if(itemTooltipEvent.getItemStack().is(Items.QUARTZ)){
-            chakraType = ChakraType.CROWN;
-            //chakraComponent = Component.literal(chakraType.ChakraToString(chakraType)).withStyle(chakraType.getColorFromChakra(chakraType));
-            itemTooltipEvent.getToolTip().add(Component.literal("Gems: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
-            itemTooltipEvent.getToolTip().add(Component.literal("<Hold shift for more info>").withStyle(ChatFormatting.GOLD));
-        }
-    }
-
     @SubscribeEvent
     public static void EnderManAngerReset(EnderManAngerEvent event){
         event.setCanceled(true);
@@ -94,17 +74,32 @@ public class ForgeEvents {
 
     @SubscribeEvent
     public static void TickEvent(TickEvent.PlayerTickEvent event){
-            Player player = event.player;
-            Level level = event.player.getLevel();
-            BlockPos pos = player.getOnPos();
-            Random random = new Random();
-            BlockState state = level.getBlockState(pos);
-            if(state.is(ModTags.Blocks.CRYSTALS) && random.nextDouble() < 0.03D){
-                if(state.is(ModBlocks.ORANGE_CRYSTAL.get())){
-                    player.setSecondsOnFire(5);
+        Player player = event.player;
+        Level level = event.player.getLevel();
+        BlockPos pos = player.getOnPos();
+        Random random = new Random();
+        BlockState state = level.getBlockState(pos);
+        if(state.is(ModTags.Blocks.CRYSTALS) && random.nextDouble() < 0.03D){
+            if(state.is(ModBlocks.ORANGE_CRYSTAL.get())){
+                player.setSecondsOnFire(5);
             }
         }
     }
 
-
+    @SubscribeEvent
+    public static void gemEffects(TickEvent.PlayerTickEvent event){
+        Player player = event.player;
+        player.getCapability(NecklaceCapProvider.NECKLACE).ifPresent(necklaceCap -> {
+            ItemStack necklace = necklaceCap.getNecklace();
+            List<ItemStack> gems = new ArrayList<>();
+            //if(necklace.hasTag()){
+            //    gems.add(ItemStack.of(necklace.getTag().getCompound("chakramod.stones")));
+            //    gems.add(ItemStack.of(necklace.getTag().getCompound("chakramod.stones.two")));
+            //    gems.add(ItemStack.of(necklace.getTag().getCompound("chakramod.stones.three")));
+            //    gems.add(ItemStack.of(necklace.getTag().getCompound("chakramod.stones.four")));
+//
+            //    //if(gems.contains(ModItems.AMAZONITE))
+            //}
+        });
+    }
 }

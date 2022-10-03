@@ -1,6 +1,6 @@
 {
  "parent": "item/generated",
  "textures": {
-  "layer0": "chakral:item/chakra_guide"
+  "layer0": "chakral:item/chakral_guide"
  }
 }

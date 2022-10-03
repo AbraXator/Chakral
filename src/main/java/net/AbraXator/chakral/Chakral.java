@@ -67,7 +67,7 @@ public class Chakral {
     }
 
     public class Tab {
-        public static final CreativeModeTab CHAKRA_TAB = new CreativeModeTab("Chakral") {
+        public static final CreativeModeTab CHAKRA_TAB = new CreativeModeTab("chakral") {
             @Override
             public ItemStack makeIcon() {
                 return new ItemStack(ModItems.MALACHITE.get());
