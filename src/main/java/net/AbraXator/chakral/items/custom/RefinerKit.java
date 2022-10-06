@@ -18,21 +18,12 @@ public class RefinerKit extends Item {
         return chakraStrenght;
     }
 
-    @Override
-    public InteractionResult useOn(UseOnContext pContext) {
-        if(!pContext.getLevel().getBlockState(pContext.getClickedPos()).is(ModBlocks.SHARD_REFINER.get())){
-            return InteractionResult.PASS;
-        }else {
-            int i;
-            switch (chakraStrenght){
-                case WEAKENED -> i = 1;
-                case POWERFUL -> i = 2;
-                case ENLIGHTENED -> i = 3;
-                default -> i = 0;
-            }
-
-            return ShardRefinerBlock.tryUpgrade(pContext.getPlayer(), pContext.getLevel(), pContext.getClickedPos(), pContext.getLevel().getBlockState(pContext.getClickedPos()), i)
-                    ? InteractionResult.sidedSuccess(pContext.getLevel().isClientSide) : InteractionResult.PASS;
-        }
-    }
+    //@Override
+    //public InteractionResult useOn(UseOnContext pContext) {
+    //    if(pContext.getLevel().getBlockState(pContext.getClickedPos()).is(ModBlocks.SHARD_REFINER.get())){
+    //        return ShardRefinerBlock.upgrade(chakraStrenght);
+    //    }else {
+    //        return InteractionResult.PASS;
+    //    }
+    //}
 }

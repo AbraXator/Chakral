@@ -46,16 +46,20 @@ public class NecklaceC2SPacket {
             String finalName = name;
             player.getCapability(NecklaceCapProvider.NECKLACE).ifPresent(necklaceCap -> {
                 ItemStack necklace = necklaceCap.getNecklace();
-                if(stack.is(ModTags.Items.NECKLACES)){
-                    necklaceCap.setNecklace(stack);
-                    player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
-                }else {
+                if(necklaceCap.getNecklace().isEmpty()){
+                    if(stack.is(ModTags.Items.NECKLACES)){
+                        necklaceCap.setNecklace(stack);
+                        ForgeEvents.EQUIPPED = true;
+                        player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+                    }
+                } else {
                     if(player.getInventory().getFreeSlot() == -1){
                         player.drop(necklace, false);
                     }else {
                         player.addItem(necklace);
                     }
                     necklaceCap.setNecklace(ItemStack.EMPTY);
+                    ForgeEvents.EQUIPPED = false;
                 }
             });
         });

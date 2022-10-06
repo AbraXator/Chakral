@@ -35,7 +35,7 @@ public final class ClientEvents {
 
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key event) {
-            if(KeyBindings.STONE_FUNCTION_KEY.consumeClick()) {
+            if(KeyBindings.NECKLACE_EQUIP_KEY.consumeClick()) {
                 ModMessages.sendToServer(new NecklaceC2SPacket());
             }
         }
@@ -46,6 +46,7 @@ public final class ClientEvents {
         @SubscribeEvent
         public static void onKeyRegister(RegisterKeyMappingsEvent event) {
             event.register(KeyBindings.STONE_FUNCTION_KEY);
+            event.register(KeyBindings.NECKLACE_EQUIP_KEY);
         }
     }
 }

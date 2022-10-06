@@ -3,6 +3,7 @@ package net.AbraXator.chakral.items.custom;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -16,6 +17,8 @@ public class NecklaceItem extends Item {
     public NecklaceItem(Properties pProperties) {
         super(pProperties);
     }
+
+
 
     private static Stream<ItemStack> getGems(ItemStack pStack) {
         CompoundTag compoundtag = pStack.getTag();

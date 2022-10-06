@@ -6,6 +6,7 @@ import net.AbraXator.chakral.chakra.ChakraStrenght;
 import net.AbraXator.chakral.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -109,41 +110,24 @@ public class ShardRefinerBlock extends BaseEntityBlock {
                     throw new IllegalStateException("Our Container provider is missing!");
                 }
             }else {
-                ItemStack stack = pPlayer.getItemInHand(pHand);
-                if(stack.is(ModItems.WEAK_REFINER_KIT.get())){
-                    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.WEAKENED), 3);
-                }else if(stack.is(ModItems.POWERFUL_REFINER_KIT.get())){
-                    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.POWERFUL), 3);
-                }else if(stack.is(ModItems.ENGLIGHTENED_REFINER_KIT.get())){
-                    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.ENLIGHTENED), 3);
-                }else {
-                    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.FAINT), 3);
-                }
+                //ItemStack stack = pPlayer.getItemInHand(pHand);
+                //pPlayer.sendSystemMessage(Component.literal(stack.toString()));
+                //if(stack.is(ModItems.WEAK_REFINER_KIT.get())){
+                //    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.WEAKENED), 3);
+                //}else if(stack.is(ModItems.POWERFUL_REFINER_KIT.get())){
+                //    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.POWERFUL), 3);
+                //}else if(stack.is(ModItems.ENGLIGHTENED_REFINER_KIT.get())){
+                //    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.ENLIGHTENED), 3);
+                //}else {
+                //    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.FAINT), 3);
+                //}
             }
         }
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
 
-    public static boolean tryUpgrade(Player player, Level pLevel, BlockPos pPos, BlockState state,int tier) {
-        if (!pLevel.isClientSide) {
-            upgrade(player, pLevel, pPos, state,tier);
-            return true;
-        } else {
-            return false;
-        }
-    }
+    public static void upgrade(ChakraStrenght strength){
 
-    public static void upgrade(Player player, Level pLevel, BlockPos pPos, BlockState state,int tier){
-        BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-        switch (tier){
-            case 1 -> state = state.setValue(TIER, ChakraStrenght.WEAKENED);
-            case 0 -> state = state.setValue(TIER, ChakraStrenght.POWERFUL);
-            case 2 -> state = state.setValue(TIER, ChakraStrenght.ENLIGHTENED);
-            default -> state = state.setValue(TIER, ChakraStrenght.FAINT);
-        }
-        if(blockentity instanceof ShardRefinerBlockEntity shardRefinerBlock){
-            shardRefinerBlock.upgradeTier(tier);
-        }
     }
 
     @Nullable

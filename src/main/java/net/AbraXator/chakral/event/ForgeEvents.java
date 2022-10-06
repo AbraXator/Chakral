@@ -43,6 +43,7 @@ import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ForgeEvents {
+    public static boolean EQUIPPED = false;
     @SubscribeEvent
     public static void EnderManAngerReset(EnderManAngerEvent event){
         event.setCanceled(true);
@@ -100,6 +101,11 @@ public class ForgeEvents {
 //
             //    //if(gems.contains(ModItems.AMAZONITE))
             //}
+            if(EQUIPPED){
+                player.addEffect(new MobEffectInstance(MobEffects.REGENERATION));
+            }else {
+                player.removeEffect(MobEffects.REGENERATION);
+            }
         });
     }
 }

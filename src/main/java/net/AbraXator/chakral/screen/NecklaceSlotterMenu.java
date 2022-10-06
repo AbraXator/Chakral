@@ -5,6 +5,8 @@ import net.AbraXator.chakral.blocks.entity.custom.NecklaceSlotterBlockEntity;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
@@ -152,7 +154,6 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                 }
             }
         });
-
         //slot 3 - stone1 diamond necklace
         this.addSlot(new Slot(this.necklaceSlot, 2, 71, 50){
             @Override
@@ -173,9 +174,10 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                 ITag<Item> faintItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT);
                 if(necklace.is(ModItems.DIAMOND_NECKLACE.get())){
                     if(faintItems.contains(stone.getItem())){
-                        CompoundTag nbt = new CompoundTag();
-                        nbt.putString("chakral.stones", stone.getDisplayName().getString());
-                        necklace.setTag(nbt);
+                        CompoundTag nbt = necklace.getOrCreateTag();
+                        ListTag listTag = nbt.getList("chakral.stone", 10);
+                        listTag.add(0, stone.serializeNBT());
+                        necklace.setTag(listTag.getCompound(0));
                         System.out.println(nbt);
                     }
                 }
@@ -184,13 +186,15 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
             public int getMaxStackSize() {
                 return 1;
             }
+
             @Override
             public void onTake(Player pPlayer, ItemStack pStack) {
                 if (NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get())) {
                     ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
-                    if (necklace.hasTag()) {
-                        necklace.removeTagKey("chakral.stones");
-                    }
+                    CompoundTag nbt = necklace.getOrCreateTag();
+                    ListTag listTag = nbt.getList("chakral.stone", 10);
+                    listTag.remove(0);
+                    necklace.setTag(listTag.getCompound(0));
                 }
             }
         });
@@ -215,9 +219,13 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                 ITag<Item> weakenedItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED);
                 if(necklace.is(ModItems.DIAMOND_NECKLACE.get())){
                     if(weakenedItems.contains(stone.getItem())){
-                        CompoundTag nbt = new CompoundTag();
-                        nbt.putString("chakral.stones.two", stone.getDisplayName().getString());
-                        necklace.setTag(nbt);
+                        CompoundTag nbt = necklace.getOrCreateTag();
+                        ListTag listTag = nbt.getList("chakral.stone", 10);
+                        if(listTag.isEmpty()){
+                            listTag.add(0, ItemStack.EMPTY.serializeNBT());
+                        }
+                        listTag.add(1, stone.serializeNBT());
+                        necklace.setTag(listTag.getCompound(1));
                     }
                 }
             }
@@ -225,13 +233,16 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
             public int getMaxStackSize() {
                 return 1;
             }
+
             @Override
             public void onTake(Player pPlayer, ItemStack pStack) {
                 if (NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get())) {
                     ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
-                    if (necklace.hasTag()) {
-                        necklace.removeTagKey("chakral.stones.two");
-                    }
+                    CompoundTag nbt = necklace.getOrCreateTag();
+                    ListTag listTag = nbt.getList("chakral.stone", 10);
+                    System.out.println(nbt);
+                    //listTag.remove(0);
+                    //necklace.setTag(listTag.getCompound(1));
                 }
             }
         });

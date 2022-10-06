@@ -2,6 +2,8 @@ package net.AbraXator.chakral.items.custom;
 
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -30,21 +32,14 @@ public class DiamondNecklace extends Item {
         //--STONE1--SLOT_1
         //--STONE2--SLOT_2
         if(pStack.hasTag()){
-            if(!pStack.getTag().getString("chakral.stones").isEmpty()){
-                String stones = pStack.getTag().getString("chakral.stones");
-                pTooltipComponents.add(0, Component.literal(stones));
-            }else {
-                pTooltipComponents.add(0, Component.literal("Empty"));
-            }
-            if(!pStack.getTag().getString("chakral.stones.two").isEmpty()){
-                String stones2 = pStack.getTag().getString("chakral.stones.two");
-                pTooltipComponents.add(1, Component.literal(stones2));
-            }else {
-                pTooltipComponents.add(1, Component.literal("Empty"));
+            CompoundTag tag = pStack.getTag();
+            ListTag listTag = tag.getList("chakral.stones", 10);
+            for(int i = 0; i < listTag.size(); i++){
+                pTooltipComponents.add(Component.literal(listTag.getString(i)));
             }
         }else {
-            pTooltipComponents.add(0, Component.literal("Empty").withStyle(ChatFormatting.GRAY));
-            pTooltipComponents.add(1, Component.literal("Empty").withStyle(ChatFormatting.GRAY));
+            pTooltipComponents.add(Component.literal("Empty").withStyle(ChatFormatting.GRAY));
+            pTooltipComponents.add(Component.literal("Empty").withStyle(ChatFormatting.GRAY));
         }
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
