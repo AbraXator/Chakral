@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -46,7 +47,7 @@ public class NecklaceC2SPacket {
             String finalName = name;
             player.getCapability(NecklaceCapProvider.NECKLACE).ifPresent(necklaceCap -> {
                 ItemStack necklace = necklaceCap.getNecklace();
-                if(necklaceCap.getNecklace().isEmpty()){
+                if(necklaceCap.getNecklace().is(ItemStack.EMPTY.getItem())){
                     if(stack.is(ModTags.Items.NECKLACES)){
                         necklaceCap.setNecklace(stack);
                         ForgeEvents.EQUIPPED = true;

@@ -20,7 +20,11 @@ public class NecklaceCap {
     }
 
     public void saveNBT(CompoundTag tag){
-        tag.put("player.necklace", necklace.serializeNBT());
+        if(necklace != null) {
+            tag.put("player.necklace", necklace.serializeNBT());
+        }else {
+            tag.put("player.necklace", ItemStack.EMPTY.serializeNBT());
+        }
     }
 
     public void loadNBT(CompoundTag tag){

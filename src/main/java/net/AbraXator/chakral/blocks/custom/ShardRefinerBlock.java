@@ -102,32 +102,22 @@ public class ShardRefinerBlock extends BaseEntityBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
-            if(!pPlayer.isShiftKeyDown()) {
-                BlockEntity entity = pLevel.getBlockEntity(pPos);
-                if (entity instanceof ShardRefinerBlockEntity) {
-                    NetworkHooks.openScreen(((ServerPlayer) pPlayer), (ShardRefinerBlockEntity) entity, pPos);
-                } else {
-                    throw new IllegalStateException("Our Container provider is missing!");
-                }
-            }else {
-                //ItemStack stack = pPlayer.getItemInHand(pHand);
-                //pPlayer.sendSystemMessage(Component.literal(stack.toString()));
-                //if(stack.is(ModItems.WEAK_REFINER_KIT.get())){
-                //    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.WEAKENED), 3);
-                //}else if(stack.is(ModItems.POWERFUL_REFINER_KIT.get())){
-                //    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.POWERFUL), 3);
-                //}else if(stack.is(ModItems.ENGLIGHTENED_REFINER_KIT.get())){
-                //    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.ENLIGHTENED), 3);
-                //}else {
-                //    pLevel.setBlock(pPos, pState.setValue(TIER, ChakraStrenght.FAINT), 3);
-                //}
+            ItemStack stack = pPlayer.getItemInHand(pHand);
+            BlockEntity entity = pLevel.getBlockEntity(pPos);
+            if (entity instanceof ShardRefinerBlockEntity) {
+                NetworkHooks.openScreen(((ServerPlayer) pPlayer), (ShardRefinerBlockEntity) entity, pPos);
+            } else {
+                throw new IllegalStateException("Our Container provider is missing!");
             }
         }
-        return InteractionResult.sidedSuccess(pLevel.isClientSide());
+        return InteractionResult.SUCCESS;
     }
 
-    public static void upgrade(ChakraStrenght strength){
+    public void upgrade(ChakraStrenght strength, Level level, BlockPos pos, BlockState state){
+        level.setBlock(pos, state.setValue(TIER, strength), 3);
+        if(level.getBlockEntity(pos) instanceof ShardRefinerBlockEntity entity){
 
+        }
     }
 
     @Nullable

@@ -24,6 +24,7 @@ public class DiamondNecklace extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+        pPlayer.sendSystemMessage(Component.literal(pPlayer.getItemInHand(pUsedHand).getTag().toString()));
         return super.use(pLevel, pPlayer, pUsedHand);
     }
 
@@ -31,17 +32,11 @@ public class DiamondNecklace extends Item {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         //--STONE1--SLOT_1
         //--STONE2--SLOT_2
-        if(pStack.hasTag()){
-            CompoundTag tag = pStack.getTag();
-            ListTag listTag = tag.getList("chakral.stones", 10);
-            for(int i = 0; i < listTag.size(); i++){
-                pTooltipComponents.add(Component.literal(listTag.getString(i)));
-            }
-        }else {
-            pTooltipComponents.add(Component.literal("Empty").withStyle(ChatFormatting.GRAY));
-            pTooltipComponents.add(Component.literal("Empty").withStyle(ChatFormatting.GRAY));
+        if (pStack.hasTag()) {
+            pTooltipComponents.add(Component.literal(pStack.getTag().getString("chakral.stones.1")));
+            pTooltipComponents.add(Component.literal(pStack.getTag().getString("chakral.stones.2")));
+            super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         }
-        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 
     @Override

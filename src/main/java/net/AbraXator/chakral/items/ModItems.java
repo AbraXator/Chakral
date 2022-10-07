@@ -7,6 +7,7 @@ import net.AbraXator.chakral.items.custom.Gem;
 import net.AbraXator.chakral.items.custom.GoldenNecklace;
 import net.AbraXator.chakral.chakra.ChakraStrenght;
 import net.AbraXator.chakral.chakra.ChakraType;
+import net.AbraXator.chakral.items.custom.RefinerKit;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.MobBucketItem;
@@ -103,11 +104,11 @@ public class ModItems {
             new Item(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
 
     public static final RegistryObject<Item> WEAK_REFINER_KIT = ITEMS.register("weak_refiner_kit", () ->
-            new Item(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
+            new RefinerKit(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB), ChakraStrenght.WEAKENED));
     public static final RegistryObject<Item> POWERFUL_REFINER_KIT = ITEMS.register("powerful_refiner_kit", () ->
-            new Item(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
+            new RefinerKit(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB), ChakraStrenght.POWERFUL));
     public static final RegistryObject<Item> ENGLIGHTENED_REFINER_KIT = ITEMS.register("enlightened_refiner_kit", () ->
-            new Item(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
+            new RefinerKit(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB), ChakraStrenght.ENLIGHTENED));
 
     public static final RegistryObject<MobBucketItem> CRYSTAL_FISH_BUCKET = ITEMS.register("crystal_fish_bucket", () ->
            new MobBucketItem(ModEntity.CRYSTAL_FISH, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH,
