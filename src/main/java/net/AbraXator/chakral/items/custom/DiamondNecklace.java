@@ -33,8 +33,8 @@ public class DiamondNecklace extends Item {
         //--STONE1--SLOT_1
         //--STONE2--SLOT_2
         if (pStack.hasTag()) {
-            pTooltipComponents.add(Component.literal(pStack.getTag().getString("chakral.stones.1")));
-            pTooltipComponents.add(Component.literal(pStack.getTag().getString("chakral.stones.2")));
+            //pTooltipComponents.add(Component.literal(pStack.getTagElement("chakral.stones.1").toString()));
+            //pTooltipComponents.add(Component.literal(pStack.getTagElement("chakral.stones.2").toString()));
             super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         }
     }

@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -40,7 +41,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
     public int tier = 0;
     public int progress;
     public int maxProgress = 66;
-    private final ItemStackHandler itemHandler = new ItemStackHandler(4) {
+    private final ItemStackHandler itemHandler = new ItemStackHandler(3) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -51,8 +52,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
             return switch (slot) {
                 case 0 -> stack.is(Items.DIAMOND);
                 case 1 -> ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SHARDS).stream().toList().contains(stack.getItem());
-                case 2 -> false;
-                case 3 -> ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.BLADES).contains(stack.getItem());
+                case 2 -> true;
                 default -> super.isItemValid(slot, stack);
             };
         }
@@ -66,7 +66,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
                     Direction.WEST, LazyOptional.of(() -> new WrappedHandler(itemHandler, (index) -> index == 0, (index, stack) -> true)),
                     Direction.EAST, LazyOptional.of(() -> new WrappedHandler(itemHandler, (index) -> index == 0, (index, stack) -> true)));
 
-    protected final ContainerData data;
+    public final ContainerData data;
 
     public ShardRefinerBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlockEntities.SHARD_REFINER_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
@@ -152,7 +152,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         pTag.putInt("shard_refiner.charge", diamondCharge);
         pTag.putInt("shard_refiner.crafting", progress);
         pTag.putInt("shard_refiner.shard", shardToInt());
-        pTag.putInt("shard_refiner.blade", tier);
+        pTag.putInt("shard_refiner.tier", tier);
         super.saveAdditional(pTag);
     }
 
@@ -163,6 +163,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         diamondCharge = pTag.getInt("shard_refiner.charge");
         progress = pTag.getInt("shard_refiner.crafting");
         pTag.getInt("shard_refiner.shard");
+        tier = pTag.getInt("shard_refiner.tier");
     }
 
     public int shardToInt() {
@@ -223,15 +224,15 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
             return;
         }
         loadFuel(pBlockEntity);
-        if(hasRecipe(pBlockEntity)){
-            pBlockEntity.progress++;
-            if(pBlockEntity.progress >= pBlockEntity.maxProgress){
-                craftItem(pBlockEntity);
-            }
-        }else {
-            pBlockEntity.resetProgress();
-            setChanged(pLevel, pPos, pState);
-        }
+        //if(hasRecipe(pBlockEntity)){
+        //    pBlockEntity.progress++;
+        //    if(pBlockEntity.progress >= pBlockEntity.maxProgress){
+        //        craftItem(pBlockEntity);
+        //    }
+        //}else {
+        //    pBlockEntity.resetProgress();
+        //    setChanged(pLevel, pPos, pState);
+        //}
     }
 
     public void upgradeTier(int tier){
@@ -243,87 +244,12 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         }
     }
 
+    public static ItemStack validate(ItemStack stack){
+        if(stack.is())
+    }
+
     public static void craftItem(ShardRefinerBlockEntity entity){
-        Random random = new Random();
-        ItemStack shard = entity.itemHandler.getStackInSlot(1);
-        double chance = 0.20D;
-        if(shard.is(Items.AMETHYST_SHARD)){
-            entity.itemHandler.extractItem(1, 1, false);
-            --entity.diamondCharge;
-            if(random.nextDouble() <= chance){
-                entity.itemHandler.insertItem(2, getItemsBasedOnTier(entity.data.get(3)).get(random.nextInt(getItemsBasedOnTier(entity.data.get(3)).size())).getDefaultInstance(), false);
-                entity.resetProgress();
-            }else {
-                entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
-                entity.resetProgress();
-            }
-        }
-        if(shard.is(ModItems.GREEN_SHARD.get())){
-            entity.itemHandler.extractItem(1, 1, false);
-            --entity.diamondCharge;
-            if(random.nextDouble() <= chance){
-                entity.itemHandler.insertItem(2, getItemsBasedOnTier(entity.data.get(3)).get(random.nextInt(getItemsBasedOnTier(entity.data.get(3)).size())).getDefaultInstance(), false);
-                entity.resetProgress();
-            }else {
-                entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
-                entity.resetProgress();
-            }
-        }
-        if(shard.is(ModItems.RED_SHARD.get())){
-            entity.itemHandler.extractItem(1, 1, false);
-            --entity.diamondCharge;
-            if(random.nextDouble() <= chance){
-                entity.itemHandler.insertItem(2, getItemsBasedOnTier(entity.data.get(3)).get(random.nextInt(getItemsBasedOnTier(entity.data.get(3)).size())).getDefaultInstance(), false);
-                entity.resetProgress();
-            }else {
-                entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
-                entity.resetProgress();
-            }
-        }
-        if(shard.is(ModItems.ORANGE_SHARD.get())){
-            entity.itemHandler.extractItem(1, 1, false);
-            --entity.diamondCharge;
-            if(random.nextDouble() <= chance){
-                entity.itemHandler.insertItem(2, getItemsBasedOnTier(entity.data.get(3)).get(random.nextInt(getItemsBasedOnTier(entity.data.get(3)).size())).getDefaultInstance(), false);
-                entity.resetProgress();
-            }else {
-                entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
-                entity.resetProgress();
-            }
-        }
-        if(shard.is(ModItems.YELLOW_SHARD.get())){
-            entity.itemHandler.extractItem(1, 1, false);
-            --entity.diamondCharge;
-            if(random.nextDouble() <= chance){
-                entity.itemHandler.insertItem(2, getItemsBasedOnTier(entity.data.get(3)).get(random.nextInt(getItemsBasedOnTier(entity.data.get(3)).size())).getDefaultInstance(), false);
-                entity.resetProgress();
-            }else {
-                entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
-                entity.resetProgress();
-            }
-        }
-        if(shard.is(ModItems.BLUE_SHARD.get())){
-            entity.itemHandler.extractItem(1, 1, false);
-            --entity.diamondCharge;
-            if(random.nextDouble() <= chance){
-                entity.itemHandler.insertItem(2, getItemsBasedOnTier(entity.data.get(3)).get(random.nextInt(getItemsBasedOnTier(entity.data.get(3)).size())).getDefaultInstance(), false);
-                entity.resetProgress();
-            }else {
-                entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
-                entity.resetProgress();
-            }
-        }
-        if(shard.is(ModItems.LIGHT_BLUE_SHARD.get())){
-            entity.itemHandler.extractItem(1, 1, false);
-            --entity.diamondCharge;
-            if(random.nextDouble() <= chance){
-                entity.itemHandler.insertItem(2, getItemsBasedOnTier(entity.data.get(3)).get(random.nextInt(getItemsBasedOnTier(entity.data.get(3)).size())).getDefaultInstance(), false);
-                entity.resetProgress();
-            }else {
-                entity.itemHandler.insertItem(2, ModItems.SHARD_DUST.get().getDefaultInstance(), false);
-                entity.resetProgress();
-            }
-        }
+
     }
 
     public static boolean hasRecipe(ShardRefinerBlockEntity entity){

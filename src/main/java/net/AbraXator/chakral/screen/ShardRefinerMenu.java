@@ -35,7 +35,6 @@ public class ShardRefinerMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 0, 26, 10));
             this.addSlot(new SlotItemHandler(handler, 1, 80, 35));
             this.addSlot(new SlotItemHandler(handler, 2, 134, 35));
-            this.addSlot(new SlotItemHandler(handler, 2, 134, 10));
         });
 
         addDataSlots(data);

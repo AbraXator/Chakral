@@ -176,7 +176,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                     if(faintItems.contains(stone.getItem())){
                         CompoundTag nbt = necklace.getOrCreateTag();
                         nbt.put("chakral.stone.1", stone.serializeNBT());
-                        necklace.setTag(nbt);
+                        necklace.getOrCreateTag().put("chakral.stone.1", nbt);
                     }
                 }
             }
@@ -192,7 +192,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                     ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
                     CompoundTag nbt = necklace.getOrCreateTag();
                     nbt.put("chakral.stone.1", ItemStack.EMPTY.serializeNBT());
-                    necklace.setTag(nbt);
+                    necklace.getOrCreateTag().put("chakral.stone.1", nbt);
                 }
             }
         });
@@ -219,7 +219,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                     if(faintItems.contains(stone.getItem())){
                         CompoundTag nbt = necklace.getOrCreateTag();
                         nbt.put("chakral.stone.2", stone.serializeNBT());
-                        necklace.setTag(nbt);
+                        necklace.getOrCreateTag().put("chakral.stone.2", nbt);
                     }
                 }
             }
@@ -235,7 +235,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                     ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
                     CompoundTag nbt = necklace.getOrCreateTag();
                     nbt.put("chakral.stone.2", ItemStack.EMPTY.serializeNBT());
-                    necklace.setTag(nbt);
+                    necklace.getOrCreateTag().put("chakral.stone.2", nbt);
                 }
             }
         });

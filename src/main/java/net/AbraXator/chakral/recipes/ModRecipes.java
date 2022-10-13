@@ -14,7 +14,6 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<ShardRefinerRecipe>> GEM_INFUSING_SERIALIZER =
             SERIALIZERS.register("shard_refining", () -> ShardRefinerRecipe.Serializer.INSTANCE);
 
-
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
     }

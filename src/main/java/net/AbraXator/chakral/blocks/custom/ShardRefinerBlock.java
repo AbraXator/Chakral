@@ -1,5 +1,6 @@
 package net.AbraXator.chakral.blocks.custom;
 
+import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.blocks.entity.custom.ShardRefinerBlockEntity;
 import net.AbraXator.chakral.chakra.ChakraStrenght;
@@ -7,6 +8,7 @@ import net.AbraXator.chakral.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -29,12 +31,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 public class ShardRefinerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<ChakraStrenght> TIER = EnumProperty.create("tier", ChakraStrenght.class);
-    public static final BooleanProperty CHARGED = BlockStateProperties.ENABLED;
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
 
     public ShardRefinerBlock(BlockBehaviour.Properties p_49224_) {
@@ -79,7 +81,7 @@ public class ShardRefinerBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, CHARGED, TIER);
+        pBuilder.add(FACING, TIER);
     }
 
     @Override
@@ -116,8 +118,21 @@ public class ShardRefinerBlock extends BaseEntityBlock {
     public void upgrade(ChakraStrenght strength, Level level, BlockPos pos, BlockState state){
         level.setBlock(pos, state.setValue(TIER, strength), 3);
         if(level.getBlockEntity(pos) instanceof ShardRefinerBlockEntity entity){
-
+            entity.upgradeTier(intTier(strength));
         }
+    }
+
+    public int intTier(ChakraStrenght strenght){
+        return switch (strenght){
+            case FAINT -> 0;
+            case WEAKENED -> 1;
+            case POWERFUL -> 2;
+            case ENLIGHTENED -> 3;
+        };
+    }
+
+    public ChakraStrenght getTier(BlockState state){
+         return state.getValue(TIER);
     }
 
     @Nullable
