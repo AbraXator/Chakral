@@ -11,22 +11,17 @@ import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class ShardRefinerRecipe implements Recipe<Container> {
     private final ResourceLocation id;
-    private final List<ItemStack> output;
+    private final ItemStack output;
     private final NonNullList<Ingredient> input;
     private final int tier;
 
-    public ShardRefinerRecipe(ResourceLocation id, List<ItemStack> output, NonNullList<Ingredient> input, int tier) {
+    public ShardRefinerRecipe(ResourceLocation id, ItemStack output1, NonNullList<Ingredient> input, int tier) {
         this.id = id;
-        this.output = output;
+        this.output = output1;
         this.input = input;
         this.tier = tier;
     }
@@ -46,8 +41,7 @@ public class ShardRefinerRecipe implements Recipe<Container> {
 
     @Override
     public ItemStack assemble(Container pContainer) {
-        Random random = new Random();
-        return output.get(random.nextInt(output.size()));
+        return output;
     }
 
     @Override
@@ -61,7 +55,7 @@ public class ShardRefinerRecipe implements Recipe<Container> {
 
     @Override
     public ItemStack getResultItem() {
-        return ItemStack.EMPTY;
+        return output.copy();
     }
 
     public int getTier() {
@@ -93,50 +87,44 @@ public class ShardRefinerRecipe implements Recipe<Container> {
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID =
                 new ResourceLocation(Chakral.MOD_ID, "shard_refining");
+
         @Override
         public ShardRefinerRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
             JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
             int tier = GsonHelper.getAsInt(pSerializedRecipe, "tier");
             NonNullList<Ingredient> input = NonNullList.withSize(1, Ingredient.EMPTY);
-            JsonArray jsonArray = GsonHelper.getAsJsonArray(pSerializedRecipe, "outputs");
-            List<ItemStack> output = new ArrayList<ItemStack>();
-            if(jsonArray != null){
-                for(int i = 0; i < jsonArray.size(); i++){
-                    output.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Chakral.MOD_ID, jsonArray.get(i).getAsString())).getDefaultInstance());
-                }
-            }
 
             for (int i = 0; i < input.size(); i++) {
                 input.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
+            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
             return new ShardRefinerRecipe(pRecipeId, output, input, tier);
         }
 
         @Override
         public @Nullable ShardRefinerRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
-            List<ItemStack> output = new ArrayList<>();
             int tier = buf.readInt();
 
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromNetwork(buf));
             }
-            for(int i = 0; i < buf.readInt(); i++){
-                output.add(i, buf.readItem());
-            }
 
+            ItemStack output = buf.readItem();
             return new ShardRefinerRecipe(id, output, inputs, tier);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, ShardRefinerRecipe recipe) {
-            buf.writeInt(recipe.getIngredients().size());
-            for(Ingredient ing : recipe.getIngredients()){
-                ing.toNetwork(buf);
+            NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
+            int tier = recipe.tier;
+
+            for (int i = 0; i < inputs.size(); i++) {
+                inputs.set(i, Ingredient.fromNetwork(buf));
             }
-            //for(recipe.getOutput)
-            buf.writeInt(recipe.tier);
+
+            ItemStack output = buf.readItem();
         }
     }
 }

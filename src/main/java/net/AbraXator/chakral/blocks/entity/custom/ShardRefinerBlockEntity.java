@@ -1,8 +1,11 @@
 package net.AbraXator.chakral.blocks.entity.custom;
 
+import com.ibm.icu.text.PluralRules;
 import net.AbraXator.chakral.blocks.custom.ShardRefinerBlock;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
+import net.AbraXator.chakral.chakra.ChakraStrenght;
 import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.recipes.ShardRefinerRecipe;
 import net.AbraXator.chakral.screen.ShardRefinerMenu;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.core.BlockPos;
@@ -32,14 +35,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider {
     public int diamondCharge = 0;
     public int tier = 0;
     public int progress;
+    //public int maxProgress = 66;
     public int maxProgress = 66;
     private final ItemStackHandler itemHandler = new ItemStackHandler(3) {
         @Override
@@ -224,15 +226,15 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
             return;
         }
         loadFuel(pBlockEntity);
-        //if(hasRecipe(pBlockEntity)){
-        //    pBlockEntity.progress++;
-        //    if(pBlockEntity.progress >= pBlockEntity.maxProgress){
-        //        craftItem(pBlockEntity);
-        //    }
-        //}else {
-        //    pBlockEntity.resetProgress();
-        //    setChanged(pLevel, pPos, pState);
-        //}
+        if(hasRecipe(pBlockEntity)){
+            pBlockEntity.progress++;
+            if(pBlockEntity.progress >= pBlockEntity.maxProgress){
+                craftItem(pBlockEntity);
+            }
+        }else {
+            pBlockEntity.resetProgress();
+            setChanged(pLevel, pPos, pState);
+        }
     }
 
     public void upgradeTier(int tier){
@@ -244,18 +246,155 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         }
     }
 
-    public static ItemStack validate(ItemStack stack){
-        if(stack.is())
-    }
-
-    public static void craftItem(ShardRefinerBlockEntity entity){
-
+    public static void craftItem(ShardRefinerBlockEntity entity) {
+        Random random = new Random();
+        ItemStack shard = entity.itemHandler.getStackInSlot(1);
+        List<Item> possibleResults = new ArrayList<>();
+        ItemStack helperResult = ItemStack.EMPTY;
+        ItemStack result = ItemStack.EMPTY;
+        ItemStack SHARD_DUST = ModItems.SHARD_DUST.get().getDefaultInstance();
+        int tier = entity.tier;
+        if(hasRecipe(entity)) {
+            switch (tier) {
+                case 0:
+                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).stream().toList());
+                    if(shard.is(Items.AMETHYST_SHARD)) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.CROWN) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.BLUE_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.THIRD_EYE) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.LIGHT_BLUE_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.THORAT) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.GREEN_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.HEART) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.YELLOW_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.SOLAR) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.ORANGE_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.SACRAL) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.RED_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.ROOT) ? helperResult : SHARD_DUST;
+                    }
+                case 1:
+                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).stream().toList());
+                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED).stream().toList());
+                    if(shard.is(Items.AMETHYST_SHARD)) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.CROWN) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.BLUE_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.THIRD_EYE) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.LIGHT_BLUE_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.THORAT) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.GREEN_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.HEART) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.YELLOW_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.SOLAR) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.ORANGE_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.SACRAL) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.RED_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.ROOT) ? helperResult : SHARD_DUST;
+                    }
+                case 2:
+                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).stream().toList());
+                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED).stream().toList());
+                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.POWERFUL).stream().toList());
+                    if(shard.is(Items.AMETHYST_SHARD)) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.CROWN) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.BLUE_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.THIRD_EYE) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.LIGHT_BLUE_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.THORAT) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.GREEN_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.HEART) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.YELLOW_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.SOLAR) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.ORANGE_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.SACRAL) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.RED_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.ROOT) ? helperResult : SHARD_DUST;
+                    }
+                case 3:
+                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).stream().toList());
+                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED).stream().toList());
+                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.POWERFUL).stream().toList());
+                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.ENLIGHTENED).stream().toList());
+                    if(shard.is(Items.AMETHYST_SHARD)) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.CROWN) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.BLUE_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.THIRD_EYE) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.LIGHT_BLUE_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.THORAT) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.GREEN_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.HEART) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.YELLOW_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.SOLAR) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.ORANGE_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.SACRAL) ? helperResult : SHARD_DUST;
+                    }
+                    if(shard.is(ModItems.RED_SHARD.get())) {
+                        helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
+                        result = helperResult.is(ModTags.Items.ROOT) ? helperResult : SHARD_DUST;
+                    }
+            }
+            entity.itemHandler.extractItem(1, 1, false);
+            entity.itemHandler.setStackInSlot(2, new ItemStack(result.getItem(), entity.itemHandler.getStackInSlot(2).getCount() + 1));
+            entity.resetProgress();
+            --entity.diamondCharge;
+        }
     }
 
     public static boolean hasRecipe(ShardRefinerBlockEntity entity){
-        return !entity.itemHandler.getStackInSlot(1).isEmpty()
-                && entity.itemHandler.getStackInSlot(2).isEmpty()
-                && entity.data.get(0)>0;
+        ItemStack stack = entity.itemHandler.getStackInSlot(1);
+        boolean shardPresent = stack.is(ModTags.Items.SHARDS);
+
+        return entity.isCharged() && shardPresent;
     }
 
     private void resetProgress() {
