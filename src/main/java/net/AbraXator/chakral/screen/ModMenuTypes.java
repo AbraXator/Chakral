@@ -20,6 +20,9 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<ShardRefinerMenu>> SHARD_REFINER_MENU =
             registerMenuType(ShardRefinerMenu::new, "shard_refiner_menu");
 
+    public static final RegistryObject<MenuType<MineralEnricherMenu>> MINERAL_ENRICHER_MENU =
+            registerMenuType(MineralEnricherMenu::new, "mineral_builder_menu");
+
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>>
     registerMenuType(IContainerFactory<T> factory, String name){
         return MENUS.register(name, () -> IForgeMenuType.create(factory));

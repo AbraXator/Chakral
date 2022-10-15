@@ -1,10 +1,7 @@
 package net.AbraXator.chakral.blocks;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.blocks.custom.Crystal;
-import net.AbraXator.chakral.blocks.custom.ModBuddingBlock;
-import net.AbraXator.chakral.blocks.custom.ShardRefinerBlock;
-import net.AbraXator.chakral.blocks.custom.NecklaceSlotterBlock;
+import net.AbraXator.chakral.blocks.custom.*;
 import net.AbraXator.chakral.items.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -87,6 +84,9 @@ public class ModBlocks {
                     .strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> SHARD_REFINER = registerBlock("shard_refiner",
             () -> new ShardRefinerBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> MINERAL_ENRICHER = registerBlock("mineral_builder",
+            () -> new MineralEnricherBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
 
 

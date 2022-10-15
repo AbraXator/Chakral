@@ -89,16 +89,6 @@ public class NecklaceSlotterBlockEntity extends BlockEntity {
         //craftItem(blockEntity);
     }
 
-    public static ItemStack getStoneInSlot(NecklaceSlotterBlockEntity entity){
-        return entity.itemHandler.getStackInSlot(1);
-    }
-
-    public static List<Item> getStones(){
-        List<Item> stones = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream().toList();
-        System.out.println(stones);
-        return stones;
-    }
-
     //public static void craftItem(NecklaceSlotterBlockEntity entity){
     //    ItemStack necklace = entity.itemHandler.getStackInSlot(0);
     //    CompoundTag nbtDataBefore = necklace.getTagElement("chakral.stones");

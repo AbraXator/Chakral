@@ -1,0 +1,13 @@
+{
+  "type": "chakral:mineral_enriching",
+  "ingredients": [
+    {
+      "item": "chakral:orange_mineral"
+    }
+  ],
+  "dust": "chakral:mineral_dust",
+  "dustAmount": 16,
+  "output": {
+    "item": "chakral:orange_crystal"
+  }
+}

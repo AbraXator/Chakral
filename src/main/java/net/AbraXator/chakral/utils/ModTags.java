@@ -39,8 +39,8 @@ public class ModTags {
 
         public static final TagKey<Item> GEMS = tag("gems");
         public static final TagKey<Item> SHARDS = tag("shards");
+        public static final TagKey<Item> MINERALS = tag("minerals");
 
-        public static final TagKey<Item> BLADES = tag("blades");
         public static final TagKey<Item> NECKLACES = tag("necklaces");
 
 

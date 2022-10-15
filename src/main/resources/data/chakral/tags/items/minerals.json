@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "chakral:green_mineral",
+    "chakral:red_mineral",
+    "chakral:orange_mineral",
+    "chakral:yellow_mineral",
+    "chakral:blue_mineral",
+    "chakral:light_blue_mineral"
+  ]
+}

@@ -2,6 +2,7 @@ package net.AbraXator.chakral.blocks.entity;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
+import net.AbraXator.chakral.blocks.entity.custom.MineralEnricherBlockEntity;
 import net.AbraXator.chakral.blocks.entity.custom.NecklaceSlotterBlockEntity;
 import net.AbraXator.chakral.blocks.entity.custom.ShardRefinerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -23,6 +24,11 @@ public class    ModBlockEntities {
             BLOCK_ENTITIES.register("shard_refiner_block_entity", () ->
                     BlockEntityType.Builder.of(ShardRefinerBlockEntity::new,
                             ModBlocks.SHARD_REFINER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<MineralEnricherBlockEntity>> MINERAL_ENRICHER_BLOCK_ENTITY =
+            BLOCK_ENTITIES.register("mineral_enricher_block_entity", () ->
+                    BlockEntityType.Builder.of(MineralEnricherBlockEntity::new,
+                            ModBlocks.MINERAL_ENRICHER.get()).build(null));
 
     public static void register(IEventBus eventBus){
         BLOCK_ENTITIES.register(eventBus);
