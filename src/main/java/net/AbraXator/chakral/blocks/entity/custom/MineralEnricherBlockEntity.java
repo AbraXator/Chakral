@@ -180,7 +180,7 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
 
     @Override
     public Component getDisplayName() {
-        return Component.literal("Mineral Builder");
+        return Component.literal("Mineral Enricher");
     }
 
     @Nullable
