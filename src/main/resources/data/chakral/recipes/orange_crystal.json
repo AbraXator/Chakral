@@ -2,12 +2,12 @@
   "type": "chakral:mineral_enriching",
   "ingredients": [
     {
-      "item": "chakral:orange_mineral"
+      "item": "minecraft:stick"
     }
   ],
-  "dust": "chakral:mineral_dust",
+  "dust": "minecraft:stick",
   "dustAmount": 16,
   "output": {
-    "item": "chakral:orange_crystal"
+    "item": "minecraft:stick"
   }
 }

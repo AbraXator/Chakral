@@ -85,7 +85,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> SHARD_REFINER = registerBlock("shard_refiner",
             () -> new ShardRefinerBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
-    public static final RegistryObject<Block> MINERAL_ENRICHER = registerBlock("mineral_builder",
+    public static final RegistryObject<Block> MINERAL_ENRICHER = registerBlock("mineral_enricher",
             () -> new MineralEnricherBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
 

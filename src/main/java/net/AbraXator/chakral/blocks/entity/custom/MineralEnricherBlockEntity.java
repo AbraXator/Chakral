@@ -1,5 +1,7 @@
 package net.AbraXator.chakral.blocks.entity.custom;
 
+import com.mojang.datafixers.util.Pair;
+import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.recipes.MineralEnricherRecipe;
@@ -37,12 +39,13 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
 
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return switch (slot){
-                case 0 -> stack.is(ModTags.Items.MINERALS);
-                case 1 -> stack.is(ModItems.SHARD_DUST.get());
-                case 2 -> true;
-                default -> super.isItemValid(slot, stack);
-            };
+            return true;
+            //return switch (slot){
+            //    case 0 -> stack.is(ModTags.Items.MINERALS);
+            //    case 1 -> stack.is(ModItems.SHARD_DUST.get());
+            //    case 2 -> true;
+            //    default -> super.isItemValid(slot, stack);
+            //};
         }
     };
 
