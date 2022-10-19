@@ -19,23 +19,19 @@ public class MineralEnricherRecipe implements Recipe<SimpleContainer> {
     private final ItemStack dust;
     private final int dustAmount;
     private final ItemStack output;
-    NonNullList<Ingredient> recipeItems;
+    private final ItemStack input;
 
-    public MineralEnricherRecipe(ResourceLocation id, ItemStack dust, int dustAmount, ItemStack output, NonNullList<Ingredient> recipeItems){
+    public MineralEnricherRecipe(ResourceLocation id, ItemStack dust, int dustAmount, ItemStack output, ItemStack input){
         this.id = id;
         this.dust = dust;
         this.dustAmount = dustAmount;
         this.output = output;
-        this.recipeItems = recipeItems;
+        this.input = input;
     }
 
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
-        if(pLevel.isClientSide()){
-            return false;
-        }
-
-        return recipeItems.get(0).test(pContainer.getItem(0));
+        return false;
     }
 
     @Override
@@ -46,6 +42,10 @@ public class MineralEnricherRecipe implements Recipe<SimpleContainer> {
     @Override
     public boolean canCraftInDimensions(int pWidth, int pHeight) {
         return true;
+    }
+
+    public ItemStack getInput(){
+        return input.copy();
     }
 
     public ItemStack getDust(){
@@ -89,39 +89,26 @@ public class MineralEnricherRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public MineralEnricherRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
-            JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
-            NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
-            }
-
+            ItemStack input = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "input   "));
             ItemStack dust = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "dust"));
             int dustAmount = GsonHelper.getAsInt(pSerializedRecipe, "dustAmount");
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
 
-            return new MineralEnricherRecipe(pRecipeId, dust, dustAmount, output, inputs);
+            return new MineralEnricherRecipe(pRecipeId, dust, dustAmount, output, input);
         }
 
         @Override
         public @Nullable MineralEnricherRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf buf) {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
-
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromNetwork(buf));
-            }
-
+            ItemStack input = buf.readItem();
             ItemStack dust = buf.readItem();
             int dustAmount = buf.readInt();
             ItemStack output = buf.readItem();
-            return new MineralEnricherRecipe(pRecipeId, dust, dustAmount, output, inputs);
+            return new MineralEnricherRecipe(pRecipeId, dust, dustAmount, output, input);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, MineralEnricherRecipe pRecipe) {
-            buf.writeInt(pRecipe.getIngredients().size());
-            for (Ingredient ing : pRecipe.getIngredients()) {
-                ing.toNetwork(buf);
-            }
+            buf.writeItemStack(pRecipe.getInput(), false);
             buf.writeItemStack(pRecipe.getDust(), false);
             buf.writeInt(pRecipe.getDustAmount());
             buf.writeItemStack(pRecipe.getResultItem(), false);

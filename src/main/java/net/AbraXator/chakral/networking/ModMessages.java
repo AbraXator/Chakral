@@ -2,6 +2,7 @@ package net.AbraXator.chakral.networking;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.networking.packet.ChakraC2SPacket;
+import net.AbraXator.chakral.networking.packet.ItemStackSyncS2CPacket;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -39,6 +40,12 @@ public class ModMessages {
                 .encoder(NecklaceC2SPacket::toBytes)
                 .consumerMainThread(NecklaceC2SPacket::handle)
                 .add();
+
+        net.messageBuilder(ItemStackSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(ItemStackSyncS2CPacket::new)
+                .encoder(ItemStackSyncS2CPacket::toBytes)
+                .consumerMainThread(ItemStackSyncS2CPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG msg){
@@ -47,6 +54,10 @@ public class ModMessages {
 
     public static <MSG> void sendToPlayer(MSG msg, ServerPlayer player){
         INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), msg);
+    }
+
+    public static <MSG> void sendToClients(MSG msg){
+        INSTANCE.send(PacketDistributor.ALL.noArg(), msg);
     }
 }
 

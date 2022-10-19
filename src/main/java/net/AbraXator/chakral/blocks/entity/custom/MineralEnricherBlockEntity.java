@@ -1,12 +1,11 @@
 package net.AbraXator.chakral.blocks.entity.custom;
 
-import com.mojang.datafixers.util.Pair;
-import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
-import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.networking.ModMessages;
+import net.AbraXator.chakral.networking.packet.ItemStackSyncS2CPacket;
 import net.AbraXator.chakral.recipes.MineralEnricherRecipe;
+import net.AbraXator.chakral.recipes.ModRecipes;
 import net.AbraXator.chakral.screen.MineralEnricherMenu;
-import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -28,13 +27,13 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
-
 public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvider {
-    public final ItemStackHandler itemHandler = new ItemStackHandler(3){
+    public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
+            if(!level.isClientSide()){
+            }
         }
 
         @Override
@@ -50,10 +49,11 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
     };
 
     private LazyOptional<IItemHandler> lazyOptional = LazyOptional.empty();
+    private MineralEnricherRecipe currentRecipe;
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap) {
-        if(cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return lazyOptional.cast();
         }
 
@@ -69,7 +69,7 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
-                return switch (pIndex){
+                return switch (pIndex) {
                     case 0 -> MineralEnricherBlockEntity.this.progress;
                     case 1 -> MineralEnricherBlockEntity.this.maxProgress;
                     default -> 0;
@@ -78,10 +78,11 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
 
             @Override
             public void set(int pIndex, int pValue) {
-                switch (pIndex){
+                switch (pIndex) {
                     case 0 -> MineralEnricherBlockEntity.this.progress = pValue;
                     case 1 -> MineralEnricherBlockEntity.this.maxProgress = pValue;
-                };
+                }
+                ;
             }
 
             @Override
@@ -117,56 +118,71 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
         progress = pTag.getInt("progress");
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState state, MineralEnricherBlockEntity entity){
-        if(level.isClientSide()){
-            return;
+    public ItemStack getRenderStack(){
+        ItemStack stack;
+        if(!itemHandler.getStackInSlot(0).isEmpty()){
+            stack = itemHandler.getStackInSlot(0);
+        }else {
+            stack = ItemStack.EMPTY;
         }
+        return stack;
+    }
 
-        if(hasRecipe(entity)){
-            entity.progress++;
-            setChanged(level, pos, state);
-            if(entity.progress >= entity.maxProgress){
-                craftItem(entity);
+    public void setHandler(ItemStackHandler itemStackHandler){
+        for (int i = 0; i < itemStackHandler.getSlots(); i++) {
+            itemHandler.setStackInSlot(i, itemStackHandler.getStackInSlot(i));
+        }
+    }
+
+    public static void tick(Level level, BlockPos pos, BlockState state, MineralEnricherBlockEntity entity) {
+        if (level.isClientSide()) {
+            return;
+        }else {
+            updateRecipe(entity);
+            ModMessages.sendToClients(new ItemStackSyncS2CPacket(entity.itemHandler, entity.getBlockPos()));
+            if (hasRecipe(entity)) {
+                entity.progress++;
+                setChanged(level, pos, state);
+                if (entity.progress >= entity.maxProgress) {
+                    craftItem(entity);
+                }
+            } else {
+                entity.resetProgress();
+                setChanged(level, pos, state);
             }
         }
-        else {
-            entity.resetProgress();
-            setChanged(level, pos, state);
+    }
+
+    public static void updateRecipe(MineralEnricherBlockEntity entity) {
+        Level level = entity.level;
+        if (level != null && !level.isClientSide()) {
+            ModRecipes.getRecipesByType(ModRecipes.MINERAL_ENRICHER_TYPE.get(), level).stream()
+                    .filter(recipe -> recipe.getInput().is(entity.itemHandler.getStackInSlot(0).getItem()))
+                    .findFirst()
+                    .ifPresent(recipe -> {
+                        if (entity.currentRecipe == null || !entity.currentRecipe.equals(recipe)) {
+                            entity.currentRecipe = recipe;
+                        }
+                    });
         }
     }
 
-    private static void craftItem(MineralEnricherBlockEntity entity){
-        Level level = entity.level;
-        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
-        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
-            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
-        }
-
-        Optional<MineralEnricherRecipe> recipe = level.getRecipeManager()
-                .getRecipeFor(MineralEnricherRecipe.Type.INSTANCE, inventory, level);
-
-        if(hasRecipe(entity)){
-            entity.itemHandler.extractItem(0, recipe.get().getDustAmount(), false);
+    private static void craftItem(MineralEnricherBlockEntity entity) {
+        if (entity.currentRecipe != null) {
+            entity.itemHandler.extractItem(0, entity.currentRecipe.getDustAmount(), false);
             entity.itemHandler.extractItem(1, 1, false);
-            entity.itemHandler.setStackInSlot(2, new ItemStack(recipe.get().getResultItem().getItem(),
+            entity.itemHandler.setStackInSlot(2, new ItemStack(entity.currentRecipe.getResultItem().getItem(),
                     entity.itemHandler.getStackInSlot(2).getCount() + 1));
             entity.resetProgress();
-
         }
     }
 
-    private static boolean hasRecipe(MineralEnricherBlockEntity entity){
-        Level level = entity.level;
-        SimpleContainer container = new SimpleContainer(entity.itemHandler.getSlots());
-        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
-            container.setItem(i, entity.itemHandler.getStackInSlot(i));
+    private static boolean hasRecipe(MineralEnricherBlockEntity entity) {
+        if (entity.currentRecipe != null) {
+            return entity.itemHandler.getStackInSlot(1).getCount() >= entity.currentRecipe.getDustAmount();
+        }else {
+            return false;
         }
-
-        Optional<MineralEnricherRecipe> recipe = level.getRecipeManager()
-                .getRecipeFor(MineralEnricherRecipe.Type.INSTANCE, container, level);
-
-        return recipe.isPresent() && container.getItem(1).getCount() >= recipe.get().getDustAmount();
-        //&& canInsertAmountIntoOutputSlot(container) && canInsertItemIntoOutputSlot(container, recipe.get().getResultItem());
     }
 
     private void resetProgress(){

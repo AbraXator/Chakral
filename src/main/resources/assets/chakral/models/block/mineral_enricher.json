@@ -4,7 +4,6 @@
 	"textures": {
 		"0": "chakral:block/mineral_enricher_side",
 		"1": "chakral:block/mineral_enricher_front",
-		"2": "chakral:block/budding_green_mineral",
 		"3": "chakral:block/mineral_enricher_down",
 		"4": "chakral:block/mineral_enricher_up",
 		"5": "chakral:block/water_still",
@@ -134,18 +133,6 @@
 				"west": {"uv": [4, 4, 12, 5], "texture": "#4"},
 				"up": {"uv": [4, 4, 12, 12], "texture": "#4"},
 				"down": {"uv": [4, 4, 12, 12], "texture": "#4"}
-			}
-		},
-		{
-			"from": [3, 0, 3],
-			"to": [13, 10, 13],
-			"faces": {
-				"north": {"uv": [3, 3, 13, 13], "texture": "#2"},
-				"east": {"uv": [3, 3, 13, 13], "texture": "#2"},
-				"south": {"uv": [3, 3, 13, 13], "texture": "#2"},
-				"west": {"uv": [3, 3, 13, 13], "texture": "#2"},
-				"up": {"uv": [3, 3, 13, 13], "texture": "#2"},
-				"down": {"uv": [3, 3, 13, 13], "texture": "#2", "cullface": "down"}
 			}
 		},
 		{

@@ -1,6 +1,8 @@
 package net.AbraXator.chakral.event;
 
 import net.AbraXator.chakral.Chakral;
+import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
+import net.AbraXator.chakral.blocks.entity.custom.renderer.MineralEnricherRenderer;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.ChakraC2SPacket;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
@@ -47,6 +49,12 @@ public final class ClientEvents {
         public static void onKeyRegister(RegisterKeyMappingsEvent event) {
             event.register(KeyBindings.STONE_FUNCTION_KEY);
             event.register(KeyBindings.NECKLACE_EQUIP_KEY);
+        }
+
+        @SubscribeEvent
+        public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event){
+            event.registerBlockEntityRenderer(ModBlockEntities.MINERAL_ENRICHER_BLOCK_ENTITY.get(),
+                    MineralEnricherRenderer::new);
         }
     }
 }

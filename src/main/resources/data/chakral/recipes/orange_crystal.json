@@ -1,13 +1,16 @@
 {
   "type": "chakral:mineral_enriching",
-  "ingredients": [
-    {
-      "item": "minecraft:stick"
-    }
-  ],
-  "dust": "minecraft:stick",
+  "input": {
+    "amount": "1",
+    "item": "minecraft:stick"
+  },
+  "dust": {
+    "amount": 16,
+    "item": "minecraft:stick"
+  },
   "dustAmount": 16,
   "output": {
+    "count": "1",
     "item": "minecraft:stick"
   }
 }
