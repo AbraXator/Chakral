@@ -13,6 +13,7 @@ public class ModTags {
         public static final TagKey<Block> CRYSTALS = tag("crystals");
         public static final TagKey<Block> BW_MINERALS = tag("bw_minerals");
         public static final TagKey<Block> MINERALS = tag("minerals");
+        public static final TagKey<Block> AIR = tag("air");
 
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(Chakral.MOD_ID, name));

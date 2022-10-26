@@ -1,5 +1,6 @@
 package net.AbraXator.chakral.blocks.custom;
 
+import cpw.mods.jarhandling.impl.Jar;
 import mezz.jei.api.helpers.IStackHelper;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.blocks.entity.custom.MineralEnricherBlockEntity;
@@ -23,6 +24,10 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -31,6 +36,8 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class MineralEnricherBlock extends BaseEntityBlock {
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final IntegerProperty CHARGE = IntegerProperty.create("charge", 0, 4);
     public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 16, 16);
     public MineralEnricherBlock(Properties p_49224_) {
         super(p_49224_);
@@ -49,30 +56,33 @@ public class MineralEnricherBlock extends BaseEntityBlock {
         return SHAPE;
     }
 
-    //@Nullable
-    //@Override
-    //public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-    //    return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(TIER, ChakraStrenght.FAINT);
-    //}
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(CHARGE, 0);
+    }
 
-    //@Override
-    //public BlockState rotate(BlockState state, LevelAccessor level, BlockPos pos, Rotation direction) {
-    //    return state.setValue(FACING, direction.rotate(state.getValue(FACING)));
-    //}
+    @Override
+    public BlockState rotate(BlockState state, LevelAccessor level, BlockPos pos, Rotation direction) {
+        return state.setValue(FACING, direction.rotate(state.getValue(FACING)));
+    }
 
-    //@Override
-    //public BlockState mirror(BlockState pState, Mirror pMirror) {
-    //    return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
-    //}
+    @Override
+    public BlockState mirror(BlockState pState, Mirror pMirror) {
+        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+    }
 
-    //@Override
-    //protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-    //    pBuilder.add(FACING, TIER);
-    //}
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(FACING, CHARGE);
+    }
 
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
+    }
+
+    public static void setCharge(int charge, Level level, BlockPos pos, BlockState state){
     }
 
     @Override

@@ -98,9 +98,8 @@ public class ForgeEvents {
             //    gems.add(ItemStack.of(necklace.getTag().getCompound("chakramod.stones.two")));
             //    gems.add(ItemStack.of(necklace.getTag().getCompound("chakramod.stones.three")));
             //    gems.add(ItemStack.of(necklace.getTag().getCompound("chakramod.stones.four")));
-//
-            //    //if(gems.contains(ModItems.AMAZONITE))
-            //}
+
+            //    if(gems.contains(ModItems.AMAZONITE));
             if(EQUIPPED){
                 player.addEffect(new MobEffectInstance(MobEffects.REGENERATION));
             }else {

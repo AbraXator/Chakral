@@ -9,6 +9,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -31,10 +32,10 @@ public class MineralEnricherMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 44, 34));
-            this.addSlot(new SlotItemHandler(handler, 1, 116, 34));
-            this.addSlot(new SlotItemHandler(handler, 2, 80, 62));
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+            this.addSlot(new SlotItemHandler(handler, 0, 21, 17));
+            this.addSlot(new SlotItemHandler(handler, 1, 130, 30));
+            this.addSlot(new SlotItemHandler(handler, 2, 21, 47));
         });
 
         addDataSlots(data);

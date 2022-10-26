@@ -7,7 +7,7 @@
 		"3": "chakral:block/mineral_enricher_down",
 		"4": "chakral:block/mineral_enricher_up",
 		"5": "chakral:block/water_still",
-		"6": "chakral:block/mineral_enricher_bar_full",
+		"6": "chakral:block/mineral_enricher_bar_4",
 		"particle": "chakral:block/mineral_enricher_side"
 	},
 	"elements": [

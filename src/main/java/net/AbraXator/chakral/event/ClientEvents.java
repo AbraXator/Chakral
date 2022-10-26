@@ -4,7 +4,6 @@ import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.blocks.entity.custom.renderer.MineralEnricherRenderer;
 import net.AbraXator.chakral.networking.ModMessages;
-import net.AbraXator.chakral.networking.packet.ChakraC2SPacket;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.renderer.CrystalFishRenderer;
 import net.AbraXator.chakral.renderer.MineralSnailRenderer;
