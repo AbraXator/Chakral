@@ -30,6 +30,7 @@ public class Chakras {
         if(i >= 15){
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2, 0));
         }
+        player.getLookAngle();
     }
 
     public static void blue_lace_agate(Player player) {

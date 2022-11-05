@@ -1,5 +1,6 @@
 package net.AbraXator.chakral.blocks.entity.custom;
 
+import com.mojang.datafixers.util.Pair;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.items.ModItems;
@@ -75,12 +76,14 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
 
     public MineralEnricherBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlockEntities.MINERAL_ENRICHER_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
+        MineralEnricherBlockEntity entity = MineralEnricherBlockEntity.this;
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
                 return switch (pIndex) {
-                    case 0 -> MineralEnricherBlockEntity.this.progress;
-                    case 1 -> MineralEnricherBlockEntity.this.maxProgress;
+                    case 0 -> entity.progress;
+                    case 1 -> entity.maxProgress;
+                    case 2 -> entity.resultGen(entity.itemHandler.getStackInSlot(2)).getSecond();
                     default -> 0;
                 };
             }
@@ -88,24 +91,24 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
             @Override
             public void set(int pIndex, int pValue) {
                 switch (pIndex) {
-                    case 0 -> MineralEnricherBlockEntity.this.progress = pValue;
-                    case 1 -> MineralEnricherBlockEntity.this.maxProgress = pValue;
+                    case 0 -> entity.progress = pValue;
+                    case 1 -> entity.maxProgress = pValue;
                 }
             }
 
             @Override
             public int getCount() {
-                return 2;
+                return 3;
             }
         };
     }
 
-    public float getScaledProgress(){
+    public float getScaledProgress(MineralEnricherBlockEntity entity){
         float size = 1.2f;
-        int progress = data.get(0);
+        int progress = entity.progress;
         int maxProgress = data.get(1);
 
-        return maxProgress != 0 && MineralEnricherBlockEntity.this.progress != 0 ? progress * size / maxProgress : 0;
+        return maxProgress != 0 && entity.progress != 0 ? progress * size / maxProgress : 0;
     }
 
     @Override
@@ -183,36 +186,45 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
     //    }
     //}
 
-    public Block resultGen(ItemStack mineral){
-        if(mineral.is(ModBlocks.ORANGE_MINERAL.get().asItem())){
-            return ModBlocks.ORANGE_CRYSTAL.get();
+    public Pair<Block, Integer> resultGen(ItemStack mineral){
+        if(mineral.is(ModBlocks.TRUE_WHITE_MINERAL.get().asItem())){
+            return new Pair<>(ModBlocks.TRUE_WHITE_CRYSTAL.get(), 1);
         }
-        if(mineral.is(ModBlocks.YELLOW_MINERAL.get().asItem())){
-            return ModBlocks.YELLOW_CRYSTAL.get();
+        if(mineral.is(ModBlocks.WHITE_MINERAL.get().asItem())){
+            return new Pair<>(ModBlocks.WHITE_CRYSTAL.get(), 2);
+        }
+        if(mineral.is(ModBlocks.BLACK_MINERAL.get().asItem())){
+            return new Pair<>(ModBlocks.BLACK_CRYSTAL.get(), 3);
         }
         if(mineral.is(ModBlocks.RED_MINERAL.get().asItem())){
-            return ModBlocks.BLUE_CRYSTAL.get();
+            return new Pair<>(ModBlocks.RED_CRYSTAL.get(), 4);
+        }
+        if(mineral.is(ModBlocks.ORANGE_MINERAL.get().asItem())){
+            return new Pair<>(ModBlocks.ORANGE_CRYSTAL.get(), 5);
+        }
+        if(mineral.is(ModBlocks.YELLOW_MINERAL.get().asItem())){
+            return new Pair<>(ModBlocks.YELLOW_CRYSTAL.get(), 6);
         }
         if(mineral.is(ModBlocks.GREEN_MINERAL.get().asItem())){
-            return ModBlocks.GREEN_CRYSTAL.get();
-        }
-        if(mineral.is(ModBlocks.BLUE_MINERAL.get().asItem())){
-            return ModBlocks.BLUE_CRYSTAL.get();
+            return new Pair<>(ModBlocks.GREEN_CRYSTAL.get(), 7);
         }
         if(mineral.is(ModBlocks.LIGHT_BLUE_MINERAL.get().asItem())){
-            return ModBlocks.LIGHT_BLUE_CRYSTAL.get();
+            return new Pair<>(ModBlocks.LIGHT_BLUE_CRYSTAL.get(), 8);
+        }
+        if(mineral.is(ModBlocks.BLUE_MINERAL.get().asItem())){
+            return new Pair<>(ModBlocks.BLACK_CRYSTAL.get(), 9);
         }
         if(mineral.is(Blocks.AMETHYST_BLOCK.asItem())){
-            return Blocks.AMETHYST_CLUSTER;
+            return new Pair<>(Blocks.AMETHYST_CLUSTER, 10);
         }
-        return Blocks.AIR;
+        return new Pair<>(Blocks.AIR, 0);
     }
 
     private static void craftItem(MineralEnricherBlockEntity entity) {
         Level level = entity.level;
         BlockPos pos = entity.getBlockPos();
         BlockPos crystalPos = new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ());
-        BlockState state = entity.resultGen(entity.itemHandler.getStackInSlot(2)).defaultBlockState();
+        BlockState state = entity.resultGen(entity.itemHandler.getStackInSlot(2)).getFirst().defaultBlockState();
         if (hasRecipe(entity) && level.getBlockState(crystalPos).is(ModTags.Blocks.AIR)) {
             entity.itemHandler.extractItem(1, 16, false);
             level.setBlock(crystalPos, state.setValue(BlockStateProperties.FACING, Direction.DOWN), 2);
@@ -221,7 +233,8 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
     }
 
     private static boolean hasRecipe(MineralEnricherBlockEntity entity) {
-        return entity.getDust() >= 16 && !entity.itemHandler.getStackInSlot(2).isEmpty();
+        //return entity.getDust() >= 16;
+        return !entity.itemHandler.getStackInSlot(2).isEmpty();
     }
 
     private void resetProgress(){

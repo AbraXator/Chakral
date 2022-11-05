@@ -19,7 +19,7 @@ public class MineralEnricherMenu extends AbstractContainerMenu {
     public final ContainerData data;
 
     public MineralEnricherMenu(int pContainerId, Inventory inv, FriendlyByteBuf friendlyByteBuf) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(friendlyByteBuf.readBlockPos()), new SimpleContainerData(2));
+        this(pContainerId, inv, inv.player.level.getBlockEntity(friendlyByteBuf.readBlockPos()), new SimpleContainerData(3));
     }
 
     public MineralEnricherMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {

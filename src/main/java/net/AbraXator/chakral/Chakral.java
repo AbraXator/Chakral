@@ -10,7 +10,7 @@ import net.AbraXator.chakral.recipes.ModRecipes;
 import net.AbraXator.chakral.screen.MineralEnricherScreen;
 import net.AbraXator.chakral.screen.ModMenuTypes;
 import net.AbraXator.chakral.screen.ShardRefinerScreen;
-import net.AbraXator.chakral.screen.NecklaceSlotterScreen;
+import net.AbraXator.chakral.screen.necklace_slotter.NecklaceSlotterScreen;
 import net.AbraXator.chakral.utils.ModItemProperties;
 import net.AbraXator.chakral.world.ModConfiguredFeatures;
 import net.AbraXator.chakral.world.ModPlacedFeature;

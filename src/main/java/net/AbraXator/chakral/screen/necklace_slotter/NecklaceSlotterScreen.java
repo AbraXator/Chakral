@@ -1,11 +1,10 @@
-package net.AbraXator.chakral.screen;
+package net.AbraXator.chakral.screen.necklace_slotter;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
-import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -14,14 +13,14 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlotterMenu> {
+public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlotterGoldenMenu> {
     //public static ItemStack itemStack = NecklaceSlotterBlockEntity.getStoneInSlot();
     private static final ResourceLocation TEXTURE_GOLDEN =
             new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/necklace_slotter.png");
     private static final ResourceLocation TEXTURE_DIAMOND =
             new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/diamond_necklace_slotter.png");
 
-    public NecklaceSlotterScreen(NecklaceSlotterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public NecklaceSlotterScreen(NecklaceSlotterGoldenMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
 
