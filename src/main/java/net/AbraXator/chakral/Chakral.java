@@ -10,7 +10,7 @@ import net.AbraXator.chakral.recipes.ModRecipes;
 import net.AbraXator.chakral.screen.MineralEnricherScreen;
 import net.AbraXator.chakral.screen.ModMenuTypes;
 import net.AbraXator.chakral.screen.ShardRefinerScreen;
-import net.AbraXator.chakral.screen.necklace_slotter.NecklaceSlotterScreen;
+import net.AbraXator.chakral.screen.NecklaceSlotterScreen;
 import net.AbraXator.chakral.utils.ModItemProperties;
 import net.AbraXator.chakral.world.ModConfiguredFeatures;
 import net.AbraXator.chakral.world.ModPlacedFeature;
@@ -55,7 +55,7 @@ public class Chakral {
     }
 
     private void clientSetup(final FMLClientSetupEvent event){
-        MenuScreens.register(ModMenuTypes.STONE_BENCH_MENU.get(), NecklaceSlotterScreen::new);
+        MenuScreens.register(ModMenuTypes.NECKLACE_SLOTTER_MENU.get(), NecklaceSlotterScreen::new);
         MenuScreens.register(ModMenuTypes.SHARD_REFINER_MENU.get(), ShardRefinerScreen::new);
         MenuScreens.register(ModMenuTypes.MINERAL_ENRICHER_MENU.get(), MineralEnricherScreen::new);
         ModItemProperties.addCustomProperties();
@@ -72,14 +72,13 @@ public class Chakral {
         public static final CreativeModeTab CHAKRA_TAB = new CreativeModeTab("chakral") {
             @Override
             public ItemStack makeIcon() {
-                return new ItemStack(ModItems.MALACHITE.get());
+                return new ItemStack(ModItems.GOLDEN_NECKLACE.get());
             }
 
             @Override
             public void fillItemList(NonNullList<ItemStack> pItems) {
                 for(int i = 0; i < ModItems.ITEMS.getEntries().stream().toList().size(); i++){
                     pItems.add(ModItems.ITEMS.getEntries().stream().toList().get(i).get().getDefaultInstance());
-                    //pItems.add(Gems.ITEMS.getEntries().stream().toList().get(i).get().getDefaultInstance());
                 }
             }
         };

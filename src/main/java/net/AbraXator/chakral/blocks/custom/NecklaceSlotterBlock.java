@@ -2,7 +2,7 @@ package net.AbraXator.chakral.blocks.custom;
 
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.blocks.entity.custom.NecklaceSlotterBlockEntity;
-import net.AbraXator.chakral.screen.necklace_slotter.NecklaceSlotterGoldenMenu;
+import net.AbraXator.chakral.screen.NecklaceSlotterMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
@@ -130,7 +130,7 @@ public class NecklaceSlotterBlock extends BaseEntityBlock {
     @javax.annotation.Nullable
     public MenuProvider getMenuProvider(BlockState pState, Level pLevel, BlockPos pPos) {
         return new SimpleMenuProvider((p_57074_, p_57075_, p_57076_) -> {
-            return new NecklaceSlotterGoldenMenu(p_57074_, p_57075_, ContainerLevelAccess.create(pLevel, pPos));
+            return new NecklaceSlotterMenu(p_57074_, p_57075_, ContainerLevelAccess.create(pLevel, pPos));
         }, Component.literal(""));
     }
 

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "CDE",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:iron_block"
+    },
+    "B": {
+      "item": "minecraft:bucket"
+    },
+    "C": {
+      "item": "minecraft:tinted_glass"
+    },
+    "D": {
+      "item": "chakral:true_white_mineral"
+    },
+    "E": {
+      "item": "chakral:mineral_dust"
+    }
+  },
+  "result": {
+    "item": "chakral:mineral_enricher"
+  }
+}

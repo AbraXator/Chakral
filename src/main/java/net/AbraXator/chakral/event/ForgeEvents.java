@@ -1,43 +1,26 @@
 package net.AbraXator.chakral.event;
 
-import com.mojang.math.Vector3f;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
-import net.AbraXator.chakral.chakra.ChakraType;
+import net.AbraXator.chakral.chakra.ChakraUtil;
+import net.AbraXator.chakral.chakra.ChakrasEquip;
 import net.AbraXator.chakral.chakra.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.particles.DustParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.EnderManAngerEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -46,9 +29,9 @@ public class ForgeEvents {
     public static boolean EQUIPPED = false;
     @SubscribeEvent
     public static void EnderManAngerReset(EnderManAngerEvent event){
-        event.setCanceled(true);
+        ChakrasEquip.sugiliteEnderMan(event.getPlayer(), event);
     }
-
+      
     //@SubscribeEvent
     //public static void BlockBreak(BlockEvent.BreakEvent event){
     //    BlockPos pos = event.getPos();
@@ -90,20 +73,26 @@ public class ForgeEvents {
     @SubscribeEvent
     public static void gemEffects(TickEvent.PlayerTickEvent event){
         Player player = event.player;
+        Level level = player.level;
         player.getCapability(NecklaceCapProvider.NECKLACE).ifPresent(necklaceCap -> {
-            ItemStack necklace = necklaceCap.getNecklace();
-            List<ItemStack> gems = new ArrayList<>();
-            //if(necklace.hasTag()){
-            //    gems.add(ItemStack.of(necklace.getTag().getCompound("chakramod.stones")));
-            //    gems.add(ItemStack.of(necklace.getTag().getCompound("chakramod.stones.two")));
-            //    gems.add(ItemStack.of(necklace.getTag().getCompound("chakramod.stones.three")));
-            //    gems.add(ItemStack.of(necklace.getTag().getCompound("chakramod.stones.four")));
-
-            //    if(gems.contains(ModItems.AMAZONITE));
-            if(EQUIPPED){
-                player.addEffect(new MobEffectInstance(MobEffects.REGENERATION));
-            }else {
-                player.removeEffect(MobEffects.REGENERATION);
+            if(necklaceCap.getNecklace() != null) {
+                ItemStack necklace = necklaceCap.getNecklace();
+                if (necklace.hasTag()) {
+                    CompoundTag tag = necklace.getTag();
+                    Item stone1 = tag.get("Stone1") != null || ItemStack.of(tag.getCompound("Stone1")).is(Items.AIR)
+                            ? ItemStack.of(tag.getCompound("Stone1")).getItem() : Items.AIR;
+                    Item stone2 = tag.get("Stone2") != null || ItemStack.of(tag.getCompound("Stone2")).is(Items.AIR)
+                            ? ItemStack.of(tag.getCompound("Stone2")).getItem() : Items.AIR;
+                    Item stone3 = tag.get("Stone3") != null || ItemStack.of(tag.getCompound("Stone3")).is(Items.AIR)
+                            ? ItemStack.of(tag.getCompound("Stone3")).getItem() : Items.AIR;
+                    Item stone4 = tag.get("Stone4") != null || ItemStack.of(tag.getCompound("Stone4")).is(Items.AIR)
+                            ? ItemStack.of(tag.getCompound("Stone4")).getItem() : Items.AIR;
+                    List<Item> gems = List.of(stone1, stone2, stone3, stone4);
+                    if (gems.contains(ModItems.MOON_STONE.get()) && ChakraUtil.moonStoneCooldown != ChakraUtil.moonStoneMaxCooldown) {
+                        ChakraUtil.moonStoneCooldown++;
+                    }
+                    ChakrasEquip.azurite(player, level);
+                }
             }
         });
     }

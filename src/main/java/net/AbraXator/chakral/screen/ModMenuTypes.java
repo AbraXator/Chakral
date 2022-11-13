@@ -1,7 +1,6 @@
 package net.AbraXator.chakral.screen;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.screen.necklace_slotter.NecklaceSlotterGoldenMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -15,8 +14,8 @@ public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, Chakral.MOD_ID);
 
-    public static final RegistryObject<MenuType<NecklaceSlotterGoldenMenu>> STONE_BENCH_MENU =
-            registerMenuType(NecklaceSlotterGoldenMenu::new, "stone_bench_menu");
+    public static final RegistryObject<MenuType<NecklaceSlotterMenu>> NECKLACE_SLOTTER_MENU =
+            registerMenuType(NecklaceSlotterMenu::new, "necklace_slotter_menu");
 
     public static final RegistryObject<MenuType<ShardRefinerMenu>> SHARD_REFINER_MENU =
             registerMenuType(ShardRefinerMenu::new, "shard_refiner_menu");
@@ -33,4 +32,3 @@ public class ModMenuTypes {
         MENUS.register(eventBus);
     }
 }
-    

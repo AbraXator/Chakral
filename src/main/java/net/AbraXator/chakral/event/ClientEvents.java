@@ -5,12 +5,14 @@ import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.blocks.entity.custom.renderer.MineralEnricherRenderer;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
+import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
 import net.AbraXator.chakral.renderer.CrystalFishRenderer;
 import net.AbraXator.chakral.renderer.MineralSnailRenderer;
 import net.AbraXator.chakral.renderer.model.CrystalFishModel;
 import net.AbraXator.chakral.renderer.model.MineralSnailModel;
 import net.AbraXator.chakral.entity.ModEntity;
 import net.AbraXator.chakral.utils.KeyBindings;
+import net.AbraXator.chakral.utils.StoneValues;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.InputEvent;
@@ -38,6 +40,9 @@ public final class ClientEvents {
         public static void onKeyInput(InputEvent.Key event) {
             if(KeyBindings.NECKLACE_EQUIP_KEY.consumeClick()) {
                 ModMessages.sendToServer(new NecklaceC2SPacket());
+            }
+            if(KeyBindings.STONE_FUNCTION_KEY.consumeClick()){
+                ModMessages.sendToServer(new StoneFunctionC2SPacket());
             }
         }
     }

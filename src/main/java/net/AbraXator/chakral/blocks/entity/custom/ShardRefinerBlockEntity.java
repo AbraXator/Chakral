@@ -1,18 +1,14 @@
 package net.AbraXator.chakral.blocks.entity.custom;
 
-import com.ibm.icu.text.PluralRules;
 import net.AbraXator.chakral.blocks.custom.ShardRefinerBlock;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
-import net.AbraXator.chakral.chakra.ChakraStrenght;
 import net.AbraXator.chakral.items.ModItems;
-import net.AbraXator.chakral.recipes.ShardRefinerRecipe;
 import net.AbraXator.chakral.screen.ShardRefinerMenu;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -260,7 +256,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         }
         if(shard.is(ModItems.LIGHT_BLUE_SHARD.get())) {
             helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
-            result = helperResult.is(ModTags.Items.THORAT) ? helperResult : SHARD_DUST;
+            result = helperResult.is(ModTags.Items.THROAT) ? helperResult : SHARD_DUST;
         }
         if(shard.is(ModItems.GREEN_SHARD.get())) {
             helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();

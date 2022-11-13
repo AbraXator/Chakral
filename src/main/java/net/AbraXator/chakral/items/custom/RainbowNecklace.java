@@ -11,8 +11,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class DiamondNecklace extends Item {
-    public DiamondNecklace(Properties pProperties) {
+public class RainbowNecklace extends Item {
+    public RainbowNecklace(Properties pProperties) {
         super(pProperties);
     }
 
@@ -24,8 +24,14 @@ public class DiamondNecklace extends Item {
                     ? ItemStack.of(tag.getCompound("Stone1")).getDisplayName() : Component.literal("Empty");
             Component stone2 = tag.get("Stone2") != null || ItemStack.of(tag.getCompound("Stone2")).is(Items.AIR)
                     ? ItemStack.of(tag.getCompound("Stone2")).getDisplayName() : Component.literal("Empty");
+            Component stone3 = tag.get("Stone3") != null || ItemStack.of(tag.getCompound("Stone3")).is(Items.AIR)
+                    ? ItemStack.of(tag.getCompound("Stone3")).getDisplayName() : Component.literal("Empty");
+            Component stone4 = tag.get("Stone4") != null || ItemStack.of(tag.getCompound("Stone4")).is(Items.AIR)
+                    ? ItemStack.of(tag.getCompound("Stone4")).getDisplayName() : Component.literal("Empty");
             pTooltipComponents.add(stone1);
             pTooltipComponents.add(stone2);
+            pTooltipComponents.add(stone3);
+            pTooltipComponents.add(stone4);
             super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         }
     }

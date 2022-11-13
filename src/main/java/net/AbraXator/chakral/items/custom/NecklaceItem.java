@@ -18,26 +18,19 @@ public class NecklaceItem extends Item {
         super(pProperties);
     }
 
-
-
-    private static Stream<ItemStack> getGems(ItemStack pStack) {
-        CompoundTag compoundtag = pStack.getTag();
-        if (compoundtag == null) {
-            return Stream.empty();
-        } else {
-            ListTag listtag = compoundtag.getList("Items", 10);
-            return listtag.stream().map(CompoundTag.class::cast).map(ItemStack::of);
-        }
-    }
-
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        CompoundTag compoundtag = pStack.getTag();
-        if(compoundtag != null){
-            ListTag listtag = compoundtag.getList("chakral.gems", 10);
-            for(int i = 0; i < listtag.size(); i++){
-                pTooltipComponents.add(Component.literal(listtag.getString(i)));
-            }
+        if (pStack.hasTag()) {
+            CompoundTag tag = pStack.getTag();
+            Component stone1 = tag.get("Stone1") != null ? ItemStack.of(tag.getCompound("Stone1")).getDisplayName() : Component.literal("");
+            Component stone2 = tag.get("Stone2") != null ? ItemStack.of(tag.getCompound("Stone2")).getDisplayName() : Component.literal("");
+            Component stone3 = tag.get("Stone3") != null ? ItemStack.of(tag.getCompound("Stone3")).getDisplayName() : Component.literal("");
+            Component stone4 = tag.get("Stone4") != null ? ItemStack.of(tag.getCompound("Stone4")).getDisplayName() : Component.literal("");
+            pTooltipComponents.add(stone1);
+            pTooltipComponents.add(stone2);
+            pTooltipComponents.add(stone3);
+            pTooltipComponents.add(stone4);
+            super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         }
     }
 }

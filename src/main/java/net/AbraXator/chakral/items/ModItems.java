@@ -2,12 +2,9 @@ package net.AbraXator.chakral.items;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.entity.ModEntity;
-import net.AbraXator.chakral.items.custom.DiamondNecklace;
-import net.AbraXator.chakral.items.custom.Gem;
-import net.AbraXator.chakral.items.custom.GoldenNecklace;
+import net.AbraXator.chakral.items.custom.*;
 import net.AbraXator.chakral.chakra.ChakraStrenght;
 import net.AbraXator.chakral.chakra.ChakraType;
-import net.AbraXator.chakral.items.custom.RefinerKit;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.MobBucketItem;
@@ -99,9 +96,9 @@ public class ModItems {
     public static final RegistryObject<Item> DIAMOND_NECKLACE = ITEMS.register("diamond_necklace", () ->
             new DiamondNecklace(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> NETHERITE_NECKLACE = ITEMS.register("netherite_necklace", () ->
-            new Item(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
+            new NetheriteNecklace(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
     public static final RegistryObject<Item> RAINBOW_NECKLACE = ITEMS.register("rainbow_necklace", () ->
-            new Item(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
+            new RainbowNecklace(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
 
     public static final RegistryObject<Item> WEAK_REFINER_KIT = ITEMS.register("weak_refiner_kit", () ->
             new RefinerKit(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB), ChakraStrenght.WEAKENED));
