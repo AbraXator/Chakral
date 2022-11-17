@@ -10,13 +10,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class MineralEnricherMenu extends AbstractContainerMenu {
     public final MineralEnricherBlockEntity blockEntity;
     private final Level level;
     public final ContainerData data;
+    private FluidStack fluidStack;
 
     public MineralEnricherMenu(int pContainerId, Inventory inv, FriendlyByteBuf friendlyByteBuf) {
         this(pContainerId, inv, inv.player.level.getBlockEntity(friendlyByteBuf.readBlockPos()), new SimpleContainerData(3));
@@ -28,17 +29,27 @@ public class MineralEnricherMenu extends AbstractContainerMenu {
         blockEntity = ((MineralEnricherBlockEntity) entity);
         level = inv.player.level;
         this.data = data;
+        this.fluidStack = this.blockEntity.getFluidStack();
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 21, 17));
-            this.addSlot(new SlotItemHandler(handler, 1, 130, 30));
-            this.addSlot(new SlotItemHandler(handler, 2, 21, 47));
+            this.addSlot(new SlotItemHandler(handler, 0, 21, 12)); //-BUCKET
+            this.addSlot(new SlotItemHandler(handler, 1, 130, 12)); // -DUST
+            this.addSlot(new SlotItemHandler(handler, 2, 130, 53)); //-MINERAL
         });
 
         addDataSlots(data);
+    }
+
+
+    public void setFluid(FluidStack fluidStack) {
+        this.fluidStack = fluidStack;
+    }
+
+    public FluidStack getFluidStack(){
+        return fluidStack;
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons

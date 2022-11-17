@@ -3,19 +3,50 @@ package net.AbraXator.chakral.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.Chakral;
-import net.minecraft.client.gui.narration.NarrationElementOutput;
+import net.AbraXator.chakral.screen.renderer.FluidTankRenderer;
+import net.AbraXator.chakral.utils.MouseUtil;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.resource.ResourceCacheManager;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.fluids.FluidStack;
+
+import java.util.Optional;
 
 public class MineralEnricherScreen extends AbstractContainerScreen<MineralEnricherMenu> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/mineral_enricher.png");
+    private FluidTankRenderer renderer;
 
     public MineralEnricherScreen(MineralEnricherMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+        assignFluidRenderer();
+    }
+
+    private void assignFluidRenderer() {
+        renderer = new FluidTankRenderer(5000, true, 16, 40);
+    }
+
+    @Override
+    protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+
+        renderFluidAreaTooltip(pPoseStack, pMouseX, pMouseY, x, y);
+    }
+
+    private void renderFluidAreaTooltip(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
+        if(isMouseOver(pMouseX, pMouseY, x, y, 21, 29)){
+            renderTooltip(pPoseStack, renderer.getTooltip(menu.getFluidStack(), TooltipFlag.Default.NORMAL),
+                    Optional.empty(), pMouseX - x, pMouseY - y);
+        }
     }
 
     @Override
@@ -26,6 +57,7 @@ public class MineralEnricherScreen extends AbstractContainerScreen<MineralEnrich
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+        renderer.render(pPoseStack, x + 21, y + 29, menu.getFluidStack());
         int j = menu.data.get(2);
          switch (j){
             case 1 -> this.blit(pPoseStack, x + 73, y + 38, 200, 0, 24, 24);
@@ -46,5 +78,9 @@ public class MineralEnricherScreen extends AbstractContainerScreen<MineralEnrich
         renderBackground(pPoseStack);
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
         renderTooltip(pPoseStack, pMouseX, pMouseY);
+    }
+
+    public boolean isMouseOver(double pMouseX, double pMouseY, int x, int y, int offsetX, int offsetY) {
+        return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, renderer.getWidth(), renderer.getHeight());
     }
 }

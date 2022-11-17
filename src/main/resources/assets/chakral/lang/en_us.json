@@ -159,5 +159,8 @@
     
     "itemGroup.chakral": "Chakra Mod",
 
-    "entity.chakral.mineral_snail": "Mineral Snail"
+    "entity.chakral.mineral_snail": "Mineral Snail",
+
+    "chakral.tooltip.liquid.amount.with.capacity": "%s / %s mB",
+    "chakral.tooltip.liquid.amount.with.amount": "%s mB"
 }

@@ -1,6 +1,7 @@
 package net.AbraXator.chakral.networking;
 
 import net.AbraXator.chakral.Chakral;
+import net.AbraXator.chakral.networking.packet.FluidSyncS2CPacket;
 import net.AbraXator.chakral.networking.packet.ItemStackSyncS2CPacket;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
@@ -34,17 +35,20 @@ public class ModMessages {
                 .encoder(StoneFunctionC2SPacket::toBytes)
                 .consumerMainThread(StoneFunctionC2SPacket::handle)
                 .add();
-
         net.messageBuilder(NecklaceC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(NecklaceC2SPacket::new)
                 .encoder(NecklaceC2SPacket::toBytes)
                 .consumerMainThread(NecklaceC2SPacket::handle)
                 .add();
-
         net.messageBuilder(ItemStackSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(ItemStackSyncS2CPacket::new)
                 .encoder(ItemStackSyncS2CPacket::toBytes)
                 .consumerMainThread(ItemStackSyncS2CPacket::handle)
+                .add();
+        net.messageBuilder(FluidSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(FluidSyncS2CPacket::new)
+                .encoder(FluidSyncS2CPacket::toBytes)
+                .consumerMainThread(FluidSyncS2CPacket::handle)
                 .add();
     }
 

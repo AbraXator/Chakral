@@ -12,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlotterMenu> {
@@ -20,8 +21,6 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
             new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/necklace_slotter.png");
     private static final ResourceLocation TEXTURE_DIAMOND =
             new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/diamond_necklace_slotter.png");
-    public final int x = (width - imageWidth) / 2;
-    public final int y = (height - imageHeight) / 2;
 
     public NecklaceSlotterScreen(NecklaceSlotterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -62,17 +61,7 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SOLAR).contains(stone)){
             this.blit(pPoseStack, x + 70, y + 40, 220, 156, 35, 29);
         }
-    }
 
-    @Override
-    public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
-        renderBackground(pPoseStack);
-        super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
-        renderTooltip(pPoseStack, pMouseX, pMouseY);
-        buttonRenderHelper(pPoseStack, pMouseX, pMouseY);
-    }
-
-    public void buttonRenderHelper(PoseStack pPoseStack, double pMouseX, double pMouseY) {
         if(this.menu.isDiamond){
             if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 17, 13, 18, 18)){
                 this.blit(pPoseStack, x + 16, y + 12, 20, 236, 20, 20);
@@ -85,11 +74,20 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
     }
 
     @Override
+    public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
+        renderBackground(pPoseStack);
+        super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
+        renderTooltip(pPoseStack, pMouseX, pMouseY);
+    }
+
+    @Override
     public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
-        if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 141, 13, 18, 18) && this.menu.isAbleToChangeStates()){
+        final int x = (width - imageWidth) / 2;
+        final int y = (height - imageHeight) / 2;
+        if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 141, 13, 18, 18)){
             this.menu.isDiamond = true;
         }
-        if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 17, 13, 18, 18) && this.menu.isAbleToChangeStates()){
+        if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 17, 13, 18, 18)){
             this.menu.isDiamond = false;
         }
         return super.mouseClicked(pMouseX, pMouseY, pButton);

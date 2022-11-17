@@ -5,6 +5,7 @@ import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.networking.ModMessages;
+import net.AbraXator.chakral.networking.packet.FluidSyncS2CPacket;
 import net.AbraXator.chakral.networking.packet.ItemStackSyncS2CPacket;
 import net.AbraXator.chakral.recipes.MineralEnricherRecipe;
 import net.AbraXator.chakral.recipes.ModRecipes;
@@ -12,9 +13,11 @@ import net.AbraXator.chakral.screen.MineralEnricherMenu;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.data.Main;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -28,11 +31,16 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.property.Properties;
+import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -50,29 +58,54 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot){
-                case 0 -> stack.is(ModTags.Items.MINERALS);
+                case 0 -> stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent();
                 case 1 -> stack.is(ModItems.SHARD_DUST.get());
-                case 2 -> true;
+                case 2 -> stack.is(ModTags.Items.MINERALS);
                 default -> super.isItemValid(slot, stack);
             };
         }
     };
 
     private LazyOptional<IItemHandler> lazyOptional = LazyOptional.empty();
-    private MineralEnricherRecipe currentRecipe;
+    private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap) {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return lazyOptional.cast();
         }
-
+        if(cap == ForgeCapabilities.FLUID_HANDLER){
+            return lazyFluidHandler.cast();
+        }
         return super.getCapability(cap);
     }
 
     public final ContainerData data;
     private int progress = 0;
     private int maxProgress = 60;
+    private final FluidTank fluidTank = new FluidTank(5000){
+        @Override
+        protected void onContentsChanged() {
+            setChanged();
+            if(!level.isClientSide()){
+                ModMessages.sendToClients(new FluidSyncS2CPacket(this.fluid, worldPosition));
+            }
+        }
+
+        @Override
+        public boolean isFluidValid(FluidStack stack) {
+            return stack.getFluid().isSame(Fluids.WATER);
+        }
+    };
+
+    public void setFluid(FluidStack stack){
+        this.fluidTank.setFluid(stack);
+    }
+
+    public FluidStack getFluidStack(){
+        return this.fluidTank.getFluid();
+    }
+    private int dustAmount = 16;
 
     public MineralEnricherBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlockEntities.MINERAL_ENRICHER_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
@@ -115,18 +148,21 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
     public void onLoad() {
         super.onLoad();
         lazyOptional = LazyOptional.of(() -> itemHandler);
+        lazyFluidHandler = LazyOptional.of(() -> fluidTank);
     }
 
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
         lazyOptional.invalidate();
+        lazyFluidHandler.invalidate();
     }
 
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.putInt("progress", this.progress);
+        pTag = fluidTank.writeToNBT(pTag);
         super.saveAdditional(pTag);
     }
 
@@ -135,6 +171,7 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         progress = pTag.getInt("progress");
+        fluidTank.readFromNBT(pTag);
     }
 
     public ItemStack getRenderStack(){
@@ -170,21 +207,10 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
                 setChanged(level, pos, state);
             }
         }
+        if(hasFluidInSourceSlot(entity)){
+            transferItemFluidToFluidTank(entity);
+        }
     }
-
-    //public static void updateRecipe(MineralEnricherBlockEntity entity) {
-    //    Level level = entity.level;
-    //    if (level != null && !level.isClientSide()) {
-    //        ModRecipes.getRecipesByType(ModRecipes.MINERAL_ENRICHER_TYPE.get(), level).stream()
-    //                .filter(recipe -> recipe.getInput().is(entity.itemHandler.getStackInSlot(0).getItem()))
-    //                .findFirst()
-    //                .ifPresent(recipe -> {
-    //                    if (entity.currentRecipe == null || !entity.currentRecipe.equals(recipe)) {
-    //                        entity.currentRecipe = recipe;
-    //                    }
-    //                });
-    //    }
-    //}
 
     public Pair<Block, Integer> resultGen(ItemStack mineral){
         if(mineral.is(ModBlocks.TRUE_WHITE_MINERAL.get().asItem())){
@@ -225,16 +251,42 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
         BlockPos pos = entity.getBlockPos();
         BlockPos crystalPos = new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ());
         BlockState state = entity.resultGen(entity.itemHandler.getStackInSlot(2)).getFirst().defaultBlockState();
-        if (hasRecipe(entity) && level.getBlockState(crystalPos).is(ModTags.Blocks.AIR)) {
+        if (hasRecipe(entity) && level.getBlockState(crystalPos).is(ModTags.Blocks.AIR) && hasEnoughFluid(entity)) {
             entity.itemHandler.extractItem(1, 16, false);
             level.setBlock(crystalPos, state.setValue(BlockStateProperties.FACING, Direction.DOWN), 2);
+            entity.fluidTank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
             entity.resetProgress();
         }
+    }
+
+    private static boolean hasEnoughFluid(MineralEnricherBlockEntity entity) {
+        return entity.fluidTank.getFluidAmount() >= 100;
     }
 
     private static boolean hasRecipe(MineralEnricherBlockEntity entity) {
         //return entity.getDust() >= 16;
         return !entity.itemHandler.getStackInSlot(2).isEmpty();
+    }
+
+    private static void transferItemFluidToFluidTank(MineralEnricherBlockEntity entity){
+        entity.itemHandler.getStackInSlot(0).getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(iFluidHandlerItem -> {
+            int drainAmount = Math.min(entity.fluidTank.getSpace(), 1000);
+            FluidStack fluidStack = iFluidHandlerItem.drain(drainAmount, IFluidHandler.FluidAction.SIMULATE);
+            if(entity.fluidTank.isFluidValid(fluidStack)){
+                fluidStack = iFluidHandlerItem.drain(drainAmount, IFluidHandler.FluidAction.EXECUTE);
+                fillTank(entity, fluidStack, iFluidHandlerItem.getContainer());
+            }
+        });
+    }
+
+    private static void fillTank(MineralEnricherBlockEntity entity, FluidStack fluidStack, ItemStack container) {
+        entity.fluidTank.fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
+        entity.itemHandler.extractItem(0, 1, false);
+        entity.itemHandler.insertItem(0, container, false);
+    }
+
+    private static boolean hasFluidInSourceSlot(MineralEnricherBlockEntity entity){
+        return entity.itemHandler.getStackInSlot(0).getCount() > 0;
     }
 
     private void resetProgress(){
@@ -261,6 +313,7 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
+        ModMessages.sendToClients(new FluidSyncS2CPacket(this.getFluidStack(), worldPosition));
         return new MineralEnricherMenu(pContainerId, pInventory, this, this.data);
     }
 }

@@ -88,9 +88,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> MINERAL_ENRICHER = registerBlock("mineral_enricher",
             () -> new MineralEnricherBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).noOcclusion().requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
-
     public static final RegistryObject<Block> NECKLACE_INSERTER = registerBlock("necklace_inserter",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new NecklaceInserterBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
 
 
