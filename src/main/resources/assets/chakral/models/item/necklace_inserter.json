@@ -1,3 +1,6 @@
 {
- "parent": "chakral:block/necklace_inserter"
+ "parent": "item/generated",
+ "textures": {
+  "layer0": "chakral:item/necklace_inserter"
+ }
 }
