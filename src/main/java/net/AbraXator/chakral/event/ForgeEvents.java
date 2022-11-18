@@ -88,10 +88,17 @@ public class ForgeEvents {
                     Item stone4 = tag.get("Stone4") != null || ItemStack.of(tag.getCompound("Stone4")).is(Items.AIR)
                             ? ItemStack.of(tag.getCompound("Stone4")).getItem() : Items.AIR;
                     List<Item> gems = List.of(stone1, stone2, stone3, stone4);
+                    if(gems.contains(ModItems.AMETHYST_QUARTZ.get())){
+                        ChakrasEquip.amethystQuartz(player);
+                    }
+                    if(gems.contains(ModItems.SUGILITE.get())){
+
+                    }
                     if (gems.contains(ModItems.MOON_STONE.get()) && ChakraUtil.moonStoneCooldown != ChakraUtil.moonStoneMaxCooldown) {
                         ChakraUtil.moonStoneCooldown++;
                     }
                     ChakrasEquip.azurite(player, level);
+                    ChakrasEquip.greenOpal(player, level);
                 }
             }
         });

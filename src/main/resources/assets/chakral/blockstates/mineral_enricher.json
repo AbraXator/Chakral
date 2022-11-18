@@ -1,7 +1,154 @@
 {
  "variants": {
-  "": {
-   "model": "chakral:block/mineral_enricher"
+  "facing=east,dust=0,water=false": {
+   "model": "chakral:block/mineral_enricher_0",
+   "y": 90
+  },
+  "facing=north,dust=0,water=false": {
+   "model": "chakral:block/mineral_enricher_0"
+  },
+  "facing=south,dust=0,water=false": {
+   "model": "chakral:block/mineral_enricher_0",
+   "y": 180
+  },
+  "facing=west,dust=0,water=false": {
+   "model": "chakral:block/mineral_enricher_0",
+   "y": 270
+  },
+  "facing=east,dust=1, water=false": {
+   "model": "chakral:block/mineral_enricher_1",
+   "y": 90
+  },
+  "facing=north,dust=1, water=false": {
+   "model": "chakral:block/mineral_enricher_1"
+  },
+  "facing=south,dust=1, water=false": {
+   "model": "chakral:block/mineral_enricher_1",
+   "y": 180
+  },
+  "facing=west,dust=1, water=false": {
+   "model": "chakral:block/mineral_enricher_1",
+   "y": 270
+  },
+  "facing=east,dust=2,water=false": {
+   "model": "chakral:block/mineral_enricher_2",
+   "y": 90
+  },
+  "facing=north,dust=2,water=false": {
+   "model": "chakral:block/mineral_enricher_2"
+  },
+  "facing=south,dust=2,water=false": {
+   "model": "chakral:block/mineral_enricher_2",
+   "y": 180
+  },
+  "facing=west,dust=2,water=false": {
+   "model": "chakral:block/mineral_enricher_2",
+   "y": 270
+  },
+  "facing=east,dust=3,water=false": {
+   "model": "chakral:block/mineral_enricher_3",
+   "y": 90
+  },
+  "facing=north,dust=3,water=false": {
+   "model": "chakral:block/mineral_enricher_3"
+  },
+  "facing=south,dust=3,water=false": {
+   "model": "chakral:block/mineral_enricher_3",
+   "y": 180
+  },
+  "facing=west,dust=3,water=false": {
+   "model": "chakral:block/mineral_enricher_3",
+   "y": 270
+  },
+  "facing=east,dust=4,water=false": {
+   "model": "chakral:block/mineral_enricher_4",
+   "y": 90
+  },
+  "facing=north,dust=4,water=false": {
+   "model": "chakral:block/mineral_enricher_4"
+  },
+  "facing=south,dust=4,water=false": {
+   "model": "chakral:block/mineral_enricher_4",
+   "y": 180
+  },
+  "facing=west,dust=4,water=false": {
+   "model": "chakral:block/mineral_enricher_4",
+   "y": 270
+  },
+  "facing=east,dust=0,water=true": {
+   "model": "chakral:block/mineral_enricher_water_0",
+   "y": 90
+  },
+  "facing=north,dust=0,water=true": {
+   "model": "chakral:block/mineral_enricher_water_0"
+  },
+  "facing=south,dust=0,water=true": {
+   "model": "chakral:block/mineral_enricher_water_0",
+   "y": 180
+  },
+  "facing=west,dust=0,water=true": {
+   "model": "chakral:block/mineral_enricher_water_0",
+   "y": 270
+  },
+  "facing=east,dust=1,water=true": {
+   "model": "chakral:block/mineral_enricher_water_1",
+   "y": 90
+  },
+  "facing=north,dust=1,water=true": {
+   "model": "chakral:block/mineral_enricher_water_1"
+  },
+  "facing=south,dust=1,water=true": {
+   "model": "chakral:block/mineral_enricher_water_1",
+   "y": 180
+  },
+  "facing=west,dust=1,water=true": {
+   "model": "chakral:block/mineral_enricher_water_1",
+   "y": 270
+  },
+  "facing=east,dust=2,water=true": {
+   "model": "chakral:block/mineral_enricher_water_2",
+   "y": 90
+  },
+  "facing=north,dust=2,water=true": {
+   "model": "chakral:block/mineral_enricher_water_2"
+  },
+  "facing=south,dust=2,water=true": {
+   "model": "chakral:block/mineral_enricher_water_2",
+   "y": 180
+  },
+  "facing=west,dust=2,water=true": {
+   "model": "chakral:block/mineral_enricher_water_2",
+   "y": 270
+  },
+  "facing=east,dust=3,water=true": {
+   "model": "chakral:block/mineral_enricher_water_3",
+   "y": 90
+  },
+  "facing=north,dust=3,water=true": {
+   "model": "chakral:block/mineral_enricher_water_3"
+  },
+  "facing=south,dust=3,water=true": {
+   "model": "chakral:block/mineral_enricher_water_3",
+   "y": 180
+  },
+  "facing=west,dust=3,water=true": {
+   "model": "chakral:block/mineral_enricher_water_3",
+   "y": 270
+  },
+  "facing=east,dust=4,water=true": {
+   "model": "chakral:block/mineral_enricher_water_4",
+   "y": 90
+  },
+  "facing=north,dust=4,water=true": {
+   "model": "chakral:block/mineral_enricher_water_4"
+  },
+  "facing=south,dust=4,water=true": {
+   "model": "chakral:block/mineral_enricher_water_4",
+   "y": 180
+  },
+  "facing=west,dust=4,water=true": {
+   "model": "chakral:block/mineral_enricher_water_4",
+   "y": 270
   }
  }
 }

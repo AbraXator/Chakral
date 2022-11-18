@@ -3,6 +3,9 @@ package net.AbraXator.chakral.chakra;
 import net.AbraXator.chakral.chakra.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.items.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -10,6 +13,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -156,6 +160,15 @@ public class ChakrasEquip {
         }
     }
 
+
+    public static void greenOpal(Player player, Level level){
+        double radius = 1.5;
+        for (double i = 0; i < 2 * Math.PI; i+=0.1) {
+            double x = radius * Math.cos(i) + player.getX();
+            double z = radius * Math.sin(i) + player.getZ();
+            level.addParticle(ParticleTypes.FLAME, x, player.getY(), z, 1, 1, 1);
+        }
+    }
     //---------------SOLAR-----------------
 
     public static void heliolite(Player player, Level level){

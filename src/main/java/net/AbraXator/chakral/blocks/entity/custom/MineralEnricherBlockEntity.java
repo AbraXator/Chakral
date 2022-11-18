@@ -2,24 +2,20 @@ package net.AbraXator.chakral.blocks.entity.custom;
 
 import com.mojang.datafixers.util.Pair;
 import net.AbraXator.chakral.blocks.ModBlocks;
+import net.AbraXator.chakral.blocks.custom.MineralEnricherBlock;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.FluidSyncS2CPacket;
 import net.AbraXator.chakral.networking.packet.ItemStackSyncS2CPacket;
-import net.AbraXator.chakral.recipes.MineralEnricherRecipe;
-import net.AbraXator.chakral.recipes.ModRecipes;
 import net.AbraXator.chakral.screen.MineralEnricherMenu;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.data.Main;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
+import net.minecraft.util.Mth;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -32,15 +28,13 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.property.Properties;
-import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -48,10 +42,13 @@ import org.jetbrains.annotations.Nullable;
 
 public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvider {
     public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
+
         @Override
         protected void onContentsChanged(int slot) {
+            super.onContentsChanged(slot);
             setChanged();
             if(!level.isClientSide()){
+                updateDust(this.getStackInSlot(2).getCount());
             }
         }
 
@@ -89,6 +86,7 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
             setChanged();
             if(!level.isClientSide()){
                 ModMessages.sendToClients(new FluidSyncS2CPacket(this.fluid, worldPosition));
+                level.setBlock(worldPosition, getBlockState().setValue(MineralEnricherBlock.WATER, !this.isEmpty()), 3);
             }
         }
 
@@ -174,14 +172,40 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
         fluidTank.readFromNBT(pTag);
     }
 
-    public ItemStack getRenderStack(){
-        ItemStack stack;
-        if(!itemHandler.getStackInSlot(0).isEmpty()){
-            stack = itemHandler.getStackInSlot(0);
-        }else {
-            stack = ItemStack.EMPTY;
+    public int updateDust(int dustAmount){
+        int j = 0;
+        if(dustAmount <= 16 && dustAmount != 0){
+            j  = 1;
         }
-        return stack;
+        if(dustAmount <= 32 && dustAmount > 16){
+            j  = 2;
+        }
+        if(dustAmount <= 48 && dustAmount > 32){
+            j  = 3;
+        }
+        if(dustAmount <= 64 && dustAmount > 48){
+            j  = 4;
+        }
+        level.setBlock(worldPosition, getBlockState().setValue(MineralEnricherBlock.DUST, j), 3);
+        return j;
+    }
+
+    public int getDustAmount(){
+        dustAmount = this.getDust();
+        int j = 0;
+        if(dustAmount <= 16 && dustAmount != 0){
+            j  = 1;
+        }
+        if(dustAmount <= 32 && dustAmount > 16){
+            j  = 2;
+        }
+        if(dustAmount <= 48 && dustAmount > 32){
+            j  = 3;
+        }
+        if(dustAmount <= 64 && dustAmount > 48){
+            j  = 4;
+        }
+        return j;
     }
 
     public void setHandler(ItemStackHandler itemStackHandler){
@@ -196,6 +220,7 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
         }else {
             //updateRecipe(entity);
             ModMessages.sendToClients(new ItemStackSyncS2CPacket(entity.itemHandler, entity.getBlockPos()));
+             entity.updateDust(entity.getDust());
             if (hasRecipe(entity)) {
                 entity.progress++;
                 setChanged(level, pos, state);
@@ -244,6 +269,40 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
             return new Pair<>(Blocks.AMETHYST_CLUSTER, 10);
         }
         return new Pair<>(Blocks.AIR, 0);
+    }
+
+    public Block buddingGen(ItemStack mineral){
+        if(mineral.is(ModBlocks.TRUE_WHITE_MINERAL.get().asItem())){
+            return ModBlocks.TRUE_WHITE_MINERAL.get();
+        }
+        if(mineral.is(ModBlocks.WHITE_MINERAL.get().asItem())){
+            return ModBlocks.BUDDING_WHITE_MINERAL.get();
+        }
+        if(mineral.is(ModBlocks.BLACK_MINERAL.get().asItem())){
+            return ModBlocks.BUDDING_BLACK_MINERAL.get();
+        }
+        if(mineral.is(ModBlocks.RED_MINERAL.get().asItem())){
+            return ModBlocks.BUDDING_RED_MINERAL.get();
+        }
+        if(mineral.is(ModBlocks.ORANGE_MINERAL.get().asItem())){
+            return ModBlocks.BUDDING_ORANGE_MINERAL.get();
+        }
+        if(mineral.is(ModBlocks.YELLOW_MINERAL.get().asItem())){
+            return ModBlocks.BUDDING_YELLOW_MINERAL.get();
+        }
+        if(mineral.is(ModBlocks.GREEN_MINERAL.get().asItem())){
+            return ModBlocks.BUDDING_GREEN_MINERAL.get();
+        }
+        if(mineral.is(ModBlocks.LIGHT_BLUE_MINERAL.get().asItem())){
+            return ModBlocks.BUDDING_LIGHT_BLUE_MINERAL.get();
+        }
+        if(mineral.is(ModBlocks.BLUE_MINERAL.get().asItem())){
+            return ModBlocks.BUDDING_BLUE_MINERAL.get();
+        }
+        if(mineral.is(Blocks.AMETHYST_BLOCK.asItem())){
+            return Blocks.BUDDING_AMETHYST;
+        }
+        return Blocks.AIR;
     }
 
     private static void craftItem(MineralEnricherBlockEntity entity) {

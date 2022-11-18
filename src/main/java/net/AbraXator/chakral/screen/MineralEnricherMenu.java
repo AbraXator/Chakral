@@ -52,6 +52,14 @@ public class MineralEnricherMenu extends AbstractContainerMenu {
         return fluidStack;
     }
 
+    public boolean hasWater() {
+        return  !getFluidStack().isEmpty();
+    }
+
+    public int getDust(){
+        return blockEntity.getDustAmount();
+    }
+
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.
     // For this container, we can see both the tile inventory's slots as well as the player inventory slots and the hotbar.

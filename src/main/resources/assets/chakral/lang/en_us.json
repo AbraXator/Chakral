@@ -37,13 +37,11 @@
     "item.chakral.yellow_shard": "Yellow Shard",
     "item.chakral.orange_shard": "Orange Shard",
     "item.chakral.blue_shard": "Blue Shard",
-    "item.chakral.shard_dust": "Mineral Shard Dust",
+    "item.chakral.shard_dust": "Shard Dust",
     "item.chakral.weak_refiner_kit": "Weak Refiner Kit",
     "item.chakral.powerful_refiner_kit": "Powerful Refiner Kit",
     "item.chakral.enlightened_refiner_kit": "Enlightened Refiner Kit",
 
-    "tooltip.chakral.amethyst_quartz": "Lessens most negative effects",
-   
     "block.chakral.white_mineral_bricks": "White Mineral Bricks",
     "block.chakral.white_mineral": "White Mineral",
     "block.chakral.true_white_mineral_bricks": "True White Mineral Bricks",

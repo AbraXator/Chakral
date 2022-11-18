@@ -24,7 +24,7 @@ public class MineralEnricherRenderer implements BlockEntityRenderer<MineralEnric
     public void render(MineralEnricherBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         //--------------BLOCK-----------------
-        ItemStack itemStack = pBlockEntity.itemHandler.getStackInSlot(0);
+        ItemStack itemStack = pBlockEntity.buddingGen(pBlockEntity.itemHandler.getStackInSlot(2)).asItem().getDefaultInstance();
         pPoseStack.pushPose();
         pPoseStack.translate(0.5f, 0.325f, 0.5f);
         pPoseStack.scale(1.2f, 1.2f, 1.2f);
