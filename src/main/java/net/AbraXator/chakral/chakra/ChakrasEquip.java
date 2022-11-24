@@ -6,6 +6,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.Tags;
@@ -30,6 +33,7 @@ import org.lwjgl.opengl.GL;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class ChakrasEquip {
@@ -161,12 +165,14 @@ public class ChakrasEquip {
     }
 
 
-    public static void greenOpal(Player player, Level level){
+    public static void greenOpal(Player player){
         double radius = 1.5;
-        for (double i = 0; i < 2 * Math.PI; i+=0.1) {
+        Level level = player.level;
+        RandomSource randomSource = level.getRandom();
+        for (double i = 0; i < 2 * Math.PI; i += 0.1) {
             double x = radius * Math.cos(i) + player.getX();
             double z = radius * Math.sin(i) + player.getZ();
-            level.addParticle(ParticleTypes.FLAME, x, player.getY(), z, 1, 1, 1);
+            level.addParticle(ParticleTypes.END_ROD, x, player.getY(), z, 0.0D, 0.0D, 0.0D);
         }
     }
     //---------------SOLAR-----------------

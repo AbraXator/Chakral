@@ -1,6 +1,5 @@
 package net.AbraXator.chakral.blocks.entity.custom;
 
-
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
@@ -8,7 +7,6 @@ import javax.annotation.Nonnull;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
-//Thanks to Kaupenjoe this code
 public class WrappedHandler implements IItemHandlerModifiable {
     private final IItemHandlerModifiable handler;
     private final Predicate<Integer> extract;

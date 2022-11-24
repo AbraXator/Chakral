@@ -98,7 +98,7 @@ public class ForgeEvents {
                         ChakraUtil.moonStoneCooldown++;
                     }
                     ChakrasEquip.azurite(player, level);
-                    ChakrasEquip.greenOpal(player, level);
+                    ChakrasEquip.greenOpal(player);
                 }
             }
         });

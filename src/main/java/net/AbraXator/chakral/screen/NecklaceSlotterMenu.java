@@ -1,6 +1,7 @@
 package net.AbraXator.chakral.screen;
 
 import net.AbraXator.chakral.blocks.ModBlocks;
+import net.AbraXator.chakral.chakra.ChakraStrenght;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.nbt.CompoundTag;
@@ -15,6 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,11 +82,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.necklaceSlot, 1, 80, 46){
             @Override
             public boolean mayPlace(ItemStack stone){
-                if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).stream().toList().contains(stone.getItem()) && NecklaceSlotterMenu.this.getSlot(0).hasItem()){
-                    return true;
-                }else {
-                    return false;
-                }
+                return NecklaceSlotterUtil.mayPlace(ChakraStrenght.FAINT, stone);
             }
 
             @Override
@@ -94,16 +92,8 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
 
             @Override
             public void setChanged() {
-                ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(1);
-                ItemStack necklace = NecklaceSlotterMenu.this.necklaceSlot.getItem(0);
-                ITag<Item> faintItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT);
-                if(necklace.is(ModItems.GOLDEN_NECKLACE.get())){
-                    if(faintItems.contains(stone.getItem())){
-                        CompoundTag nbt = necklace.getOrCreateTag();
-                        nbt.put("Stone1", stone.serializeNBT());
-                        necklace.setTag(nbt);
-                    }
-                }
+                NecklaceSlotterUtil.setChanged(NecklaceSlotterMenu.this.necklaceSlot.getItem(1), NecklaceSlotterMenu.this.necklaceSlot.getItem(0),
+                        ModItems.GOLDEN_NECKLACE.get(), "Stone1", ChakraStrenght.FAINT);
             }
             @Override
             public int getMaxStackSize() {
@@ -111,12 +101,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
             }
             @Override
             public void onTake(Player pPlayer, ItemStack pStack) {
-                if (NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get())) {
-                    ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
-                    if (necklace.hasTag()) {
-                        necklace.setTag(new CompoundTag());
-                    }
-                }
+                NecklaceSlotterUtil.onTake(NecklaceSlotterMenu.this.necklaceSlot.getItem(0), ModItems.GOLDEN_NECKLACE.get(), "Stone1");
             }
         });
         //slot 3 - stone1 diamond necklace

@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
-  "biomes": "#minecraft:is_overworld",
-  "features": "chakral:blue_geode_placed",
+  "biomes": "chakral:mineral_caverns",
+  "features": "chakral:blue_geode",
   "step": "underground_ores"
 }

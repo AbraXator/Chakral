@@ -21,7 +21,14 @@
     }
   },
   "spawners": {
-    "ambient": [],
+    "ambient": [
+      {
+        "type": "minecraft:bat",
+        "weight": 60,
+        "minCount": 2,
+        "maxCount": 5
+      }
+    ],
     "axolotls": [],
     "creature": [],
     "misc": [],
@@ -40,9 +47,17 @@
   },
   "features": [
     [],
-    [],
     [
-      "minecraft:amethyst_geode"
+      "minecraft:lake_lava_underground"
+    ],
+    [
+      "minecraft:amethyst_geode",
+      "chakral:blue_geode",
+      "chakral:light_blue_geode",
+      "chakral:green_geode",
+      "chakral:red_geode",
+      "chakral:orange_geode",
+      "chakral:yellow_geode"
     ],
     [
       "minecraft:monster_room",
@@ -51,8 +66,6 @@
     [],
     [],
     [
-      "minecraft:ore_dirt",
-      "minecraft:ore_gravel",
       "minecraft:ore_granite_upper",
       "minecraft:ore_granite_lower",
       "minecraft:ore_diorite_upper",
@@ -76,28 +89,23 @@
       "minecraft:ore_lapis_buried",
       "minecraft:ore_copper_large",
       "minecraft:underwater_magma",
-      "minecraft:disk_sand",
-      "minecraft:disk_clay",
-      "minecraft:disk_gravel"
+      "minecraft:disk_clay"
     ],
     [
-      "minecraft:sculk_vein",
-      "minecraft:sculk_patch_deep_dark"
+      "minecraft:sculk_vein"
     ],
     [],
     [
       "minecraft:glow_lichen",
       "minecraft:patch_tall_grass_2",
-      "minecraft:trees_plains",
-      "minecraft:flower_plains",
-      "minecraft:patch_grass_plain",
-      "minecraft:brown_mushroom_normal",
-      "minecraft:red_mushroom_normal",
-      "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin"
+      "minecraft:lush_caves_ceiling_vegetation",
+      "minecraft:cave_vines",
+      "minecraft:lush_caves_clay",
+      "minecraft:lush_caves_vegetation",
+      "minecraft:rooted_azalea_tree",
+      "minecraft:spore_blossom",
+      "minecraft:classic_vines_cave_feature"
     ],
-    [
-      "minecraft:freeze_top_layer"
-    ]
+    []
   ]
 }
