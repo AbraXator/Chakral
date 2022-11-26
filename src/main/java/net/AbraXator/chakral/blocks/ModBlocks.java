@@ -78,10 +78,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> RED_MINERAL_BRICK_STAIRS      = registerBlock("red_mineral_brick_stairs", () -> new StairBlock(() -> ModBlocks.RED_MINERAL_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> RED_CRYSTAL                   = registerBlock("red_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(value -> 4).strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
 
-
+    public static final RegistryObject<Block> GLEAMSHROOM = registerBlock("gleamshroom", () -> new GleamshroomBlock(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(value -> 4).strength(9f).noOcclusion().requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
 
     public static final RegistryObject<Block> NECKLACE_SLOTTER = registerBlock("necklace_slotter",
             () -> new NecklaceSlotterBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> NECKLACE_INSERTER = registerBlock("necklace_inserter",
+            () -> new NecklaceInserterBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> SHARD_REFINER = registerBlock("shard_refiner",
             () -> new ShardRefinerBlock(BlockBehaviour.Properties.of(Material.STONE)
@@ -89,9 +92,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> MINERAL_ENRICHER = registerBlock("mineral_enricher",
             () -> new MineralEnricherBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).noOcclusion().requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
-    public static final RegistryObject<Block> NECKLACE_INSERTER = registerBlock("necklace_inserter",
-            () -> new NecklaceInserterBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {

@@ -4,10 +4,4 @@
    "model": "chakral:block/green_mineral"
   }
  }
-}{
- "variants": {
-  "": {
-   "model": "chakral:block/green_mineral"
-  }
- }
 }

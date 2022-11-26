@@ -30,7 +30,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class NecklaceSlotterBlock extends BaseEntityBlock {
+public class NecklaceSlotterBlock extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final VoxelShape SHAPE_BASE = Block.box(4.0D, 0.0D, 3.0D, 12.0D, 2.0D, 11.0D);
     public static final VoxelShape SHAPE_POST = Block.box(6.0D, 0.0D, 5.0D, 10.0D, 14.0D, 9.0D);
@@ -122,7 +122,6 @@ public class NecklaceSlotterBlock extends BaseEntityBlock {
             return InteractionResult.SUCCESS;
         } else {
             pPlayer.openMenu(pState.getMenuProvider(pLevel, pPos));
-            pPlayer.awardStat(Stats.INTERACT_WITH_STONECUTTER);
             return InteractionResult.CONSUME;
         }
     }
@@ -132,18 +131,5 @@ public class NecklaceSlotterBlock extends BaseEntityBlock {
         return new SimpleMenuProvider((p_57074_, p_57075_, p_57076_) -> {
             return new NecklaceSlotterMenu(p_57074_, p_57075_, ContainerLevelAccess.create(pLevel, pPos));
         }, Component.literal(""));
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new NecklaceSlotterBlockEntity(pPos, pState);
-    }
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.STONE_BENCH_BLOCK_ENTITY.get(),
-                NecklaceSlotterBlockEntity::tick);
     }
 }

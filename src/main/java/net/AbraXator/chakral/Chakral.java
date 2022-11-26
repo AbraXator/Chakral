@@ -7,10 +7,7 @@ import net.AbraXator.chakral.entity.ModEntity;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.recipes.ModRecipes;
-import net.AbraXator.chakral.screen.MineralEnricherScreen;
-import net.AbraXator.chakral.screen.ModMenuTypes;
-import net.AbraXator.chakral.screen.ShardRefinerScreen;
-import net.AbraXator.chakral.screen.NecklaceSlotterScreen;
+import net.AbraXator.chakral.screen.*;
 import net.AbraXator.chakral.utils.ModItemProperties;
 import net.AbraXator.chakral.worldgen.ModFeatures;
 import net.AbraXator.chakral.worldgen.features.ModConfigureFeatures;
@@ -61,6 +58,7 @@ public class Chakral {
 
     private void clientSetup(final FMLClientSetupEvent event){
         MenuScreens.register(ModMenuTypes.NECKLACE_SLOTTER_MENU.get(), NecklaceSlotterScreen::new);
+        MenuScreens.register(ModMenuTypes.NECKLACE_INSERTER_MENU.get(), NecklaceInserterScreen::new);
         MenuScreens.register(ModMenuTypes.SHARD_REFINER_MENU.get(), ShardRefinerScreen::new);
         MenuScreens.register(ModMenuTypes.MINERAL_ENRICHER_MENU.get(), MineralEnricherScreen::new);
         ModItemProperties.addCustomProperties();

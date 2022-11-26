@@ -2,6 +2,7 @@ package net.AbraXator.chakral.blocks.entity;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
+import net.AbraXator.chakral.blocks.entity.custom.GleamshroomBlockEntity;
 import net.AbraXator.chakral.blocks.entity.custom.MineralEnricherBlockEntity;
 import net.AbraXator.chakral.blocks.entity.custom.NecklaceSlotterBlockEntity;
 import net.AbraXator.chakral.blocks.entity.custom.ShardRefinerBlockEntity;
@@ -15,10 +16,10 @@ public class    ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Chakral.MOD_ID);
 
-    public static final RegistryObject<BlockEntityType<NecklaceSlotterBlockEntity>> STONE_BENCH_BLOCK_ENTITY =
-            BLOCK_ENTITIES.register("stone_bench_block_entity", () ->
-                    BlockEntityType.Builder.of(NecklaceSlotterBlockEntity::new,
-                            ModBlocks.NECKLACE_SLOTTER.get()).build(null));
+   public static final RegistryObject<BlockEntityType<NecklaceSlotterBlockEntity>> STONE_BENCH_BLOCK_ENTITY =
+           BLOCK_ENTITIES.register("stone_bench_block_entity", () ->
+                   BlockEntityType.Builder.of(NecklaceSlotterBlockEntity::new,
+                           ModBlocks.NECKLACE_SLOTTER.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<ShardRefinerBlockEntity>> SHARD_REFINER_BLOCK_ENTITY =
             BLOCK_ENTITIES.register("shard_refiner_block_entity", () ->
@@ -29,6 +30,11 @@ public class    ModBlockEntities {
             BLOCK_ENTITIES.register("mineral_enricher_block_entity", () ->
                     BlockEntityType.Builder.of(MineralEnricherBlockEntity::new,
                             ModBlocks.MINERAL_ENRICHER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<GleamshroomBlockEntity>> GLEAMSHROOM_BLOCK_ENTITY =
+            BLOCK_ENTITIES.register("gleamshroom_block_entity", () ->
+                    BlockEntityType.Builder.of(GleamshroomBlockEntity::new,
+                            ModBlocks.GLEAMSHROOM.get()).build(null));
 
     public static void register(IEventBus eventBus){
         BLOCK_ENTITIES.register(eventBus);
