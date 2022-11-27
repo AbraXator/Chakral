@@ -10,6 +10,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BuddingAmethystBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,6 +20,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
@@ -78,7 +81,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> RED_MINERAL_BRICK_STAIRS      = registerBlock("red_mineral_brick_stairs", () -> new StairBlock(() -> ModBlocks.RED_MINERAL_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> RED_CRYSTAL                   = registerBlock("red_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(value -> 4).strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
 
-    public static final RegistryObject<Block> GLEAMSHROOM = registerBlock("gleamshroom", () -> new GleamshroomBlock(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(value -> 4).strength(9f).noOcclusion().requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> GLEAMSHROOM = registerBlock("gleamshroom", () -> new GleamshroomBlock(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(litBlockEmission(7)).strength(9f).noOcclusion().requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
 
     public static final RegistryObject<Block> NECKLACE_SLOTTER = registerBlock("necklace_slotter",
             () -> new NecklaceSlotterBlock(BlockBehaviour.Properties.of(Material.STONE)
@@ -93,6 +96,11 @@ public class ModBlocks {
             () -> new MineralEnricherBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).noOcclusion().requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
 
+    private static ToIntFunction<BlockState> litBlockEmission(int pLightValue) {
+        return (p_50763_) -> {
+            return p_50763_.getValue(BlockStateProperties.LIT) ? pLightValue : 0;
+        };
+    }
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

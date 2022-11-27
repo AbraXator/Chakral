@@ -1,7 +1,10 @@
 {
  "variants": {
-  "": {
-   "model": "chakral:block/gleamshroom"
+  "lit=true": {
+   "model": "chakral:block/gleamshroom_on"
+  },
+  "lit=false": {
+   "model": "chakral:block/gleamshroom_off"
   }
  }
 }

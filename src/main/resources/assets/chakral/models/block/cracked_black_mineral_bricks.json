@@ -3,9 +3,4 @@
  "textures": {
   "all": "chakral:block/cracked_black_mineral_bricks"
  }
-}{
- "parent": "block/cube_all",
- "textures": {
-  "all": "chakral:block/cracked_black_mineral_bricks"
- }
 }
