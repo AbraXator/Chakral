@@ -1,0 +1,48 @@
+{
+	"credit": "Made with Blockbench",
+	"render_type": "translucent",
+	"parent": "minecraft:block/cube_all",
+	"textures": {
+		"0": "stemshroom_stem",
+		"1": "stemshroom_cap",
+		"particle": "stemshroom_stem"
+	},
+	"elements": [
+		{
+			"from": [6, 0, 6],
+			"to": [10, 12, 10],
+			"faces": {
+				"north": {"uv": [6, 4, 11, 16], "texture": "#0"},
+				"east": {"uv": [6, 4, 11, 16], "texture": "#0"},
+				"south": {"uv": [6, 4, 11, 16], "texture": "#0"},
+				"west": {"uv": [6, 4, 11, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 5, 5], "texture": "#0"},
+				"down": {"uv": [6, 15, 11, 16], "texture": "#0"}
+			}
+		},
+		{
+			"from": [2, 7.1, 2],
+			"to": [14, 12.1, 14],
+			"faces": {
+				"north": {"uv": [0, 11, 12, 16], "texture": "#1"},
+				"east": {"uv": [0, 11, 12, 16], "texture": "#1"},
+				"south": {"uv": [0, 11, 12, 16], "texture": "#1"},
+				"west": {"uv": [0, 11, 12, 16], "texture": "#1"},
+				"up": {"uv": [0, 0, 12, 12], "texture": "#1"},
+				"down": {"uv": [0, 0, 12, 12], "texture": "#1"}
+			}
+		},
+		{
+			"from": [4, 12, 4],
+			"to": [12, 13, 12],
+			"faces": {
+				"north": {"uv": [2, 9, 10, 10], "texture": "#1"},
+				"east": {"uv": [2, 2, 3, 10], "rotation": 90, "texture": "#1"},
+				"south": {"uv": [2, 2, 10, 3], "texture": "#1"},
+				"west": {"uv": [9, 2, 10, 10], "rotation": 90, "texture": "#1"},
+				"up": {"uv": [2, 2, 10, 10], "texture": "#1"},
+				"down": {"uv": [2, 2, 10, 10], "texture": "#1"}
+			}
+		}
+	]
+}

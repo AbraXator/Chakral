@@ -91,6 +91,12 @@ public class ModItems {
     public static final RegistryObject<Item> SHARD_DUST = ITEMS.register("shard_dust", () ->
             new Item(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
 
+    public static final RegistryObject<Item> RAW_STEMSHROOM_STEM = ITEMS.register("raw_stemshroom_stem", () ->
+            new Item(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
+
+    public static final RegistryObject<Item> COOKED_STEMSHROOM_STEM = ITEMS.register("cooked_stemshroom_stem", () ->
+            new Item(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
+
     public static final RegistryObject<Item> GOLDEN_NECKLACE = ITEMS.register("golden_necklace", () ->
             new GoldenNecklace(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB).stacksTo(1)));
     public static final RegistryObject<Item> DIAMOND_NECKLACE = ITEMS.register("diamond_necklace", () ->

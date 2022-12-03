@@ -82,6 +82,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> RED_CRYSTAL                   = registerBlock("red_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(value -> 4).strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
 
     public static final RegistryObject<Block> GLEAMSHROOM = registerBlock("gleamshroom", () -> new GleamshroomBlock(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(litBlockEmission(7)).strength(9f).noOcclusion().requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> STEMSHROOM                   = registerBlock("stemhroom", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(value -> 4).strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
 
     public static final RegistryObject<Block> NECKLACE_SLOTTER = registerBlock("necklace_slotter",
             () -> new NecklaceSlotterBlock(BlockBehaviour.Properties.of(Material.STONE)
