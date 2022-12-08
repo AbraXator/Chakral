@@ -3,7 +3,8 @@ package net.AbraXator.chakral;
 import com.mojang.logging.LogUtils;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
-import net.AbraXator.chakral.entity.ModEntity;
+import net.AbraXator.chakral.chakra.ChakraRegistries;
+import net.AbraXator.chakral.chakra.Chakras;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.recipes.ModRecipes;
@@ -40,13 +41,13 @@ public class Chakral {
 
         ModItems.           register(eventBus);
         ModBlocks.          register(eventBus);
-        ModEntity.          register(eventBus);
         ModBlockEntities.   register(eventBus);
         ModMenuTypes.       register(eventBus);
         ModRecipes.         register(eventBus);
         ModFeatures.        register(eventBus);
         ModConfigureFeatures.register(eventBus);
         ModPlacedFeature.   register(eventBus);
+        Chakras.            register(eventBus);
 
 
         eventBus.addListener(this::setup);

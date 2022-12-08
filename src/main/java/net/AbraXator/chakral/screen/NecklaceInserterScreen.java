@@ -11,17 +11,26 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 
+@OnlyIn(Dist.CLIENT)
 public class NecklaceInserterScreen extends AbstractContainerScreen<NecklaceInserterMenu> {
     //public static ItemStack itemStack = NecklaceSlotterBlockEntity.getStoneInSlot();
     private static final ResourceLocation TEXTURE_NETHERITE =
             new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/necklace_inserter_netherite.png");
     private static final ResourceLocation TEXTURE_RAINBOW =
-            new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/diamond_necklace_rainbow.png");
+            new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/necklace_inserter_rainbow.png");
 
     public NecklaceInserterScreen(NecklaceInserterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
+        this.leftPos = 0;
+        this.topPos = 0;
+        this.width = 320;
+        this.height = 320;
+        this.imageWidth = 176;
+        this.imageHeight = 210;
     }
 
     @Override
@@ -38,27 +47,6 @@ public class NecklaceInserterScreen extends AbstractContainerScreen<NecklaceInse
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
 
         Item stone = this.menu.necklaceSlot.getItem(1).getItem();
-        /*if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.CROWN).contains(stone)){
-            this.blit(pPoseStack, x + 70, y + 40, 220, 125, 35, 29);
-        }
-        if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.HEART).contains(stone)){
-            this.blit(pPoseStack, x + 70, y + 39, 220, 0, 35, 29);
-        }
-        if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.ROOT).contains(stone)){
-            this.blit(pPoseStack, x + 70, y + 40, 220, 63, 35, 29);
-        }
-        if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.THROAT).contains(stone)){
-            this.blit(pPoseStack, x + 70, y + 40, 220, 94, 35, 29);
-        }
-        if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.THIRD_EYE).contains(stone)){
-            this.blit(pPoseStack, x + 70, y + 40, 220, 32, 35, 29);
-        }
-        if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SACRAL).contains(stone)){
-            this.blit(pPoseStack, x + 70, y + 40, 220, 187, 35, 29);
-        }
-        if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SOLAR).contains(stone)){
-            this.blit(pPoseStack, x + 70, y + 40, 220, 156, 35, 29);
-        }*/
 
         if(this.menu.isRainbow){
             if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 16, 13, 20, 20)){

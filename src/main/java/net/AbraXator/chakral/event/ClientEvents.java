@@ -6,13 +6,7 @@ import net.AbraXator.chakral.blocks.entity.custom.renderer.MineralEnricherRender
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
-import net.AbraXator.chakral.renderer.CrystalFishRenderer;
-import net.AbraXator.chakral.renderer.MineralSnailRenderer;
-import net.AbraXator.chakral.renderer.model.CrystalFishModel;
-import net.AbraXator.chakral.renderer.model.MineralSnailModel;
-import net.AbraXator.chakral.entity.ModEntity;
 import net.AbraXator.chakral.utils.KeyBindings;
-import net.AbraXator.chakral.utils.StoneValues;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.InputEvent;
@@ -24,18 +18,6 @@ import net.minecraftforge.fml.common.Mod;
 public final class ClientEvents {
     @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, value = Dist.CLIENT)
     public static class ClientForgeEvents {
-        @SubscribeEvent
-        public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event){
-            event.registerLayerDefinition(MineralSnailModel.LAYER_LOCATION, MineralSnailModel::createBodyLayer);
-            event.registerLayerDefinition(CrystalFishModel.LAYER_LOCATION, CrystalFishModel::createBodyLayer);
-        }
-
-        @SubscribeEvent
-        public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event){
-            event.registerEntityRenderer(ModEntity.MINERAL_SNAIL.get(), MineralSnailRenderer::new);
-            event.registerEntityRenderer(ModEntity.CRYSTAL_FISH.get(), CrystalFishRenderer::new);
-        }
-
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key event) {
             if(KeyBindings.NECKLACE_EQUIP_KEY.consumeClick()) {

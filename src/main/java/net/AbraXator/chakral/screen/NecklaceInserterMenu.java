@@ -36,7 +36,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
     }
 
     public NecklaceInserterMenu(int pContainerId, Inventory inv, final ContainerLevelAccess access) {
-        super(ModMenuTypes.NECKLACE_SLOTTER_MENU.get(), pContainerId);
+        super(ModMenuTypes.NECKLACE_INSERTER_MENU.get(), pContainerId);
         this.access = access;
         this.level = inv.player.level;
         ItemStack NECKLACE = NecklaceInserterMenu.this.necklaceSlot.getItem(0);

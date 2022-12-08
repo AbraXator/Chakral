@@ -1,6 +1,8 @@
 package net.AbraXator.chakral.networking.packet;
 
 import net.AbraXator.chakral.Chakral;
+import net.AbraXator.chakral.chakra.Chakra;
+import net.AbraXator.chakral.chakra.ChakraHelper;
 import net.AbraXator.chakral.chakra.capability.NecklaceCap;
 import net.AbraXator.chakral.chakra.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.event.ForgeEvents;
@@ -50,8 +52,11 @@ public class NecklaceC2SPacket {
                 if(necklaceCap.getNecklace().is(ItemStack.EMPTY.getItem())){
                     if(stack.is(ModTags.Items.NECKLACES)){
                         necklaceCap.setNecklace(stack);
-                        ForgeEvents.EQUIPPED = true;
+                        ChakraHelper.ChakraVisitor visitor = chakra -> {
+                            chakra.onEquip(player, player.level);
+                        };
                         player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+
                     }
                 } else {
                     if(player.getInventory().getFreeSlot() == -1){
@@ -66,5 +71,10 @@ public class NecklaceC2SPacket {
         });
 
         return true;
+    }
+
+    @FunctionalInterface
+    interface ChakraVisitor{
+        void accept(Chakra chakra);
     }
 }

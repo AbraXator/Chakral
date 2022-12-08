@@ -3,9 +3,9 @@
 	"render_type": "translucent",
 	"parent": "minecraft:block/cube_all",
 	"textures": {
-		"0": "stemshroom_stem",
-		"1": "stemshroom_cap",
-		"particle": "stemshroom_stem"
+		"0": "chakral:block/stemshroom_stem",
+		"1": "chakral:block/stemshroom_cap",
+		"particle": "chakral:block/stemshroom_stem"
 	},
 	"elements": [
 		{

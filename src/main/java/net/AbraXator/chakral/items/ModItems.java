@@ -1,13 +1,16 @@
 package net.AbraXator.chakral.items;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.entity.ModEntity;
 import net.AbraXator.chakral.items.custom.*;
 import net.AbraXator.chakral.chakra.ChakraStrenght;
 import net.AbraXator.chakral.chakra.ChakraType;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.MobBucketItem;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -90,21 +93,19 @@ public class ModItems {
 
     public static final RegistryObject<Item> SHARD_DUST = ITEMS.register("shard_dust", () ->
             new Item(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
-
     public static final RegistryObject<Item> RAW_STEMSHROOM_STEM = ITEMS.register("raw_stemshroom_stem", () ->
-            new Item(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
-
+            new Item(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB).food(new FoodProperties.Builder().nutrition(1).saturationMod(0.3F).build())));
     public static final RegistryObject<Item> COOKED_STEMSHROOM_STEM = ITEMS.register("cooked_stemshroom_stem", () ->
-            new Item(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
+            new Item(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB).food(new FoodProperties.Builder().nutrition(5).saturationMod(0.6F).build())));
 
     public static final RegistryObject<Item> GOLDEN_NECKLACE = ITEMS.register("golden_necklace", () ->
             new GoldenNecklace(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB).stacksTo(1)));
     public static final RegistryObject<Item> DIAMOND_NECKLACE = ITEMS.register("diamond_necklace", () ->
-            new DiamondNecklace(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
+            new DiamondNecklace(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB).stacksTo(1)));
     public static final RegistryObject<Item> NETHERITE_NECKLACE = ITEMS.register("netherite_necklace", () ->
-            new NetheriteNecklace(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
+            new NetheriteNecklace(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB).stacksTo(1)));
     public static final RegistryObject<Item> RAINBOW_NECKLACE = ITEMS.register("rainbow_necklace", () ->
-            new RainbowNecklace(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB)));
+            new RainbowNecklace(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB).stacksTo(1)));
 
     public static final RegistryObject<Item> WEAK_REFINER_KIT = ITEMS.register("weak_refiner_kit", () ->
             new RefinerKit(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB), ChakraStrenght.WEAKENED));
@@ -112,10 +113,6 @@ public class ModItems {
             new RefinerKit(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB), ChakraStrenght.POWERFUL));
     public static final RegistryObject<Item> ENGLIGHTENED_REFINER_KIT = ITEMS.register("enlightened_refiner_kit", () ->
             new RefinerKit(new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB), ChakraStrenght.ENLIGHTENED));
-
-    public static final RegistryObject<MobBucketItem> CRYSTAL_FISH_BUCKET = ITEMS.register("crystal_fish_bucket", () ->
-           new MobBucketItem(ModEntity.CRYSTAL_FISH, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH,
-                   new Item.Properties().tab(Chakral.Tab.CHAKRA_TAB).stacksTo(1)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

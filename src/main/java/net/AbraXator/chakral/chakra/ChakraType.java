@@ -1,6 +1,11 @@
 package net.AbraXator.chakral.chakra;
 
+import net.AbraXator.chakral.items.ModItems;
 import net.minecraft.ChatFormatting;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.fml.common.Mod;
 
 //TODO: change some chakra names
 public enum ChakraType {
@@ -11,6 +16,19 @@ public enum ChakraType {
     SOLAR,
     SACRAL,
     ROOT;
+
+    public Item getTier4(ChakraType type){
+        switch (type){
+            case CROWN: return ModItems.LABBRADORITE.get();
+            case THIRD_EYE: return ModItems.AZURITE.get();
+            case THROAT: return ModItems.AQUAMARINE.get();
+            case HEART: return ModItems.GREEN_OPAL.get();
+            case SOLAR: return ModItems.FIRE_OPAL.get();
+            case SACRAL: return ModItems.GOLDEN_TIGERS_EYE.get();
+            case ROOT: return ModItems.TOURMALINE.get();
+            default: return Items.AIR;
+        }
+    }
 
     public ChakraType getChakraFromString(String string){
         if(string.matches("crown")){

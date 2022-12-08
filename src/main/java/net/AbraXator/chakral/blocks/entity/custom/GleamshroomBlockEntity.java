@@ -16,7 +16,7 @@ public class GleamshroomBlockEntity extends BlockEntity {
         super(ModBlockEntities.GLEAMSHROOM_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
     }
 
-    public static final int maxCooldown = 100;
+    public static final int maxCooldown = 999999999;
     public static int cooldown = 0;
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, GleamshroomBlockEntity pBlockEntity){
@@ -25,7 +25,7 @@ public class GleamshroomBlockEntity extends BlockEntity {
         }
         int lightLevel = pLevel.getBrightness(LightLayer.BLOCK, pPos);
         if(lightLevel > 2 && cooldown == 0){
-            pLevel.setBlock(pPos, ModBlocks.GLEAMSHROOM.get().defaultBlockState().setValue(GleamshroomBlock.LIT, true), 1);
+            pLevel.setBlock(pPos, ModBlocks.GLEAMSHROOM.get().defaultBlockState().setValue(GleamshroomBlock.LIT, true), 3);
             cooldown = maxCooldown;
         }
         while (cooldown >= 0){
