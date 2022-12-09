@@ -81,8 +81,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> RED_MINERAL_BRICK_STAIRS      = registerBlock("red_mineral_brick_stairs", () -> new StairBlock(() -> ModBlocks.RED_MINERAL_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> RED_CRYSTAL                   = registerBlock("red_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(value -> 4).strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
 
-
-    public static final RegistryObject<Block> MINERAL_ENRICHED_DIRT         = registerBlock("mineral_enriched_dirt", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST).strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> BROWNSTONE  = registerBlock("brownstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
+    public static final RegistryObject<Block> MINERAL_RICH_DIRT         = registerBlock("mineral_rich_dirt", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST).strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> GLEAMSHROOM                   = registerBlock("gleamshroom", () -> new GleamshroomBlock(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(litBlockEmission(7)).strength(9f).noOcclusion().requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
     public static final RegistryObject<Block> STEMSHROOM                    = registerBlock("stemshroom", () -> new StemshroomBlock(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(value -> 4).strength(9f).requiresCorrectToolForDrops()), Chakral.Tab.CHAKRA_TAB);
 

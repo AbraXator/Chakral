@@ -3,16 +3,12 @@ package net.AbraXator.chakral;
 import com.mojang.logging.LogUtils;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
-import net.AbraXator.chakral.chakra.ChakraRegistries;
 import net.AbraXator.chakral.chakra.Chakras;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.recipes.ModRecipes;
 import net.AbraXator.chakral.screen.*;
 import net.AbraXator.chakral.utils.ModItemProperties;
-import net.AbraXator.chakral.worldgen.ModFeatures;
-import net.AbraXator.chakral.worldgen.features.ModConfigureFeatures;
-import net.AbraXator.chakral.worldgen.features.ModPlacedFeature;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
@@ -44,10 +40,11 @@ public class Chakral {
         ModBlockEntities.   register(eventBus);
         ModMenuTypes.       register(eventBus);
         ModRecipes.         register(eventBus);
+        //Chakras.            register(eventBus);
         //ModFeatures.        register(eventBus);
         //ModConfigureFeatures.register(eventBus);
         //ModPlacedFeature.   register(eventBus);
-        Chakras.            register(eventBus);
+        //Chakras.            register(eventBus);
 
 
         eventBus.addListener(this::setup);
