@@ -160,5 +160,7 @@
     "entity.chakral.mineral_snail": "Mineral Snail",
 
     "chakral.tooltip.liquid.amount.with.capacity": "%s / %s mB",
-    "chakral.tooltip.liquid.amount.with.amount": "%s mB"
+    "chakral.tooltip.liquid.amount.with.amount": "%s mB",
+
+    "chakral.biome.mineral_caverns": "Mineral Caverns"
 }

@@ -40,11 +40,10 @@ public class Chakral {
         ModBlockEntities.   register(eventBus);
         ModMenuTypes.       register(eventBus);
         ModRecipes.         register(eventBus);
-        //Chakras.            register(eventBus);
         //ModFeatures.        register(eventBus);
         //ModConfigureFeatures.register(eventBus);
         //ModPlacedFeature.   register(eventBus);
-        //Chakras.            register(eventBus);
+        Chakras.            register(eventBus);
 
 
         eventBus.addListener(this::setup);
