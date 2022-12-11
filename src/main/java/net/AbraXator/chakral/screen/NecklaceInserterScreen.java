@@ -1,10 +1,12 @@
 package net.AbraXator.chakral.screen;
 
+import com.ibm.icu.util.EthiopicCalendar;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.utils.ModTags;
 import net.AbraXator.chakral.utils.MouseUtil;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -23,14 +25,19 @@ public class NecklaceInserterScreen extends AbstractContainerScreen<NecklaceInse
     private static final ResourceLocation TEXTURE_RAINBOW =
             new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/necklace_inserter_rainbow.png");
 
+    private final int textureXSize;
+    private final int textureYSize;
+
     public NecklaceInserterScreen(NecklaceInserterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
         this.leftPos = 0;
         this.topPos = 0;
-        this.width = 320;
-        this.height = 320;
         this.imageWidth = 176;
         this.imageHeight = 210;
+        this.width = 176;
+        this.height = 210;
+        this.textureXSize = 320;
+        this.textureYSize = 320;
     }
 
     @Override
@@ -44,7 +51,7 @@ public class NecklaceInserterScreen extends AbstractContainerScreen<NecklaceInse
         }
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+        blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight, textureXSize, textureYSize);
 
         Item stone = this.menu.necklaceSlot.getItem(1).getItem();
 

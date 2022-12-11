@@ -11,9 +11,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.function.Supplier;
-
-public class ModConfigureFeatures {
+public class ModConfigFeatures {
     public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURE =
             DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, Chakral.MOD_ID);
 

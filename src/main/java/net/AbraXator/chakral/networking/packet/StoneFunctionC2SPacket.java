@@ -1,5 +1,7 @@
 package net.AbraXator.chakral.networking.packet;
 
+import net.AbraXator.chakral.chakra.Chakra;
+import net.AbraXator.chakral.chakra.ChakraRegistries;
 import net.AbraXator.chakral.chakra.ChakraUtil;
 import net.AbraXator.chakral.chakra.ChakrasEquip;
 import net.AbraXator.chakral.chakra.capability.NecklaceCapProvider;
@@ -30,31 +32,16 @@ public class StoneFunctionC2SPacket {
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier){
         NetworkEvent.Context context = supplier.get();
-        context.enqueueWork(() ->{
-            Player player = context.getSender();
-            player.getCapability(NecklaceCapProvider.NECKLACE).ifPresent(necklaceCap -> {
-                ItemStack necklace = necklaceCap.getNecklace();
-                if(necklace.hasTag()){
-                    CompoundTag tag = necklace.getTag();
-                    Item stone1 = tag.get("Stone1") != null || ItemStack.of(tag.getCompound("Stone1")).is(Items.AIR)
-                            ? ItemStack.of(tag.getCompound("Stone1")).getItem() : Items.AIR;
-                    Item stone2 = tag.get("Stone2") != null || ItemStack.of(tag.getCompound("Stone2")).is(Items.AIR)
-                            ? ItemStack.of(tag.getCompound("Stone2")).getItem() : Items.AIR;
-                    Item stone3 = tag.get("Stone3") != null || ItemStack.of(tag.getCompound("Stone3")).is(Items.AIR)
-                            ? ItemStack.of(tag.getCompound("Stone3")).getItem() : Items.AIR;
-                    Item stone4 = tag.get("Stone4") != null || ItemStack.of(tag.getCompound("Stone4")).is(Items.AIR)
-                            ? ItemStack.of(tag.getCompound("Stone4")).getItem() : Items.AIR;
-                    List<Item> gems = List.of(stone1, stone2, stone3, stone4);
-                    if(gems.contains(ModItems.CITRINE.get().getDefaultInstance())){
-                        ChakrasEquip.citrine(player);
-                    }
-                    boolean contains = gems.contains(ModItems.MOON_STONE.get());
-                    if(contains){
-                        ChakrasEquip.moonStone(player);
-                        System.out.println(ChakraUtil.moonStoneCooldown);
-                    }
-                }
-            });
+        Player player = context.getSender();
+        ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
+            Chakra chakra = s.get();
+            chakra.onFunctionKeyPress(player, player.level);
+            boolean b = chakra.stones().contains(chakra.getType().getTier4(chakra.getType()));
+            if(b){
+                chakra.onFunctionKeyPressUpgraded(player, player.level);
+            }else {
+                chakra.onFunctionKeyPress(player, player.level);
+            }
         });
         return true;
     }

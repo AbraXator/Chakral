@@ -15,7 +15,7 @@ public class ModPlacedFeature {
         DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, Chakral.MOD_ID);
 
     public static final RegistryObject<PlacedFeature> CRYSTAL_PLACED = PLACED_FEATURE.register("crystal",
-            () -> new PlacedFeature(ModConfigureFeatures.CRYSTAL.getHolder().get(), commonOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-200), VerticalAnchor.aboveBottom(200)))));
+            () -> new PlacedFeature(ModConfigFeatures.CRYSTAL.getHolder().get(), commonOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-200), VerticalAnchor.aboveBottom(200)))));
 
     public static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {
         return List.of(p_195347_, InSquarePlacement.spread(), p_195348_, BiomeFilter.biome());

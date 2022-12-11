@@ -3,6 +3,7 @@ package net.AbraXator.chakral.networking.packet;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraHelper;
+import net.AbraXator.chakral.chakra.ChakraRegistries;
 import net.AbraXator.chakral.chakra.capability.NecklaceCap;
 import net.AbraXator.chakral.chakra.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.event.ForgeEvents;
@@ -49,32 +50,38 @@ public class NecklaceC2SPacket {
             String finalName = name;
             player.getCapability(NecklaceCapProvider.NECKLACE).ifPresent(necklaceCap -> {
                 ItemStack necklace = necklaceCap.getNecklace();
-                if(necklaceCap.getNecklace().is(ItemStack.EMPTY.getItem())){
-                    if(stack.is(ModTags.Items.NECKLACES)){
-                        necklaceCap.setNecklace(stack);
-                        ChakraHelper.ChakraVisitor visitor = chakra -> {
+                ChakraRegistries.CHAKRA.getEntries().forEach(s -> s.get().necklace = necklace);
+                if(necklaceCap.getNecklace().is(ItemStack.EMPTY.getItem()) && stack.is(ModTags.Items.NECKLACES)){
+                    necklaceCap.setNecklace(stack);
+                    ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
+                        Chakra chakra = s.get();
+                        boolean b = chakra.stones().contains(chakra.getType().getTier4(chakra.getType()));
+                        if(b){
+                            chakra.onEquipUpgraded(player, player.level);
+                        }else {
                             chakra.onEquip(player, player.level);
-                        };
-                        player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
-
-                    }
+                        }
+                    });
+                    player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
                 } else {
                     if(player.getInventory().getFreeSlot() == -1){
                         player.drop(necklace, false);
                     }else {
                         player.addItem(necklace);
                     }
+                    ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
+                        Chakra chakra = s.get();
+                        boolean b = chakra.stones().contains(chakra.getType().getTier4(chakra.getType()));
+                        if(b){
+                            chakra.onUnequipUpgraded(player, player.level);
+                        }else {
+                            chakra.onUnequip(player, player.level);
+                        }
+                    });
                     necklaceCap.setNecklace(ItemStack.EMPTY);
-                    ForgeEvents.EQUIPPED = false;
                 }
             });
         });
-
         return true;
-    }
-
-    @FunctionalInterface
-    interface ChakraVisitor{
-        void accept(Chakra chakra);
     }
 }

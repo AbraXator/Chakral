@@ -13,22 +13,7 @@ import java.security.Key;
 import java.util.function.Supplier;
 
 public class ChakraRegistries {
-    static final DeferredRegister<Chakra> DEFERRED_CHAKRAS = DeferredRegister
-            .create(Keys.CHAKRAS, Keys.CHAKRAS.location().getNamespace());
-
-    public static final Supplier<IForgeRegistry<Chakra>> CHAKRAS = DEFERRED_CHAKRAS
-            .makeRegistry(ChakraRegistries::getChakraResourceBuilder);
-
-    private static RegistryBuilder<Chakra> getChakraResourceBuilder() {
-        return makeRegistry(Keys.CHAKRAS);
-    }
-
-    private static <T> RegistryBuilder<T> makeRegistry(ResourceKey<? extends Registry<T>> key) {
-        return new RegistryBuilder<T>().setName(key.location()).setMaxID(Integer.MAX_VALUE - 1);
-    }
-
-    public static class Keys {
-        public static final ResourceKey<Registry<Chakra>> CHAKRAS = ResourceKey
-                .createRegistryKey(new ResourceLocation(Chakral.MOD_ID, "chakras"));
-    }
+    public static final ResourceKey<Registry<Chakra>> RESOURCE_KEY = ResourceKey.createRegistryKey(new ResourceLocation(Chakral.MOD_ID, "chakra"));
+    public static final DeferredRegister<Chakra> CHAKRA = DeferredRegister.create(RESOURCE_KEY, Chakral.MOD_ID);
+    public static final Supplier<IForgeRegistry<Chakra>> CHAKRA_REGISTRY = CHAKRA.makeRegistry(() -> new RegistryBuilder<Chakra>().disableSaving().setMaxID(Integer.MAX_VALUE - 1).setName(RESOURCE_KEY.location()));
 }
