@@ -9,6 +9,7 @@ import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.recipes.ModRecipes;
 import net.AbraXator.chakral.screen.*;
+import net.AbraXator.chakral.utils.ChakralTab;
 import net.AbraXator.chakral.utils.ModItemProperties;
 import net.AbraXator.chakral.worldgen.ModFeatures;
 import net.AbraXator.chakral.worldgen.features.ModConfigFeatures;
@@ -45,10 +46,10 @@ public class Chakral {
         ModBlockEntities.   register(eventBus);
         ModMenuTypes.       register(eventBus);
         ModRecipes.         register(eventBus);
-        ModFeatures.        register(eventBus);
-        ModConfigFeatures.  register(eventBus);
-        ModPlacedFeature.   register(eventBus);
-                            register(eventBus);
+        //ModFeatures.        register(eventBus);
+        //ModConfigFeatures.  register(eventBus);
+        //ModPlacedFeature.   register(eventBus);
+        register(eventBus);
 
 
         eventBus.addListener(this::setup);
@@ -77,34 +78,5 @@ public class Chakral {
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getName().toString());
         event.enqueueWork(ModMessages::register);
-    }
-
-    public class Tab {
-        public static final CreativeModeTab CHAKRA_TAB = new CreativeModeTab("chakral") {
-            @Override
-            public ItemStack makeIcon() {
-                return new ItemStack(ModItems.GOLDEN_NECKLACE.get());
-            }
-
-            @Override
-            public CreativeModeTab setBackgroundImage(ResourceLocation texture) {
-                texture = new ResourceLocation("minecraft", "textures/gui/container/creative_inventory/tab_chakral.png");
-                return super.setBackgroundImage(texture);
-            }
-
-            @Override
-            public void fillItemList(NonNullList<ItemStack> pItems) {
-                for(RegistryObject<Item> item : ModItems.ITEMS.getEntries()){
-                    pItems.add(item.get().getDefaultInstance());
-                    if(item.get().equals(ModItems.TOURMALINE.get())){
-                        pItems.add(Items.AMETHYST_SHARD.getDefaultInstance());
-                    }
-                    if(item.get().equals(ModBlocks.TRUE_WHITE_CRYSTAL.get().asItem())){
-                        pItems.add(Blocks.AMETHYST_BLOCK.asItem().getDefaultInstance());
-                        pItems.add(Blocks.BUDDING_AMETHYST.asItem().getDefaultInstance());
-                    }
-                }
-            }
-        };
     }
 }

@@ -12,7 +12,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModConfigFeatures {
-    public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURE =
+    /*public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURE =
             DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, Chakral.MOD_ID);
 
     public static final RegistryObject<ConfiguredFeature<?, ?>> CRYSTAL =
@@ -24,5 +24,5 @@ public class ModConfigFeatures {
 
     public static void register(IEventBus eventBus){
         CONFIGURED_FEATURE.register(eventBus);
-    }
+    }*/
 }

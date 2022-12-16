@@ -25,7 +25,7 @@ public class NetheriteNecklace extends Item {
         super.use(pLevel, pPlayer, pUsedHand);
         ItemStack necklace = pPlayer.getItemInHand(InteractionHand.MAIN_HAND);
         CompoundTag tag = new CompoundTag();
-        tag.put("Stone3", ModItems.MOON_STONE.get().getDefaultInstance().serializeNBT());
+        tag.put("Stone3", ModItems.GARNET_SPESSARTINE.get().getDefaultInstance().serializeNBT());
         necklace.setTag(tag);
         return InteractionResultHolder.success(necklace);
     }

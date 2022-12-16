@@ -37,10 +37,12 @@ public class StoneFunctionC2SPacket {
             Chakra chakra = s.get();
             chakra.onFunctionKeyPress(player, player.level);
             boolean b = chakra.stones().contains(chakra.getType().getTier4(chakra.getType()));
-            if(b){
-                chakra.onFunctionKeyPressUpgraded(player, player.level);
-            }else {
-                chakra.onFunctionKeyPress(player, player.level);
+            if(chakra.isEnabled(chakra)) {
+                if (b) {
+                    chakra.onFunctionKeyPressUpgraded(player, player.level);
+                } else {
+                    chakra.onFunctionKeyPress(player, player.level);
+                }
             }
         });
         return true;

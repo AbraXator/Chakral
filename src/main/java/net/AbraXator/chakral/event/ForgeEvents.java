@@ -2,8 +2,7 @@ package net.AbraXator.chakral.event;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
-import net.AbraXator.chakral.chakra.ChakraUtil;
-import net.AbraXator.chakral.chakra.ChakrasEquip;
+import net.AbraXator.chakral.chakra.*;
 import net.AbraXator.chakral.chakra.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
@@ -20,7 +19,9 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.EnderManAngerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.RegistryObject;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -66,6 +67,32 @@ public class ForgeEvents {
         if(state.is(ModTags.Blocks.CRYSTALS) && random.nextDouble() < 0.03D){
             if(state.is(ModBlocks.ORANGE_CRYSTAL.get())){
                 player.setSecondsOnFire(5);
+            }
+        }
+
+        player.getCapability(NecklaceCapProvider.NECKLACE).ifPresent(necklaceCap -> {
+            if(!level.isClientSide) {
+                //System.out.println(necklaceCap.getNecklace());
+            }
+        });
+    }
+
+    @SubscribeEvent
+    public static void chakraTick(TickEvent.PlayerTickEvent event) {
+        event.player.getCapability(NecklaceCapProvider.NECKLACE).ifPresent(necklaceCap -> {
+            //System.out.println(necklaceCap.getNecklace());
+        });
+        Collection<RegistryObject<Chakra>> collection = ChakraRegistries.CHAKRA.getEntries();
+        collection.stream().toList().get(1);
+        ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
+            Chakra chakra = s.get();
+            if (chakra.isEnabled(chakra)) {
+                chakra.tick(event.player, event.player.level);
+            }
+        });
+        if (!event.player.level.isClientSide) {
+            if (event.phase == TickEvent.Phase.END) {
+
             }
         }
     }

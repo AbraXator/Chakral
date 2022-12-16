@@ -14,6 +14,11 @@ public class GarnetSpessartineChakra extends Chakra {
     }
 
     @Override
+    public void tick(Player player, Level level) {
+        System.out.println("TICK");
+    }
+
+    @Override
     public void onFunctionKeyPress(Player player, Level level) {
         if(player.isInLava()){
             player.move(MoverType.SELF, new Vec3(0D, 2D, 0D));

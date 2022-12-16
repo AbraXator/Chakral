@@ -24,9 +24,4 @@ public class MineralSnail extends AgeableMob {
     protected void defineSynchedData() {
 
     }
-
-    @Override
-    public Packet<?> getAddEntityPacket() {
-        return null;
-    }
 }

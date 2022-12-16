@@ -10,7 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.function.Supplier;
 
 public class ModFeatures {
-    public static final DeferredRegister<Feature<?>> REGISTER =
+    /*public static final DeferredRegister<Feature<?>> REGISTER =
             DeferredRegister.create(ForgeRegistries.FEATURES, Chakral.MOD_ID);
 
     public static final RegistryObject<BigCrystalFeature> BIG_CRYSTAL_FEATURE = registerFeature("big_crystal", () ->
@@ -23,5 +23,5 @@ public class ModFeatures {
 
     public static void register(IEventBus eventBus){
         REGISTER.register(eventBus);
-    }
+    }*/
 }

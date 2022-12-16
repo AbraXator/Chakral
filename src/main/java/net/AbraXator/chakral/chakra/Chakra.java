@@ -24,7 +24,7 @@ public abstract class Chakra {
         this.type = type;
     }
 
-    Item getItem(){
+    public Item getItem(){
         return stone;
     }
 
@@ -53,8 +53,8 @@ public abstract class Chakra {
         return null;
     }
 
-    public boolean isEnabled(){
-        return true;
+    public boolean isEnabled(Chakra chakra){
+        return chakra.stones() != null && chakra.getItem() != null && stones().contains(chakra.getItem());
     }
 
     public void setMaxCooldown(int maxCooldown){

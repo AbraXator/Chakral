@@ -38,6 +38,8 @@
     "item.chakral.orange_shard": "Orange Shard",
     "item.chakral.blue_shard": "Blue Shard",
     "item.chakral.shard_dust": "Shard Dust",
+    "item.raw_stemshroom_stem": "Raw Stemshroom Stem",
+    "item.cooked_stemshroom_stem": "Cooked Stemshroom Stem",
     "item.chakral.weak_refiner_kit": "Weak Refiner Kit",
     "item.chakral.powerful_refiner_kit": "Powerful Refiner Kit",
     "item.chakral.enlightened_refiner_kit": "Enlightened Refiner Kit",
@@ -47,6 +49,7 @@
     "block.chakral.true_white_mineral_bricks": "True White Mineral Bricks",
     "block.chakral.true_white_mineral": "True White Mineral",
     "block.chakral.black_mineral": "Black Mineral Block",
+    "block.chakral.budding_black_mineral": "Budding Black Mineral Block",
     "block.chakral.black_mineral_stairs": "Black Mineral Stairs",
     "block.chakral.black_mineral_slab": "Black Mineral slab",
     "block.chakral.black_mineral_wall": "Black Mineral wall",
@@ -115,7 +118,10 @@
     "block.chakral.orange_mineral_brick_stairs": "Orange Mineral Brick Stairs",
     "block.chakral.orange_mineral_brick_slab": "Orange Mineral Brick slab",
     "block.chakral.orange_mineral_brick_wall": "Orange Mineral Brick wall",
+    "block.chakral.black_crystal": "Black Crystal",
     "block.chakral.glowstone_crystal": "Glowstone Crystal",
+    "block.chakral.white_crystal": "White Crystal",
+    "block.chakral.true_white_crystal": "True White Crystal",
     "block.chakral.green_crystal": "Green Crystal",
     "block.chakral.red_crystal": "Red Crystal",
     "block.chakral.light_blue_crystal": "Light Blue Crystal",
@@ -125,6 +131,11 @@
     "block.chakral.shard_refiner": "Shard Refiner",
     "block.chakral.mineral_enricher": "Mineral Enricher",
     "block.chakral.necklace_slotter": "Necklace Slotter",
+    "block.chakral.necklace_inserter": "Necklace Inserter",
+    "block.chakral.brownstone": "Brownstone",
+    "block.chakral.mineral_rich_dirt": "Mineral Rich Dirt",
+    "block.chakral.gleamshroom": "Gleamshroom",
+    "block.chakral.stemshroom": "Stemshroom",
 
     "tooltip.chakral.amazonite": "Boosts Your Health",
     "tooltip.chakral.amber": "Amber",
@@ -155,7 +166,7 @@
     "tooltip.chakral.sugilite": "Removes Most Negative Effects",
     "tooltip.chakral.tourmaline": "Burns Nearby Enemies",
     
-    "itemGroup.chakral": "Chakral",
+    "chakral.chakral_tab": "Chakral",
 
     "entity.chakral.mineral_snail": "Mineral Snail",
 
