@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -27,23 +28,24 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, Chakral.MOD_ID);
 
     //--------------------BLACK---------------------
-    public static final RegistryObject<Block> BLACK_MINERAL                 = registerBlock("black_mineral", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> BLACK_MINERAL_BRICKS          = registerBlock("black_mineral_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> BLACK_MINERAL_BRICK_STAIRS    = registerBlock("black_mineral_brick_stairs", () -> new StairBlock(() -> ModBlocks.BLACK_MINERAL_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> BLACK_CRYSTAL                 = registerBlock("black_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> GLOWSTONE_CRYSTAL             = registerBlock("glowstone_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST).strength(9f).requiresCorrectToolForDrops().lightLevel(value -> 15)));
-    public static final RegistryObject<Block> BUDDING_BLACK_MINERAL         = registerBlock("budding_black_mineral", () -> new ModBuddingBlock(BlockBehaviour.Properties.of(Material.STONE).randomTicks().strength(9f).requiresCorrectToolForDrops(), List.of(ModBlocks.GLOWSTONE_CRYSTAL.get(), ModBlocks.BLACK_CRYSTAL.get(), ModBlocks.BLACK_CRYSTAL.get(), ModBlocks.BLACK_CRYSTAL.get())));
+    public static final RegistryObject<Block> BLACK_MINERAL                 = registerBlock("black_mineral", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> BLACK_MINERAL_BRICKS          = registerBlock("black_mineral_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> BLACK_MINERAL_BRICK_STAIRS    = registerBlock("black_mineral_brick_stairs", () -> new StairBlock(() -> ModBlocks.BLACK_MINERAL_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> BLACK_CRYSTAL                 = registerBlock("black_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> GLOWSTONE_CRYSTAL             = registerBlock("glowstone_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST, MaterialColor.SAND).strength(9f).requiresCorrectToolForDrops().lightLevel(value -> 15)));
+    public static final RegistryObject<Block> BUDDING_BLACK_MINERAL         = registerBlock("budding_black_mineral", () -> new ModBuddingBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).randomTicks().strength(9f).requiresCorrectToolForDrops(), List.of(ModBlocks.GLOWSTONE_CRYSTAL.get(), ModBlocks.BLACK_CRYSTAL.get(), ModBlocks.BLACK_CRYSTAL.get(), ModBlocks.BLACK_CRYSTAL.get())));
     //---------------------WHITE----------------------
-    public static final RegistryObject<Block> WHITE_MINERAL                 = registerBlock("white_mineral", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> BUDDING_WHITE_MINERAL         = registerBlock("budding_white_mineral", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> WHITE_MINERAL_BRICKS          = registerBlock("white_mineral_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).lightLevel(value -> 6).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> WHITE_CRYSTAL                 = registerBlock("white_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> TRUE_WHITE_MINERAL            = registerBlock("true_white_mineral", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).lightLevel(value -> 6).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> TRUE_WHITE_MINERAL_BRICKS     = registerBlock("true_white_mineral_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).lightLevel(value -> 6).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> TRUE_WHITE_CRYSTAL            = registerBlock("true_white_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> WHITE_MINERAL                 = registerBlock("white_mineral", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_WHITE).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> BUDDING_WHITE_MINERAL         = registerBlock("budding_white_mineral", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_WHITE).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> WHITE_MINERAL_BRICKS          = registerBlock("white_mineral_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_WHITE).strength(9f).lightLevel(value -> 6).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> WHITE_CRYSTAL                 = registerBlock("white_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST, MaterialColor.TERRACOTTA_WHITE).strength(9f).requiresCorrectToolForDrops()));
+    //-----------------TRUE WHITE--------------------
+    public static final RegistryObject<Block> TRUE_WHITE_MINERAL            = registerBlock("true_white_mineral", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SNOW).strength(9f).lightLevel(value -> 6).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> TRUE_WHITE_MINERAL_BRICKS     = registerBlock("true_white_mineral_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SNOW).strength(9f).lightLevel(value -> 6).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> TRUE_WHITE_CRYSTAL            = registerBlock("true_white_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST, MaterialColor.SNOW).strength(9f).requiresCorrectToolForDrops()));
     //--------------------PURPLE---------------------
-    public static final RegistryObject<Block> AMETHYST_BRICKS               = registerBlock("amethyst_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> AMETHYST_BRICK_STAIRS         = registerBlock("amethyst_brick_stairs", () -> new StairBlock(() -> ModBlocks.AMETHYST_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> AMETHYST_BRICKS               = registerBlock("amethyst_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST, MaterialColor.COLOR_PURPLE).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> AMETHYST_BRICK_STAIRS         = registerBlock("amethyst_brick_stairs", () -> new StairBlock(() -> ModBlocks.AMETHYST_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.AMETHYST, MaterialColor.COLOR_PURPLE).strength(9f).requiresCorrectToolForDrops()));
     //--------------------BLUE---------------------
     public static final RegistryObject<Block> BLUE_MINERAL                  = registerBlock("blue_mineral", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BUDDING_BLUE_MINERAL          = registerBlock("budding_blue_mineral", () -> new BuddingAmethystBlock(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
@@ -83,7 +85,8 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> BROWNSTONE                    = registerBlock("brownstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> MINERAL_RICH_DIRT             = registerBlock("mineral_rich_dirt", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> GLEAMSHROOM                   = registerBlock("gleamshroom", () -> new GleamshroomBlock(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(litBlockEmission(7)).strength(9f).noOcclusion().requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> PLACEHOLDER_SHROOM_BLOCK      = registerBlock("placeholder_shroom_block", () -> new ShroomBlock(BlockBehaviour.Properties.of(Material.AMETHYST).strength(9f).requiresCorrectToolForDrops().randomTicks()));
+    public static final RegistryObject<Block> GLEAMSHROOM                   = registerBlock("gleamshroom", () -> new GleamshroomBlock(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(GleamshroomBlock.LIGHT_AMOUNT).strength(9f).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> STEMSHROOM                    = registerBlock("stemshroom", () -> new StemshroomBlock(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(value -> 4).strength(9f).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> NECKLACE_SLOTTER = registerBlock("necklace_slotter",
@@ -98,10 +101,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> MINERAL_ENRICHER = registerBlock("mineral_enricher",
             () -> new MineralEnricherBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).noOcclusion().requiresCorrectToolForDrops()));
-
-    private static ToIntFunction<BlockState> litBlockEmission(int pLightValue) {
-        return (p_50763_) -> p_50763_.getValue(BlockStateProperties.LIT) ? pLightValue : 0;
-    }
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

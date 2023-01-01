@@ -18,6 +18,15 @@ public class BigCrystalFeature extends Feature<BigCrystalConfiguration> {
     @Override
     public boolean place(FeaturePlaceContext<BigCrystalConfiguration> pContext) {
         BlockPos blockPos = pContext.origin();
+        WorldGenLevel worldGenLevel;
+        for (worldGenLevel = pContext.level(); worldGenLevel.isEmptyBlock(blockPos) && blockPos.getY() > worldGenLevel.getMinBuildHeight() + 2; blockPos = blockPos.below()){
+        }
+        this.setBlock(worldGenLevel, blockPos, pContext.config().baseBlock.getState(pContext.random(), blockPos));
+        return true;
+    }
+
+    public boolean place2(FeaturePlaceContext<BigCrystalConfiguration> pContext) {
+        BlockPos blockPos = pContext.origin();
         RandomSource randomSource = pContext.random();
         WorldGenLevel worldGenLevel;
         for (worldGenLevel = pContext.level(); worldGenLevel.isEmptyBlock(blockPos) && blockPos.getY() > worldGenLevel.getMinBuildHeight() + 2; blockPos = blockPos.below()){

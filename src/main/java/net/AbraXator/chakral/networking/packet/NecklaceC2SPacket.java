@@ -5,11 +5,15 @@ import net.AbraXator.chakral.chakra.ChakraRegistries;
 import net.AbraXator.chakral.chakra.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.network.NetworkHooks;
 
 import java.util.function.Supplier;
 
@@ -30,6 +34,7 @@ public class NecklaceC2SPacket {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             Player player = context.getSender();
+            ServerPlayer serverPlayer = context.getSender();
             ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
             String name = "none";
             if (stack.is(ModItems.GOLDEN_NECKLACE.get())) {
@@ -39,6 +44,8 @@ public class NecklaceC2SPacket {
                 name = "diamond_necklace";
             }
             String finalName = name;
+            Minecraft minecraft = Minecraft.getInstance();
+            NetworkHooks.openScreen(serverPlayer, new ModMenuProvider());
             player.getCapability(NecklaceCapProvider.NECKLACE).ifPresent(necklaceCap -> {
                 ItemStack necklace = necklaceCap.getNecklace();
                 ChakraRegistries.CHAKRA.getEntries().forEach(s -> s.get().necklace = necklace);
