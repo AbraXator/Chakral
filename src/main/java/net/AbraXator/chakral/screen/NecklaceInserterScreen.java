@@ -1,9 +1,12 @@
 package net.AbraXator.chakral.screen;
 
+import com.ibm.icu.util.EthiopicCalendar;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.Chakral;
+import net.AbraXator.chakral.utils.ModTags;
 import net.AbraXator.chakral.utils.MouseUtil;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -12,6 +15,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @OnlyIn(Dist.CLIENT)
 public class NecklaceInserterScreen extends AbstractContainerScreen<NecklaceInserterMenu> {
@@ -49,11 +53,11 @@ public class NecklaceInserterScreen extends AbstractContainerScreen<NecklaceInse
         int y = (height - imageHeight) / 2;
         blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight, textureXSize, textureYSize);
 
-        Item stone = this.menu.container.getItem(1).getItem();
+        Item stone = this.menu.necklaceSlot.getItem(1).getItem();
 
         if(this.menu.isRainbow){
             if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 16, 13, 20, 20)){
-                this.blit(pPoseStack, x + 16, y + 11, 14, 198, 22, 22);
+                this.blit(pPoseStack, x + 16, y + 11, 20, 250, 20, 20);
             }
         }else {
             if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 140, 11, 20, 20)){

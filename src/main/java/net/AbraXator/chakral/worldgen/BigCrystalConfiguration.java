@@ -8,13 +8,17 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 
 public class BigCrystalConfiguration implements FeatureConfiguration {
     public final BlockStateProvider baseBlock;
+    public final BlockStateProvider crystal;
     public static final Codec<BigCrystalConfiguration> CODEC = RecordCodecBuilder.create((instance) -> {
         return instance.group(BlockStateProvider.CODEC.fieldOf("base_block").forGetter((o) -> {
             return o.baseBlock;
+        }), BlockStateProvider.CODEC.fieldOf("crystal").forGetter(o -> {
+            return o.crystal;
         })).apply(instance, BigCrystalConfiguration::new);
     });
 
-    public BigCrystalConfiguration(BlockStateProvider baseBlock){
+    public BigCrystalConfiguration(BlockStateProvider baseBlock, BlockStateProvider crystal){
         this.baseBlock = baseBlock;
+        this.crystal = crystal;
     }
 }

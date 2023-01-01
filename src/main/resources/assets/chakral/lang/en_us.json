@@ -173,7 +173,5 @@
     "chakral.tooltip.liquid.amount.with.capacity": "%s / %s mB",
     "chakral.tooltip.liquid.amount.with.amount": "%s mB",
 
-    "necklace.equip": "Equip the %s with %s",
-
     "chakral.biome.mineral_caverns": "Mineral Caverns"
 }

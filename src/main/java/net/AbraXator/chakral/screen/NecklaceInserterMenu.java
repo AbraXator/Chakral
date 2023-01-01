@@ -24,17 +24,12 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
     private final Level level;
     public boolean isRainbow;
-    final Container container = new SimpleContainer(8) {
+    final Container necklaceSlot = new SimpleContainer(8) {
         public void setChanged() {
             super.setChanged();
             NecklaceInserterMenu.this.slotsChanged(this);
         }
     };
-
-    @Override
-    public void setItem(int pSlotId, int pStateId, ItemStack pStack) {
-        super.setItem(pSlotId, pStateId, pStack);
-    }
 
     public NecklaceInserterMenu(int pContainerId, Inventory inv, FriendlyByteBuf buf) {
         this(pContainerId, inv, ContainerLevelAccess.NULL);
@@ -44,9 +39,9 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
         super(ModMenuTypes.NECKLACE_INSERTER_MENU.get(), pContainerId);
         this.access = access;
         this.level = inv.player.level;
-        ItemStack NECKLACE = NecklaceInserterMenu.this.container.getItem(0);
+        ItemStack NECKLACE = NecklaceInserterMenu.this.necklaceSlot.getItem(0);
         //slot 0 - necklace
-        this.addSlot(new Slot(this.container, 0, 80, 37) {
+        this.addSlot(new Slot(this.necklaceSlot, 0, 80, 37) {
             @Override
             public boolean mayPlace(ItemStack necklace) {
                 if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.NECKLACES).contains(necklace.getItem())){
@@ -91,7 +86,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
             }
         });
         //slot 1 - stone1 netherite necklace
-        this.addSlot(new Slot(this.container, 1, 134, 72){
+        this.addSlot(new Slot(this.necklaceSlot, 1, 134, 72){
             @Override
             public boolean mayPlace(ItemStack stone){
                 return NecklaceSlotterUtil.mayPlace(ChakraStrenght.FAINT, stone);
@@ -104,7 +99,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
 
             @Override
             public void setChanged() {
-                NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.container.getItem(1), NECKLACE,
+                NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.necklaceSlot.getItem(1), NECKLACE,
                         ModItems.NETHERITE_NECKLACE.get(), "Stone1", ChakraStrenght.FAINT);
             }
             @Override
@@ -117,7 +112,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
             }
         });
         //slot 2 - stone2 netherite necklace
-        this.addSlot(new Slot(this.container, 2, 26, 72){
+        this.addSlot(new Slot(this.necklaceSlot, 2, 26, 72){
             @Override
             public boolean mayPlace(ItemStack stone){
                 return NecklaceSlotterUtil.mayPlace(ChakraStrenght.WEAKENED, stone);
@@ -130,7 +125,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
 
             @Override
             public void setChanged() {
-                NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.container.getItem(2), NECKLACE,
+                NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.necklaceSlot.getItem(2), NECKLACE,
                         ModItems.NETHERITE_NECKLACE.get(), "Stone2", ChakraStrenght.WEAKENED);
             }
             @Override
@@ -144,7 +139,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
             }
         });
         //slot 3 - stone3 netherite necklace
-        this.addSlot(new Slot(this.container, 3, 80, 90){
+        this.addSlot(new Slot(this.necklaceSlot, 3, 80, 90){
             @Override
             public boolean mayPlace(ItemStack stone){
                 return NecklaceSlotterUtil.mayPlace(ChakraStrenght.POWERFUL, stone);
@@ -157,7 +152,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
 
             @Override
             public void setChanged() {
-                NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.container.getItem(3), NECKLACE,
+                NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.necklaceSlot.getItem(3), NECKLACE,
                         ModItems.NETHERITE_NECKLACE.get(), "Stone3", ChakraStrenght.POWERFUL);
             }
             @Override
@@ -171,7 +166,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
             }
         });
         //slot 4 - stone1 rainbow necklace
-        this.addSlot(new Slot(this.container, 4, 134, 72){
+        this.addSlot(new Slot(this.necklaceSlot, 4, 134, 72){
             @Override
             public boolean mayPlace(ItemStack stone){
                 return NecklaceSlotterUtil.mayPlace(ChakraStrenght.FAINT, stone);
@@ -184,7 +179,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
 
             @Override
             public void setChanged() {
-                NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.container.getItem(4), NECKLACE,
+                NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.necklaceSlot.getItem(4), NECKLACE,
                         ModItems.RAINBOW_NECKLACE.get(), "Stone1", ChakraStrenght.FAINT);
             }
             @Override
@@ -198,7 +193,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
             }
         });
         //slot 5 - stone2 rainbow necklace
-        this.addSlot(new Slot(this.container, 5, 26, 72){
+        this.addSlot(new Slot(this.necklaceSlot, 5, 26, 72){
             @Override
             public boolean mayPlace(ItemStack stone){
                 return NecklaceSlotterUtil.mayPlace(ChakraStrenght.WEAKENED, stone);
@@ -211,7 +206,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
 
             @Override
             public void setChanged() {
-                NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.container.getItem(5), NECKLACE,
+                NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.necklaceSlot.getItem(5), NECKLACE,
                         ModItems.RAINBOW_NECKLACE.get(), "Stone1", ChakraStrenght.WEAKENED);
             }
             @Override
@@ -225,7 +220,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
             }
         });
         //slot 6 - stone3 rainbow necklace
-        this.addSlot(new Slot(this.container, 6, 89, 90){
+        this.addSlot(new Slot(this.necklaceSlot, 6, 89, 90){
             @Override
             public boolean mayPlace(ItemStack stone){
                 return NecklaceSlotterUtil.mayPlace(ChakraStrenght.POWERFUL, stone);
@@ -238,7 +233,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
 
             @Override
             public void setChanged() {
-                NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.container.getItem(6), NECKLACE,
+                NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.necklaceSlot.getItem(6), NECKLACE,
                         ModItems.RAINBOW_NECKLACE.get(), "Stone1", ChakraStrenght.POWERFUL);
             }
             @Override
@@ -252,7 +247,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
             }
         });
         //slot 7 - stone4 rainbow necklace
-        this.addSlot(new Slot(this.container, 7, 71, 90){
+        this.addSlot(new Slot(this.necklaceSlot, 7, 71, 90){
             @Override
             public boolean mayPlace(ItemStack stone){
                 return NecklaceSlotterUtil.mayPlace(ChakraStrenght.ENLIGHTENED, stone);
@@ -265,7 +260,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
 
             @Override
             public void setChanged() {
-                NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.container.getItem(7), NECKLACE,
+                NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.necklaceSlot.getItem(7), NECKLACE,
                         ModItems.RAINBOW_NECKLACE.get(), "Stone4", ChakraStrenght.ENLIGHTENED);
             }
             @Override
@@ -281,12 +276,11 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
 
         for(int i = 0; i < 3; ++i) {
             for(int j = 0; j < 9; ++j) {
-                this.addSlot(new Slot(inv, j + i * 9 + 9, 8 + j * 18, 128 + i * 18));
+                this.addSlot(new Slot(inv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
-
         for(int k = 0; k < 9; ++k) {
-            this.addSlot(new Slot(inv, k, 8 + k * 18, 186));
+            this.addSlot(new Slot(inv, k, 8 + k * 18, 142));
         }
     }
 
@@ -302,8 +296,8 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
     public void removed(Player pPlayer) {
         super.removed(pPlayer);
         if(!pPlayer.level.isClientSide){
-            ItemStack necklace = this.container.removeItem(0, this.container.getMaxStackSize());
-            ItemStack stone = this.container.removeItem(1, this.container.getMaxStackSize());
+            ItemStack necklace = this.necklaceSlot.removeItem(0, this.necklaceSlot.getMaxStackSize());
+            ItemStack stone = this.necklaceSlot.removeItem(1, this.necklaceSlot.getMaxStackSize());
             if(!necklace.isEmpty() && !stone.isEmpty() && necklace.hasTag()){
                 necklace.removeTagKey("chakral.stones");
                 pPlayer.addItem(stone);

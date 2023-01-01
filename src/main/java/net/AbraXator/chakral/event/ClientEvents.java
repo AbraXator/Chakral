@@ -3,10 +3,6 @@ package net.AbraXator.chakral.event;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.blocks.entity.custom.renderer.MineralEnricherRenderer;
-import net.AbraXator.chakral.entity.DwiderEntity;
-import net.AbraXator.chakral.entity.DwiderModel;
-import net.AbraXator.chakral.entity.DwiderRenderer;
-import net.AbraXator.chakral.entity.ModEntities;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
@@ -46,15 +42,5 @@ public final class ClientEvents {
             event.registerBlockEntityRenderer(ModBlockEntities.MINERAL_ENRICHER_BLOCK_ENTITY.get(),
                     MineralEnricherRenderer::new);
         }
-    }
-
-    @SubscribeEvent
-    public static void layerDefitions(EntityRenderersEvent.RegisterLayerDefinitions event){
-        event.registerLayerDefinition(DwiderModel.LAYER_LOCATION, DwiderModel::createBodyLayer);
-    }
-
-    @SubscribeEvent
-    public static void entityRenderers(EntityRenderersEvent.RegisterRenderers event){
-        event.registerEntityRenderer(ModEntities.DWIDER.get(), DwiderRenderer::new);
     }
 }

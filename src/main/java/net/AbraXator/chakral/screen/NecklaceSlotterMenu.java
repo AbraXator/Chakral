@@ -1,13 +1,11 @@
 package net.AbraXator.chakral.screen;
 
-import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.chakra.ChakraStrenght;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -44,6 +42,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
         this.level = inv.player.level;
         //slot 1 - necklace
         this.addSlot(new Slot(this.necklaceSlot, 0, 80, 22) {
+
             @Override
             public boolean mayPlace(ItemStack necklace) {
                 if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.NECKLACES).contains(necklace.getItem())){
