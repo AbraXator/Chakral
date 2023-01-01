@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "chakral:budding_black_mineral",
+    "chakral:budding_white_mineral",
+    "minecraft:budding_amethyst",
+    "chakral:budding_blue_mineral",
+    "chakral:budding_light_blue_mineral",
+    "chakral:budding_green_mineral",
+    "chakral:budding_yellow_mineral",
+    "chakral:budding_orange_mineral",
+    "chakral:budding_red_mineral"
+  ]
+}
