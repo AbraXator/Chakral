@@ -1,7 +1,7 @@
 package net.AbraXator.chakral.screen;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.blocks.custom.NecklaceInserterBlock;
+import net.AbraXator.chakral.screen.necklace.NecklaceMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -26,6 +26,9 @@ public class ModMenuTypes {
 
     public static final RegistryObject<MenuType<MineralEnricherMenu>> MINERAL_ENRICHER_MENU =
             registerMenuType(MineralEnricherMenu::new, "mineral_builder_menu");
+
+    public static final RegistryObject<MenuType<NecklaceMenu>> NECKLACE_MENU =
+            registerMenuType(NecklaceMenu::new, "necklace_menu");
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>>
     registerMenuType(IContainerFactory<T> factory, String name){

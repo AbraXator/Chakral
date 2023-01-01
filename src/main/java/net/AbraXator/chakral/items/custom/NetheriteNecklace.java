@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class NetheriteNecklace extends Item {
+public class NetheriteNecklace extends NecklaceItem {
     public NetheriteNecklace(Properties pProperties) {
         super(pProperties);
     }
@@ -32,6 +32,7 @@ public class NetheriteNecklace extends Item {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         if (pStack.hasTag()) {
             CompoundTag tag = pStack.getTag();
             Component stone1 = tag.get("Stone1") != null || ItemStack.of(tag.getCompound("Stone1")).is(Items.AIR)
@@ -43,7 +44,6 @@ public class NetheriteNecklace extends Item {
             pTooltipComponents.add(stone1);
             pTooltipComponents.add(stone2);
             pTooltipComponents.add(stone3);
-            super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         }
     }
 }

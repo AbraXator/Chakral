@@ -24,7 +24,7 @@ public enum ChakraStrenght implements StringRepresentable {
 
     private final String name;
 
-    private ChakraStrenght(String p_156018_) {
+    ChakraStrenght(String p_156018_) {
         this.name = p_156018_;
     }
 
@@ -44,5 +44,9 @@ public enum ChakraStrenght implements StringRepresentable {
     @Override
     public String getSerializedName() {
         return this.name;
+    }
+
+    public boolean is(ChakraStrenght strenght){
+        return this.equals(strenght);
     }
 }

@@ -1,9 +1,11 @@
 package net.AbraXator.chakral.items;
 
+import com.google.common.base.Suppliers;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.items.custom.*;
 import net.AbraXator.chakral.chakra.ChakraStrenght;
 import net.AbraXator.chakral.chakra.ChakraType;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.food.FoodProperties;
@@ -16,6 +18,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =

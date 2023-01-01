@@ -3,8 +3,12 @@ package net.AbraXator.chakral.blocks.custom;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.blocks.entity.custom.StemShroomBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -22,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Stream;
 
-public class StemshroomBlock extends BaseEntityBlock {
+public class StemshroomBlock extends Block implements EntityBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final VoxelShape SHAPE_UP = Stream.of(
@@ -61,11 +65,15 @@ public class StemshroomBlock extends BaseEntityBlock {
         return !pLevel.isClientSide ? createTickerHelper(pBlockEntityType, ModBlockEntities.STEMSHROOM_BLOCK_ENTITY.get(), StemshroomBlock::tickEntity) : null;
     }
 
-    private static void tickEntity(Level p_153113_, BlockPos p_153114_, BlockState p_153115_, StemShroomBlockEntity p_153116_) {
-        if (p_153113_.getGameTime() % 20L == 0L) {
-           //System.out.println("AA");
-        }
+    @javax.annotation.Nullable
+    protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> createTickerHelper(BlockEntityType<A> pServerType, BlockEntityType<E> pClientType, BlockEntityTicker<? super E> pTicker) {
+        return pClientType == pServerType ? (BlockEntityTicker<A>)pTicker : null;
+    }
 
+    private static void tickEntity(Level level, BlockPos pos, BlockState blockState, StemShroomBlockEntity entity) {
+        if(level.getRawBrightness(pos, 10) > 10){
+            level.explode((Entity)null, pos.getX(), pos.getY(), pos.getZ(), 7.5F, Level.ExplosionInteraction.BLOCK);
+        }
     }
 
     @Nullable
