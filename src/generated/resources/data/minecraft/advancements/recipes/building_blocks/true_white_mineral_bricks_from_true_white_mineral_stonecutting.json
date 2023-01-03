@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:true_white_mineral_bricks_from_true_white_mineral_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_true_white_mineral": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "chakral:true_white_mineral"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_true_white_mineral",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:true_white_mineral_bricks_from_true_white_mineral_stonecutting"
+    ]
+  }
+}

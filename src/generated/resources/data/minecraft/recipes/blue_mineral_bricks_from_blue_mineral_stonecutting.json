@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "chakral:blue_mineral"
+  },
+  "result": "chakral:blue_mineral_bricks"
+}

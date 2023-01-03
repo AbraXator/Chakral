@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_block"
+    },
+    "B": {
+      "item": "chakral:necklace_slotter"
+    },
+    "C": {
+      "item": "minecraft:copper_block"
+    },
+    "D": {
+      "item": "minecraft:barrier"
+    }
+  },
+  "pattern": [
+    "AA ",
+    "ABA",
+    "CDC"
+  ],
+  "result": {
+    "item": "chakral:necklace_inserter"
+  }
+}

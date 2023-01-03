@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:gold_ingot"
+    },
+    "B": {
+      "tag": "chakral:shards"
+    }
+  },
+  "pattern": [
+    " A ",
+    "A A",
+    " B "
+  ],
+  "result": {
+    "item": "chakral:golden_necklace"
+  }
+}

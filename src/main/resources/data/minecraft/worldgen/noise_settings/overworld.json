@@ -2518,32 +2518,15 @@
       {
         "type": "minecraft:condition",
         "if_true": {
-          "type": "minecraft:stone_depth",
-          "offset": 3,
-          "surface_type": "floor",
-          "add_surface_depth": false,
-          "secondary_depth_range": 0
+          "type": "minecraft:biome",
+          "biome_is": [
+            "chakral:mineral_caverns"
+          ]
         },
         "then_run": {
           "type": "minecraft:block",
           "result_state": {
-            "Name": "chakral:black_mineral"
-          }
-        }
-      },
-      {
-        "type": "minecraft:condition",
-        "if_true": {
-          "type": "minecraft:stone_depth",
-          "offset": 3,
-          "surface_type": "ceiling",
-          "add_surface_depth": false,
-          "secondary_depth_range": 0
-        },
-        "then_run": {
-          "type": "minecraft:block",
-          "result_state": {
-            "Name": "chakral:black_mineral"
+            "Name": "chakral:brownstone"
           }
         }
       },

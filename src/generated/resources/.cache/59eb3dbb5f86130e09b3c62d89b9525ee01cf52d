@@ -1,4 +1,4 @@
-// 1.19.3	2023-01-02T00:15:27.2266734	Loot Tables
+// 1.19.3	2023-01-02T14:40:14.8702342	Loot Tables
 8e00841121611180a2949ad70eac90182e18a06a data/chakral/loot_tables/blocks/amethyst_bricks.json
 09ba8f399530dff7a092f9c8478720907bd42da9 data/chakral/loot_tables/blocks/amethyst_brick_stairs.json
 64391881b2ce33acdc0ba5824362864ed981af19 data/chakral/loot_tables/blocks/black_crystal.json
@@ -42,7 +42,7 @@ ce934fda4e4ff6308e5eeb8f2a818991ad0938ed data/chakral/loot_tables/blocks/orange_
 e72fc78f218db78e0cbc8695cd8907cd75909188 data/chakral/loot_tables/blocks/red_mineral_bricks.json
 b80a0ab6829fb9a613ecfbeb58e43683d4b0f462 data/chakral/loot_tables/blocks/red_mineral_brick_stairs.json
 1b40074bf478551f80309f1b739caa7cf9e3dba1 data/chakral/loot_tables/blocks/shard_refiner.json
-ed15f4c1d76fd52b4d51caf18e42637cf32a5d6c data/chakral/loot_tables/blocks/stemshroom.json
+8a5935deae329357ed30fa252097f7de3075e86d data/chakral/loot_tables/blocks/stemshroom.json
 18382a5892764ddfbd6440dbce63718536fed4dd data/chakral/loot_tables/blocks/true_white_crystal.json
 53e9d80bfb15a027ea9620a0f364c122e156eec3 data/chakral/loot_tables/blocks/true_white_mineral.json
 bf9e07fcda6b63df3eddf20548bcf5d7e4b0b6dc data/chakral/loot_tables/blocks/true_white_mineral_bricks.json

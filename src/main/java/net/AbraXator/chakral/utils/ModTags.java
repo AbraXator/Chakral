@@ -44,6 +44,8 @@ public class ModTags {
         public static final TagKey<Item> MINERALS = tag("minerals");
 
         public static final TagKey<Item> NECKLACES = tag("necklaces");
+        public static final TagKey<Item> NECKLACES_LOW = tag("necklaces_low");
+        public static final TagKey<Item> NECKLACES_HIGH = tag("necklaces_high");
 
 
         private static TagKey<Item> tag(String name){
