@@ -6,6 +6,8 @@ import net.AbraXator.chakral.chakra.*;
 import net.AbraXator.chakral.chakra.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +17,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.EnderManAngerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -32,7 +35,14 @@ public class ForgeEvents {
     public static void EnderManAngerReset(EnderManAngerEvent event){
         ChakrasEquip.sugiliteEnderMan(event.getPlayer(), event);
     }
-      
+
+    public static void inventoryScreenEvent(ScreenEvent.Init event){
+        Screen screen = event.getScreen();
+        if(screen instanceof InventoryScreen inventoryScreen){
+            //inventoryScreen.;
+        }
+    }
+
     //@SubscribeEvent
     //public static void BlockBreak(BlockEvent.BreakEvent event){
     //    BlockPos pos = event.getPos();

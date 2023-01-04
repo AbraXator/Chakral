@@ -72,7 +72,7 @@ public class StemshroomBlock extends Block implements EntityBlock {
 
     private static void tickEntity(Level level, BlockPos pos, BlockState blockState, StemShroomBlockEntity entity) {
         if(level.getRawBrightness(pos, 10) > 10){
-            level.explode((Entity)null, pos.getX(), pos.getY(), pos.getZ(), 7.5F, Level.ExplosionInteraction.BLOCK);
+            level.explode(null, pos.getX(), pos.getY(), pos.getZ(), 7.5F, Level.ExplosionInteraction.BLOCK);
         }
     }
 

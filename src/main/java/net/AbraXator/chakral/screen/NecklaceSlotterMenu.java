@@ -46,11 +46,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.necklaceSlot, 0, 80, 22) {
             @Override
             public boolean mayPlace(ItemStack necklace) {
-                if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.NECKLACES).contains(necklace.getItem())){
-                    return true;
-                }else {
-                    return false;
-                }
+                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.NECKLACES).contains(necklace.getItem());
             }
 
             @Override

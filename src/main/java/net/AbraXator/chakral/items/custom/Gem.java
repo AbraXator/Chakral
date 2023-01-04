@@ -28,7 +28,7 @@ public class Gem extends Item {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.literal("Type: " + chakraType).withStyle(chakraType.getColorFromChakra(chakraType)));
-        pTooltipComponents.add(Component.literal("Strength: " + chakraStrenght).withStyle(chakraStrenght.getColorFromChakra(chakraStrenght)));
+        pTooltipComponents.add(Component.literal("Strength: " + chakraStrenght).withStyle(ChakraStrenght.getColorFromChakra(chakraStrenght)));
         Component moreInfo = Component.literal("<Hold shift for more info>").withStyle(ChatFormatting.GOLD);
         pTooltipComponents.add(moreInfo);
         if(Screen.hasShiftDown()){

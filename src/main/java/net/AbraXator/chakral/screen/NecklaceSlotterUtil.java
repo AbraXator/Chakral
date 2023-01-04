@@ -1,8 +1,6 @@
 package net.AbraXator.chakral.screen;
 
 import net.AbraXator.chakral.chakra.ChakraStrenght;
-import net.AbraXator.chakral.items.ModItems;
-import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

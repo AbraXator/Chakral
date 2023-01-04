@@ -3,7 +3,6 @@ package net.AbraXator.chakral.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
 import net.AbraXator.chakral.utils.MouseUtil;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -12,7 +11,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlotterMenu> {
@@ -63,11 +61,11 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         }
 
         if(this.menu.isDiamond){
-            if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 17, 13, 18, 18)){
+            if(isMouseAboveArea(pMouseX, pMouseY, x, y, 17, 13, 18, 18)){
                 this.blit(pPoseStack, x + 16, y + 12, 20, 236, 20, 20);
             }
         }else {
-            if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 141, 13, 18, 18)){
+            if(isMouseAboveArea(pMouseX, pMouseY, x, y, 141, 13, 18, 18)){
                 this.blit(pPoseStack, x + 140, y + 12, 0, 236, 20, 20);
             }
         }
