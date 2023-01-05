@@ -5,6 +5,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.tags.ITag;
 
 public enum ChakraStrenght implements StringRepresentable {

@@ -6,12 +6,15 @@
       "item": "minecraft:gold_ingot"
     },
     "B": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
       "tag": "chakral:shards"
     }
   },
   "pattern": [
     " A ",
-    "A A",
+    "ACA",
     " B "
   ],
   "result": {

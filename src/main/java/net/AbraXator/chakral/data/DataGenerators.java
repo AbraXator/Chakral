@@ -15,5 +15,6 @@ public class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         generator.addProvider(event.includeServer(), new ModLootTableProvider(generator.getPackOutput()));
         generator.addProvider(event.includeServer(), new ModRecipeProvider(generator.getPackOutput()));
+        generator.addProvider(event.includeClient(), new ItemModelGenerator(generator.getPackOutput(), Chakral.MOD_ID, existingFileHelper));
     }
 }

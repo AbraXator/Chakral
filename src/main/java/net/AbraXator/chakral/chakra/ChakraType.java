@@ -1,21 +1,42 @@
 package net.AbraXator.chakral.chakra;
 
 import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.ChatFormatting;
+import net.minecraft.tags.TagKey;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
 
 //TODO: change some chakra names
-public enum ChakraType {
-    CROWN,
-    THIRD_EYE,
-    THROAT,
-    HEART,
-    SOLAR,
-    SACRAL,
-    ROOT;
+public enum ChakraType implements StringRepresentable {
+    CROWN("crown", ModTags.Items.CROWN),
+    THIRD_EYE("third_eye", ModTags.Items.THIRD_EYE),
+    THROAT("throat", ModTags.Items.THROAT),
+    HEART("heart", ModTags.Items.HEART),
+    SOLAR("solar", ModTags.Items.SOLAR),
+    SACRAL("sacral", ModTags.Items.SACRAL),
+    ROOT("root", ModTags.Items.ROOT);
+
+    ChakraType(String name, TagKey<Item> tagKey){
+        this.name = name;
+        this.tagKey = tagKey;
+    }
+
+    private String name;
+    private TagKey<Item> tagKey;
+
+    @Override
+    public @NotNull String getSerializedName() {
+        return this.name;
+    }
+
+    public TagKey<Item> getTagKey() {
+        return this.tagKey;
+    }
 
     public Item getTier4(ChakraType type){
         switch (type){

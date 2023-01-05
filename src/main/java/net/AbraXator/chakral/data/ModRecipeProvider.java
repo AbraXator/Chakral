@@ -19,7 +19,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> p_251297_) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.GOLDEN_NECKLACE.get()).pattern(" A ").pattern("A A").pattern(" B ").define('A', Items.GOLD_INGOT).define('B', ModTags.Items.SHARDS).unlockedBy("has_shard", has(ModTags.Items.SHARDS)).save(p_251297_);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.GOLDEN_NECKLACE.get()).pattern(" A ").pattern("ACA").pattern(" B ").define('A', Items.GOLD_INGOT).define('B', Items.IRON_INGOT).define('C', ModTags.Items.SHARDS).unlockedBy("has_shard", has(ModTags.Items.SHARDS)).save(p_251297_);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DIAMOND_NECKLACE.get()).pattern(" A ").pattern("ABA").pattern(" A ").define('A', Items.DIAMOND).define('B', ModItems.GOLDEN_NECKLACE.get()).unlockedBy("has_golden_necklace", has(ModItems.GOLDEN_NECKLACE.get())).save(p_251297_);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NETHERITE_NECKLACE.get()).pattern(" A ").pattern("ABA").pattern(" A ").define('A', Items.NETHERITE_INGOT).define('B', ModItems.DIAMOND_NECKLACE.get()).unlockedBy("has_diamond_necklace", has(ModItems.DIAMOND_NECKLACE.get())).save(p_251297_);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.RAINBOW_NECKLACE.get()).pattern(" A ").pattern("ABA").pattern(" A ").define('A', Items.BARRIER).define('B', ModItems.NETHERITE_NECKLACE.get()).unlockedBy("has_netherite_necklace", has(ModItems.NETHERITE_NECKLACE.get())).save(p_251297_);

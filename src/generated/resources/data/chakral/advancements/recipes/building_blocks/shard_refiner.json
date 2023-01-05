@@ -1,13 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_amethyst_bricks": {
+    "has_shard": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "chakral:amethyst_bricks"
-            ]
+            "tag": "chakral:shards"
           }
         ]
       },
@@ -15,20 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:amethyst_block_from_amethyst_bricks_stonecutting"
+        "recipe": "chakral:shard_refiner"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_amethyst_bricks",
+      "has_shard",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:amethyst_block_from_amethyst_bricks_stonecutting"
+      "chakral:shard_refiner"
     ]
   }
 }

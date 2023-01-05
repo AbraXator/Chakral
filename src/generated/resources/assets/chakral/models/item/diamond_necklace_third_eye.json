@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "chakral:item/necklace/diamond_necklace",
+    "layer1": "chakral:item/necklace/diamond_necklace_third_eye_1",
+    "layer2": "chakral:item/necklace/diamond_necklace_third_eye_2"
+  }
+}

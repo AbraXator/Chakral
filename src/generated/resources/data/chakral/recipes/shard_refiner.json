@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "tag": "chakral:shards"
+    },
+    "C": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "pattern": [
+    "AB",
+    "CC"
+  ],
+  "result": {
+    "item": "chakral:shard_refiner"
+  }
+}
