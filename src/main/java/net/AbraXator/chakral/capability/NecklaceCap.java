@@ -1,7 +1,6 @@
-package net.AbraXator.chakral.chakra.capability;
+package net.AbraXator.chakral.capability;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
 
 public class NecklaceCap {

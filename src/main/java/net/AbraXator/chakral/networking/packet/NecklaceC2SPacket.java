@@ -2,14 +2,13 @@ package net.AbraXator.chakral.networking.packet;
 
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraRegistries;
-import net.AbraXator.chakral.chakra.capability.NecklaceCapProvider;
+import net.AbraXator.chakral.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
@@ -46,7 +45,7 @@ public class NecklaceC2SPacket {
             String finalName = name;
             Minecraft minecraft = Minecraft.getInstance();
             NetworkHooks.openScreen(serverPlayer, new ModMenuProvider());
-            player.getCapability(NecklaceCapProvider.NECKLACE).ifPresent(necklaceCap -> {
+            player.getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
                 ItemStack necklace = necklaceCap.getNecklace();
                 ChakraRegistries.CHAKRA.getEntries().forEach(s -> s.get().necklace = necklace);
                 if(necklaceCap.getNecklace().is(ItemStack.EMPTY.getItem()) && stack.is(ModTags.Items.NECKLACES)){

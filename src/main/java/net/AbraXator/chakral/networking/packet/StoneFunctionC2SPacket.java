@@ -2,19 +2,10 @@ package net.AbraXator.chakral.networking.packet;
 
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraRegistries;
-import net.AbraXator.chakral.chakra.ChakraUtil;
-import net.AbraXator.chakral.chakra.ChakrasEquip;
-import net.AbraXator.chakral.chakra.capability.NecklaceCapProvider;
-import net.AbraXator.chakral.items.ModItems;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.network.NetworkEvent;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 public class StoneFunctionC2SPacket {

@@ -2,86 +2,296 @@
   "parent": "minecraft:item/generated",
   "overrides": [
     {
-      "model": "chakral:item/necklace/golden_necklace_throat",
       "predicate": {
-        "minecraft:crown": 1.0,
-        "minecraft:heart": 1.0,
-        "minecraft:root": 1.0,
-        "minecraft:sacral": 1.0,
-        "minecraft:solar": 1.0,
-        "minecraft:third_eye": 1.0,
+        "minecraft:crown": 1.0
+      },
+      "model": "chakral:item/golden_necklace_crown"
+    },
+    {
+      "model": "chakral:item/golden_necklace_heart",
+      "predicate": {
+        "minecraft:heart": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_root",
+      "predicate": {
+        "minecraft:root": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_sacral",
+      "predicate": {
+        "minecraft:sacral": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_solar",
+      "predicate": {
+        "minecraft:solar": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_third_eye",
+      "predicate": {
+        "minecraft:third_eye": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_throat",
+      "predicate": {
         "minecraft:throat": 1.0
       }
     },
     {
-      "model": "chakral:item/necklace/golden_necklace_throat",
+      "model": "chakral:item/golden_necklace_crown",
       "predicate": {
-        "minecraft:crown": 1.0,
-        "minecraft:heart": 1.0,
-        "minecraft:root": 1.0,
-        "minecraft:sacral": 1.0,
-        "minecraft:solar": 1.0,
-        "minecraft:third_eye": 1.0,
+        "minecraft:crown": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_heart",
+      "predicate": {
+        "minecraft:heart": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_root",
+      "predicate": {
+        "minecraft:root": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_sacral",
+      "predicate": {
+        "minecraft:sacral": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_solar",
+      "predicate": {
+        "minecraft:solar": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_third_eye",
+      "predicate": {
+        "minecraft:third_eye": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_throat",
+      "predicate": {
         "minecraft:throat": 1.0
       }
     },
     {
-      "model": "chakral:item/necklace/golden_necklace_throat",
+      "model": "chakral:item/golden_necklace_crown",
       "predicate": {
-        "minecraft:crown": 1.0,
-        "minecraft:heart": 1.0,
-        "minecraft:root": 1.0,
-        "minecraft:sacral": 1.0,
-        "minecraft:solar": 1.0,
-        "minecraft:third_eye": 1.0,
+        "minecraft:crown": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_heart",
+      "predicate": {
+        "minecraft:heart": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_root",
+      "predicate": {
+        "minecraft:root": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_sacral",
+      "predicate": {
+        "minecraft:sacral": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_solar",
+      "predicate": {
+        "minecraft:solar": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_third_eye",
+      "predicate": {
+        "minecraft:third_eye": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_throat",
+      "predicate": {
         "minecraft:throat": 1.0
       }
     },
     {
-      "model": "chakral:item/necklace/golden_necklace_throat",
+      "model": "chakral:item/golden_necklace_crown",
       "predicate": {
-        "minecraft:crown": 1.0,
-        "minecraft:heart": 1.0,
-        "minecraft:root": 1.0,
-        "minecraft:sacral": 1.0,
-        "minecraft:solar": 1.0,
-        "minecraft:third_eye": 1.0,
+        "minecraft:crown": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_heart",
+      "predicate": {
+        "minecraft:heart": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_root",
+      "predicate": {
+        "minecraft:root": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_sacral",
+      "predicate": {
+        "minecraft:sacral": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_solar",
+      "predicate": {
+        "minecraft:solar": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_third_eye",
+      "predicate": {
+        "minecraft:third_eye": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_throat",
+      "predicate": {
         "minecraft:throat": 1.0
       }
     },
     {
-      "model": "chakral:item/necklace/golden_necklace_throat",
+      "model": "chakral:item/golden_necklace_crown",
       "predicate": {
-        "minecraft:crown": 1.0,
-        "minecraft:heart": 1.0,
-        "minecraft:root": 1.0,
-        "minecraft:sacral": 1.0,
-        "minecraft:solar": 1.0,
-        "minecraft:third_eye": 1.0,
+        "minecraft:crown": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_heart",
+      "predicate": {
+        "minecraft:heart": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_root",
+      "predicate": {
+        "minecraft:root": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_sacral",
+      "predicate": {
+        "minecraft:sacral": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_solar",
+      "predicate": {
+        "minecraft:solar": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_third_eye",
+      "predicate": {
+        "minecraft:third_eye": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_throat",
+      "predicate": {
         "minecraft:throat": 1.0
       }
     },
     {
-      "model": "chakral:item/necklace/golden_necklace_throat",
+      "model": "chakral:item/golden_necklace_crown",
       "predicate": {
-        "minecraft:crown": 1.0,
-        "minecraft:heart": 1.0,
-        "minecraft:root": 1.0,
-        "minecraft:sacral": 1.0,
-        "minecraft:solar": 1.0,
-        "minecraft:third_eye": 1.0,
+        "minecraft:crown": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_heart",
+      "predicate": {
+        "minecraft:heart": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_root",
+      "predicate": {
+        "minecraft:root": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_sacral",
+      "predicate": {
+        "minecraft:sacral": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_solar",
+      "predicate": {
+        "minecraft:solar": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_third_eye",
+      "predicate": {
+        "minecraft:third_eye": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_throat",
+      "predicate": {
         "minecraft:throat": 1.0
       }
     },
     {
-      "model": "chakral:item/necklace/golden_necklace_throat",
+      "model": "chakral:item/golden_necklace_crown",
       "predicate": {
-        "minecraft:crown": 1.0,
-        "minecraft:heart": 1.0,
-        "minecraft:root": 1.0,
-        "minecraft:sacral": 1.0,
-        "minecraft:solar": 1.0,
-        "minecraft:third_eye": 1.0,
+        "minecraft:crown": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_heart",
+      "predicate": {
+        "minecraft:heart": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_root",
+      "predicate": {
+        "minecraft:root": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_sacral",
+      "predicate": {
+        "minecraft:sacral": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_solar",
+      "predicate": {
+        "minecraft:solar": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_third_eye",
+      "predicate": {
+        "minecraft:third_eye": 1.0
+      }
+    },
+    {
+      "model": "chakral:item/golden_necklace_throat",
+      "predicate": {
         "minecraft:throat": 1.0
       }
     }

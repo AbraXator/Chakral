@@ -7,11 +7,17 @@ import net.AbraXator.chakral.entity.DwiderEntity;
 import net.AbraXator.chakral.entity.DwiderModel;
 import net.AbraXator.chakral.entity.DwiderRenderer;
 import net.AbraXator.chakral.entity.ModEntities;
+import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.items.custom.Gem;
+import net.AbraXator.chakral.items.custom.GoldenNecklace;
+import net.AbraXator.chakral.items.custom.NecklaceItem;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
 import net.AbraXator.chakral.utils.KeyBindings;
+import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.InputEvent;
@@ -56,7 +62,11 @@ public final class ClientEvents {
     }
 
     @SubscribeEvent
-    public static void entityRenderers(EntityRenderersEvent.RegisterRenderers event){
+    public static void entityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntities.DWIDER.get(), DwiderRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void colorEvent(RegisterColorHandlersEvent.Item event){
     }
 }

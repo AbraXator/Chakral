@@ -1,4 +1,4 @@
-package net.AbraXator.chakral.chakra.capability;
+package net.AbraXator.chakral.capability;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class NecklaceCapProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-    public static Capability<NecklaceCap> NECKLACE = CapabilityManager.get(new CapabilityToken<NecklaceCap>() {});
+    public static Capability<NecklaceCap> NECKLACE_CAP = CapabilityManager.get(new CapabilityToken<NecklaceCap>() {});
 
     private NecklaceCap necklaceCap = null;
     private final LazyOptional<NecklaceCap> optional = LazyOptional.of(this::createNecklaceCap);
@@ -26,7 +26,7 @@ public class NecklaceCapProvider implements ICapabilityProvider, INBTSerializabl
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if(cap == NECKLACE){
+        if(cap == NECKLACE_CAP){
             return optional.cast();
         }
         return LazyOptional.empty();

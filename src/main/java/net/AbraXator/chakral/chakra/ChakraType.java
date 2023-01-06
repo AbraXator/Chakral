@@ -13,21 +13,23 @@ import org.jetbrains.annotations.NotNull;
 
 //TODO: change some chakra names
 public enum ChakraType implements StringRepresentable {
-    CROWN("crown", ModTags.Items.CROWN),
-    THIRD_EYE("third_eye", ModTags.Items.THIRD_EYE),
-    THROAT("throat", ModTags.Items.THROAT),
-    HEART("heart", ModTags.Items.HEART),
-    SOLAR("solar", ModTags.Items.SOLAR),
-    SACRAL("sacral", ModTags.Items.SACRAL),
-    ROOT("root", ModTags.Items.ROOT);
+    CROWN("crown", ModTags.Items.CROWN, 1),
+    THIRD_EYE("third_eye", ModTags.Items.THIRD_EYE, 2),
+    THROAT("throat", ModTags.Items.THROAT, 3),
+    HEART("heart", ModTags.Items.HEART, 4),
+    SOLAR("solar", ModTags.Items.SOLAR, 5),
+    SACRAL("sacral", ModTags.Items.SACRAL, 6),
+    ROOT("root", ModTags.Items.ROOT, 7);
 
-    ChakraType(String name, TagKey<Item> tagKey){
+    ChakraType(String name, TagKey<Item> tagKey, int index){
         this.name = name;
         this.tagKey = tagKey;
+        this.index = index;
     }
 
     private String name;
     private TagKey<Item> tagKey;
+    private int index;
 
     @Override
     public @NotNull String getSerializedName() {
@@ -36,6 +38,10 @@ public enum ChakraType implements StringRepresentable {
 
     public TagKey<Item> getTagKey() {
         return this.tagKey;
+    }
+
+    public int getIndex(){
+        return index;
     }
 
     public Item getTier4(ChakraType type){
