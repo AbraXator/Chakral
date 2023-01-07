@@ -101,49 +101,8 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                 NecklaceSlotterUtil.onTake(NecklaceSlotterMenu.this.necklaceSlot.getItem(0), ModItems.GOLDEN_NECKLACE.get(), "Stone1");
             }
         });
-        //slot 3 - stone1 diamond necklace
+        //slot 3 - weakened stone diamond necklace
         this.addSlot(new Slot(this.necklaceSlot, 2, 71, 50){
-            @Override
-            public boolean mayPlace(ItemStack stone){
-                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).contains(stone.getItem())
-                        && NecklaceSlotterMenu.this.getSlot(0).hasItem();
-            }
-
-            @Override
-            public boolean isActive() {
-                return NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get());
-            }
-
-            @Override
-            public void setChanged() {
-                ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(2);
-                ItemStack necklace = NecklaceSlotterMenu.this.necklaceSlot.getItem(0);
-                ITag<Item> faintItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT);
-                if(necklace.is(ModItems.DIAMOND_NECKLACE.get())){
-                    if(faintItems.contains(stone.getItem())){
-                        CompoundTag nbt = necklace.getOrCreateTag();
-                        nbt.put("Stone1", stone.serializeNBT());
-                        necklace.setTag(nbt);
-                    }
-                }
-            }
-
-            @Override
-            public int getMaxStackSize() {
-                return 1;
-            }
-
-            @Override
-            public void onTake(Player pPlayer, ItemStack pStack) {
-                if (NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get())) {
-                    ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
-                    necklace.addTagElement("Stone1", ItemStack.EMPTY.serializeNBT());
-                }
-            }
-        });
-
-        //slot 4 - stone2 diamond necklace
-        this.addSlot(new Slot(this.necklaceSlot, 3, 89, 50){
             @Override
             public boolean mayPlace(ItemStack stone){
                 return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED).contains(stone.getItem())
@@ -157,7 +116,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
 
             @Override
             public void setChanged() {
-                ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(3);
+                ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(2);
                 ItemStack necklace = NecklaceSlotterMenu.this.necklaceSlot.getItem(0);
                 ITag<Item> weakenedItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED);
                 if(necklace.is(ModItems.DIAMOND_NECKLACE.get())){
@@ -179,6 +138,46 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                 if (NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get())) {
                     ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
                     necklace.addTagElement("Stone2", ItemStack.EMPTY.serializeNBT());
+                }
+            }
+        });
+        //slot 4 - faint stone diamond necklace
+        this.addSlot(new Slot(this.necklaceSlot, 3, 89, 50){
+            @Override
+            public boolean mayPlace(ItemStack stone){
+                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).contains(stone.getItem())
+                        && NecklaceSlotterMenu.this.getSlot(0).hasItem();
+            }
+
+            @Override
+            public boolean isActive() {
+                return NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get());
+            }
+
+            @Override
+            public void setChanged() {
+                ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(3);
+                ItemStack necklace = NecklaceSlotterMenu.this.necklaceSlot.getItem(0);
+                ITag<Item> faintItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT);
+                if(necklace.is(ModItems.DIAMOND_NECKLACE.get())){
+                    if(faintItems.contains(stone.getItem())){
+                        CompoundTag nbt = necklace.getOrCreateTag();
+                        nbt.put("Stone1", stone.serializeNBT());
+                        necklace.setTag(nbt);
+                    }
+                }
+            }
+
+            @Override
+            public int getMaxStackSize() {
+                return 1;
+            }
+
+            @Override
+            public void onTake(Player pPlayer, ItemStack pStack) {
+                if (NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get())) {
+                    ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
+                    necklace.addTagElement("Stone1", ItemStack.EMPTY.serializeNBT());
                 }
             }
         });

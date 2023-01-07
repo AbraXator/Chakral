@@ -44,7 +44,7 @@ public class NecklaceC2SPacket {
             }
             String finalName = name;
             Minecraft minecraft = Minecraft.getInstance();
-            NetworkHooks.openScreen(serverPlayer, new ModMenuProvider());
+            //NetworkHooks.openScreen(serverPlayer, new ModMenuProvider());
             player.getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
                 ItemStack necklace = necklaceCap.getNecklace();
                 ChakraRegistries.CHAKRA.getEntries().forEach(s -> s.get().necklace = necklace);
@@ -72,7 +72,6 @@ public class NecklaceC2SPacket {
                     necklaceCap.setNecklace(ItemStack.EMPTY);
                     ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
                         Chakra chakra = s.get();
-                        chakra.necklace = ItemStack.EMPTY;
                         boolean b = chakra.stones().contains(chakra.getType().getTier4(chakra.getType()));
                         if(chakra.isEnabled(chakra)) {
                             if (b) {
@@ -81,6 +80,7 @@ public class NecklaceC2SPacket {
                                 chakra.onUnequip(player, player.level);
                             }
                         }
+                        chakra.necklace = ItemStack.EMPTY;
                     });
                 }
             });

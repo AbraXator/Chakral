@@ -1,10 +1,7 @@
 package net.AbraXator.chakral.chakra;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.chakra.chakras.AmazoniteChakra;
-import net.AbraXator.chakral.chakra.chakras.AmethystQuartzChakra;
-import net.AbraXator.chakral.chakra.chakras.GarnetSpessartineChakra;
-import net.AbraXator.chakral.chakra.chakras.MoonstoneChakra;
+import net.AbraXator.chakral.chakra.chakras.*;
 import net.AbraXator.chakral.items.ModItems;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
@@ -17,6 +14,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.*;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Supplier;
 
 public class Chakras {
@@ -29,10 +27,11 @@ public class Chakras {
         Chakras chakras = null;
     }
 
-    public static final RegistryObject<Chakra> AMAZONITE = ChakraRegistries.CHAKRA.register("amazonite", () -> new AmazoniteChakra(ModItems.AMAZONITE.get(), ChakraType.HEART));
-    public static final RegistryObject<Chakra> AMETHYST_QUARTZ = ChakraRegistries.CHAKRA.register("amethyst_quartz", () -> new AmethystQuartzChakra(ModItems.AMETHYST_QUARTZ.get(), ChakraType.HEART));
+    public static final RegistryObject<Chakra> AMAZONITE =          ChakraRegistries.CHAKRA.register("amazonite", () -> new AmazoniteChakra(ModItems.AMAZONITE.get(), ChakraType.HEART));
+    public static final RegistryObject<Chakra> HAG_STONE =          ChakraRegistries.CHAKRA.register("hag_stone", () -> new HagStone(ModItems.HAG_STONE.get(), ChakraType.HEART, UUID.randomUUID()));
+    public static final RegistryObject<Chakra> AMETHYST_QUARTZ =    ChakraRegistries.CHAKRA.register("amethyst_quartz", () -> new AmethystQuartzChakra(ModItems.AMETHYST_QUARTZ.get(), ChakraType.HEART));
     public static final RegistryObject<Chakra> GARNET_SPESSARTINE = ChakraRegistries.CHAKRA.register("garnet_spessartine", () -> new GarnetSpessartineChakra(ModItems.GARNET_SPESSARTINE.get(), ChakraType.SACRAL));
-    public static final RegistryObject<Chakra> MOON_STONE = ChakraRegistries.CHAKRA.register("moon_stone", () -> new MoonstoneChakra(ModItems.MOON_STONE.get(), ChakraType.CROWN));
+    public static final RegistryObject<Chakra> MOON_STONE =         ChakraRegistries.CHAKRA.register("moon_stone", () -> new MoonstoneChakra(ModItems.MOON_STONE.get(), ChakraType.CROWN));
 
 
     private static void tick(TickEvent.PlayerTickEvent event){

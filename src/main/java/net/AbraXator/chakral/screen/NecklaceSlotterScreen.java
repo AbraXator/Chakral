@@ -34,15 +34,13 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        Item stone = this.menu.necklaceSlot.getItem(1).getItem();
-        if(this.menu.isDiamond){
-            diamondScreen(stone, pPoseStack, x, y, pMouseX, pMouseY);
+        Item goldenStone1 = this.menu.necklaceSlot.getItem(1).getItem();
+        Item diamondStone1 = this.menu.necklaceSlot.getItem(2).getItem();
+        Item diamondStone2 = this.menu.necklaceSlot.getItem(3).getItem();
+        if(!this.menu.isDiamond){
+            goldenScreen(goldenStone1, pPoseStack, x, y, pMouseX, pMouseY);
         }else {
-            goldenScreen(stone, pPoseStack, x, y, pMouseX, pMouseY);
-        }
-
-        if(this.menu.isDiamond) {
-
+            diamondScreen(diamondStone1, diamondStone2, pPoseStack, x, y, pMouseX, pMouseY);
         }
     }
 
@@ -56,7 +54,7 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         renderBackground(pPoseStack, x, y);
 
         //SVĚTÝLKA
-        this.blit(pPoseStack, x + 70, y + 40, 220, vOffset(stone) * 29 , 36, 29);
+        this.blit(pPoseStack, x + 70, y + 40, 220, vOffset(stone) * 29 + 2 , 36, 29);
 
         //BUTTON
         if(isMouseAboveArea(pMouseX, pMouseY, x, y, 141, 13, 18, 18)){
@@ -64,12 +62,13 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         }
     }
 
-    public void diamondScreen(Item stone, PoseStack pPoseStack, int x, int y, int pMouseX, int pMouseY){
+    public void diamondScreen(Item stone1, Item stone2, PoseStack pPoseStack, int x, int y, int pMouseX, int pMouseY){
         RenderSystem.setShaderTexture(0, TEXTURE_DIAMOND);
         renderBackground(pPoseStack, x, y);
 
         //SVĚTÝLKA
-        //this.blit(pPoseStack, x + 70, y + 40, 220, vOffset(stone) * 29 , 36, 29);
+        this.blit(pPoseStack, x + 62, y + 45, 204, vOffset(stone1) * 30, 26, 30); //LEFT
+        this.blit(pPoseStack, x + 88, y + 45, 230, vOffset(stone2) * 30, 26, 30); //RIGHT
 
         //BUTTON
         if (isMouseAboveArea(pMouseX, pMouseY, x, y, 17, 13, 18, 18)) {

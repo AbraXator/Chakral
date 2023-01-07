@@ -16,7 +16,7 @@ public abstract class Chakra {
     public int cooldown;
     public int maxCooldown;
 
-    protected Chakra(Item stone, ChakraType type){
+    public Chakra(Item stone, ChakraType type){
         this.stone = stone;
         this.type = type;
     }
