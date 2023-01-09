@@ -1,11 +1,9 @@
 package net.AbraXator.chakral.blocks.custom;
 
-import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.blocks.entity.custom.NecklaceSlotterBlockEntity;
-import net.AbraXator.chakral.screen.NecklaceSlotterMenu;
+import net.AbraXator.chakral.screen.necklace.NecklaceSlotterMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -18,8 +16,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;

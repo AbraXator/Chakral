@@ -1,13 +1,12 @@
-package net.AbraXator.chakral.screen;
+package net.AbraXator.chakral.screen.necklace;
 
-import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.chakra.ChakraStrenght;
 import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.screen.ModMenuTypes;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -18,7 +17,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +44,11 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.necklaceSlot, 0, 80, 22) {
             @Override
             public boolean mayPlace(ItemStack necklace) {
-                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.NECKLACES).contains(necklace.getItem());
+                if(isDiamond){
+                    return necklace.is(ModItems.DIAMOND_NECKLACE.get());
+                }else {
+                    return necklace.is(ModItems.GOLDEN_NECKLACE.get());
+                }
             }
 
             @Override

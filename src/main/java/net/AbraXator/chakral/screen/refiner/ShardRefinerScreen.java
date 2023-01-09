@@ -1,4 +1,4 @@
-package net.AbraXator.chakral.screen;
+package net.AbraXator.chakral.screen.refiner;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;

@@ -1,17 +1,14 @@
-package net.AbraXator.chakral.screen;
+package net.AbraXator.chakral.screen.necklace;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraType;
-import net.AbraXator.chakral.utils.ModTags;
 import net.AbraXator.chakral.utils.MouseUtil;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;

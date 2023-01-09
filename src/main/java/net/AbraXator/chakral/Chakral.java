@@ -10,7 +10,10 @@ import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.recipes.ModRecipes;
 import net.AbraXator.chakral.screen.*;
-import net.AbraXator.chakral.screen.necklace.NecklaceScreen;
+import net.AbraXator.chakral.screen.enricher.MineralEnricherScreen;
+import net.AbraXator.chakral.screen.necklace.NecklaceInserterScreen;
+import net.AbraXator.chakral.screen.refiner.ShardRefinerScreen;
+import net.AbraXator.chakral.screen.necklace.NecklaceSlotterScreen;
 import net.AbraXator.chakral.utils.ModItemProperties;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.level.block.Blocks;
@@ -62,7 +65,6 @@ public class Chakral {
         MenuScreens.register(ModMenuTypes.NECKLACE_INSERTER_MENU.get(), NecklaceInserterScreen::new);
         MenuScreens.register(ModMenuTypes.SHARD_REFINER_MENU.get(), ShardRefinerScreen::new);
         MenuScreens.register(ModMenuTypes.MINERAL_ENRICHER_MENU.get(), MineralEnricherScreen::new);
-        MenuScreens.register(ModMenuTypes.NECKLACE_MENU.get(), NecklaceScreen::new);
         ModItemProperties.addCustomProperties();
     }
 

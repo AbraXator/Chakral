@@ -27,7 +27,7 @@ public class MineralEnricherRenderer implements BlockEntityRenderer<MineralEnric
         ItemStack itemStack = pBlockEntity.buddingGen(pBlockEntity.itemHandler.getStackInSlot(2)).asItem().getDefaultInstance();
         pPoseStack.pushPose();
         pPoseStack.translate(0.5f, 0.325f, 0.5f);
-        pPoseStack.scale(1.2f, 1.2f, 1.2f);
+        pPoseStack.scale(1.3f, 1.3f, 1.3f);
         itemRenderer.renderStatic(itemStack, ItemTransforms.TransformType.FIXED, 15728880,
                 pPackedOverlay, pPoseStack, pBufferSource, 1);
         pPoseStack.popPose();

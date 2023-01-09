@@ -1,4 +1,4 @@
-package net.AbraXator.chakral.screen;
+package net.AbraXator.chakral.screen.enricher;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -58,28 +58,29 @@ public class MineralEnricherScreen extends AbstractContainerScreen<MineralEnrich
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
         int j = menu.data.get(2);
         int k = menu.getDust();
+
          switch (j){
-            case 1 -> this.blit(pPoseStack, x + 72, y + 38, 200, 0, 24, 24);
-            case 2 -> this.blit(pPoseStack, x + 72, y + 38, 200, 24, 24, 24);
-            case 3 -> this.blit(pPoseStack, x + 72, y + 38, 200, 48, 24, 24);
-            case 4 -> this.blit(pPoseStack, x + 72, y + 38, 200, 72, 24, 24);
-            case 5 -> this.blit(pPoseStack, x + 72, y + 38, 200, 96, 24, 24);
-            case 6 -> this.blit(pPoseStack, x + 72, y + 38, 200, 120, 24, 24);
-            case 7 -> this.blit(pPoseStack, x + 72, y + 38, 200, 144, 24, 24);
-            case 8 -> this.blit(pPoseStack, x + 72, y + 38, 200, 168, 24, 24);
-            case 9 -> this.blit(pPoseStack, x + 72, y + 38, 200, 192, 24, 24);
-            case 10 -> this.blit(pPoseStack, x + 72, y + 38, 200, 216, 24, 24);
+            case 1 -> this.blit(pPoseStack, x + 77, y + 38, 200, 0, 24, 24);
+            case 2 -> this.blit(pPoseStack, x + 77, y + 38, 200, 24, 24, 24);
+            case 3 -> this.blit(pPoseStack, x + 77, y + 38, 200, 48, 24, 24);
+            case 4 -> this.blit(pPoseStack, x + 77, y + 38, 200, 72, 24, 24);
+            case 5 -> this.blit(pPoseStack, x + 77, y + 38, 200, 96, 24, 24);
+            case 6 -> this.blit(pPoseStack, x + 77, y + 38, 200, 120, 24, 24);
+            case 7 -> this.blit(pPoseStack, x + 77, y + 38, 200, 144, 24, 24);
+            case 8 -> this.blit(pPoseStack, x + 77, y + 38, 200, 168, 24, 24);
+            case 9 -> this.blit(pPoseStack, x + 77, y + 38, 200, 192, 24, 24);
+            case 10 -> this.blit(pPoseStack, x + 77, y + 38, 200, 216, 24, 24);
         }
         switch (k){
-             case 1 -> this.blit(pPoseStack, x + 95, y + 41, 176, 42, 3, 6);
-             case 2 -> this.blit(pPoseStack, x + 95, y + 39, 176, 31, 5, 8);
-             case 3 -> this.blit(pPoseStack, x + 95, y + 37, 176, 18, 7, 10);
-             case 4 -> this.blit(pPoseStack, x + 95, y + 35, 176, 4, 10, 12);
+             case 1 -> this.blit(pPoseStack, x + 100, y + 41, 176, 42, 3, 6);
+             case 2 -> this.blit(pPoseStack, x + 100, y + 39, 176, 31, 5, 8);
+             case 3 -> this.blit(pPoseStack, x + 100, y + 37, 176, 18, 7, 10);
+             case 4 -> this.blit(pPoseStack, x + 100, y + 35, 176, 4, 10, 12);
         }
         if(menu.hasWater()){
-            this.blit(pPoseStack, x + 79, y + 24, 176, 0, 12, 4);
+            this.blit(pPoseStack, x + 86, y + 24, 176, 0, 12, 4);
         }
-        renderer.render(pPoseStack, x + 21, y + 29, menu.getFluidStack());
+        renderer.render(pPoseStack, x + 24, y + 29, menu.getFluidStack());
     }
 
     @Override

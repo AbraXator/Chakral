@@ -3,7 +3,7 @@ package net.AbraXator.chakral.blocks.entity.custom;
 import net.AbraXator.chakral.blocks.custom.ShardRefinerBlock;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.items.ModItems;
-import net.AbraXator.chakral.screen.ShardRefinerMenu;
+import net.AbraXator.chakral.screen.refiner.ShardRefinerMenu;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

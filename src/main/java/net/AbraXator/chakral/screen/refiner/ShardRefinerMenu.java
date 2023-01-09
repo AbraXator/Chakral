@@ -1,7 +1,8 @@
-package net.AbraXator.chakral.screen;
+package net.AbraXator.chakral.screen.refiner;
 
 import net.AbraXator.chakral.blocks.ModBlocks;
-import net.AbraXator.chakral.blocks.entity.custom.MineralEnricherBlockEntity;
+import net.AbraXator.chakral.blocks.entity.custom.ShardRefinerBlockEntity;
+import net.AbraXator.chakral.screen.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -10,54 +11,60 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class MineralEnricherMenu extends AbstractContainerMenu {
-    public final MineralEnricherBlockEntity blockEntity;
+public class ShardRefinerMenu extends AbstractContainerMenu {
+    public final ShardRefinerBlockEntity blockEntity;
     private final Level level;
     public final ContainerData data;
-    private FluidStack fluidStack;
 
-    public MineralEnricherMenu(int pContainerId, Inventory inv, FriendlyByteBuf friendlyByteBuf) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(friendlyByteBuf.readBlockPos()), new SimpleContainerData(3));
+    public ShardRefinerMenu(int pContainerId, Inventory inv, FriendlyByteBuf friendlyByteBuf) {
+        this(pContainerId, inv, inv.player.level.getBlockEntity(friendlyByteBuf.readBlockPos()), new SimpleContainerData(6));
     }
 
-    public MineralEnricherMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.MINERAL_ENRICHER_MENU.get(), pContainerId);
+    public ShardRefinerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+        super(ModMenuTypes.SHARD_REFINER_MENU.get(), pContainerId);
         checkContainerSize(inv,3);
-        blockEntity = ((MineralEnricherBlockEntity) entity);
+        blockEntity = ((ShardRefinerBlockEntity) entity);
         level = inv.player.level;
         this.data = data;
-        this.fluidStack = this.blockEntity.getFluidStack();
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 21, 12)); //-BUCKET
-            this.addSlot(new SlotItemHandler(handler, 1, 130, 12)); // -DUST
-            this.addSlot(new SlotItemHandler(handler, 2, 130, 53)); //-MINERAL
+            this.addSlot(new SlotItemHandler(handler, 0, 26, 10));
+            this.addSlot(new SlotItemHandler(handler, 1, 80, 35));
+            this.addSlot(new SlotItemHandler(handler, 2, 134, 35));
         });
 
         addDataSlots(data);
     }
 
-
-    public void setFluid(FluidStack fluidStack) {
-        this.fluidStack = fluidStack;
+    public boolean isCrafting(){
+        return data.get(1)>0;
     }
 
-    public FluidStack getFluidStack(){
-        return fluidStack;
+    public int getScaledProgress() {
+        int progress = this.data.get(1);
+        int maxProgress = 66;  // Max Progress
+        int progressArrowSize = 22; // This is the height in pixels of your arrow
+
+        return progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
-    public boolean hasWater() {
-        return  !getFluidStack().isEmpty();
-    }
-
-    public int getDust(){
-        return blockEntity.getDustAmount();
+    public int dataToInt(){
+        int chakraTypeData = this.data.get(2);
+        return switch (chakraTypeData){
+            case 1 -> 14;
+            case 2 -> 31;
+            case 3 -> 48;
+            case 4 -> 65;
+            case 5 -> 82;
+            case 6 -> 99;
+            case 7 -> 116;
+            default -> 0;
+        };
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
@@ -76,7 +83,7 @@ public class MineralEnricherMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
@@ -114,7 +121,7 @@ public class MineralEnricherMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.MINERAL_ENRICHER.get());
+                pPlayer, ModBlocks.SHARD_REFINER.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
