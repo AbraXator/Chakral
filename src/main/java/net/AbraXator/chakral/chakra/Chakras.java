@@ -1,6 +1,7 @@
 package net.AbraXator.chakral.chakra;
 
 import net.AbraXator.chakral.Chakral;
+import net.AbraXator.chakral.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.chakra.chakras.*;
 import net.AbraXator.chakral.items.ModItems;
 import net.minecraft.core.Registry;
@@ -38,6 +39,9 @@ public class Chakras {
         if(event.phase == TickEvent.Phase.END){
             ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
                 Chakra chakra = s.get();
+                event.player.getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
+                    chakra.necklace = necklaceCap.getNecklace();
+                });
                 if(chakra.isEnabled(chakra)){
                     chakra.tick(event.player, event.player.level);
                 }

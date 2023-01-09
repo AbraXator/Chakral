@@ -33,7 +33,6 @@ public class NecklaceC2SPacket {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             Player player = context.getSender();
-            ServerPlayer serverPlayer = context.getSender();
             ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
             String name = "none";
             if (stack.is(ModItems.GOLDEN_NECKLACE.get())) {
@@ -47,16 +46,13 @@ public class NecklaceC2SPacket {
             //NetworkHooks.openScreen(serverPlayer, new ModMenuProvider());
             player.getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
                 ItemStack necklace = necklaceCap.getNecklace();
-                ChakraRegistries.CHAKRA.getEntries().forEach(s -> s.get().necklace = necklace);
                 if(necklaceCap.getNecklace().is(ItemStack.EMPTY.getItem()) && stack.is(ModTags.Items.NECKLACES)){
                     necklaceCap.setNecklace(stack);
                     player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
                     ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
                         Chakra chakra = s.get();
-                        chakra.necklace = stack;
-                        boolean b = chakra.stones().contains(chakra.getType().getTier4(chakra.getType()));
                         if(chakra.isEnabled(chakra)) {
-                            if (b) {
+                            if (chakra.isUpgraded(chakra.getType())) {
                                 chakra.onEquipUpgraded(player, player.level);
                             } else {
                                 chakra.onEquip(player, player.level);
@@ -64,24 +60,22 @@ public class NecklaceC2SPacket {
                         }
                     });
                 } else {
+                    ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
+                        Chakra chakra = s.get();
+                        if(chakra.isEnabled(chakra)) {
+                            if(chakra.isEnabled(chakra)) {
+                                chakra.onUnequipUpgraded(player, player.level);
+                            } else {
+                                chakra.onUnequip(player, player.level);
+                            }
+                        }
+                    });
                     if(player.getInventory().getFreeSlot() == -1){
                         player.drop(necklace, false);
                     }else {
                         player.addItem(necklace);
                     }
                     necklaceCap.setNecklace(ItemStack.EMPTY);
-                    ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
-                        Chakra chakra = s.get();
-                        boolean b = chakra.stones().contains(chakra.getType().getTier4(chakra.getType()));
-                        if(chakra.isEnabled(chakra)) {
-                            if (b) {
-                                chakra.onUnequipUpgraded(player, player.level);
-                            } else {
-                                chakra.onUnequip(player, player.level);
-                            }
-                        }
-                        chakra.necklace = ItemStack.EMPTY;
-                    });
                 }
             });
         });

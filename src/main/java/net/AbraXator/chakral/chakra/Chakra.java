@@ -66,7 +66,7 @@ public abstract class Chakra {
 
     public void onFunctionKeyPressUpgraded(Player player, Level level){}
 
-    boolean isUpgraded(ChakraType type){
+    public boolean isUpgraded(ChakraType type){
         return stones().contains(type.getTier4(type));
     }
 

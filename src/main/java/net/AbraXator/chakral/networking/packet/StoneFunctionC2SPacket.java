@@ -27,9 +27,8 @@ public class StoneFunctionC2SPacket {
         ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
             Chakra chakra = s.get();
             chakra.onFunctionKeyPress(player, player.level);
-            boolean b = chakra.stones().contains(chakra.getType().getTier4(chakra.getType()));
             if(chakra.isEnabled(chakra)) {
-                if (b) {
+                if (chakra.isUpgraded(chakra.getType())) {
                     chakra.onFunctionKeyPressUpgraded(player, player.level);
                 } else {
                     chakra.onFunctionKeyPress(player, player.level);
