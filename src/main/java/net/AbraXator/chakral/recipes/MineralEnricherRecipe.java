@@ -1,7 +1,9 @@
 package net.AbraXator.chakral.recipes;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.JsonOps;
 import net.AbraXator.chakral.Chakral;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
@@ -12,26 +14,29 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Arrays;
 
 public class MineralEnricherRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
-    private final ItemStack dust;
-    private final int dustAmount;
+    private final Ingredient input;
     private final ItemStack output;
-    private final ItemStack input;
+    private final ItemStack dust;
+    private final FluidStack fluidStack;
 
-    public MineralEnricherRecipe(ResourceLocation id, ItemStack dust, int dustAmount, ItemStack output, ItemStack input){
+    public MineralEnricherRecipe(ResourceLocation id, Ingredient input, ItemStack output, ItemStack dust, FluidStack fluidStack){
         this.id = id;
-        this.dust = dust;
-        this.dustAmount = dustAmount;
-        this.output = output;
         this.input = input;
+        this.output = output;
+        this.dust = dust;
+        this.fluidStack = fluidStack;
     }
 
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
-        return false;
+        return Arrays.stream(input.getItems()).toList().get(0).is(pContainer.getItem(2).getItem());
     }
 
     @Override
@@ -45,20 +50,20 @@ public class MineralEnricherRecipe implements Recipe<SimpleContainer> {
     }
 
     public ItemStack getInput(){
-        return input.copy();
-    }
-
-    public ItemStack getDust(){
-        return dust.copy();
-    }
-
-    public int getDustAmount(){
-        return dustAmount;
+        return input.getItems()[1].copy();
     }
 
     @Override
     public ItemStack getResultItem() {
         return output.copy();
+    }
+
+    public ItemStack getDust() {
+        return dust.copy();
+    }
+
+    public FluidStack getFluidStack() {
+        return fluidStack.copy();
     }
 
     @Override
@@ -85,33 +90,38 @@ public class MineralEnricherRecipe implements Recipe<SimpleContainer> {
     public static class Serializer implements RecipeSerializer<MineralEnricherRecipe>{
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID =
-                new ResourceLocation(Chakral.MOD_ID, "mineral_enriching");
+                new ResourceLocation(Chakral.MOD_ID, "enriching");
 
         @Override
         public MineralEnricherRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
-            ItemStack input = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "input   "));
-            ItemStack dust = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "dust"));
-            int dustAmount = GsonHelper.getAsInt(pSerializedRecipe, "dustAmount");
+            Ingredient input = Ingredient.fromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "input"));
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
+            ItemStack dust = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "dust"));
+            FluidStack fluidStack = fluidFromJson(pSerializedRecipe.get("fluid").getAsJsonObject());
 
-            return new MineralEnricherRecipe(pRecipeId, dust, dustAmount, output, input);
+            return new MineralEnricherRecipe(pRecipeId, input, output, dust, fluidStack);
         }
 
         @Override
         public @Nullable MineralEnricherRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf buf) {
-            ItemStack input = buf.readItem();
-            ItemStack dust = buf.readItem();
-            int dustAmount = buf.readInt();
+            Ingredient input = Ingredient.fromNetwork(buf);
             ItemStack output = buf.readItem();
-            return new MineralEnricherRecipe(pRecipeId, dust, dustAmount, output, input);
+            ItemStack dust = buf.readItem();
+            FluidStack fluidStack = buf.readFluidStack();
+            return new MineralEnricherRecipe(pRecipeId, input, output, dust, fluidStack);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, MineralEnricherRecipe pRecipe) {
+            pRecipe.input.toNetwork(buf);
             buf.writeItemStack(pRecipe.getInput(), false);
-            buf.writeItemStack(pRecipe.getDust(), false);
-            buf.writeInt(pRecipe.getDustAmount());
             buf.writeItemStack(pRecipe.getResultItem(), false);
+            buf.writeItemStack(pRecipe.getDust(), false);
+            buf.writeFluidStack(pRecipe.getFluidStack());
+        }
+
+        private FluidStack fluidFromJson(JsonObject jsonObject){
+            return FluidStack.CODEC.decode(JsonOps.INSTANCE, jsonObject).result().orElseThrow().getFirst();
         }
     }
 }

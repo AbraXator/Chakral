@@ -24,22 +24,24 @@ public class MineralEnricherRenderer implements BlockEntityRenderer<MineralEnric
     public void render(MineralEnricherBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         //--------------BLOCK-----------------
-        ItemStack itemStack = pBlockEntity.buddingGen(pBlockEntity.itemHandler.getStackInSlot(2)).asItem().getDefaultInstance();
-        pPoseStack.pushPose();
-        pPoseStack.translate(0.5f, 0.325f, 0.5f);
-        pPoseStack.scale(1.3f, 1.3f, 1.3f);
-        itemRenderer.renderStatic(itemStack, ItemTransforms.TransformType.FIXED, 15728880,
-                pPackedOverlay, pPoseStack, pBufferSource, 1);
-        pPoseStack.popPose();
+        if(pBlockEntity.generateRecipe(pBlockEntity).isPresent()) {
+            ItemStack itemStack = pBlockEntity.generateRecipe(pBlockEntity).get().getResultItem();
+            pPoseStack.pushPose();
+            pPoseStack.translate(0.5f, 0.325f, 0.5f);
+            pPoseStack.scale(1.3f, 1.3f, 1.3f);
+            itemRenderer.renderStatic(itemStack, ItemTransforms.TransformType.FIXED, 15728880,
+                    pPackedOverlay, pPoseStack, pBufferSource, 1);
+            pPoseStack.popPose();
+        }
         //---------------CRYSTAL--------------
-        ItemStack crystal = pBlockEntity.resultGen(pBlockEntity.itemHandler.getStackInSlot(2)).getFirst().asItem().getDefaultInstance();
+        /*ItemStack crystal = pBlockEntity.resultGen(pBlockEntity.itemHandler.getStackInSlot(2)).getFirst().asItem().getDefaultInstance();
         pPoseStack.pushPose();
         pPoseStack.translate(0.5f, 0.0f, 0.5f);
         float j = pBlockEntity.getScaledProgress(pBlockEntity);
         pPoseStack.scale(j, j, j);
         itemRenderer.renderStatic(crystal, ItemTransforms.TransformType.FIXED, 15728880,
                 pPackedOverlay, pPoseStack, pBufferSource, 1);
-        pPoseStack.popPose();
+        pPoseStack.popPose();*/
     }
 
      private int getLightLevel(Level level, BlockPos pos){

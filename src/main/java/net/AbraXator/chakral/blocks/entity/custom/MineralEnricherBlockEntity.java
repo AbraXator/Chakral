@@ -1,13 +1,13 @@
 package net.AbraXator.chakral.blocks.entity.custom;
 
-import com.mojang.datafixers.util.Pair;
-import net.AbraXator.chakral.blocks.ModBlocks;
+import net.AbraXator.chakral.blocks.custom.Crystal;
 import net.AbraXator.chakral.blocks.custom.MineralEnricherBlock;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.FluidSyncS2CPacket;
 import net.AbraXator.chakral.networking.packet.ItemStackSyncS2CPacket;
+import net.AbraXator.chakral.recipes.MineralEnricherRecipe;
 import net.AbraXator.chakral.screen.enricher.MineralEnricherMenu;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.core.BlockPos;
@@ -15,6 +15,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -35,8 +36,11 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvider {
     public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
@@ -112,7 +116,6 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
                 return switch (pIndex) {
                     case 0 -> entity.progress;
                     case 1 -> entity.maxProgress;
-                    case 2 -> entity.resultGen(entity.itemHandler.getStackInSlot(2)).getSecond();
                     default -> 0;
                 };
             }
@@ -127,7 +130,7 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
 
             @Override
             public int getCount() {
-                return 3;
+                return 2;
             }
         };
     }
@@ -216,10 +219,9 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
         if (level.isClientSide()) {
             return;
         }else {
-            //updateRecipe(entity);
             ModMessages.sendToClients(new ItemStackSyncS2CPacket(entity.itemHandler, entity.getBlockPos()));
              entity.updateDust(entity.getDust());
-            if (hasRecipe(entity)) {
+            if (hasRecipe(entity) && canPlace(entity)) {
                 entity.progress++;
                 setChanged(level, pos, state);
                 if (entity.progress >= entity.maxProgress) {
@@ -235,94 +237,51 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
         }
     }
 
-    public Pair<Block, Integer> resultGen(ItemStack mineral){
-        if(mineral.is(ModBlocks.TRUE_WHITE_MINERAL.get().asItem())){
-            return new Pair<>(ModBlocks.TRUE_WHITE_CRYSTAL.get(), 1);
-        }
-        if(mineral.is(ModBlocks.WHITE_MINERAL.get().asItem())){
-            return new Pair<>(ModBlocks.WHITE_CRYSTAL.get(), 2);
-        }
-        if(mineral.is(ModBlocks.BLACK_MINERAL.get().asItem())){
-            return new Pair<>(ModBlocks.BLACK_CRYSTAL.get(), 3);
-        }
-        if(mineral.is(ModBlocks.RED_MINERAL.get().asItem())){
-            return new Pair<>(ModBlocks.RED_CRYSTAL.get(), 4);
-        }
-        if(mineral.is(ModBlocks.ORANGE_MINERAL.get().asItem())){
-            return new Pair<>(ModBlocks.ORANGE_CRYSTAL.get(), 5);
-        }
-        if(mineral.is(ModBlocks.YELLOW_MINERAL.get().asItem())){
-            return new Pair<>(ModBlocks.YELLOW_CRYSTAL.get(), 6);
-        }
-        if(mineral.is(ModBlocks.GREEN_MINERAL.get().asItem())){
-            return new Pair<>(ModBlocks.GREEN_CRYSTAL.get(), 7);
-        }
-        if(mineral.is(ModBlocks.LIGHT_BLUE_MINERAL.get().asItem())){
-            return new Pair<>(ModBlocks.LIGHT_BLUE_CRYSTAL.get(), 8);
-        }
-        if(mineral.is(ModBlocks.BLUE_MINERAL.get().asItem())){
-            return new Pair<>(ModBlocks.BLACK_CRYSTAL.get(), 9);
-        }
-        if(mineral.is(Blocks.AMETHYST_BLOCK.asItem())){
-            return new Pair<>(Blocks.AMETHYST_CLUSTER, 10);
-        }
-        return new Pair<>(Blocks.AIR, 0);
-    }
-
-    public Block buddingGen(ItemStack mineral){
-        if(mineral.is(ModBlocks.TRUE_WHITE_MINERAL.get().asItem())){
-            return ModBlocks.TRUE_WHITE_MINERAL.get();
-        }
-        if(mineral.is(ModBlocks.WHITE_MINERAL.get().asItem())){
-            return ModBlocks.BUDDING_WHITE_MINERAL.get();
-        }
-        if(mineral.is(ModBlocks.BLACK_MINERAL.get().asItem())){
-            return ModBlocks.BUDDING_BLACK_MINERAL.get();
-        }
-        if(mineral.is(ModBlocks.RED_MINERAL.get().asItem())){
-            return ModBlocks.BUDDING_RED_MINERAL.get();
-        }
-        if(mineral.is(ModBlocks.ORANGE_MINERAL.get().asItem())){
-            return ModBlocks.BUDDING_ORANGE_MINERAL.get();
-        }
-        if(mineral.is(ModBlocks.YELLOW_MINERAL.get().asItem())){
-            return ModBlocks.BUDDING_YELLOW_MINERAL.get();
-        }
-        if(mineral.is(ModBlocks.GREEN_MINERAL.get().asItem())){
-            return ModBlocks.BUDDING_GREEN_MINERAL.get();
-        }
-        if(mineral.is(ModBlocks.LIGHT_BLUE_MINERAL.get().asItem())){
-            return ModBlocks.BUDDING_LIGHT_BLUE_MINERAL.get();
-        }
-        if(mineral.is(ModBlocks.BLUE_MINERAL.get().asItem())){
-            return ModBlocks.BUDDING_BLUE_MINERAL.get();
-        }
-        if(mineral.is(Blocks.AMETHYST_BLOCK.asItem())){
-            return Blocks.BUDDING_AMETHYST;
-        }
-        return Blocks.AIR;
-    }
-
     private static void craftItem(MineralEnricherBlockEntity entity) {
         Level level = entity.level;
+        Optional<MineralEnricherRecipe> recipe = generateRecipe(entity);
         BlockPos pos = entity.getBlockPos();
         BlockPos crystalPos = new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ());
-        BlockState state = entity.resultGen(entity.itemHandler.getStackInSlot(2)).getFirst().defaultBlockState();
-        if (hasRecipe(entity) && level.getBlockState(crystalPos).is(ModTags.Blocks.AIR) && hasEnoughFluid(entity)) {
+        BlockState state = crystalGen(recipe);
+        if (state.is(ModTags.Blocks.CRYSTALS)) {
+            level.setBlock(crystalPos, state.setValue(BlockStateProperties.FACING, Direction.DOWN).setValue(Crystal.WATERLOGGED, level.getBlockState(crystalPos).is(Blocks.WATER)), 2);
             entity.itemHandler.extractItem(1, 16, false);
-            level.setBlock(crystalPos, state.setValue(BlockStateProperties.FACING, Direction.DOWN), 2);
-            entity.fluidTank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+            entity.fluidTank.drain(recipe.get().getFluidStack().getAmount(), IFluidHandler.FluidAction.EXECUTE);
             entity.resetProgress();
         }
     }
 
-    private static boolean hasEnoughFluid(MineralEnricherBlockEntity entity) {
-        return entity.fluidTank.getFluidAmount() >= 100;
+    private static boolean hasRecipe(MineralEnricherBlockEntity entity) {
+        Optional<MineralEnricherRecipe> recipe = generateRecipe(entity);
+
+        return recipe.isPresent()
+                && entity.fluidTank.getFluid().isFluidEqual(recipe.get().getFluidStack())
+                && entity.fluidTank.getFluidAmount() >= recipe.get().getFluidStack().getAmount()
+                && entity.getDust() >= recipe.get().getDust().getCount();
     }
 
-    private static boolean hasRecipe(MineralEnricherBlockEntity entity) {
-        //return entity.getDust() >= 16;
-        return !entity.itemHandler.getStackInSlot(2).isEmpty();
+    private static boolean canPlace(MineralEnricherBlockEntity entity){
+        Level level = entity.level;
+        BlockPos pos = entity.getBlockPos();
+        BlockPos crystalPos = new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ());
+        return level.getBlockState(crystalPos).is(ModTags.Blocks.AIR) || level.getBlockState(crystalPos).is(Blocks.WATER);
+    }
+
+    private static BlockState crystalGen(Optional<MineralEnricherRecipe> recipe){
+        for (Block block : ForgeRegistries.BLOCKS.tags().getTag(ModTags.Blocks.CRYSTALS)) {
+            if (block.asItem().equals(recipe.get().getResultItem().getItem())) {
+                return block.defaultBlockState();
+            }
+        }
+        return Blocks.AIR.defaultBlockState();
+    }
+
+    public static Optional<MineralEnricherRecipe> generateRecipe(MineralEnricherBlockEntity entity){
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+        }
+        return entity.level.getRecipeManager().getRecipeFor(MineralEnricherRecipe.Type.INSTANCE, inventory, entity.level);
     }
 
     private static void transferItemFluidToFluidTank(MineralEnricherBlockEntity entity){
@@ -353,14 +312,6 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
     public int getDust(){
         return this.itemHandler.getStackInSlot(1).getCount();
     }
-
-    //public static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack stack){
-    //    return inventory.getItem(2).isEmpty();
-    //}
-
-    //public static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory){
-    //    return 1 == inventory.getItem(2).getCount();
-    //}
 
     @Override
     public Component getDisplayName() {
