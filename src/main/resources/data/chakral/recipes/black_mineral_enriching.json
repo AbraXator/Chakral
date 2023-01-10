@@ -1,10 +1,10 @@
 {
   "type": "chakral:enriching",
   "input": {
-    "item": "chakral:red_mineral"
+    "item": "chakral:black_mineral"
   },
   "output": {
-    "item": "chakral:red_crystal"
+    "item": "chakral:black_crystal"
   },
   "dust": {
     "item": "chakral:shard_dust",

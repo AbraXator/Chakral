@@ -287,12 +287,12 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
         }
     }
 
-    public boolean isAbleToChangeStates(){
+    public boolean isAbleToChange(){
         List<Boolean> list = new ArrayList<>();
-        for (int i = 0; i < this.slots.size(); i++) {
-            list.add(this.slots.get(i).hasItem());
+        for(Slot slot : slots){
+            list.add(!slot.hasItem());
         }
-        return !list.contains(true);
+        return list.contains(true);
     }
 
     @Override

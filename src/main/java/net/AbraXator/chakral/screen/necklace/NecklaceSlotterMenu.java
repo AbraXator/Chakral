@@ -18,9 +18,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class NecklaceSlotterMenu extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
     private final Level level;
@@ -194,12 +191,11 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
         }
     }
 
-    public boolean isAbleToChangeStates(){
-        List<Boolean> list = new ArrayList<>();
-        for (int i = 0; i < this.slots.size(); i++) {
-            list.add(this.slots.get(i).hasItem());
+    public boolean isAbleToChange(){
+        for(int i = 0; i <= this.necklaceSlot.getContainerSize(); i++){
+            if(this.necklaceSlot.isEmpty());
         }
-        return !list.contains(true);
+        return false;
     }
 
     @Override

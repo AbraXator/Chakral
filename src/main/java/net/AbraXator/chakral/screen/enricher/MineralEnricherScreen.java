@@ -80,7 +80,7 @@ public class MineralEnricherScreen extends AbstractContainerScreen<MineralEnrich
         if(menu.hasWater()){
             this.blit(pPoseStack, x + 86, y + 24, 176, 0, 12, 4);
         }
-        renderer.render(pPoseStack, x + 24, y + 29, menu.getFluidStack());
+        renderer.render(pPoseStack, x + 26, y + 29, menu.getFluidStack());
     }
 
     @Override

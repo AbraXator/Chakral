@@ -27,6 +27,7 @@ public class ShardRefinerScreen extends AbstractContainerScreen<ShardRefinerMenu
         int y = (height - imageHeight) / 2;
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
         int i = this.menu.data.get(0);
+        int k = this.menu.data.get(3);
         if(i == 15 || i == 14 || i == 13){
             this.blit(pPoseStack, x + 15, y + 33, 219, 0, 36, 36);
         }
@@ -45,6 +46,14 @@ public class ShardRefinerScreen extends AbstractContainerScreen<ShardRefinerMenu
         if(this.menu.isCrafting()){
             int j = this.menu.dataToInt();
             this.blit(pPoseStack, x + 106, y + 36, 177, j, menu.getScaledProgress(), 16);
+        }
+        switch (this.menu.data.get(3)){
+            //case 0 -> this.blit(pPoseStack,  x + 133, x + 16, 0, 166, 36, 54);
+            //case 1 -> this.blit(pPoseStack,  x + 133, x + 16, 36, 166, 36, 54);
+            //case 2 -> this.blit(pPoseStack,  x + 133, x + 16, 74, 166, 36, 54);
+            case 0 -> this.blit(pPoseStack,  x + 133, x + 16, 0, 0, 36, 54);
+            case 1 -> this.blit(pPoseStack,  x + 133, x + 16, 0, 0, 36, 54);
+            case 2 -> this.blit(pPoseStack,  x + 133, x + 16, 0, 0, 36, 54);
         }
     }
 

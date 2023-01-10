@@ -64,17 +64,22 @@ public class NecklaceInserterScreen extends AbstractContainerScreen<NecklaceInse
     public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
         final int x = (width - imageWidth) / 2;
         final int y = (height - imageHeight) / 2;
-        if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 140, 11, 20, 20)){
-            this.menu.isRainbow = true;
-        }
-        if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 16, 11, 20, 20)){
-            this.menu.isRainbow = false;
+        if(menu.isAbleToChange()){
+            if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 140, 11, 20, 20)){
+                this.menu.isRainbow = true;
+            }
+            if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 16, 11, 20, 20)){
+                this.menu.isRainbow = false;
+            }
         }
         return super.mouseClicked(pMouseX, pMouseY, pButton);
     }
 
     private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
-        return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
+        if(menu.container.isEmpty()) {
+            return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
+        }
+        return false;
     }
 
     @Override

@@ -1,17 +1,17 @@
 {
   "type": "chakral:enriching",
   "input": {
-    "item": "chakral:red_mineral"
+    "item": "chakral:true_white_mineral"
   },
   "output": {
-    "item": "chakral:red_crystal"
+    "item": "chakral:true_white_crystal"
   },
   "dust": {
     "item": "chakral:shard_dust",
-    "count": 8
+    "count": 16
   },
   "fluid": {
     "FluidName": "minecraft:water",
-    "Amount": 500
+    "Amount": 1000
   }
 }

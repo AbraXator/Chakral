@@ -1,10 +1,10 @@
 {
   "type": "chakral:enriching",
   "input": {
-    "item": "chakral:red_mineral"
+    "item": "minecraft:amethyst_block"
   },
   "output": {
-    "item": "chakral:red_crystal"
+    "item": "minecraft:amethyst_cluster"
   },
   "dust": {
     "item": "chakral:shard_dust",
