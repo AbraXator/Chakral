@@ -39,7 +39,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
     public int progress;
     //public int maxProgress = 66;
     public int maxProgress = 66;
-    private final ItemStackHandler itemHandler = new ItemStackHandler(3) {
+    private final ItemStackHandler itemHandler = new ItemStackHandler(8) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -50,7 +50,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
             return switch (slot) {
                 case 0 -> stack.is(Items.DIAMOND);
                 case 1 -> ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SHARDS).stream().toList().contains(stack.getItem());
-                case 2 -> true;
+                case 2, 3, 4, 5, 6, 7 -> true;
                 default -> super.isItemValid(slot, stack);
             };
         }

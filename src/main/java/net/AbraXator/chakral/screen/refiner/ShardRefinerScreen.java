@@ -48,12 +48,9 @@ public class ShardRefinerScreen extends AbstractContainerScreen<ShardRefinerMenu
             this.blit(pPoseStack, x + 106, y + 36, 177, j, menu.getScaledProgress(), 16);
         }
         switch (this.menu.data.get(3)){
-            //case 0 -> this.blit(pPoseStack,  x + 133, x + 16, 0, 166, 36, 54);
-            //case 1 -> this.blit(pPoseStack,  x + 133, x + 16, 36, 166, 36, 54);
-            //case 2 -> this.blit(pPoseStack,  x + 133, x + 16, 74, 166, 36, 54);
-            case 0 -> this.blit(pPoseStack,  x + 133, x + 16, 0, 0, 36, 54);
-            case 1 -> this.blit(pPoseStack,  x + 133, x + 16, 0, 0, 36, 54);
-            case 2 -> this.blit(pPoseStack,  x + 133, x + 16, 0, 0, 36, 54);
+            case 0 -> this.blit(pPoseStack,  x + 133, y + 16, 0, 166, 36, 54);
+            case 1 -> this.blit(pPoseStack,  x + 133, y + 16, 36, 166, 36, 54);
+            case 2 -> this.blit(pPoseStack,  x + 133, y + 16, 74, 166, 36, 54);
         }
     }
 
