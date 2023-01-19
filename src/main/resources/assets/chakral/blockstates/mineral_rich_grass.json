@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "snowy=false": [
+      {
+        "model": "chakral:block/mineral_rich_grass"
+      },
+      {
+        "model": "chakral:block/mineral_rich_grass",
+        "y": 90
+      },
+      {
+        "model": "chakral:block/mineral_rich_grass",
+        "y": 180
+      },
+      {
+        "model": "chakral:block/mineral_rich_grass",
+        "y": 270
+      }
+    ],
+    "snowy=true": {
+      "model": "chakral:block/mineral_rich_grass_snow"
+    }
+  }
+}
