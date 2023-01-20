@@ -2,15 +2,17 @@ package net.AbraXator.chakral.chakra.chakras;
 
 import net.AbraXator.chakral.capability.AdditionalHealthCapProvider;
 import net.AbraXator.chakral.chakra.Chakra;
+import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
+import net.AbraXator.chakral.items.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 
 public class AmazoniteChakra extends Chakra {
-    public AmazoniteChakra(Item stone, ChakraType type) {
-        super(stone, type);
+    public AmazoniteChakra() {
+        super(ModItems.AMAZONITE.get(), ChakraType.HEART, ChakraStrength.FAINT);
     }
 
     @Override

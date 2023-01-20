@@ -12,13 +12,15 @@ import java.util.List;
 public abstract class Chakra {
     public final Item stone;
     public final ChakraType type;
+    public final ChakraStrength strenght;
     public ItemStack necklace;
     public int cooldown;
     public int maxCooldown;
 
-    public Chakra(Item stone, ChakraType type){
+    public Chakra(Item stone, ChakraType type, ChakraStrength chakraStrength){
         this.stone = stone;
         this.type = type;
+        this.strenght = chakraStrength;
     }
 
     public Item getItem(){

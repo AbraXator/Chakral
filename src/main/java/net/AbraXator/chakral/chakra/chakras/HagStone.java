@@ -1,7 +1,9 @@
 package net.AbraXator.chakral.chakra.chakras;
 
 import net.AbraXator.chakral.chakra.Chakra;
+import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
+import net.AbraXator.chakral.items.ModItems;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
@@ -20,8 +22,8 @@ import java.util.UUID;
 public class HagStone extends Chakra {
     UUID uuid;
 
-    public HagStone(Item stone, ChakraType type, UUID uuid) {
-        super(stone, type);
+    public HagStone(UUID uuid) {
+        super(ModItems.HAG_STONE.get(), ChakraType.THIRD_EYE, ChakraStrength.FAINT);
         this.uuid = uuid;
     }
 

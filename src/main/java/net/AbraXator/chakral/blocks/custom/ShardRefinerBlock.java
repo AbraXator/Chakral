@@ -1,14 +1,10 @@
 package net.AbraXator.chakral.blocks.custom;
 
-import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.blocks.entity.custom.ShardRefinerBlockEntity;
-import net.AbraXator.chakral.chakra.ChakraStrenght;
-import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -26,22 +22,20 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
-import net.minecraft.world.level.chunk.UpgradeData;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 public class ShardRefinerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final EnumProperty<ChakraStrenght> TIER = EnumProperty.create("tier", ChakraStrenght.class);
+    public static final EnumProperty<ChakraStrength> TIER = EnumProperty.create("tier", ChakraStrength.class);
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
 
     public ShardRefinerBlock(BlockBehaviour.Properties p_49224_) {
         super(p_49224_);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(TIER, ChakraStrenght.FAINT));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(TIER, ChakraStrength.FAINT));
     }
 
     public VoxelShape getOcclusionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
@@ -66,7 +60,7 @@ public class ShardRefinerBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(TIER, ChakraStrenght.FAINT);
+        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(TIER, ChakraStrength.FAINT);
     }
 
     @Override
@@ -115,14 +109,14 @@ public class ShardRefinerBlock extends BaseEntityBlock {
         return InteractionResult.SUCCESS;
     }
 
-    public void upgrade(ChakraStrenght strength, Level level, BlockPos pos, BlockState state){
+    public void upgrade(ChakraStrength strength, Level level, BlockPos pos, BlockState state){
         level.setBlock(pos, state.setValue(TIER, strength), 3);
         if(level.getBlockEntity(pos) instanceof ShardRefinerBlockEntity entity){
             entity.upgradeTier(intTier(strength));
         }
     }
 
-    public int intTier(ChakraStrenght strenght){
+    public int intTier(ChakraStrength strenght){
         return switch (strenght){
             case FAINT -> 0;
             case WEAKENED -> 1;
@@ -131,7 +125,7 @@ public class ShardRefinerBlock extends BaseEntityBlock {
         };
     }
 
-    public ChakraStrenght getTier(BlockState state){
+    public ChakraStrength getTier(BlockState state){
          return state.getValue(TIER);
     }
 

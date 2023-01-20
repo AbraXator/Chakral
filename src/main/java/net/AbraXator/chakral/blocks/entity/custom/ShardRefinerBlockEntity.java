@@ -3,6 +3,8 @@ package net.AbraXator.chakral.blocks.entity.custom;
 import net.AbraXator.chakral.blocks.custom.ShardRefinerBlock;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.recipes.MineralEnricherRecipe;
+import net.AbraXator.chakral.recipes.ShardRefinerRecipe;
 import net.AbraXator.chakral.screen.refiner.ShardRefinerMenu;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.core.BlockPos;
@@ -50,7 +52,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
             return switch (slot) {
                 case 0 -> stack.is(Items.DIAMOND);
                 case 1 -> ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.SHARDS).stream().toList().contains(stack.getItem());
-                case 2, 3, 4, 5, 6, 7 -> true;
+                case 2, 3, 4, 5, 6, 7, 8 -> true;
                 default -> super.isItemValid(slot, stack);
             };
         }
@@ -191,7 +193,8 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
     }
 
     public static void loadFuel(ShardRefinerBlockEntity entity) {
-        if (entity.itemHandler.getStackInSlot(0).is(Items.DIAMOND) && entity.data.get(0) == 0) {
+        ShardRefinerRecipe recipe = generateRecipe(entity).get();
+        if (entity.itemHandler.getStackInSlot(0).is(recipe.getDiamond().getItem()) && entity.data.get(0) == 0) {
             entity.itemHandler.extractItem(0, 1, false);
             entity.data.set(0, 15);
         }
@@ -201,27 +204,12 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         return this.data.get(0) > 0;
     }
 
-    public static List<Item> getItemsBasedOnTier(int tier){
-        switch (tier){
-            case 1:
-                 return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).stream().toList();
-            case 2:
-                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED).stream().toList();
-            case 3:
-                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.POWERFUL).stream().toList();
-            case 4:
-                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.ENLIGHTENED).stream().toList();
-            default:
-                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.GEMS).stream().toList();
-        }
-    }
-
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, ShardRefinerBlockEntity pBlockEntity) {
         if(pLevel.isClientSide){
             return;
         }
-        loadFuel(pBlockEntity);
         if(hasRecipe(pBlockEntity)){
+            loadFuel(pBlockEntity);
             pBlockEntity.progress++;
             if(pBlockEntity.progress >= pBlockEntity.maxProgress){
                 craftItem(pBlockEntity);
@@ -241,80 +229,31 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         }
     }
 
-    public ItemStack resultHelper(ItemStack shard, List<Item> possibleResults){
-        Random random = new Random();
-        ItemStack helperResult = ItemStack.EMPTY;
-        ItemStack result = ItemStack.EMPTY;
-        ItemStack SHARD_DUST = ModItems.SHARD_DUST.get().getDefaultInstance();
-        if(shard.is(Items.AMETHYST_SHARD)) {
-            helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
-            result = helperResult.is(ModTags.Items.CROWN) ? helperResult : SHARD_DUST;
-        }
-        if(shard.is(ModItems.BLUE_SHARD.get())) {
-            helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
-            result = helperResult.is(ModTags.Items.THIRD_EYE) ? helperResult : SHARD_DUST;
-        }
-        if(shard.is(ModItems.LIGHT_BLUE_SHARD.get())) {
-            helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
-            result = helperResult.is(ModTags.Items.THROAT) ? helperResult : SHARD_DUST;
-        }
-        if(shard.is(ModItems.GREEN_SHARD.get())) {
-            helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
-            result = helperResult.is(ModTags.Items.HEART) ? helperResult : SHARD_DUST;
-        }
-        if(shard.is(ModItems.YELLOW_SHARD.get())) {
-            helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
-            result = helperResult.is(ModTags.Items.SOLAR) ? helperResult : SHARD_DUST;
-        }
-        if(shard.is(ModItems.ORANGE_SHARD.get())) {
-            helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
-            result = helperResult.is(ModTags.Items.SACRAL) ? helperResult : SHARD_DUST;
-        }
-        if(shard.is(ModItems.RED_SHARD.get())) {
-            helperResult = possibleResults.get(random.nextInt(possibleResults.size())).getDefaultInstance();
-            result = helperResult.is(ModTags.Items.ROOT) ? helperResult : SHARD_DUST;
-        }
-        return result;
-    }
-
     public static void craftItem(ShardRefinerBlockEntity entity) {
         ItemStack shard = entity.itemHandler.getStackInSlot(1);
         List<Item> possibleResults = new ArrayList<>();
         ItemStack result = ItemStack.EMPTY;
-        int tier = entity.tier;
-        if(hasRecipe(entity)) {
-            switch (tier) {
-                case 0:
-                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).stream().toList());
-                    result = entity.resultHelper(shard, possibleResults);
-                case 1:
-                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).stream().toList());
-                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED).stream().toList());
-                    result = entity.resultHelper(shard, possibleResults);
-                case 2:
-                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).stream().toList());
-                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED).stream().toList());
-                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.POWERFUL).stream().toList());
-                    result = entity.resultHelper(shard, possibleResults);
-                case 3:
-                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).stream().toList());
-                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED).stream().toList());
-                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.POWERFUL).stream().toList());
-                    possibleResults.addAll(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.ENLIGHTENED).stream().toList());
-                    result = entity.resultHelper(shard, possibleResults);
-            }
-            entity.itemHandler.extractItem(1, 1, false);
-            entity.itemHandler.setStackInSlot(2, new ItemStack(result.getItem(), entity.itemHandler.getStackInSlot(2).getCount() + 1));
-            entity.resetProgress();
-            --entity.diamondCharge;
-        }
+        int tierForCrafting = entity.tier + 1;
+        ShardRefinerRecipe recipe = generateRecipe(entity).get();
+
+        entity.itemHandler.extractItem(1, 1, false);
+        entity.itemHandler.setStackInSlot(recipe.getRandomStone(tierForCrafting) + 4,
+                new ItemStack(recipe.getResultItem().getItem(),
+                entity.itemHandler.getStackInSlot(recipe.getRandomStone(tierForCrafting)).getCount() + 1));
+        entity.resetProgress();
+        --entity.diamondCharge;
     }
 
     public static boolean hasRecipe(ShardRefinerBlockEntity entity){
-        ItemStack stack = entity.itemHandler.getStackInSlot(1);
-        boolean shardPresent = stack.is(ModTags.Items.SHARDS);
+        return entity.isCharged() && generateRecipe(entity).isPresent();
+    }
 
-        return entity.isCharged() && shardPresent;
+    public static Optional<ShardRefinerRecipe> generateRecipe(ShardRefinerBlockEntity entity){
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+        }
+        return entity.level.getRecipeManager().getRecipeFor(ShardRefinerRecipe.Type.INSTANCE, inventory, entity.level);
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack stack) {

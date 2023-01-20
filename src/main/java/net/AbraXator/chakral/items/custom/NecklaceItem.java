@@ -1,17 +1,10 @@
 package net.AbraXator.chakral.items.custom;
 
-import net.AbraXator.chakral.chakra.ChakraStrenght;
-import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.KeyBindings;
-import net.AbraXator.chakral.utils.ModItemProperties;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -19,8 +12,6 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.function.UnaryOperator;
-import java.util.stream.Stream;
 
 public abstract class NecklaceItem extends Item {
     public NecklaceItem(Properties pProperties) {

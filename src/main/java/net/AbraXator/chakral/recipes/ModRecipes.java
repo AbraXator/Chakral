@@ -24,6 +24,8 @@ public class ModRecipes {
 
     public static final RegistryObject<RecipeSerializer<MineralEnricherRecipe>> MINERAL_ENRICHER_RECIPE =
             SERIALIZERS.register("enriching", () -> MineralEnricherRecipe.Serializer.INSTANCE);
+        public static final RegistryObject<RecipeSerializer<ShardRefinerRecipe>> SHARD_REFINER_RECIPE =
+            SERIALIZERS.register("refining", () -> ShardRefinerRecipe.Serializer.INSTANCE);
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

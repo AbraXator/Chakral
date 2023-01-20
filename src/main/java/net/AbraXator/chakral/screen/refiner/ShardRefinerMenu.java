@@ -35,42 +35,12 @@ public class ShardRefinerMenu extends AbstractContainerMenu {
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new SlotItemHandler(handler, 0, 26 , 15));     //DIAMOND
             this.addSlot(new SlotItemHandler(handler, 1, 80 , 35));     //SHARD
-            this.addSlot(new SlotItemHandler(handler, 2, 152, 35){
-                @Override
-                public boolean isActive() {
-                    return data.get(3) >= 0;
-                }
-            }); //DUST_1
-            this.addSlot(new SlotItemHandler(handler, 3, 134, 53){
-                @Override
-                public boolean isActive() {
-                    return data.get(3) >= 2;
-                }
-            }); //DUST_2
-            this.addSlot(new SlotItemHandler(handler, 4, 152, 53){
-                @Override
-                public boolean isActive() {
-                    return data.get(3) >= 0;
-                }
-            }); //FAINT
-            this.addSlot(new SlotItemHandler(handler, 5, 152, 17){
-                @Override
-                public boolean isActive() {
-                    return data.get(3) >= 1;
-                }
-            }); //WEAKENED
-            this.addSlot(new SlotItemHandler(handler, 6, 134, 53){
-                @Override
-                public boolean isActive() {
-                    return data.get(3) >= 2;
-                }
-            }); //POWERFUL
-            this.addSlot(new SlotItemHandler(handler, 7, 134, 17){
-                @Override
-                public boolean isActive() {
-                    return data.get(3) >= 3;
-                }
-            }); //WEAKENED
+            this.addSlot(new SlotItemHandler(handler, 2, 152, 35)); //DUST_1
+            this.addSlot(new ShardRefinerSlot(handler, 3, 134, 35, 2, data)); //DUST_2
+            this.addSlot(new ShardRefinerSlot(handler, 4, 152, 53, 0, data)); //FAINT
+            this.addSlot(new ShardRefinerSlot(handler, 5, 152, 17, 1, data)); //WEAKENED
+            this.addSlot(new ShardRefinerSlot(handler, 6, 134, 53, 2, data)); //POWERFUL
+            this.addSlot(new ShardRefinerSlot(handler, 7, 134, 17, 3, data)); //WEAKENED
         });
 
         addDataSlots(data);

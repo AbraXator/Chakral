@@ -13,17 +13,19 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Random;
+
 public class ShardRefinerRecipe implements Recipe<Container> {
     private final ResourceLocation id;
-    private final ItemStack output;
-    private final NonNullList<Ingredient> input;
-    private final int tier;
+    private final ItemStack diamond;
+    private final ItemStack shard;
+    private final NonNullList<ItemStack> stones;
 
-    public ShardRefinerRecipe(ResourceLocation id, ItemStack output1, NonNullList<Ingredient> input, int tier) {
+    public ShardRefinerRecipe(ResourceLocation id, ItemStack diamond, ItemStack shard, NonNullList<ItemStack> stones) {
         this.id = id;
-        this.output = output1;
-        this.input = input;
-        this.tier = tier;
+        this.diamond = diamond;
+        this.shard = shard;
+        this.stones = stones;
     }
 
 
@@ -32,16 +34,12 @@ public class ShardRefinerRecipe implements Recipe<Container> {
         if(pLevel.isClientSide()){
             return false;
         }
-        return input.get(0).test(pContainer.getItem(1));
-    }
-
-    public boolean matchesTier(int entityTier){
-        return entityTier == tier;
+        return pContainer.getItem(1).is(shard.getItem());
     }
 
     @Override
     public ItemStack assemble(Container pContainer) {
-        return output;
+        return stones.get(getRandomStone(getStones().size()));
     }
 
     @Override
@@ -49,17 +47,29 @@ public class ShardRefinerRecipe implements Recipe<Container> {
         return true;
     }
 
-    public NonNullList<Ingredient> getInputItem() {
-        return input;
+    public ItemStack getInputItem() {
+        return shard;
     }
 
     @Override
     public ItemStack getResultItem() {
-        return output.copy();
+        return stones.get(getRandomStone(getStones().size()));
     }
 
-    public int getTier() {
-        return tier;
+    public ItemStack getDiamond() {
+        return diamond;
+    }
+
+    public ItemStack getShard() {
+        return shard;
+    }
+
+    public NonNullList<ItemStack> getStones() {
+        return stones;
+    }
+
+    public int getRandomStone(int bound){
+        return new Random().nextInt(bound);
     }
 
     @Override
@@ -80,51 +90,46 @@ public class ShardRefinerRecipe implements Recipe<Container> {
     public static class Type implements RecipeType<ShardRefinerRecipe>{
         private Type(){}
         public static final Type INSTANCE = new Type();
-        public static final String ID = "shard_refining";
+        public static final String ID = "refining";
     }
 
     public static class Serializer implements RecipeSerializer<ShardRefinerRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID =
-                new ResourceLocation(Chakral.MOD_ID, "shard_refining");
+                new ResourceLocation(Chakral.MOD_ID, "refining");
 
         @Override
-        public ShardRefinerRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
-            JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
-            int tier = GsonHelper.getAsInt(pSerializedRecipe, "tier");
-            NonNullList<Ingredient> input = NonNullList.withSize(1, Ingredient.EMPTY);
-
-            for (int i = 0; i < input.size(); i++) {
-                input.set(i, Ingredient.fromJson(ingredients.get(i)));
+        public ShardRefinerRecipe fromJson(ResourceLocation pRecipeId, JsonObject pJsonObject) {
+            ItemStack diamondStack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pJsonObject, "diamond"));
+            ItemStack shardStack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pJsonObject, "shard"));
+            JsonArray stonesObject = GsonHelper.getAsJsonArray(pJsonObject, "stones");
+            NonNullList<ItemStack> stones = NonNullList.withSize(4, ItemStack.EMPTY);
+            for(int i = 0; i <=stonesObject.size(); i++){
+                JsonObject jsonObject = stonesObject.get(i).getAsJsonObject();
+                stones.add(ShapedRecipe.itemStackFromJson(jsonObject));
             }
-
-            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
-            return new ShardRefinerRecipe(pRecipeId, output, input, tier);
+            return new ShardRefinerRecipe(pRecipeId, diamondStack, shardStack, stones);
         }
 
         @Override
         public @Nullable ShardRefinerRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
-            int tier = buf.readInt();
-
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromNetwork(buf));
+            ItemStack diamond = buf.readItem();
+            ItemStack shard = buf.readItem();
+            NonNullList<ItemStack> stones = NonNullList.withSize(4, ItemStack.EMPTY);
+            for(int i = 0; i <= buf.readInt(); i++){
+                stones.add(buf.readItem());
             }
-
-            ItemStack output = buf.readItem();
-            return new ShardRefinerRecipe(id, output, inputs, tier);
+            return new ShardRefinerRecipe(id, diamond, shard, stones);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, ShardRefinerRecipe recipe) {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
-            int tier = recipe.tier;
-
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromNetwork(buf));
+            buf.writeItemStack(recipe.getDiamond(), false);
+            buf.writeItemStack(recipe.getShard(), false);
+            buf.writeInt(recipe.getStones().size());
+            for(ItemStack stack : recipe.getStones()){
+                buf.writeItemStack(stack, false);
             }
-
-            ItemStack output = buf.readItem();
         }
     }
 }

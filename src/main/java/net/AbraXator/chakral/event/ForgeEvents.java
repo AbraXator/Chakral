@@ -2,19 +2,26 @@ package net.AbraXator.chakral.event;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
+import net.AbraXator.chakral.blocks.custom.ShardRefinerBlock;
 import net.AbraXator.chakral.chakra.*;
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
+import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
+import net.AbraXator.chakral.utils.PlayerUtil;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.EnderManAngerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
@@ -34,6 +41,24 @@ public class ForgeEvents {
         Screen screen = event.getScreen();
         if(screen instanceof InventoryScreen inventoryScreen){
             //inventoryScreen.;
+        }
+    }
+
+    @SubscribeEvent
+    public static void refinerInteract(PlayerInteractEvent.LeftClickBlock event){
+        Level level = event.getEntity().level;
+        if(event.getHand().equals(InteractionHand.MAIN_HAND)
+                && level.getBlockState(event.getPos()).getBlock() instanceof ShardRefinerBlock block
+                && !event.getEntity().getItemInHand(event.getHand()).is(ModTags.Items.REFINER_KITS)){
+            Item kit = switch (block.getTier(level.getBlockState(event.getPos()))){
+                case FAINT -> ItemStack.EMPTY.getItem();
+                case WEAKENED -> ModItems.WEAK_REFINER_KIT.get();
+                case POWERFUL -> ModItems.POWERFUL_REFINER_KIT.get();
+                case ENLIGHTENED -> ModItems.ENGLIGHTENED_REFINER_KIT.get();
+            };
+            if(!kit.getDefaultInstance().is(ItemStack.EMPTY.getItem())){
+                PlayerUtil.addItemToInventory(event.getEntity(), kit.getDefaultInstance());
+            }
         }
     }
 

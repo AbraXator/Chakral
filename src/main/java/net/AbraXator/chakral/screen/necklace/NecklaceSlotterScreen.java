@@ -34,7 +34,7 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         Item goldenStone1 = this.menu.necklaceSlot.getItem(1).getItem();
         Item diamondStone1 = this.menu.necklaceSlot.getItem(2).getItem();
         Item diamondStone2 = this.menu.necklaceSlot.getItem(3).getItem();
-        if(!this.menu.isDiamond){
+        if(!NecklaceSlotterMenu.isDiamond){
             goldenScreen(goldenStone1, pPoseStack, x, y, pMouseX, pMouseY);
         }else {
             diamondScreen(diamondStone1, diamondStone2, pPoseStack, x, y, pMouseX, pMouseY);
@@ -94,10 +94,10 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         final int x = (width - imageWidth) / 2;
         final int y = (height - imageHeight) / 2;
         if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 141, 13, 18, 18)){
-            this.menu.isDiamond = true;
+            NecklaceSlotterMenu.isDiamond = true;
         }
         if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 17, 13, 18, 18)){
-            this.menu.isDiamond = false;
+            NecklaceSlotterMenu.isDiamond = false;
         }
         return super.mouseClicked(pMouseX, pMouseY, pButton);
     }

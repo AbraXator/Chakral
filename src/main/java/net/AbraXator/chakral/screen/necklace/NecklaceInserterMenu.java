@@ -1,7 +1,7 @@
 package net.AbraXator.chakral.screen.necklace;
 
 import net.AbraXator.chakral.blocks.ModBlocks;
-import net.AbraXator.chakral.chakra.ChakraStrenght;
+import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.screen.ModMenuTypes;
 import net.AbraXator.chakral.utils.ModTags;
@@ -91,7 +91,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.container, 1, 134, 72){
             @Override
             public boolean mayPlace(ItemStack stone){
-                return NecklaceSlotterUtil.mayPlace(ChakraStrenght.FAINT, stone);
+                return NecklaceSlotterUtil.mayPlace(ChakraStrength.FAINT, stone);
             }
 
             @Override
@@ -102,7 +102,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
             @Override
             public void setChanged() {
                 NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.container.getItem(1), NECKLACE,
-                        ModItems.NETHERITE_NECKLACE.get(), "Stone1", ChakraStrenght.FAINT);
+                        ModItems.NETHERITE_NECKLACE.get(), "Stone1", ChakraStrength.FAINT);
             }
             @Override
             public int getMaxStackSize() {
@@ -117,7 +117,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.container, 2, 26, 72){
             @Override
             public boolean mayPlace(ItemStack stone){
-                return NecklaceSlotterUtil.mayPlace(ChakraStrenght.WEAKENED, stone);
+                return NecklaceSlotterUtil.mayPlace(ChakraStrength.WEAKENED, stone);
             }
 
             @Override
@@ -128,7 +128,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
             @Override
             public void setChanged() {
                 NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.container.getItem(2), NECKLACE,
-                        ModItems.NETHERITE_NECKLACE.get(), "Stone2", ChakraStrenght.WEAKENED);
+                        ModItems.NETHERITE_NECKLACE.get(), "Stone2", ChakraStrength.WEAKENED);
             }
             @Override
             public int getMaxStackSize() {
@@ -144,7 +144,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.container, 3, 80, 90){
             @Override
             public boolean mayPlace(ItemStack stone){
-                return NecklaceSlotterUtil.mayPlace(ChakraStrenght.POWERFUL, stone);
+                return NecklaceSlotterUtil.mayPlace(ChakraStrength.POWERFUL, stone);
             }
 
             @Override
@@ -155,7 +155,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
             @Override
             public void setChanged() {
                 NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.container.getItem(3), NECKLACE,
-                        ModItems.NETHERITE_NECKLACE.get(), "Stone3", ChakraStrenght.POWERFUL);
+                        ModItems.NETHERITE_NECKLACE.get(), "Stone3", ChakraStrength.POWERFUL);
             }
             @Override
             public int getMaxStackSize() {
@@ -171,7 +171,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.container, 4, 134, 72){
             @Override
             public boolean mayPlace(ItemStack stone){
-                return NecklaceSlotterUtil.mayPlace(ChakraStrenght.FAINT, stone);
+                return NecklaceSlotterUtil.mayPlace(ChakraStrength.FAINT, stone);
             }
 
             @Override
@@ -182,7 +182,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
             @Override
             public void setChanged() {
                 NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.container.getItem(4), NECKLACE,
-                        ModItems.RAINBOW_NECKLACE.get(), "Stone1", ChakraStrenght.FAINT);
+                        ModItems.RAINBOW_NECKLACE.get(), "Stone1", ChakraStrength.FAINT);
             }
             @Override
             public int getMaxStackSize() {
@@ -198,7 +198,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.container, 5, 26, 72){
             @Override
             public boolean mayPlace(ItemStack stone){
-                return NecklaceSlotterUtil.mayPlace(ChakraStrenght.WEAKENED, stone);
+                return NecklaceSlotterUtil.mayPlace(ChakraStrength.WEAKENED, stone);
             }
 
             @Override
@@ -209,7 +209,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
             @Override
             public void setChanged() {
                 NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.container.getItem(5), NECKLACE,
-                        ModItems.RAINBOW_NECKLACE.get(), "Stone1", ChakraStrenght.WEAKENED);
+                        ModItems.RAINBOW_NECKLACE.get(), "Stone1", ChakraStrength.WEAKENED);
             }
             @Override
             public int getMaxStackSize() {
@@ -225,7 +225,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.container, 6, 89, 90){
             @Override
             public boolean mayPlace(ItemStack stone){
-                return NecklaceSlotterUtil.mayPlace(ChakraStrenght.POWERFUL, stone);
+                return NecklaceSlotterUtil.mayPlace(ChakraStrength.POWERFUL, stone);
             }
 
             @Override
@@ -236,7 +236,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
             @Override
             public void setChanged() {
                 NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.container.getItem(6), NECKLACE,
-                        ModItems.RAINBOW_NECKLACE.get(), "Stone1", ChakraStrenght.POWERFUL);
+                        ModItems.RAINBOW_NECKLACE.get(), "Stone1", ChakraStrength.POWERFUL);
             }
             @Override
             public int getMaxStackSize() {
@@ -252,7 +252,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.container, 7, 71, 90){
             @Override
             public boolean mayPlace(ItemStack stone){
-                return NecklaceSlotterUtil.mayPlace(ChakraStrenght.ENLIGHTENED, stone);
+                return NecklaceSlotterUtil.mayPlace(ChakraStrength.ENLIGHTENED, stone);
             }
 
             @Override
@@ -263,7 +263,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
             @Override
             public void setChanged() {
                 NecklaceSlotterUtil.setChanged(NecklaceInserterMenu.this.container.getItem(7), NECKLACE,
-                        ModItems.RAINBOW_NECKLACE.get(), "Stone4", ChakraStrenght.ENLIGHTENED);
+                        ModItems.RAINBOW_NECKLACE.get(), "Stone4", ChakraStrength.ENLIGHTENED);
             }
             @Override
             public int getMaxStackSize() {

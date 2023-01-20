@@ -1,8 +1,7 @@
 package net.AbraXator.chakral.items.custom;
 
-import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.custom.ShardRefinerBlock;
-import net.AbraXator.chakral.chakra.ChakraStrenght;
+import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -12,17 +11,12 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-
-import javax.swing.plaf.basic.BasicComboBoxUI;
 
 public class RefinerKit extends Item {
-    public ChakraStrenght chakraStrenght;
-    public RefinerKit(Properties pProperties, ChakraStrenght chakraStrenght) {
+    public ChakraStrength chakraStrength;
+    public RefinerKit(Properties pProperties, ChakraStrength chakraStrength) {
         super(pProperties);
-        this.chakraStrenght = chakraStrenght;
+        this.chakraStrength = chakraStrength;
     }
 
     @Override
@@ -34,8 +28,8 @@ public class RefinerKit extends Item {
         Player player = pContext.getPlayer();
         ItemStack stack = pContext.getItemInHand();
         if(block instanceof ShardRefinerBlock shardRefinerBlock && player.isShiftKeyDown()){
-            if(shardRefinerBlock.getTier(state) != chakraStrenght) {
-                shardRefinerBlock.upgrade(chakraStrenght, level, pos, state);
+            if(shardRefinerBlock.getTier(state) != chakraStrength) {
+                shardRefinerBlock.upgrade(chakraStrength, level, pos, state);
                 stack.shrink(1);
             }
         }

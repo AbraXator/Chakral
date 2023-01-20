@@ -7,7 +7,7 @@
       {
         "target": {
           "predicate_type": "minecraft:block_match",
-          "block": "chakral:black_mineral"
+          "block": "chakral:brownstone"
         },
         "state": {
           "Name": "chakral:yellow_mineral"

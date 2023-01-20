@@ -1,6 +1,6 @@
 package net.AbraXator.chakral.screen.necklace;
 
-import net.AbraXator.chakral.chakra.ChakraStrenght;
+import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -8,12 +8,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
 
 public class NecklaceSlotterUtil {
-    public static boolean mayPlace(ChakraStrenght strenght, ItemStack stack){
-        return ForgeRegistries.ITEMS.tags().getTag(ChakraStrenght.getTag(strenght)).contains(stack.getItem());
+    public static boolean mayPlace(ChakraStrength strenght, ItemStack stack){
+        return ForgeRegistries.ITEMS.tags().getTag(ChakraStrength.getTag(strenght)).contains(stack.getItem());
     }
 
-    public static final void setChanged(ItemStack stone, ItemStack necklace, Item wantedNecklace, String tagName, ChakraStrenght strenght){
-        ITag<Item> list = ForgeRegistries.ITEMS.tags().getTag(ChakraStrenght.getTag(strenght));
+    public static final void setChanged(ItemStack stone, ItemStack necklace, Item wantedNecklace, String tagName, ChakraStrength strenght){
+        ITag<Item> list = ForgeRegistries.ITEMS.tags().getTag(ChakraStrength.getTag(strenght));
         if(list.contains(stone.getItem()) && necklace.is(wantedNecklace)){
             CompoundTag nbt = necklace.getOrCreateTag();
             nbt.put(tagName, stone.serializeNBT());

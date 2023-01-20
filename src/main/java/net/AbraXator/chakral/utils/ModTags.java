@@ -47,6 +47,7 @@ public class ModTags {
         public static final TagKey<Item> NECKLACES_LOW = tag("necklaces_low");
         public static final TagKey<Item> NECKLACES_HIGH = tag("necklaces_high");
 
+        public static final TagKey<Item> REFINER_KITS = tag("refiner_kits");
 
         private static TagKey<Item> tag(String name){
             return ItemTags.create(new ResourceLocation(Chakral.MOD_ID, name));

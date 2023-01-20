@@ -1,6 +1,6 @@
 package net.AbraXator.chakral.screen;
 
-import net.AbraXator.chakral.chakra.ChakraStrenght;
+import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
@@ -11,16 +11,16 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
 
 public class StoneSlot extends Slot {
-    public ChakraStrenght strength;
+    public ChakraStrength strength;
     public ItemStack necklace;
     public ItemStack wantedNecklace;
     public ItemStack stone;
-    ITag<Item> list = ForgeRegistries.ITEMS.tags().getTag(ChakraStrenght.getTag(strength));
+    ITag<Item> list = ForgeRegistries.ITEMS.tags().getTag(ChakraStrength.getTag(strength));
     public StoneSlot(Container pContainer, int pIndex, int pX, int pY) {
         super(pContainer, pIndex, pX, pY);
     }
 
-    public void setValues(ChakraStrenght strength, ItemStack necklace, ItemStack wantedNecklace, ItemStack stone){
+    public void setValues(ChakraStrength strength, ItemStack necklace, ItemStack wantedNecklace, ItemStack stone){
         this.strength = strength;
         this.necklace = necklace;
         this.wantedNecklace = wantedNecklace;

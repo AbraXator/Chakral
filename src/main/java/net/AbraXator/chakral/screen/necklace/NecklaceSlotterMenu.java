@@ -1,7 +1,7 @@
 package net.AbraXator.chakral.screen.necklace;
 
 import net.AbraXator.chakral.blocks.ModBlocks;
-import net.AbraXator.chakral.chakra.ChakraStrenght;
+import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.screen.ModMenuTypes;
 import net.AbraXator.chakral.utils.ModTags;
@@ -21,7 +21,7 @@ import net.minecraftforge.registries.tags.ITag;
 public class NecklaceSlotterMenu extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
     private final Level level;
-    public boolean isDiamond;
+    public static boolean isDiamond;
     final Container necklaceSlot = new SimpleContainer(4) {
         public void setChanged() {
             super.setChanged();
@@ -78,7 +78,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.necklaceSlot, 1, 80, 46){
             @Override
             public boolean mayPlace(ItemStack stone){
-                return NecklaceSlotterUtil.mayPlace(ChakraStrenght.FAINT, stone);
+                return NecklaceSlotterUtil.mayPlace(ChakraStrength.FAINT, stone);
             }
 
             @Override
@@ -89,7 +89,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
             @Override
             public void setChanged() {
                 NecklaceSlotterUtil.setChanged(NecklaceSlotterMenu.this.necklaceSlot.getItem(1), NecklaceSlotterMenu.this.necklaceSlot.getItem(0),
-                        ModItems.GOLDEN_NECKLACE.get(), "Stone1", ChakraStrenght.FAINT);
+                        ModItems.GOLDEN_NECKLACE.get(), "Stone1", ChakraStrength.FAINT);
             }
             @Override
             public int getMaxStackSize() {
@@ -189,13 +189,6 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
         for(int k = 0; k < 9; ++k) {
             this.addSlot(new Slot(inv, k, 8 + k * 18, 142));
         }
-    }
-
-    public boolean isAbleToChange(){
-        for(int i = 0; i <= this.necklaceSlot.getContainerSize(); i++){
-            if(this.necklaceSlot.isEmpty());
-        }
-        return false;
     }
 
     @Override
