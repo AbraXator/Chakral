@@ -16,7 +16,7 @@ import net.minecraft.world.item.TooltipFlag;
 import java.util.Optional;
 
 public class MineralEnricherScreen extends AbstractContainerScreen<MineralEnricherMenu> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/mineral_enricher.png");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/mineral_enricher.png");
     private FluidTankRenderer renderer;
 
     public MineralEnricherScreen(MineralEnricherMenu pMenu, Inventory pPlayerInventory, Component pTitle) {

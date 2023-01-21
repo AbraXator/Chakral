@@ -60,7 +60,7 @@ public class Chakral {
         Chakras.registerEvents();
     }
 
-    private void clientSetup(final FMLClientSetupEvent event){
+    public void clientSetup(final FMLClientSetupEvent event){
         MenuScreens.register(ModMenuTypes.NECKLACE_SLOTTER_MENU.get(), NecklaceSlotterScreen::new);
         MenuScreens.register(ModMenuTypes.NECKLACE_INSERTER_MENU.get(), NecklaceInserterScreen::new);
         MenuScreens.register(ModMenuTypes.SHARD_REFINER_MENU.get(), ShardRefinerScreen::new);

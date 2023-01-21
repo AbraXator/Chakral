@@ -2,6 +2,7 @@ package net.AbraXator.chakral.items.custom;
 
 import net.AbraXator.chakral.blocks.custom.ShardRefinerBlock;
 import net.AbraXator.chakral.chakra.ChakraStrength;
+import net.AbraXator.chakral.chakra.ChakraType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -27,7 +28,7 @@ public class RefinerKit extends Item {
         Block block = state.getBlock();
         Player player = pContext.getPlayer();
         ItemStack stack = pContext.getItemInHand();
-        if(block instanceof ShardRefinerBlock shardRefinerBlock && player.isShiftKeyDown()){
+        if(block instanceof ShardRefinerBlock shardRefinerBlock && player.isShiftKeyDown() && shardRefinerBlock.getTier(level.getBlockState(pos)).equals(ChakraStrength.FAINT)){
             if(shardRefinerBlock.getTier(state) != chakraStrength) {
                 shardRefinerBlock.upgrade(chakraStrength, level, pos, state);
                 stack.shrink(1);

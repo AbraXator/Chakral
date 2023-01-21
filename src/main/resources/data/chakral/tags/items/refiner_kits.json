@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "chakral:weak_refiner_kit",
+    "chakral:powerful_refiner_kit",
+    "chakral:enlightened_refiner_kit"
+  ]
+}

@@ -129,6 +129,10 @@ public class ShardRefinerBlock extends BaseEntityBlock {
          return state.getValue(TIER);
     }
 
+    public void setTier(BlockState state, ChakraStrength tier){
+        state.setValue(TIER, tier);
+    }
+
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {

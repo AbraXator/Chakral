@@ -18,6 +18,8 @@ import net.AbraXator.chakral.items.custom.NecklaceItem;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
+import net.AbraXator.chakral.screen.ModMenuTypes;
+import net.AbraXator.chakral.screen.refiner.ShardRefinerScreen;
 import net.AbraXator.chakral.utils.KeyBindings;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.client.Minecraft;
@@ -45,6 +47,13 @@ public final class ClientEvents {
 
         public static void renderLevelLast(RenderLevelStageEvent event){
             if(event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_SOLID_BLOCKS)){
+            }
+        }
+
+        @SubscribeEvent
+        public static void onOpenScreen(ScreenEvent.Opening event){
+            if(event.getNewScreen() instanceof ShardRefinerScreen screen && (Minecraft.getInstance().player != null && Minecraft.getInstance().player.isShiftKeyDown())){
+                event.setCanceled(true);
             }
         }
     }

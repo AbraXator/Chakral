@@ -45,12 +45,14 @@ public class ForgeEvents {
     }
 
     @SubscribeEvent
-    public static void refinerInteract(PlayerInteractEvent.LeftClickBlock event){
+    public static void refinerInteract(PlayerInteractEvent.RightClickBlock event){
         Level level = event.getEntity().level;
+        BlockPos pos = event.getPos();
         if(event.getHand().equals(InteractionHand.MAIN_HAND)
-                && level.getBlockState(event.getPos()).getBlock() instanceof ShardRefinerBlock block
-                && !event.getEntity().getItemInHand(event.getHand()).is(ModTags.Items.REFINER_KITS)){
-            Item kit = switch (block.getTier(level.getBlockState(event.getPos()))){
+                && level.getBlockState(pos).getBlock() instanceof ShardRefinerBlock block
+                && !event.getEntity().getItemInHand(event.getHand()).is(ModTags.Items.REFINER_KITS)
+                && event.getEntity().isShiftKeyDown()){
+            Item kit = switch (block.getTier(level.getBlockState(pos))){
                 case FAINT -> ItemStack.EMPTY.getItem();
                 case WEAKENED -> ModItems.WEAK_REFINER_KIT.get();
                 case POWERFUL -> ModItems.POWERFUL_REFINER_KIT.get();
@@ -59,8 +61,11 @@ public class ForgeEvents {
             if(!kit.getDefaultInstance().is(ItemStack.EMPTY.getItem())){
                 PlayerUtil.addItemToInventory(event.getEntity(), kit.getDefaultInstance());
             }
+            level.setBlock(pos, level.getBlockState(pos).setValue(ShardRefinerBlock.TIER, ChakraStrength.FAINT), 3);
         }
     }
+
+
 
     //@SubscribeEvent
     //public static void BlockBreak(BlockEvent.BreakEvent event){

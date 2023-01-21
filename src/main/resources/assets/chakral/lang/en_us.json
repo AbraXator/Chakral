@@ -175,5 +175,7 @@
 
     "necklace.equip": "Equip the %s with %s",
 
-    "biome.chakral.mineral_caverns": "Mineral Caverns"
+    "biome.chakral.mineral_caverns": "Mineral Caverns",
+
+    "chakral.jei.recipe.shard_refining": "Mineral Enriching"
 }

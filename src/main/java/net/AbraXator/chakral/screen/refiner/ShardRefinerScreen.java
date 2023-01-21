@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class ShardRefinerScreen extends AbstractContainerScreen<ShardRefinerMenu> {
     //public static ItemStack itemStack = NecklaceSlotterBlockEntity.getStoneInSlot();
-    private static final ResourceLocation TEXTURE =
+    public static final ResourceLocation TEXTURE =
             new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/mineral_refiner.png");
 
     public ShardRefinerScreen(ShardRefinerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
