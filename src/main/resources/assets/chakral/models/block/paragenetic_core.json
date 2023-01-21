@@ -2,9 +2,9 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/cube_all",
 	"textures": {
-		"0": "chakral:block/paragenetic_core_enabled",
+		"0": "chakral:block/paragenetic_core_unpowered",
 		"1": "chakral:block/paragenetic_core_pillar",
-		"particle": "chakral:block/paragenetic_core"
+		"particle": "chakral:block/paragenetic_core_unpowered"
 	},
 	"elements": [
 		{

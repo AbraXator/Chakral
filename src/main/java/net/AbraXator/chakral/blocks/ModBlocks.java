@@ -48,6 +48,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> BLUE_MINERAL_BRICKS           = registerBlock("blue_mineral_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BLUE_MINERAL_BRICK_STAIRS     = registerBlock("blue_mineral_brick_stairs", () -> new StairBlock(() -> ModBlocks.BLUE_MINERAL_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BLUE_CRYSTAL                  = registerBlock("blue_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST).strength(9f).lightLevel(value -> 4).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> SHATTERED_BLUE_MINERAL        = registerBlock("shattered_blue_mineral", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
     //--------------------LIGHT BLUE-----------------
     public static final RegistryObject<Block> LIGHT_BLUE_MINERAL            = registerBlock("light_blue_mineral", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> LIGHT_BLUE_MINERAL_BRICKS     = registerBlock("light_blue_mineral_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
@@ -78,7 +79,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> RED_MINERAL_BRICKS            = registerBlock("red_mineral_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> RED_MINERAL_BRICK_STAIRS      = registerBlock("red_mineral_brick_stairs", () -> new StairBlock(() -> ModBlocks.RED_MINERAL_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> RED_CRYSTAL                   = registerBlock("red_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(value -> 4).strength(9f).requiresCorrectToolForDrops()));
-
+    public static final RegistryObject<Block> SHATTERED_RED_MINERAL         = registerBlock("shattered_red_mineral", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BROWNSTONE                    = registerBlock("brownstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> MINERAL_RICH_DIRT             = registerBlock("mineral_rich_dirt", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> MINERAL_RICH_GRASS            = registerBlock("mineral_rich_grass", () -> new MineralRichGrassBlock(BlockBehaviour.Properties.of(Material.GRASS).strength(9f).requiresCorrectToolForDrops()));
