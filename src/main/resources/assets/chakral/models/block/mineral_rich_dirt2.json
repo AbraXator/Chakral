@@ -1,6 +1,0 @@
-{
- "parent": "block/cube_all",
- "textures": {
-  "all": "chakral:block/mineral_rich_dirt2"
- }
-}

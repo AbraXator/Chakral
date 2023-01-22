@@ -1,13 +1,7 @@
 {
  "variants": {
   "": {
-   "model": "chakral:block/light_blue_mineral"
-  }
- }
-}{
- "variants": {
-  "": {
-   "model": "chakral:block/light_blue_mineral"
+   "model": "chakral:block/mineral/light_blue_mineral"
   }
  }
 }

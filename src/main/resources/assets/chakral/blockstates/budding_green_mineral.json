@@ -1,7 +1,7 @@
 {
  "variants": {
   "": {
-   "model": "chakral:block/budding_green_mineral"
+   "model": "chakral:block/budding/budding_green_mineral"
   }
  }
 }

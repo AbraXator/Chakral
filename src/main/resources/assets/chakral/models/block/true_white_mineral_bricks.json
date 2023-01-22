@@ -1,6 +1,0 @@
-{
- "parent": "block/cube_all",
- "textures": {
-  "all": "chakral:block/true_white_mineral_bricks"
- }
-}

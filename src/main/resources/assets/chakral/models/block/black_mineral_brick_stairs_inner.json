@@ -1,8 +1,0 @@
-{
- "parent": "minecraft:block/inner_stairs",
- "textures": {
-  "bottom": "chakral:block/black_mineral_bricks",
-  "top": "chakral:block/black_mineral_bricks",
-  "side": "chakral:block/black_mineral_bricks"
- }
-}

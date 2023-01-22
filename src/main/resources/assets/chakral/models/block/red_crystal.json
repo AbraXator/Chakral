@@ -1,7 +1,0 @@
-{
- "parent": "minecraft:block/cross",
- "textures": {
-  "cross": "chakral:block/red_crystal"
- },
- "render_type": "cutout"
-}

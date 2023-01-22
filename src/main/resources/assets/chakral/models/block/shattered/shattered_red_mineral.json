@@ -1,0 +1,7 @@
+{
+    "parent": "chakral:block/shattered/shattered_mineral",
+    "textures": {
+        "0": "chakral:block/shattered/shattered_red_mineral",
+        "1": "chakral:block/crystal/red_crystal_stage1"
+    }
+}

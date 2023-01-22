@@ -1,7 +1,7 @@
 {
  "parent": "minecraft:item/generated",
  "textures": {
-  "layer0": "chakral:block/yellow_crystal"
+  "layer0": "chakral:block/crystal/yellow_crystal"
  },
  "display": {
   "head": {

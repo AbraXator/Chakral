@@ -1,28 +1,28 @@
 {
   "variants": {
     "facing=down": {
-      "model": "chakral:block/true_white_crystal",
+      "model": "chakral:block/crystal/true_white_crystal",
       "x": 180
     },
     "facing=east": {
-      "model": "chakral:block/true_white_crystal",
+      "model": "chakral:block/crystal/true_white_crystal",
       "x": 90,
       "y": 90
     },
     "facing=north": {
-      "model": "chakral:block/true_white_crystal",
+      "model": "chakral:block/crystal/true_white_crystal",
       "x": 90
     },
     "facing=south": {
-      "model": "chakral:block/true_white_crystal",
+      "model": "chakral:block/crystal/true_white_crystal",
       "x": 90,
       "y": 180
     },
     "facing=up": {
-      "model": "chakral:block/true_white_crystal"
+      "model": "chakral:block/crystal/true_white_crystal"
     },
     "facing=west": {
-      "model": "chakral:block/true_white_crystal",
+      "model": "chakral:block/crystal/true_white_crystal",
       "x": 90,
       "y": 270
     }

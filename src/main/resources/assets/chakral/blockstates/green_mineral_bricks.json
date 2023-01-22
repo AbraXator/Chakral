@@ -1,13 +1,13 @@
 {
  "variants": {
   "": {
-   "model": "chakral:block/green_mineral_bricks"
+   "model": "chakral:block/bricks/green_mineral_bricks"
   }
  }
 }{
  "variants": {
   "": {
-   "model": "chakral:block/green_mineral_bricks"
+   "model": "chakral:block/bricks/green_mineral_bricks"
   }
  }
 }

@@ -1,7 +1,7 @@
 {
  "variants": {
   "": {
-   "model": "chakral:block/orange_mineral_bricks"
+   "model": "chakral:block/bricks/orange_mineral_bricks"
   }
  }
 }

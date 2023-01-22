@@ -4,7 +4,7 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"3": "chakral:block/necklace_slotter",
-		"particle": "chakral:block/black_mineral_bricks"
+		"particle": "chakral:block/bricks/black_mineral_bricks"
 	},
 	"elements": [
 		{

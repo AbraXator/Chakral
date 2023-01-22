@@ -1,0 +1,8 @@
+{
+ "parent": "minecraft:block/outer_stairs",
+ "textures": {
+  "bottom": "chakral:block/bricks/light_blue_mineral_bricks",
+  "top": "chakral:block/bricks/light_blue_mineral_bricks",
+  "side": "chakral:block/bricks/light_blue_mineral_bricks"
+ }
+}

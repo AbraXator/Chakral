@@ -1,7 +1,7 @@
 {
  "variants": {
   "": {
-   "model": "chakral:block/true_white_mineral_bricks"
+   "model": "chakral:block/bricks/true_white_mineral_bricks"
   }
  }
 }

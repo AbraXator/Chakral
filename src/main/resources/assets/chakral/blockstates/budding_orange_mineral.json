@@ -1,7 +1,7 @@
 {
  "variants": {
   "": {
-   "model": "chakral:block/budding_orange_mineral"
+   "model": "chakral:block/budding/budding_orange_mineral"
   }
  }
 }

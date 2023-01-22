@@ -1,7 +1,7 @@
 {
  "variants": {
   "": {
-   "model": "chakral:block/white_mineral"
+   "model": "chakral:block/mineral/white_mineral"
   }
  }
 }
