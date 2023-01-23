@@ -4,10 +4,4 @@
    "model": "chakral:block/bricks/black_mineral_bricks"
   }
  }
-}{
- "variants": {
-  "": {
-   "model": "chakral:block/bricks/black_mineral_bricks"
-  }
- }
 }

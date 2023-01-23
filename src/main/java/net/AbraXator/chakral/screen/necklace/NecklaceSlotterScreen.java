@@ -19,6 +19,7 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
             new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/golden_necklace_slotter.png");
     private static final ResourceLocation TEXTURE_DIAMOND =
             new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/diamond_necklace_slotter.png");
+    private boolean isEnabled = this.menu.necklaceSlot.isEmpty();
 
     public NecklaceSlotterScreen(NecklaceSlotterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -36,8 +37,14 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         Item diamondStone2 = this.menu.necklaceSlot.getItem(3).getItem();
         if(!NecklaceSlotterMenu.isDiamond){
             goldenScreen(goldenStone1, pPoseStack, x, y, pMouseX, pMouseY);
+            if(!isEnabled){
+                this.blit(pPoseStack, x + 140, y + 12, 0, 196, 20, 20);
+            }
         }else {
             diamondScreen(diamondStone1, diamondStone2, pPoseStack, x, y, pMouseX, pMouseY);
+            if(!isEnabled){
+                this.blit(pPoseStack, x + 16, y + 12, 20, 196, 20, 20);
+            }
         }
     }
 
@@ -103,7 +110,7 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
     }
 
     private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
-        if(menu.necklaceSlot.isEmpty()){
+        if(isEnabled){
             return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
         }
         return false;

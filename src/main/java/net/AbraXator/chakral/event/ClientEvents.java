@@ -1,8 +1,10 @@
 package net.AbraXator.chakral.event;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.Chakral;
+import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.blocks.entity.custom.renderer.MineralEnricherRenderer;
 import net.AbraXator.chakral.chakra.chakras.Dumortierite;
@@ -24,8 +26,14 @@ import net.AbraXator.chakral.utils.KeyBindings;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.LevelRenderer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeableLeatherItem;
+import net.minecraft.world.level.GrassColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -56,6 +64,19 @@ public final class ClientEvents {
                 event.setCanceled(true);
             }
         }
+
+        @SubscribeEvent
+        public static void editInventory(ScreenEvent.Render.Post event){
+            ResourceLocation TEXTURE = new ResourceLocation("textures/gui/container/image.png");
+            if(event.getScreen() instanceof InventoryScreen screen) {
+                int x = (screen.width - 176) / 2;
+                int y = (screen.height - 166) / 2;
+                RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
+                RenderSystem.setShaderColor(1, 1, 1, 1);
+                RenderSystem.setShaderTexture(0, TEXTURE);
+                screen.blit(event.getPoseStack(), x, y, 0, 0, 16, 16);
+            }
+        }
     }
 
     @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -84,6 +105,14 @@ public final class ClientEvents {
     }
 
     @SubscribeEvent
+    public static void colorEvent(RegisterColorHandlersEvent.Block event){
+        event.register((pState, pLevel, pPos, pTintIndex) -> pLevel != null && pPos != null ? BiomeColors.getAverageGrassColor(pLevel, pPos) : GrassColor.get(0.5D, 1.0D),
+                ModBlocks.MINERAL_RICH_GRASS.get());
+    }
+
+    @SubscribeEvent
     public static void colorEvent(RegisterColorHandlersEvent.Item event){
+        event.register((pStack, pTintIndex) -> GrassColor.get(0.5D, 1.0D),
+                ModBlocks.MINERAL_RICH_GRASS.get());
     }
 }

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "chakral:block/mineral_rich/mineral_rich_perennial"
+    }
+  }
+}

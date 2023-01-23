@@ -31,6 +31,10 @@ public abstract class Chakra {
         return type;
     }
 
+    public ChakraStrength getStrenght() {
+        return strenght;
+    }
+
     public ItemStack getNecklace(){
         return necklace;
     }

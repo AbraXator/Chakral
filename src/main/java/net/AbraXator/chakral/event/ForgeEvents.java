@@ -8,6 +8,7 @@ import net.AbraXator.chakral.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
 import net.AbraXator.chakral.utils.PlayerUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.core.BlockPos;
@@ -22,6 +23,7 @@ import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.EnderManAngerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
@@ -35,13 +37,6 @@ public class ForgeEvents {
     @SubscribeEvent
     public static void EnderManAngerReset(EnderManAngerEvent event){
         ChakrasEquip.sugiliteEnderMan(event.getPlayer(), event);
-    }
-
-    public static void inventoryScreenEvent(ScreenEvent.Init event){
-        Screen screen = event.getScreen();
-        if(screen instanceof InventoryScreen inventoryScreen){
-            //inventoryScreen.;
-        }
     }
 
     @SubscribeEvent

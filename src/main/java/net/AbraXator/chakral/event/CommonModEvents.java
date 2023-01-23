@@ -1,6 +1,8 @@
 package net.AbraXator.chakral.event;
 
 import net.AbraXator.chakral.Chakral;
+import net.AbraXator.chakral.capability.ChakraMasteryCap;
+import net.AbraXator.chakral.capability.ChakraMasteryCapProvider;
 import net.AbraXator.chakral.capability.NecklaceCap;
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -18,7 +20,8 @@ public class CommonModEvents {
     public static void attachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
         if(event.getObject() instanceof Player) {
             if(!event.getObject().getCapability(NecklaceCapProvider.NECKLACE_CAP).isPresent()) {
-                event.addCapability(new ResourceLocation(Chakral.MOD_ID, "properties"), new NecklaceCapProvider());
+                event.addCapability(new ResourceLocation(Chakral.MOD_ID, "necklace"), new NecklaceCapProvider());
+                event.addCapability(new ResourceLocation(Chakral.MOD_ID, "chakra_mastery"), new ChakraMasteryCapProvider());
                 //event.addCapability(new ResourceLocation(Chakral.MOD_ID, "properties"), new PlayerGemsCapProvider());
             }
         }
@@ -32,17 +35,18 @@ public class CommonModEvents {
                     newStore.copyFrom(oldStore);
                 });
             });
-           //event.getOriginal().getCapability(PlayerGemsCapProvider.GEMS_CAP).ifPresent(oldStore -> {
-           //    event.getOriginal().getCapability(PlayerGemsCapProvider.GEMS_CAP).ifPresent(newStore -> {
-           //        newStore.copyFrom(oldStore);
-           //    });
-           //});
+            event.getOriginal().getCapability(ChakraMasteryCapProvider.CHAKRA_MASTERY_CAP).ifPresent(oldStore -> {
+                event.getOriginal().getCapability(ChakraMasteryCapProvider.CHAKRA_MASTERY_CAP).ifPresent(newStore -> {
+                    newStore.copyFrom(oldStore);
+                });
+            });
         }
     }
 
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event){
         event.register(NecklaceCap.class);
+        event.register(ChakraMasteryCap.class);
         //event.register(PlayerGemsCap.class);
     }
 }

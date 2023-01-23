@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "chakral:block/mineral_rich/mineral_rich_perennial"
+  }
+}
