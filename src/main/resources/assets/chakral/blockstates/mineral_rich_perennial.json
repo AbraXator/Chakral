@@ -1,7 +1,15 @@
-{
+{  
   "variants": {
-    "": {
-      "model": "chakral:block/mineral_rich/mineral_rich_perennial"
-    }
+  "": [
+      {
+        "model": "chakral:block/perennial/mineral_rich_perennial", "weight": 1 
+      },
+      {
+        "model": "chakral:block/perennial/mineral_rich_perennial1", "weight": 1
+      },
+      {
+        "model": "chakral:block/perennial/mineral_rich_perennial2", "weight": 1 
+      }
+    ]
   }
 }
