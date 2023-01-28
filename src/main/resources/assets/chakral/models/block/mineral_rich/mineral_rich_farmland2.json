@@ -1,0 +1,7 @@
+{
+  "parent": "chakral:block/mineral_rich/template_farmland",
+  "textures": {
+    "dirt": "chakral:block/mineral_rich/mineral_rich_dirt2",
+    "top": "chakral:block/mineral_rich/mineral_rich_farmland2"
+  }
+}

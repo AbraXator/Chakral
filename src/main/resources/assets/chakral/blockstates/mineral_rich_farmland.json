@@ -1,0 +1,41 @@
+{  
+  "variants": {
+  "": [
+      {
+        "model": "chakral:block/mineral_rich/mineral_rich_farmland", "weight": 1 
+      },
+      {
+        "model": "chakral:block/mineral_rich/mineral_rich_farmland", "weight": 1, 
+        "y": 180
+      },
+      {
+        "model": "chakral:block/mineral_rich/mineral_rich_farmland1", "weight": 1 
+      },
+      {
+        "model": "chakral:block/mineral_rich/mineral_rich_farmland1", "weight": 1, 
+        "y": 180
+      },
+      {
+        "model": "chakral:block/mineral_rich/mineral_rich_farmland2", "weight": 1 
+      },
+      {
+        "model": "chakral:block/mineral_rich/mineral_rich_farmland2", "weight": 1, 
+        "y": 180
+      },
+      {
+        "model": "chakral:block/mineral_rich/mineral_rich_farmland3", "weight": 1 
+      },
+      {
+        "model": "chakral:block/mineral_rich/mineral_rich_farmland3", "weight": 1, 
+        "y": 180
+      },
+      {
+        "model": "chakral:block/mineral_rich/mineral_rich_farmland4", "weight": 1, 
+        "y": 180
+      },
+      {
+        "model": "chakral:block/mineral_rich/mineral_rich_farmland4", "weight": 1 
+      }
+    ]
+  }
+}
