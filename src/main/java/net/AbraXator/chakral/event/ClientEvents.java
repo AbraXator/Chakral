@@ -2,7 +2,10 @@ package net.AbraXator.chakral.event;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
@@ -28,16 +31,35 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
-import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.LevelRenderer;
+import net.minecraft.client.particle.ParticleRenderType;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.MultiBufferSource.BufferSource;
+import net.minecraft.client.renderer.block.ModelBlockRenderer;
+import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.game.ClientboundMoveEntityPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.level.GrassColor;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
+import net.minecraftforge.client.extensions.IForgeBakedModel;
+import net.minecraftforge.client.model.lighting.ForgeModelBlockRenderer;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.antlr.runtime.UnwantedTokenException;
+
+import java.util.Map;
+
+import static net.minecraft.client.renderer.RenderType.outline;
 
 @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class ClientEvents {
@@ -53,8 +75,20 @@ public final class ClientEvents {
             }
         }
 
-        public static void renderLevelLast(RenderLevelStageEvent event){
-            if(event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_SOLID_BLOCKS)){
+        @SubscribeEvent
+        public static void renderLevelLast(RenderLevelStageEvent event) {
+            if (event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_SOLID_BLOCKS)) {
+                PoseStack pPoseStack = event.getPoseStack();
+                BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
+                ResourceLocation PATH = new ResourceLocation(Chakral.MOD_ID, "textures/render_helper.png");
+                VertexConsumer builder = buffer.getBuffer(RenderType.outline(PATH));
+                pPoseStack.pushPose();
+                var camera = Minecraft.getInstance().gameRenderer.getMainCamera();
+                Vec3 camPos = camera.getPosition();
+                pPoseStack.translate(-camPos.x, -camPos.y, -camPos.z);
+                LevelRenderer.renderLineBox(pPoseStack, builder, 0, 0, 0, 1, 1, 1, 255, 255, 255, 255);
+                pPoseStack.popPose();
+                buffer.endBatch(RenderType.outline(PATH));
             }
         }
 

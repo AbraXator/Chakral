@@ -43,6 +43,7 @@ public class ShardRefinerMenu extends AbstractContainerMenu {
             this.addSlot(new ShardRefinerSlot(handler, 7, 134, 17, 3, data)); //WEAKENED
         });
 
+
         addDataSlots(data);
     }
 

@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,7 +30,20 @@ import java.util.List;
 
 public class HelioliteChakra extends Chakra {
     public HelioliteChakra() {
-        super(ModItems.CITRINE.get(), ChakraType.SOLAR, ChakraStrength.WEAKENED);
+        super(ModItems.HELIOLITE.get(), ChakraType.SOLAR, ChakraStrength.WEAKENED);
+    }
+
+    @Override
+    public void onRightClickBlock(Player player, Level level, PlayerInteractEvent.RightClickBlock event) {
+        BlockPos pos = event.getPos();
+        if(level.getBlockState(pos).getBlock() instanceof FarmBlock farmBlock){
+            BlockPos seedPos = pos.south(1);
+            seedPos = seedPos.above(2);
+            ItemStack seeds = player.getItemInHand(InteractionHand.MAIN_HAND);
+            if(seeds.is(Tags.Items.SEEDS) && seeds.getItem() instanceof ItemNameBlockItem itemNameBlockItem){
+                level.setBlock(pos, itemNameBlockItem.getBlock().defaultBlockState().setValue(CropBlock.AGE, 1), 3);
+            }
+        }
     }
 
     public void placeSeeds(Player player, Level level, BlockPos pos, ItemStack seeds){

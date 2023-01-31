@@ -16,12 +16,6 @@ public class AmethystQuartzChakra extends Chakra {
 
     @Override
     public void onFunctionKeyPress(Player player, Level level) {
-        int radius = 5;
-        double playerX = player.getX();
-        double playerZ = player.getZ();
-        float playerRot = player.getYRot();
-        double x = 5 * Mth.sin(playerRot) + playerX;
-        double z = 5 * Mth.cos(playerRot) + playerZ;
-        player.getDeltaMovement().add(x, player.getY(), z);
+
     }
 }

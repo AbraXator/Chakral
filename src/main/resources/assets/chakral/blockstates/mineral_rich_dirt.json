@@ -2,18 +2,18 @@
   "variants": {
   "": [
       {
-        "model": "chakral:block/mineral_rich/mineral_rich_dirt", "weight": 1 
+        "model": "chakral:block/mineral_rich/mineral_rich_dirt", "weight": 5
       },
       {
-        "model": "chakral:block/mineral_rich/mineral_rich_dirt", "weight": 1,
+        "model": "chakral:block/mineral_rich/mineral_rich_dirt", "weight": 5,
         "y": 90
       },
       {
-        "model": "chakral:block/mineral_rich/mineral_rich_dirt", "weight": 1, 
+        "model": "chakral:block/mineral_rich/mineral_rich_dirt", "weight": 5,
         "y": 180
       },
       {
-        "model": "chakral:block/mineral_rich/mineral_rich_dirt", "weight": 1, 
+        "model": "chakral:block/mineral_rich/mineral_rich_dirt", "weight": 5,
         "y": 270
       },
       {

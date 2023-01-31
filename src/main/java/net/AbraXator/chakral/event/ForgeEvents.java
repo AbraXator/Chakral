@@ -115,7 +115,7 @@ public class ForgeEvents {
         collection.stream().toList().get(1);
         ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
             Chakra chakra = s.get();
-            if (chakra.isEnabled(chakra)) {
+            if (chakra.isEnabled()) {
                 chakra.tick(event.player, event.player.level);
             }
         });

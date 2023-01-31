@@ -6,6 +6,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -39,6 +41,7 @@ public abstract class Chakra {
         return necklace;
     }
 
+    @NotNull
     public List<Item> stones(){
         if (necklace != null && necklace.hasTag()) {
             CompoundTag tag = necklace.getTag();
@@ -53,11 +56,11 @@ public abstract class Chakra {
             List<Item> list = List.of(stone1, stone2, stone3, stone4);
             return list;
         }
-        return null;
+        return List.of(Items.AIR);
     }
 
-    public boolean isEnabled(Chakra chakra){
-        return chakra.stones() != null && chakra.getItem() != null && stones().contains(chakra.getItem());
+    public boolean isEnabled(){
+        return stones().contains(this.getItem());
     }
 
     public void setMaxCooldown(int maxCooldown){
@@ -85,4 +88,6 @@ public abstract class Chakra {
     public void onUnequip(Player player, Level level){}
 
     public void onUnequipUpgraded(Player player, Level level){}
+
+    public void onRightClickBlock(Player player, Level level, PlayerInteractEvent.RightClickBlock event){}
 }

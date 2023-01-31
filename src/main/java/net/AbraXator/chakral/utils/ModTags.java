@@ -42,10 +42,16 @@ public class ModTags {
         public static final TagKey<Item> GEMS = tag("gems");
         public static final TagKey<Item> SHARDS = tag("shards");
         public static final TagKey<Item> MINERALS = tag("minerals");
+        public static final TagKey<Item> CRYSTALS = tag("crystals");
+
 
         public static final TagKey<Item> NECKLACES = tag("necklaces");
         public static final TagKey<Item> NECKLACES_LOW = tag("necklaces_low");
         public static final TagKey<Item> NECKLACES_HIGH = tag("necklaces_high");
+
+        public static final TagKey<Item> SHROOMS = tag("shrooms");
+
+        public static final TagKey<Item> MINERAL_RICH = tag("mineral_rich");
 
         public static final TagKey<Item> REFINER_KITS = tag("refiner_kits");
 

@@ -179,7 +179,22 @@
     "tooltip.chakral.stillbite": "Stilbite",
     "tooltip.chakral.sugilite": "Removes Most Negative Effects",
     "tooltip.chakral.tourmaline": "Burns Nearby Enemies",
-    
+
+    "chakra_type": "Type",
+    "chakra_type.crown": "Crown",
+    "chakra_type.third_eye": "Third Eye",
+    "chakra_type.throat": "Throat",
+    "chakra_type.heart": "Heart",
+    "chakra_type.solar": "Solar",
+    "chakra_type.sacral": "Sacral",
+    "chakra_type.root": "Root",
+
+    "chakra_strength": "Strength",
+    "chakra_strength.faint": "Faint",
+    "chakra_strength.weakened": "Weakened",
+    "chakra_strength.powerful": "Powerful",
+    "chakra_strength.enlightened": "Enlightened",
+
     "chakral.chakral_tab": "Chakral",
 
     "entity.chakral.mineral_snail": "Mineral Snail",

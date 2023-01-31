@@ -80,7 +80,7 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
     }
 
     public final ContainerData data;
-    private int progress = 0;
+    public int progress;
     private int maxProgress = 60;
     private final FluidTank fluidTank = new FluidTank(5000){
         @Override
@@ -114,8 +114,8 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
             @Override
             public int get(int pIndex) {
                 return switch (pIndex) {
-                    case 0 -> entity.progress;
-                    case 1 -> entity.maxProgress;
+                    case 0 -> MineralEnricherBlockEntity.this.progress;
+                    case 1 -> MineralEnricherBlockEntity.this.maxProgress;
                     default -> 0;
                 };
             }
@@ -123,8 +123,8 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
             @Override
             public void set(int pIndex, int pValue) {
                 switch (pIndex) {
-                    case 0 -> entity.progress = pValue;
-                    case 1 -> entity.maxProgress = pValue;
+                    case 0 -> MineralEnricherBlockEntity.this.progress = pValue;
+                    case 1 -> MineralEnricherBlockEntity.this.maxProgress = pValue;
                 }
             }
 
@@ -133,6 +133,14 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
                 return 2;
             }
         };
+    }
+
+    public static int getProgress(MineralEnricherBlockEntity entity) {
+        return entity.data.get(0);
+    }
+
+    public int getMaxProgress() {
+        return maxProgress;
     }
 
     public float getScaledProgress(MineralEnricherBlockEntity entity){
@@ -219,6 +227,7 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
         if (level.isClientSide()) {
             return;
         }else {
+            //System.out.println("ENTITY: " + MineralEnricherBlockEntity.getProgress(entity));
             ModMessages.sendToClients(new ItemStackSyncS2CPacket(entity.itemHandler, entity.getBlockPos()));
              entity.updateDust(entity.getDust());
             if (hasRecipe(entity) && canPlace(entity)) {
@@ -233,9 +242,9 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
             }
         }
         if(hasFluidInSourceSlot(entity)){
-            transferItemFluidToFluidTank(entity);
-        }
+        transferItemFluidToFluidTank(entity);
     }
+}
 
     private static void craftItem(MineralEnricherBlockEntity entity) {
         Level level = entity.level;

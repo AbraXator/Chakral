@@ -51,7 +51,7 @@ public class NecklaceC2SPacket {
                     player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
                     ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
                         Chakra chakra = s.get();
-                        if(chakra.isEnabled(chakra)) {
+                        if(chakra.isEnabled()) {
                             if (chakra.isUpgraded(chakra.getType())) {
                                 chakra.onEquipUpgraded(player, player.level);
                             } else {
@@ -62,8 +62,8 @@ public class NecklaceC2SPacket {
                 } else {
                     ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
                         Chakra chakra = s.get();
-                        if(chakra.isEnabled(chakra)) {
-                            if(chakra.isEnabled(chakra)) {
+                        if(chakra.isEnabled()) {
+                            if(chakra.isEnabled()) {
                                 chakra.onUnequipUpgraded(player, player.level);
                             } else {
                                 chakra.onUnequip(player, player.level);

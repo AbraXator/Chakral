@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "chakral:item/necklace/golden_necklace",
-    "layer1": "chakral:item/necklace/golden_necklace_solar_1"
-  }
-}

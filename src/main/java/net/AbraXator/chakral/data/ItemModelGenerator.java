@@ -2,6 +2,7 @@ package net.AbraXator.chakral.data;
 
 import com.google.gson.JsonElement;
 import net.AbraXator.chakral.Chakral;
+import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.NecklaceType;

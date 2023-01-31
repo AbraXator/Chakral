@@ -53,32 +53,7 @@ public class MineralRichGrassBlock extends SpreadingSnowyDirtBlock implements Bo
                     continue label49;
                 }
             }
-
-            BlockState blockstate1 = pLevel.getBlockState(blockpos1);
-            if (blockstate1.is(blockstate.getBlock()) && pRandom.nextInt(10) == 0) {
-                ((BonemealableBlock)blockstate.getBlock()).performBonemeal(pLevel, pRandom, blockpos1, blockstate1);
-            }
-
-            if (blockstate1.isAir()) {
-                Holder<PlacedFeature> holder;
-                if (pRandom.nextInt(8) == 0) {
-                    List<ConfiguredFeature<?, ?>> list = pLevel.getBiome(blockpos1).value().getGenerationSettings().getFlowerFeatures();
-                    if (list.isEmpty()) {
-                        continue;
-                    }
-
-                    holder = ((RandomPatchConfiguration)list.get(0).config()).feature();
-                } else {
-                    if (!optional.isPresent()) {
-                        continue;
-                    }
-
-                    holder = optional.get();
-                }
-
-                holder.value().place(pLevel, pLevel.getChunkSource().getGenerator(), pRandom, blockpos1);
-            }
+            pLevel.setBlock(blockpos1, ModBlocks.MINERAL_RICH_PERENNIAL.get().defaultBlockState(), 3);
         }
-
     }
 }

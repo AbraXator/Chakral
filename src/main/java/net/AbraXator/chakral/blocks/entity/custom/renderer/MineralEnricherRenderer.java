@@ -1,18 +1,29 @@
 package net.AbraXator.chakral.blocks.entity.custom.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
+import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.entity.custom.MineralEnricherBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.Container;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class MineralEnricherRenderer implements BlockEntityRenderer<MineralEnricherBlockEntity> {
     //ItemRenderer itemRenderer;
@@ -23,25 +34,61 @@ public class MineralEnricherRenderer implements BlockEntityRenderer<MineralEnric
     @Override
     public void render(MineralEnricherBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+        BlockRenderDispatcher blockRenderDispatcher = Minecraft.getInstance().getBlockRenderer();
         //--------------BLOCK-----------------
-        if(pBlockEntity.generateRecipe(pBlockEntity).isPresent()) {
-            ItemStack itemStack = pBlockEntity.generateRecipe(pBlockEntity).get().getResultItem();
-            pPoseStack.pushPose();
-            pPoseStack.translate(0.5f, 0.325f, 0.5f);
-            pPoseStack.scale(1.3f, 1.3f, 1.3f);
-            itemRenderer.renderStatic(itemStack, ItemTransforms.TransformType.FIXED, 15728880,
-                    pPackedOverlay, pPoseStack, pBufferSource, 1);
-            pPoseStack.popPose();
-        }
-        //---------------CRYSTAL--------------
-        /*ItemStack crystal = pBlockEntity.resultGen(pBlockEntity.itemHandler.getStackInSlot(2)).getFirst().asItem().getDefaultInstance();
+        BlockState block = getBudding(Block.byItem(getCrystal(pBlockEntity))).defaultBlockState();
         pPoseStack.pushPose();
-        pPoseStack.translate(0.5f, 0.0f, 0.5f);
-        float j = pBlockEntity.getScaledProgress(pBlockEntity);
-        pPoseStack.scale(j, j, j);
-        itemRenderer.renderStatic(crystal, ItemTransforms.TransformType.FIXED, 15728880,
-                pPackedOverlay, pPoseStack, pBufferSource, 1);
-        pPoseStack.popPose();*/
+        pPoseStack.translate(0.15f, 0.1f, 0.15f);
+        pPoseStack.scale(0.7f, 0.7f, 0.7f);
+        blockRenderDispatcher.renderSingleBlock(block, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, net.minecraftforge.client.model.data.ModelData.EMPTY, RenderType.solid());
+        pPoseStack.popPose();
+        //---------------CRYSTAL--------------
+        BlockState block2 = Block.byItem(getCrystal(pBlockEntity)).defaultBlockState();
+        pPoseStack.pushPose();
+        pPoseStack.mulPose(Axis.XP.rotationDegrees(180F));
+        pPoseStack.translate(0f, 0f, -1f);
+        MineralEnricherBlockEntity blockEntity = ((MineralEnricherBlockEntity) pBlockEntity.getLevel().getBlockEntity(pBlockEntity.getBlockPos()));
+        float k = MineralEnricherBlockEntity.getProgress(pBlockEntity);
+        ContainerData data = pBlockEntity.data;
+        System.out.println(data.get(0));
+        pPoseStack.scale(k, k, k);
+        blockRenderDispatcher.renderSingleBlock(block2, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, net.minecraftforge.client.model.data.ModelData.EMPTY, RenderType.cutout());
+        pPoseStack.popPose();
+    }
+
+    private Item getCrystal(MineralEnricherBlockEntity pBlockEntity) {
+        Item[] item = new Item[1];
+        MineralEnricherBlockEntity.generateRecipe(pBlockEntity).ifPresentOrElse(recipe -> {
+            item[0] = recipe.getResultItem().getItem();
+        }, () -> {
+            item[0] = Blocks.AIR.asItem();
+        });
+        return item[0];
+    }
+
+    private Block getBudding(Block crystal){
+        if (crystal.equals(ModBlocks.BLACK_CRYSTAL.get())) {
+            return ModBlocks.BUDDING_BLACK_MINERAL.get();
+        } else if (crystal.equals(ModBlocks.TRUE_WHITE_CRYSTAL.get())) {
+            return ModBlocks.TRUE_WHITE_MINERAL.get();
+        } else if (crystal.equals(ModBlocks.WHITE_CRYSTAL.get())) {
+            return ModBlocks.BUDDING_WHITE_MINERAL.get();
+        } else if (crystal.equals(Blocks.AMETHYST_CLUSTER)) {
+            return Blocks.BUDDING_AMETHYST;
+        } else if (crystal.equals(ModBlocks.BLUE_CRYSTAL.get())) {
+            return ModBlocks.BUDDING_BLUE_MINERAL.get();
+        } else if (crystal.equals(ModBlocks.LIGHT_BLUE_CRYSTAL.get())) {
+            return ModBlocks.BUDDING_LIGHT_BLUE_MINERAL.get();
+        } else if (crystal.equals(ModBlocks.GREEN_CRYSTAL.get())) {
+            return ModBlocks.BUDDING_GREEN_MINERAL.get();
+        } else if (crystal.equals(ModBlocks.YELLOW_CRYSTAL.get())) {
+            return ModBlocks.BUDDING_YELLOW_MINERAL.get();
+        } else if (crystal.equals(ModBlocks.ORANGE_CRYSTAL.get())) {
+            return ModBlocks.BUDDING_ORANGE_MINERAL.get();
+        } else if (crystal.equals(ModBlocks.RED_CRYSTAL.get())) {
+            return ModBlocks.BUDDING_RED_MINERAL.get();
+        }
+        return Blocks.AIR;
     }
 
      private int getLightLevel(Level level, BlockPos pos){

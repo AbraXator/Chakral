@@ -2520,7 +2520,7 @@
         "if_true": {
           "type": "minecraft:biome",
           "biome_is": [
-            "chakral:mythical_caverns"
+            "chakral:mineral_caverns"
           ]
         },
         "then_run": {
@@ -2567,6 +2567,21 @@
                         "Name": "chakral:black_mineral"
                       }
                     }
+                  },
+                  {
+                    "type": "minecraft:condition",
+                    "if_true": {
+                      "type": "minecraft:noise_threshold",
+                      "noise": "chakral:dirt_noise",
+                      "min_threshold": 0.3,
+                      "max_threshold": 0.8
+                    },
+                    "then_run": {
+                      "type": "minecraft:block",
+                      "result_state": {
+                        "Name": "chakral:mineral_rich_dirt"
+                      }
+                    }
                   }
                 ]
               }
@@ -2610,6 +2625,21 @@
                       "type": "minecraft:block",
                       "result_state": {
                         "Name": "chakral:black_mineral"
+                      }
+                    }
+                  },
+                  {
+                    "type": "minecraft:condition",
+                    "if_true": {
+                      "type": "minecraft:noise_threshold",
+                      "noise": "chakral:dirt_noise",
+                      "min_threshold": 0.3,
+                      "max_threshold": 0.8
+                    },
+                    "then_run": {
+                      "type": "minecraft:block",
+                      "result_state": {
+                        "Name": "chakral:mineral_rich_dirt"
                       }
                     }
                   }

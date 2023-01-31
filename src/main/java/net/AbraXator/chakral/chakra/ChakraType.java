@@ -3,6 +3,7 @@ package net.AbraXator.chakral.chakra;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
@@ -13,23 +14,25 @@ import org.jetbrains.annotations.NotNull;
 
 //TODO: change some chakra names
 public enum ChakraType implements StringRepresentable {
-    CROWN("crown", ModTags.Items.CROWN, 1),
-    THIRD_EYE("third_eye", ModTags.Items.THIRD_EYE, 2),
-    THROAT("throat", ModTags.Items.THROAT, 3),
-    HEART("heart", ModTags.Items.HEART, 4),
-    SOLAR("solar", ModTags.Items.SOLAR, 5),
-    SACRAL("sacral", ModTags.Items.SACRAL, 6),
-    ROOT("root", ModTags.Items.ROOT, 7);
+    CROWN("crown", ModTags.Items.CROWN, 1, Component.translatable("chakra_type.crown")),
+    THIRD_EYE("third_eye", ModTags.Items.THIRD_EYE, 2, Component.translatable("chakra_type.third_eye")),
+    THROAT("throat", ModTags.Items.THROAT, 3, Component.translatable("chakra_type.throat")),
+    HEART("heart", ModTags.Items.HEART, 4, Component.translatable("chakra_type.heart")),
+    SOLAR("solar", ModTags.Items.SOLAR, 5, Component.translatable("chakra_type.solar")),
+    SACRAL("sacral", ModTags.Items.SACRAL, 6, Component.translatable("chakra_type.sacral")),
+    ROOT("root", ModTags.Items.ROOT, 7, Component.translatable("chakra_type.root"));
 
-    ChakraType(String name, TagKey<Item> tagKey, int index){
+    ChakraType(String name, TagKey<Item> tagKey, int index, Component localizedName){
         this.name = name;
         this.tagKey = tagKey;
         this.index = index;
+        this.localizedName = localizedName;
     }
 
     private String name;
     private TagKey<Item> tagKey;
     private int index;
+    private Component localizedName;
 
     @Override
     public @NotNull String getSerializedName() {
@@ -42,6 +45,10 @@ public enum ChakraType implements StringRepresentable {
 
     public int getIndex(){
         return index;
+    }
+
+    public Component getLocalizedName(){
+        return localizedName;
     }
 
     public Item getTier4(ChakraType type){

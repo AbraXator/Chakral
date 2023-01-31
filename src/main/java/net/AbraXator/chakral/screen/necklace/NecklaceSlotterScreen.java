@@ -5,10 +5,15 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.utils.MouseUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.sounds.SoundEngine;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -37,12 +42,12 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         Item diamondStone2 = this.menu.necklaceSlot.getItem(3).getItem();
         if(!NecklaceSlotterMenu.isDiamond){
             goldenScreen(goldenStone1, pPoseStack, x, y, pMouseX, pMouseY);
-            if(!isEnabled){
+            if(!this.menu.necklaceSlot.isEmpty()){
                 this.blit(pPoseStack, x + 140, y + 12, 0, 196, 20, 20);
             }
         }else {
             diamondScreen(diamondStone1, diamondStone2, pPoseStack, x, y, pMouseX, pMouseY);
-            if(!isEnabled){
+            if(!this.menu.necklaceSlot.isEmpty()){
                 this.blit(pPoseStack, x + 16, y + 12, 20, 196, 20, 20);
             }
         }
@@ -100,17 +105,19 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
     public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
         final int x = (width - imageWidth) / 2;
         final int y = (height - imageHeight) / 2;
-        if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 141, 13, 18, 18)){
+        if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 141, 13, 18, 18) && !NecklaceSlotterMenu.isDiamond){
             NecklaceSlotterMenu.isDiamond = true;
+            Minecraft.getInstance().player.playSound(SoundEvents.UI_BUTTON_CLICK.get());
         }
-        if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 17, 13, 18, 18)){
+        if(isMouseAboveArea((int) pMouseX, (int) pMouseY, x, y, 17, 13, 18, 18) && NecklaceSlotterMenu.isDiamond){
             NecklaceSlotterMenu.isDiamond = false;
+            Minecraft.getInstance().player.playSound(SoundEvents.UI_BUTTON_CLICK.get());
         }
         return super.mouseClicked(pMouseX, pMouseY, pButton);
     }
 
     private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
-        if(isEnabled){
+        if(this.menu.necklaceSlot.isEmpty()){
             return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
         }
         return false;

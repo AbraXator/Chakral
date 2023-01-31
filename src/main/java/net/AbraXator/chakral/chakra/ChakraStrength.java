@@ -3,16 +3,17 @@ package net.AbraXator.chakral.chakra;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public enum ChakraStrength implements StringRepresentable {
-    FAINT("faint", 0),
-    WEAKENED("weakened", 1),
-    POWERFUL("powerful", 2),
-    ENLIGHTENED("enlightened", 3);
+    FAINT("faint", 0, Component.translatable("chakra_strength.faint")),
+    WEAKENED("weakened", 1, Component.translatable("chakra_strength.weakened")),
+    POWERFUL("powerful", 2, Component.translatable("chakra_strength.powerful")),
+    ENLIGHTENED("enlightened", 3, Component.translatable("chakra_strength.enlightened"));
 
     public static ChatFormatting getColorFromChakra(ChakraStrength chakra){
         return switch (chakra){
@@ -25,10 +26,12 @@ public enum ChakraStrength implements StringRepresentable {
 
     private final String name;
     private final int index;
+    private Component localizedName;
 
-    ChakraStrength(String p_156018_, int index) {
+    ChakraStrength(String p_156018_, int index, Component localizedName) {
         this.name = p_156018_;
         this.index = index;
+        this.localizedName = localizedName;
     }
 
     public static TagKey<Item> getTag(ChakraStrength strenght){
@@ -52,6 +55,10 @@ public enum ChakraStrength implements StringRepresentable {
     @Override
     public String getSerializedName() {
         return this.name;
+    }
+
+    public Component getLocalizedName() {
+        return localizedName;
     }
 
     public boolean is(ChakraStrength strenght){

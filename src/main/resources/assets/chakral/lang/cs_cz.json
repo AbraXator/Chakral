@@ -185,7 +185,7 @@
     "chakra_type.third_eye": "Třeti oční",
     "chakra_type.throat": "Hrdelní",
     "chakra_type.heart": "Srdeční",
-    "chakra_type.solar": "Slunční",
+    "chakra_type.solar": "Sluneční",
     "chakra_type.sacral": "Rituální",
     "chakra_type.root": "Koření",
 
@@ -199,12 +199,12 @@
 
     "entity.chakral.mineral_snail": "Minerální Šnek",
 
-    "chakral.tooltip.liquid.amount.with.capacity": "%s / %s mB",
-    "chakral.tooltip.liquid.amount.with.amount": "%s mB",
+    "chakral.tooltip.liquid.amount.with.capacity": "%s / %s mK",
+    "chakral.tooltip.liquid.amount.with.amount": "%s mK",
 
     "necklace.equip": "Equip the %s with %s",
 
-    "biome.chakral.mineral_caverns": "Minerální jeskyně",
+    "biome.chakral.mineral_caverns": "Minerální Jeskyně",
 
     "chakral.jei.recipe.shard_refining": "Obohacení Minerálu"
 }
