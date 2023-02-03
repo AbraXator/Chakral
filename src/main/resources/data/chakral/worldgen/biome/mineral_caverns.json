@@ -76,17 +76,9 @@
       "minecraft:ore_lapis_buried",
       "minecraft:ore_copper_large",
       "minecraft:underwater_magma",
-      "chakral:mineral_rich_dirt_boulder"
+      "chakral:yellow_mineral_ore"
     ],
-    [
-      "chakral:amethyst_mineral_ore",
-      "chakral:blue_mineral_ore",
-      "chakral:light_blue_mineral_ore",
-      "chakral:green_mineral_ore",
-      "chakral:yellow_mineral_ore",
-      "chakral:orange_mineral_ore",
-      "chakral:red_mineral_ore"
-    ],
+    [],
     [],
     [
       "minecraft:glow_lichen"

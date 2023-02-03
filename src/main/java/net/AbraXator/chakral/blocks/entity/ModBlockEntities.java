@@ -3,6 +3,7 @@ package net.AbraXator.chakral.blocks.entity;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.entity.custom.*;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
