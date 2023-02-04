@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "chakral:block/crystal/big_red_bud"
+  }
+}

@@ -110,7 +110,7 @@ public final class ClientEvents {
             builder.vertex(matrix4f, -10, -10, 10).color(255, 0, 0, 255).uv(0, 0).endVertex();
             System.out.println(event.getStage().toString());*/
             //pPoseStack.popPose();
-            buffer.endBatch(RenderType.outline(PATH));
+            buffer. endBatch(RenderType.outline(PATH));
         }
 
         private static void renderHitOutline(PoseStack pPoseStack, VertexConsumer pConsumer, Entity pEntity, double pCamX, double pCamY, double pCamZ, BlockPos pPos, BlockState pState) {

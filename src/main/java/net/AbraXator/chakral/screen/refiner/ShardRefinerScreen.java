@@ -55,13 +55,6 @@ public class ShardRefinerScreen extends AbstractContainerScreen<ShardRefinerMenu
     }
 
     @Override
-    protected void containerTick() {
-        super.containerTick();
-        System.out.println(menu.blockEntity.progress);
-
-    }
-
-    @Override
     public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
         renderBackground(pPoseStack);
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);

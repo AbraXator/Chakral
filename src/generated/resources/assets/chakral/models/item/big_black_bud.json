@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "chakral:block/crystal/big_black_bud"
+  }
+}

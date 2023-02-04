@@ -1,6 +1,7 @@
-// 1.19.3	2023-01-30T18:37:56.6440723	Loot Tables
+// 1.19.3	2023-02-03T21:07:37.7277482	Loot Tables
 8e00841121611180a2949ad70eac90182e18a06a data/chakral/loot_tables/blocks/amethyst_bricks.json
 09ba8f399530dff7a092f9c8478720907bd42da9 data/chakral/loot_tables/blocks/amethyst_brick_stairs.json
+04e98b675b6068fa8fb90e467646649f644e746a data/chakral/loot_tables/blocks/big_black_bud.json
 7f72de64d18886609791ca488543598e755c5d7d data/chakral/loot_tables/blocks/big_blue_bud.json
 824c08e929f6722af6b5f6b1d7e8a7f73893ddc8 data/chakral/loot_tables/blocks/big_glowstone_bud.json
 080b8d3acaee74ef24daf6ebe87fbf466b928c7c data/chakral/loot_tables/blocks/big_green_bud.json
@@ -10,12 +11,10 @@ afc5b6fd109b80eae5b35766173a0228e74d580f data/chakral/loot_tables/blocks/big_red
 939e09eaf90580a5699a97011a9bd56fd05d16f1 data/chakral/loot_tables/blocks/big_true_white_bud.json
 af093046ead21a8fa9c087f3c75cba778298589a data/chakral/loot_tables/blocks/big_white_bud.json
 fe0ec4e64e79518540c44ef57ce9d23e3cac2606 data/chakral/loot_tables/blocks/big_yellow_bud.json
-f8e530e27c7a8461ecaddbe289e1f50cafea388f data/chakral/loot_tables/blocks/black_big_bud.json
 64391881b2ce33acdc0ba5824362864ed981af19 data/chakral/loot_tables/blocks/black_crystal.json
 e9db5f8fa1fe1ae667bce38aee672faeac474338 data/chakral/loot_tables/blocks/black_mineral.json
 3a3fcc147f48cb0053dbf19c6d742a9f5fc095f9 data/chakral/loot_tables/blocks/black_mineral_bricks.json
 954a27b1afa0dcc181ca7b80f9ceb4752339cf47 data/chakral/loot_tables/blocks/black_mineral_brick_stairs.json
-dd730fd4d96721d724fc060b8e28f975125c8783 data/chakral/loot_tables/blocks/black_small_bud.json
 2ea014860eb01d580d9064f75fff58dda18ee11e data/chakral/loot_tables/blocks/blue_crystal.json
 43a7d7660dcec66e19573a8f2806daf0b510bd15 data/chakral/loot_tables/blocks/blue_mineral.json
 2763ac814aaafe8a83291216f1f355f87149f648 data/chakral/loot_tables/blocks/blue_mineral_bricks.json
@@ -60,6 +59,7 @@ b80a0ab6829fb9a613ecfbeb58e43683d4b0f462 data/chakral/loot_tables/blocks/red_min
 1b40074bf478551f80309f1b739caa7cf9e3dba1 data/chakral/loot_tables/blocks/shard_refiner.json
 9ee897e11274e4ba73049030a8c355f701aeb2be data/chakral/loot_tables/blocks/shattered_blue_mineral.json
 ef345c521142082f681e99a33470e56affe23953 data/chakral/loot_tables/blocks/shattered_red_mineral.json
+52e36d46b3887087118a56a67ddec85374c06ab1 data/chakral/loot_tables/blocks/small_black_bud.json
 023e0a118f5c667051c6af3dd1920715b098bfe5 data/chakral/loot_tables/blocks/small_blue_bud.json
 7025cce7520760d02c1060ea9d8f935c21db58be data/chakral/loot_tables/blocks/small_glowstone_bud.json
 54ed84cbc61a6d32209aecc2e5b29df1b9679925 data/chakral/loot_tables/blocks/small_green_bud.json

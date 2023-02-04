@@ -28,23 +28,11 @@ public class ItemModelGenerator extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        for(ChakraType chakraType : ChakraType.values()){
-            oneNecklacePart(ModItems.GOLDEN_NECKLACE, chakraType);
-
-            oneNecklacePart(ModItems.DIAMOND_NECKLACE, chakraType);
-            twoNecklacePart(ModItems.DIAMOND_NECKLACE, chakraType);
-
-            goldenNecklace();
-                    //case NETHERITE:
-                    //    oneNecklacePart(necklaceType.getItem(), chakraType);
-                    //    twoNecklacePart(necklaceType.getItem(), chakraType);
-                    //    threeNecklacePart(necklaceType.getItem(), chakraType);
-                    //case RAINBOW:
-                    //    oneNecklacePart(necklaceType.getItem(), chakraType);
-                    //    twoNecklacePart(necklaceType.getItem(), chakraType);
-                    //    threeNecklacePart(necklaceType.getItem(), chakraType);
-                    //    fourNecklacePart(necklaceType.getItem(), chakraType);
-        }
+        DataGenerators.getCrystals().forEach(block -> {
+            this.getBuilder(DataGenerators.trimmedId(block.getDescriptionId()))
+                    .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                    .texture("layer0", modLoc("block/crystal/" + DataGenerators.trimmedId(block.getDescriptionId())));
+        });
     }
 
     private ItemModelBuilder goldenNecklace(){
