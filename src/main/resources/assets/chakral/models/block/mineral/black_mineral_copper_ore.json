@@ -1,0 +1,6 @@
+{
+ "parent": "block/cube_all",
+ "textures": {
+  "all": "chakral:block/mineral/black_mineral_copper_ore"
+ }
+}

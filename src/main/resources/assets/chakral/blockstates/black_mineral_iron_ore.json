@@ -1,0 +1,7 @@
+{
+ "variants": {
+  "": {
+   "model": "chakral:block/mineral/black_mineral_iron_ore"
+  }
+ }
+}
