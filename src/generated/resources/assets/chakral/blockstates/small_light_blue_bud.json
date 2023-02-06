@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "chakral:block/small_light_blue_bud",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "chakral:block/small_light_blue_bud",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "chakral:block/small_light_blue_bud",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "chakral:block/small_light_blue_bud",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "chakral:block/small_light_blue_bud"
+    },
+    "facing=west": {
+      "model": "chakral:block/small_light_blue_bud",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

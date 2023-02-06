@@ -28,6 +28,12 @@ public class ItemModelGenerator extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        for(ChakraType chakraType : ChakraType.values()){
+            oneNecklacePart(ModItems.GOLDEN_NECKLACE, chakraType);
+            goldenNecklace();
+
+        }
+
         DataGenerators.getCrystals().forEach(block -> {
             this.getBuilder(DataGenerators.trimmedId(block.getDescriptionId()))
                     .parent(new ModelFile.UncheckedModelFile("item/generated"))
@@ -41,7 +47,7 @@ public class ItemModelGenerator extends ItemModelProvider {
                 .texture("layer1", new ResourceLocation(Chakral.MOD_ID, "item/necklace/golden_necklace_slot_1"))
                 .override()
                 .predicate(new ResourceLocation("crown"), 1.0F)
-                //.model(new ItemModelBuilder(new ResourceLocation(Chakral.MOD_ID, "item/golden_necklace_crown"), existingModelFile))
+                .model(new ItemModelBuilder(new ResourceLocation(Chakral.MOD_ID, "item/golden_necklace_crown"), existingModelFile))
                 .end()
                 .override()
                 .predicate(new ResourceLocation("heart"), 1.0F)

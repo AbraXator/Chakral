@@ -20,9 +20,7 @@ public class AmazoniteChakra extends Chakra {
         if(level.getGameTime() % 20 == 0){
             player.getCapability(AdditionalHealthCapProvider.ADD_HEALTH_CAP).ifPresent(additionalHealthCap -> {
                 if(additionalHealthCap.getHealth() != additionalHealthCap.maxHealth){
-                    int k = additionalHealthCap.getHealth();
-                    k++;
-                    additionalHealthCap.setHealth(k);
+                    additionalHealthCap.setHealth(additionalHealthCap.getHealth() + 1);
                 }
             });
         }

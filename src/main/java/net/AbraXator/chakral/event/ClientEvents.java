@@ -1,80 +1,41 @@
 package net.AbraXator.chakral.event;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.blocks.entity.custom.renderer.MineralEnricherRenderer;
-import net.AbraXator.chakral.chakra.chakras.Dumortierite;
-import net.AbraXator.chakral.client.EdgeClient;
-import net.AbraXator.chakral.entity.DwiderEntity;
+import net.AbraXator.chakral.client.ModOverlay;
 import net.AbraXator.chakral.entity.DwiderModel;
 import net.AbraXator.chakral.entity.DwiderRenderer;
 import net.AbraXator.chakral.entity.ModEntities;
-import net.AbraXator.chakral.items.ModItems;
-import net.AbraXator.chakral.items.custom.Gem;
-import net.AbraXator.chakral.items.custom.GoldenNecklace;
-import net.AbraXator.chakral.items.custom.NecklaceItem;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
-import net.AbraXator.chakral.screen.ModMenuTypes;
 import net.AbraXator.chakral.screen.refiner.ShardRefinerScreen;
 import net.AbraXator.chakral.utils.KeyBindings;
-import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.ParticleRenderType;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource.BufferSource;
-import net.minecraft.client.renderer.block.BlockRenderDispatcher;
-import net.minecraft.client.renderer.block.ModelBlockRenderer;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.entity.LivingEntityRenderer;
-import net.minecraft.client.renderer.texture.TextureAtlas;
-import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleType;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.protocol.game.ClientboundMoveEntityPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.inventory.InventoryMenu;
-import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.level.GrassColor;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
-import net.minecraftforge.client.extensions.IForgeBakedModel;
-import net.minecraftforge.client.model.lighting.ForgeModelBlockRenderer;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.antlr.runtime.UnwantedTokenException;
-import org.joml.Matrix4f;
-import org.joml.Matrix4fStack;
-import org.joml.Vector3d;
-import org.joml.Vector4f;
-
-import java.util.List;
-import java.util.Map;
-import java.util.TimerTask;
-
-import static net.minecraft.client.renderer.RenderType.outline;
 
 @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class ClientEvents {
@@ -156,6 +117,11 @@ public final class ClientEvents {
 
     @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ClientModBusEvents {
+        @SubscribeEvent
+        public static void registerGUIOverlays(RegisterGuiOverlaysEvent event){
+            event.registerAboveAll("chakra_health", ModOverlay.CHAKRA_HEARTS);
+        }
+
         @SubscribeEvent
         public static void onKeyRegister(RegisterKeyMappingsEvent event) {
             event.register(KeyBindings.STONE_FUNCTION_KEY);

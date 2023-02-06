@@ -3,6 +3,8 @@ package net.AbraXator.chakral.event;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.custom.ShardRefinerBlock;
+import net.AbraXator.chakral.capability.AdditionalHealthCap;
+import net.AbraXator.chakral.capability.AdditionalHealthCapProvider;
 import net.AbraXator.chakral.chakra.*;
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.items.ModItems;
@@ -22,6 +24,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.EnderManAngerEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -85,6 +88,18 @@ public class ForgeEvents {
     //        }
     //    }
     //}
+
+    @SubscribeEvent
+    public static void PlayerDamageEvent(LivingDamageEvent event){
+        Player player = ((Player) event.getEntity());
+        player.getCapability(AdditionalHealthCapProvider.ADD_HEALTH_CAP).ifPresent(additionalHealthCap -> {
+           float dmgAmount = event.getAmount();
+           float dmgAmountAfterAbsorption = dmgAmount - additionalHealthCap.getHealth();
+           additionalHealthCap.setHealth(additionalHealthCap.getHealth() - dmgAmountAfterAbsorption);
+           player.hurt(event.getSource(), dmgAmountAfterAbsorption);
+           event.setCanceled(true);
+        });
+    }
 
     @SubscribeEvent
     public static void TickEvent(TickEvent.PlayerTickEvent event){

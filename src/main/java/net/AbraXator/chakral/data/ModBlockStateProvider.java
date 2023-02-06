@@ -14,6 +14,8 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.checkerframework.checker.units.qual.C;
 
+import java.util.List;
+
 public class ModBlockStateProvider extends BlockStateProvider {
     final ExistingFileHelper existingFileHelper;
     public ModBlockStateProvider(PackOutput output, String modid, ExistingFileHelper exFileHelper) {

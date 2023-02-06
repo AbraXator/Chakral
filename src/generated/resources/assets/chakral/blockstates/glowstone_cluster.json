@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "chakral:block/glowstone_cluster",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "chakral:block/glowstone_cluster",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "chakral:block/glowstone_cluster",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "chakral:block/glowstone_cluster",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "chakral:block/glowstone_cluster"
+    },
+    "facing=west": {
+      "model": "chakral:block/glowstone_cluster",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

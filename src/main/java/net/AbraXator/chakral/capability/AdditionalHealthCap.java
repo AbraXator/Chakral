@@ -1,17 +1,16 @@
 package net.AbraXator.chakral.capability;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.ItemStack;
 
 public class AdditionalHealthCap {
-    private int health = 0;
-    public int maxHealth = 10;
+    private float health = 0;
+    public static int maxHealth = 10;
 
-    public int getHealth(){
+    public float getHealth(){
         return health;
     }
 
-    public void setHealth(int health) {
+    public void setHealth(float health) {
         this.health = health;
     }
 
@@ -21,9 +20,9 @@ public class AdditionalHealthCap {
 
     public void saveNBT(CompoundTag tag){
         if(health <= maxHealth){
-            tag.putInt("player.addHealth", health);
+            tag.putFloat("player.addHealth", health);
         }else {
-            tag.putInt("player.addHealth", maxHealth);
+            tag.putFloat("player.addHealth", maxHealth);
         }
     }
 

@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "chakral:block/big_white_bud",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "chakral:block/big_white_bud",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "chakral:block/big_white_bud",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "chakral:block/big_white_bud",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "chakral:block/big_white_bud"
+    },
+    "facing=west": {
+      "model": "chakral:block/big_white_bud",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

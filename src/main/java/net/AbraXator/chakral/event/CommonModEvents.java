@@ -8,6 +8,7 @@ import net.AbraXator.chakral.capability.NecklaceCapProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -27,16 +28,19 @@ public class CommonModEvents {
         }
     }
 
+    //TODO: Fix not being able to equip necklace after death
     @SubscribeEvent
     public static void onPlayerCloned(PlayerEvent.Clone event) {
         if(event.isWasDeath()) {
+            Player player = event.getOriginal();
             event.getOriginal().getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(oldStore -> {
-                event.getOriginal().getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(newStore -> {
-                    newStore.copyFrom(oldStore);
+                player.drop(oldStore.getNecklace(), false);
+                event.getEntity().getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(newStore -> {
+                    newStore.setNecklace(ItemStack.EMPTY);
                 });
             });
             event.getOriginal().getCapability(ChakraMasteryCapProvider.CHAKRA_MASTERY_CAP).ifPresent(oldStore -> {
-                event.getOriginal().getCapability(ChakraMasteryCapProvider.CHAKRA_MASTERY_CAP).ifPresent(newStore -> {
+                event.getEntity().getCapability(ChakraMasteryCapProvider.CHAKRA_MASTERY_CAP).ifPresent(newStore -> {
                     newStore.copyFrom(oldStore);
                 });
             });

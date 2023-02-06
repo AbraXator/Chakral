@@ -32,7 +32,7 @@ public class ChakralTab {
                             if(o.get().equals(ModItems.TOURMALINE.get())){
                                 output.accept(Items.AMETHYST_SHARD);
                             }
-                            if(o.get().equals(ModBlocks.TRUE_WHITE_CRYSTAL.get().asItem())){
+                            if(o.get().equals(ModBlocks.SMALL_TRUE_WHITE_BUD.get().asItem())){
                                 output.accept(Blocks.AMETHYST_BLOCK.asItem());
                                 output.accept(Blocks.BUDDING_AMETHYST.asItem());
                             }

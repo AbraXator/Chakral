@@ -2,6 +2,6 @@
     "parent": "chakral:block/shattered/shattered_mineral",
     "textures": {
         "0": "chakral:block/shattered/shattered_blue_mineral",
-        "1": "chakral:block/crystal/blue_crystal_stage1"
+        "1": "chakral:block/crystal/s"
     }
 }
