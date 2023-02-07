@@ -1,6 +1,7 @@
-// 1.19.3	2023-02-04T23:22:48.8690262	Block Models: chakral
+// 1.19.3	2023-02-07T16:20:21.4483657	Block Models: chakral
 a2a18c1241d8c4e4ea80d154cede3c7045d3d508 assets/chakral/models/block/big_black_bud.json
 0992256852d46c16bd2e77ff33f698b5fc791c8b assets/chakral/models/block/big_blue_bud.json
+e9422d662d7d31ba38d885463e8be3078c037be6 assets/chakral/models/block/big_glowstone_bud.json
 fdc3450e1329b26dfefecd550bda80021cf706f7 assets/chakral/models/block/big_green_bud.json
 c81783373541049d0b35c5f73e71f5d9ad438787 assets/chakral/models/block/big_light_blue_bud.json
 6ef52ac5570adf533d39052bf7e4e9033d87b624 assets/chakral/models/block/big_orange_bud.json
@@ -17,6 +18,7 @@ f3dd457fb9052bac29fedfb7b1e2cd99eae96d0e assets/chakral/models/block/orange_crys
 e4c458455e8ba9990e11ad7f32742ce75dfce177 assets/chakral/models/block/red_crystal.json
 cb7f32b2508dc17b1d2aaeacd372b72d79dccda2 assets/chakral/models/block/small_black_bud.json
 35ec998af26bce9d02e425ad9981fa632904d5a0 assets/chakral/models/block/small_blue_bud.json
+51b1da99c00ce6fee89fccbd7b0a1d5105b0b3e8 assets/chakral/models/block/small_glowstone_bud.json
 e12941e155a3a571fb57bc4908de5ebe1d869c36 assets/chakral/models/block/small_green_bud.json
 cf0661577cadce4e5bb17afc64d9f45460dc247b assets/chakral/models/block/small_light_blue_bud.json
 b6087949051424ccfb98956eda4d727366d853c9 assets/chakral/models/block/small_orange_bud.json

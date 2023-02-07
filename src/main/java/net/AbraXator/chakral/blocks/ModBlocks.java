@@ -10,6 +10,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -19,6 +21,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
@@ -26,14 +29,14 @@ public class ModBlocks {
 
     //--------------------BLACK---------------------
     public static final RegistryObject<Block> BLACK_MINERAL                 = registerBlock("black_mineral", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> BLACK_MINERAL_REDSTONE_ORE    = registerBlock("black_mineral_redstone_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> BLACK_MINERAL_COPPER_ORE      = registerBlock("black_mineral_copper_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> BLACK_MINERAL_IRON_ORE        = registerBlock("black_mineral_iron_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> BLACK_MINERAL_DIAMOND_ORE     = registerBlock("black_mineral_diamond_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BLACK_MINERAL_COAL_ORE        = registerBlock("black_mineral_coal_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> BLACK_MINERAL_EMERALD_ORE     = registerBlock("black_mineral_emerald_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> BLACK_MINERAL_IRON_ORE        = registerBlock("black_mineral_iron_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> BLACK_MINERAL_COPPER_ORE      = registerBlock("black_mineral_copper_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BLACK_MINERAL_GOLD_ORE        = registerBlock("black_mineral_gold_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> BLACK_MINERAL_REDSTONE_ORE    = registerBlock("black_mineral_redstone_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> BLACK_MINERAL_EMERALD_ORE     = registerBlock("black_mineral_emerald_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BLACK_MINERAL_LAPIS_ORE       = registerBlock("black_mineral_lapis_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> BLACK_MINERAL_DIAMOND_ORE     = registerBlock("black_mineral_diamond_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BLACK_MINERAL_BRICKS          = registerBlock("black_mineral_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BLACK_MINERAL_BRICK_STAIRS    = registerBlock("black_mineral_brick_stairs", () -> new StairBlock(() -> ModBlocks.BLACK_MINERAL_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BLACK_CRYSTAL                 = registerBlock("black_crystal", () -> new Crystal(BlockBehaviour.Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLACK).strength(9f).requiresCorrectToolForDrops()));
@@ -117,8 +120,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> MINERAL_RICH_PERENNIAL        = registerBlock("mineral_rich_perennial", () -> new FlowerBlock(() -> MobEffects.DIG_SPEED, 15, BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final RegistryObject<Block> MINERAL_RICH_GRASS            = registerBlock("mineral_rich_grass", () -> new MineralRichGrassBlock(BlockBehaviour.Properties.of(Material.GRASS).sound(SoundType.GRASS).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BURGEONING_ROOTS              = registerBlock("burgeoning_roots", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST).strength(9f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> GLEAMSHROOM                   = registerBlock("gleamshroom", () -> new GleamshroomBlock(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(GleamshroomBlock.LIGHT_AMOUNT).strength(9f).noOcclusion().requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> STEMSHROOM                    = registerBlock("stemshroom", () -> new StemshroomBlock(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel(value -> 4).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> GLEAMSHROOM                   = registerBlock("gleamshroom", () -> new GleamshroomBlock(BlockBehaviour.Properties.of(Material.VEGETABLE).lightLevel(litBlockEmission(10)).strength(9f).noOcclusion().requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> STEMSHROOM                    = registerBlock("stemshroom", () -> new StemshroomBlock(BlockBehaviour.Properties.of(Material.VEGETABLE).lightLevel(value -> 4).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> PARAGENETIC_CORE              = registerBlock("paragenetic_core", () -> new ParageneticCoreBlock(BlockBehaviour.Properties.of(Material.AMETHYST).strength(9f).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> NECKLACE_SLOTTER = registerBlock("necklace_slotter",
@@ -143,6 +146,11 @@ public class ModBlocks {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(),
                 new Item.Properties()));
     }
+
+    private static ToIntFunction<BlockState> litBlockEmission(int pLightValue) {
+        return (p_50763_) -> p_50763_.getValue(BlockStateProperties.LIT) ? pLightValue : 0;
+    }
+
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);
     }

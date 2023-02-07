@@ -33,7 +33,7 @@ public class DataGenerators {
 
     public static List<Block> getCrystals(){
         return List.of(ModBlocks.BLACK_CRYSTAL.get(), ModBlocks.BIG_BLACK_BUD.get(), ModBlocks.SMALL_BLACK_BUD.get(),
-                ModBlocks.GLOWSTONE_CLUSTER.get(),
+                ModBlocks.GLOWSTONE_CLUSTER.get(), ModBlocks.BIG_GLOWSTONE_BUD.get(), ModBlocks.SMALL_GLOWSTONE_BUD.get(),
                 ModBlocks.WHITE_CRYSTAL.get(), ModBlocks.BIG_WHITE_BUD.get(), ModBlocks.SMALL_WHITE_BUD.get(),
                 ModBlocks.TRUE_WHITE_CRYSTAL.get(), ModBlocks.BIG_TRUE_WHITE_BUD.get(), ModBlocks.SMALL_TRUE_WHITE_BUD.get(),
                 ModBlocks.BLUE_CRYSTAL.get(), ModBlocks.BIG_BLUE_BUD.get(), ModBlocks.SMALL_BLUE_BUD.get(),

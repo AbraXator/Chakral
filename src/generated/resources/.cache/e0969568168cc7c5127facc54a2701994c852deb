@@ -1,6 +1,7 @@
-// 1.19.3	2023-02-04T22:15:36.486095	Block States: chakral
+// 1.19.3	2023-02-07T16:20:21.4493637	Block States: chakral
 794519a521d5e67b9130766998403f9ab6d04270 assets/chakral/blockstates/big_black_bud.json
 ab9d4520704e943286fc896acc0c205c613266af assets/chakral/blockstates/big_blue_bud.json
+ea0c85f2d6b6300252ac2c81154995fce9d605ee assets/chakral/blockstates/big_glowstone_bud.json
 6c46589dc77fa0df6ed9bb856148ca68b2c932b7 assets/chakral/blockstates/big_green_bud.json
 8b6392369f603a0220ec403eef103a662a945cb5 assets/chakral/blockstates/big_light_blue_bud.json
 98176569e8f82eda96d9db83928d4bdacdc6c2f5 assets/chakral/blockstates/big_orange_bud.json
@@ -17,6 +18,7 @@ c84ac74d9c47f6bab56841629cbab5eccd5efae9 assets/chakral/blockstates/orange_cryst
 207fbd939d891472652c7bac6c738a5af22c4b91 assets/chakral/blockstates/red_crystal.json
 43b575b9ecc4d7895b84eaf59e1744e2078719b5 assets/chakral/blockstates/small_black_bud.json
 70f43a710b7c60d1f8096ff3018cce01d5c04c98 assets/chakral/blockstates/small_blue_bud.json
+896543d81bfc7ae3f0001a3f32fa5931a22b2c10 assets/chakral/blockstates/small_glowstone_bud.json
 447bfe2f00a592283a19bb7a84158dcf90942132 assets/chakral/blockstates/small_green_bud.json
 69eadace2cad2848829410d1ad9cfec2a17bda9f assets/chakral/blockstates/small_light_blue_bud.json
 d0482a6651f89816f8b6f6130ae20bb908ed98b8 assets/chakral/blockstates/small_orange_bud.json

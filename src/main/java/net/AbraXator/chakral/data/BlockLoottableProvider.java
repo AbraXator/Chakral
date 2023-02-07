@@ -30,7 +30,7 @@ public class BlockLoottableProvider extends BlockLootSubProvider {
             Block block = blockObject.get();
 
             if(ForgeRegistries.BLOCKS.tags().getTag(ModTags.Blocks.CRYSTALS).contains(block)) {
-                this.createSingleItemTableWithSilkTouch(block, Blocks.AIR);
+                this.createSingleItemTableWithSilkTouch(block, Blocks.AIR); //TODO: DROPUJE A NEMĚL BY
             }else if(ForgeRegistries.BLOCKS.tags().getTag(ModTags.Blocks.BUDDING_BLOCKS).contains(block)) {
                 this.add(block, noDrop());
             }else if(ForgeRegistries.BLOCKS.tags().getTag(BlockTags.SLABS).contains(block)) {

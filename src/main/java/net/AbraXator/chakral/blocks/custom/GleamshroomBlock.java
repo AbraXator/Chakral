@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -21,10 +22,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.ToIntFunction;
 
-public class GleamshroomBlock extends BushBlock implements EntityBlock {
+public class GleamshroomBlock extends Block implements EntityBlock {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
-    public static int LIGHT = 0;
-    public static final ToIntFunction<BlockState> LIGHT_AMOUNT = value -> LIGHT;
     public GleamshroomBlock(Properties p_49224_) {
         super(p_49224_);
     }
@@ -63,8 +62,14 @@ public class GleamshroomBlock extends BushBlock implements EntityBlock {
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, GleamshroomBlockEntity pBlockEntity){
-        if(pLevel.getRawBrightness(pPos, 10) > 5) {
+        if(pLevel.getGameTime() % 20 == 0){
+            setBlock(pLevel, pPos, pState, pLevel.getBrightness(LightLayer.BLOCK, pPos) > 2);
+        }
+    }
 
+    private void setBlock(Level level, BlockPos pos, BlockState state, boolean lit){
+        if(!level.getBlockState(pos).equals(state.setValue(LIT, lit))){
+            level.setBlock(pos, state.setValue(LIT, lit), 3);
         }
     }
 }

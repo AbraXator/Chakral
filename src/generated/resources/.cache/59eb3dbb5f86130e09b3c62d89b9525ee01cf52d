@@ -1,4 +1,4 @@
-// 1.19.3	2023-02-04T23:22:48.8640296	Loot Tables
+// 1.19.3	2023-02-06T20:16:08.3922445	Loot Tables
 8e00841121611180a2949ad70eac90182e18a06a data/chakral/loot_tables/blocks/amethyst_bricks.json
 09ba8f399530dff7a092f9c8478720907bd42da9 data/chakral/loot_tables/blocks/amethyst_brick_stairs.json
 04e98b675b6068fa8fb90e467646649f644e746a data/chakral/loot_tables/blocks/big_black_bud.json
@@ -15,6 +15,14 @@ fe0ec4e64e79518540c44ef57ce9d23e3cac2606 data/chakral/loot_tables/blocks/big_yel
 e9db5f8fa1fe1ae667bce38aee672faeac474338 data/chakral/loot_tables/blocks/black_mineral.json
 3a3fcc147f48cb0053dbf19c6d742a9f5fc095f9 data/chakral/loot_tables/blocks/black_mineral_bricks.json
 954a27b1afa0dcc181ca7b80f9ceb4752339cf47 data/chakral/loot_tables/blocks/black_mineral_brick_stairs.json
+9cc422557aca4c47fe188443fd7ccd50c9025773 data/chakral/loot_tables/blocks/black_mineral_coal_ore.json
+a34d644db1e8658949ce45f96c6b0938030d79ea data/chakral/loot_tables/blocks/black_mineral_copper_ore.json
+1d346d1e0e6ec559874d64de161d1cbf8980906e data/chakral/loot_tables/blocks/black_mineral_diamond_ore.json
+de5f224598f3d5a2cf96014ff1e5a81635f5c07b data/chakral/loot_tables/blocks/black_mineral_emerald_ore.json
+83d5404b88c8658dc8b78694b564c82280568f60 data/chakral/loot_tables/blocks/black_mineral_gold_ore.json
+68dfe50adadd546313d17aa97475aceefa8939cb data/chakral/loot_tables/blocks/black_mineral_iron_ore.json
+fc4d7c7d471bc5c3d601b23997fb385980496b74 data/chakral/loot_tables/blocks/black_mineral_lapis_ore.json
+82228c36a1393556d84ac6260f1d2215ed13bd98 data/chakral/loot_tables/blocks/black_mineral_redstone_ore.json
 2ea014860eb01d580d9064f75fff58dda18ee11e data/chakral/loot_tables/blocks/blue_crystal.json
 43a7d7660dcec66e19573a8f2806daf0b510bd15 data/chakral/loot_tables/blocks/blue_mineral.json
 2763ac814aaafe8a83291216f1f355f87149f648 data/chakral/loot_tables/blocks/blue_mineral_bricks.json

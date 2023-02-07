@@ -91,14 +91,15 @@ public class ForgeEvents {
 
     @SubscribeEvent
     public static void PlayerDamageEvent(LivingDamageEvent event){
-        Player player = ((Player) event.getEntity());
-        player.getCapability(AdditionalHealthCapProvider.ADD_HEALTH_CAP).ifPresent(additionalHealthCap -> {
-           float dmgAmount = event.getAmount();
-           float dmgAmountAfterAbsorption = dmgAmount - additionalHealthCap.getHealth();
-           additionalHealthCap.setHealth(additionalHealthCap.getHealth() - dmgAmountAfterAbsorption);
-           player.hurt(event.getSource(), dmgAmountAfterAbsorption);
-           event.setCanceled(true);
-        });
+        if(event.getEntity() instanceof Player player){
+            player.getCapability(AdditionalHealthCapProvider.ADD_HEALTH_CAP).ifPresent(additionalHealthCap -> {
+                float dmgAmount = event.getAmount();
+                float dmgAmountAfterAbsorption = dmgAmount - additionalHealthCap.getHealth();
+                additionalHealthCap.setHealth(additionalHealthCap.getHealth() - dmgAmountAfterAbsorption);
+                player.hurt(event.getSource(), dmgAmountAfterAbsorption);
+                event.setCanceled(true);
+            });
+        }
     }
 
     @SubscribeEvent
