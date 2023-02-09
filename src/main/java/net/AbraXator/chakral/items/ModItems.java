@@ -1,12 +1,14 @@
 package net.AbraXator.chakral.items;
 
 import net.AbraXator.chakral.Chakral;
+import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.items.custom.*;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -73,17 +75,17 @@ public class ModItems {
             new Gem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.ENLIGHTENED));
 
     public static final RegistryObject<Item> BLUE_SHARD = ITEMS.register("blue_shard", () ->
-            new Item(new Item.Properties()));
+            new Shard(new Item.Properties(), ModBlocks.BLUE_CRYSTAL.get()));
     public static final RegistryObject<Item> LIGHT_BLUE_SHARD = ITEMS.register("light_blue_shard", () ->
-            new Item(new Item.Properties()));
+            new Shard(new Item.Properties(), ModBlocks.LIGHT_BLUE_CRYSTAL.get()));
     public static final RegistryObject<Item> GREEN_SHARD = ITEMS.register("green_shard", () ->
-            new Item(new Item.Properties()));
+            new Shard(new Item.Properties(), ModBlocks.GREEN_CRYSTAL.get()));
     public static final RegistryObject<Item> YELLOW_SHARD = ITEMS.register("yellow_shard", () ->
-            new Item(new Item.Properties()));
+            new Shard(new Item.Properties(), ModBlocks.YELLOW_CRYSTAL.get()));
     public static final RegistryObject<Item> ORANGE_SHARD = ITEMS.register("orange_shard", () ->
-            new Item(new Item.Properties()));
+            new Shard(new Item.Properties(), ModBlocks.ORANGE_CRYSTAL.get()));
     public static final RegistryObject<Item> RED_SHARD = ITEMS.register("red_shard", () ->
-            new Item(new Item.Properties()));
+            new Shard(new Item.Properties(), ModBlocks.RED_CRYSTAL.get()));
 
     public static final RegistryObject<Item> SHARD_DUST = ITEMS.register("shard_dust", () ->
             new Item(new Item.Properties()));

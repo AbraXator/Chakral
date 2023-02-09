@@ -3,6 +3,7 @@ package net.AbraXator.chakral.blocks.custom;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -32,10 +33,25 @@ public class Crystal extends Block {
     protected final VoxelShape southS;
     protected final VoxelShape westS;
     protected final VoxelShape eastS;
+    private final Item shard;
 
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
+    }
+
+    public Crystal(Properties properties, Item shard) {
+        super(properties);
+        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(FACING, Direction.UP));
+        //this.northS = Block.box(16, 0, 16, 0, 16, 0);
+        //this.southS = Block.box()
+        this.downS = Block.box(2f, 11f, 2f, 14f, 16f,14f);
+        this.upS = Block.box(2f, 0.0f, 2f, 14f, 5f, 14f);
+        this.northS = Block.box(2, 2, 11, 14, 14, 16);
+        this.southS = Block.box(2, 2, 0, 14, 14, 5);
+        this.westS = Block.box(11, 2, 2, 16, 14, 14);
+        this.eastS = Block.box(0, 2, 2, 5, 14, 14);
+        this.shard = shard;
     }
 
     public Crystal(Properties properties) {
@@ -49,6 +65,7 @@ public class Crystal extends Block {
         this.southS = Block.box(2, 2, 0, 14, 14, 5);
         this.westS = Block.box(11, 2, 2, 16, 14, 14);
         this.eastS = Block.box(0, 2, 2, 5, 14, 14);
+        this.shard = null;
     }
 
     @Override
@@ -111,5 +128,9 @@ public class Crystal extends Block {
 
     public PushReaction getPistonPushReaction(BlockState pState) {
         return PushReaction.DESTROY;
+    }
+
+    public Item getShard() {
+        return shard;
     }
 }

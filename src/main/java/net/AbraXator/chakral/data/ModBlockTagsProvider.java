@@ -27,17 +27,9 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider p_256380_) {
-        this.tag(ModTags.Blocks.CRYSTALS).add(ModBlocks.BLACK_CRYSTAL.get(), ModBlocks.BIG_BLACK_BUD.get(), ModBlocks.SMALL_BLACK_BUD.get(),
-                ModBlocks.GLOWSTONE_CLUSTER.get(),
-                ModBlocks.WHITE_CRYSTAL.get(), ModBlocks.BIG_WHITE_BUD.get(), ModBlocks.SMALL_BLUE_BUD.get(),
-                ModBlocks.TRUE_WHITE_CRYSTAL.get(), ModBlocks.BIG_TRUE_WHITE_BUD.get(), ModBlocks.SMALL_WHITE_BUD.get(),
-                Blocks.SMALL_AMETHYST_BUD, Blocks.MEDIUM_AMETHYST_BUD, Blocks.MEDIUM_AMETHYST_BUD, Blocks.LARGE_AMETHYST_BUD, Blocks.AMETHYST_CLUSTER,
-                ModBlocks.BLUE_CRYSTAL.get(), ModBlocks.BIG_BLUE_BUD.get(), ModBlocks.SMALL_BLUE_BUD.get(),
-                ModBlocks.LIGHT_BLUE_CRYSTAL.get(), ModBlocks.BIG_LIGHT_BLUE_BUD.get(), ModBlocks.SMALL_LIGHT_BLUE_BUD.get(),
-                ModBlocks.GREEN_CRYSTAL.get(), ModBlocks.BIG_GREEN_BUD.get(), ModBlocks.SMALL_GREEN_BUD.get(),
-                ModBlocks.YELLOW_CRYSTAL.get(), ModBlocks.BIG_YELLOW_BUD.get(), ModBlocks.SMALL_YELLOW_BUD.get(),
-                ModBlocks.ORANGE_CRYSTAL.get(), ModBlocks.BIG_ORANGE_BUD.get(), ModBlocks.SMALL_ORANGE_BUD.get(),
-                ModBlocks.RED_CRYSTAL.get(), ModBlocks.BIG_RED_BUD.get(), ModBlocks.SMALL_RED_BUD.get());
+        DataGenerators.getCrystals().forEach(block -> {
+            this.tag(ModTags.Blocks.CRYSTALS).add(block);
+        });
         ModBlocks.BLOCKS.getEntries().forEach(blockRegistryObject -> {
             Block block = blockRegistryObject.get();
             List<RegistryObject<Block>> stone_block = List.of(ModBlocks.BLACK_MINERAL_IRON_ORE, ModBlocks.BLACK_MINERAL_COPPER_ORE);

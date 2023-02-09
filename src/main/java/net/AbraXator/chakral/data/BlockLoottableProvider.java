@@ -1,18 +1,32 @@
 package net.AbraXator.chakral.data;
 
 import net.AbraXator.chakral.blocks.ModBlocks;
+import net.AbraXator.chakral.blocks.custom.Crystal;
 import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.items.custom.Shard;
 import net.AbraXator.chakral.utils.ModTags;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.MatchTool;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -29,8 +43,8 @@ public class BlockLoottableProvider extends BlockLootSubProvider {
         ModBlocks.BLOCKS.getEntries().forEach(blockObject -> {
             Block block = blockObject.get();
 
-            if(ForgeRegistries.BLOCKS.tags().getTag(ModTags.Blocks.CRYSTALS).contains(block)) {
-                this.createSingleItemTableWithSilkTouch(block, Blocks.AIR); //TODO: DROPUJE A NEMĚL BY
+            if(DataGenerators.getCrystals().contains(block)) {
+                crystalLoot(block);
             }else if(ForgeRegistries.BLOCKS.tags().getTag(ModTags.Blocks.BUDDING_BLOCKS).contains(block)) {
                 this.add(block, noDrop());
             }else if(ForgeRegistries.BLOCKS.tags().getTag(BlockTags.SLABS).contains(block)) {
@@ -41,6 +55,17 @@ public class BlockLoottableProvider extends BlockLootSubProvider {
                 this.dropSelf(block);
             }
         });
+    }
+
+    private void crystalLoot(Block block) {
+        if(block instanceof Crystal crystal){
+            Item shard = Shard.shardFromCrystal(crystal);
+            if(shard != null){
+                this.add(block, createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(shard).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
+            }else {
+                this.dropWhenSilkTouch(crystal);
+            }
+        }
     }
 
     @Override
