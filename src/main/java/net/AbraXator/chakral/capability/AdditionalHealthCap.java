@@ -3,7 +3,7 @@ package net.AbraXator.chakral.capability;
 import net.minecraft.nbt.CompoundTag;
 
 public class AdditionalHealthCap {
-    private float health = 0;
+    private float health = maxHealth;
     public static int maxHealth = 10;
 
     public float getHealth(){
@@ -12,6 +12,10 @@ public class AdditionalHealthCap {
 
     public void setHealth(float health) {
         this.health = health;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
     }
 
     public void copyFrom(AdditionalHealthCap source){

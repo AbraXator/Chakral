@@ -1,18 +1,14 @@
 package net.AbraXator.chakral.blocks.custom;
 
-import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
-import net.AbraXator.chakral.blocks.entity.custom.StemShroomBlockEntity;
+import net.AbraXator.chakral.entity.ModEntities;
+import net.AbraXator.chakral.entity.stemspore.StemSporeEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.item.PrimedTnt;
-import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.DaylightDetectorBlockEntity;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -21,11 +17,10 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Stream;
 
-public class StemshroomBlock extends Block implements EntityBlock {
+public class StemshroomBlock extends Block {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final VoxelShape SHAPE_UP = Stream.of(
@@ -58,35 +53,16 @@ public class StemshroomBlock extends Block implements EntityBlock {
         return SHAPE_UP;
     }
 
-    public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
-        return pFacing == Direction.DOWN && !pState.canSurvive(pLevel, pCurrentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
-    }
 
     @Override
-    public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-        return canSupportRigidBlock(pLevel, pPos.below()) || canSupportCenter(pLevel, pPos.below(), Direction.UP);
-    }
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return !pLevel.isClientSide ? createTickerHelper(pBlockEntityType, ModBlockEntities.STEMSHROOM_BLOCK_ENTITY.get(), StemshroomBlock::tickEntity) : null;
-    }
-
-    @javax.annotation.Nullable
-    protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> createTickerHelper(BlockEntityType<A> pServerType, BlockEntityType<E> pClientType, BlockEntityTicker<? super E> pTicker) {
-        return pClientType == pServerType ? (BlockEntityTicker<A>)pTicker : null;
-    }
-
-    private static void tickEntity(Level level, BlockPos pos, BlockState blockState, StemShroomBlockEntity entity) {
-        if(level.getRawBrightness(pos, 10) > 10){
-            level.explode(null, pos.getX(), pos.getY(), pos.getZ(), 7.5F, Level.ExplosionInteraction.BLOCK);
+    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+        if(pLevel.getBrightness(LightLayer.BLOCK, pPos) >= 10){
+            double x = pPos.getX() + ((pRandom.nextDouble() - pRandom.nextDouble()) * 20);
+            double y = pPos.getY() + 5 + ((pRandom.nextDouble() - pRandom.nextDouble()) * 10);
+            double z = pPos.getZ() + ((pRandom.nextDouble() - pRandom.nextDouble()) * 20);
+            StemSporeEntity entity = new StemSporeEntity(ModEntities.STEM_SPORE.get(), pLevel);
+            entity.setPos(x, y, z);
+            pLevel.addFreshEntity(entity);
         }
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new StemShroomBlockEntity(pPos, pState);
     }
 }

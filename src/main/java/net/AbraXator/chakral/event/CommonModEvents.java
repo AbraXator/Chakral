@@ -1,10 +1,7 @@
 package net.AbraXator.chakral.event;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.capability.ChakraMasteryCap;
-import net.AbraXator.chakral.capability.ChakraMasteryCapProvider;
-import net.AbraXator.chakral.capability.NecklaceCap;
-import net.AbraXator.chakral.capability.NecklaceCapProvider;
+import net.AbraXator.chakral.capability.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -23,6 +20,7 @@ public class CommonModEvents {
             if(!event.getObject().getCapability(NecklaceCapProvider.NECKLACE_CAP).isPresent()) {
                 event.addCapability(new ResourceLocation(Chakral.MOD_ID, "necklace"), new NecklaceCapProvider());
                 event.addCapability(new ResourceLocation(Chakral.MOD_ID, "chakra_mastery"), new ChakraMasteryCapProvider());
+                event.addCapability(new ResourceLocation(Chakral.MOD_ID, "chakra_health"), new AdditionalHealthCapProvider());
                 //event.addCapability(new ResourceLocation(Chakral.MOD_ID, "properties"), new PlayerGemsCapProvider());
             }
         }
@@ -42,6 +40,12 @@ public class CommonModEvents {
             event.getOriginal().getCapability(ChakraMasteryCapProvider.CHAKRA_MASTERY_CAP).ifPresent(oldStore -> {
                 event.getEntity().getCapability(ChakraMasteryCapProvider.CHAKRA_MASTERY_CAP).ifPresent(newStore -> {
                     newStore.copyFrom(oldStore);
+                });
+            });
+            event.getOriginal().getCapability(AdditionalHealthCapProvider.ADD_HEALTH_CAP).ifPresent(oldStore -> {
+                event.getEntity().getCapability(AdditionalHealthCapProvider.ADD_HEALTH_CAP).ifPresent(newStore -> {
+                    newStore.copyFrom(oldStore);
+                    newStore.setHealth(newStore.getMaxHealth());
                 });
             });
         }

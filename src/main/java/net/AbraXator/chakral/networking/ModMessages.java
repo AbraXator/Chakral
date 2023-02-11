@@ -1,10 +1,7 @@
 package net.AbraXator.chakral.networking;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.networking.packet.FluidSyncS2CPacket;
-import net.AbraXator.chakral.networking.packet.ItemStackSyncS2CPacket;
-import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
-import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
+import net.AbraXator.chakral.networking.packet.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -49,6 +46,11 @@ public class ModMessages {
                 .decoder(FluidSyncS2CPacket::new)
                 .encoder(FluidSyncS2CPacket::toBytes)
                 .consumerMainThread(FluidSyncS2CPacket::handle)
+                .add();
+        net.messageBuilder(ChakraHeartsS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(ChakraHeartsS2CPacket::new)
+                .encoder(ChakraHeartsS2CPacket::toBytes)
+                .consumerMainThread(ChakraHeartsS2CPacket::handle)
                 .add();
     }
 

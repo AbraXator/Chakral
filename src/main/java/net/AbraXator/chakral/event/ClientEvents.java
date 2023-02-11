@@ -11,6 +11,8 @@ import net.AbraXator.chakral.client.ModOverlay;
 import net.AbraXator.chakral.entity.DwiderModel;
 import net.AbraXator.chakral.entity.DwiderRenderer;
 import net.AbraXator.chakral.entity.ModEntities;
+import net.AbraXator.chakral.entity.stemspore.StemSporeModel;
+import net.AbraXator.chakral.entity.stemspore.StemSporeRenderer;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
@@ -138,11 +140,13 @@ public final class ClientEvents {
     @SubscribeEvent
     public static void layerDefitions(EntityRenderersEvent.RegisterLayerDefinitions event){
         event.registerLayerDefinition(DwiderModel.LAYER_LOCATION, DwiderModel::createBodyLayer);
+        event.registerLayerDefinition(StemSporeModel.LAYER_LOCATION, StemSporeModel::createBodyLayer);
     }
 
     @SubscribeEvent
     public static void entityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntities.DWIDER.get(), DwiderRenderer::new);
+        event.registerEntityRenderer(ModEntities.STEM_SPORE.get(), StemSporeRenderer::new);
     }
 
     @SubscribeEvent

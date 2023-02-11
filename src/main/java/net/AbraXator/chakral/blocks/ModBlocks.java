@@ -121,7 +121,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> MINERAL_RICH_GRASS            = registerBlock("mineral_rich_grass", () -> new MineralRichGrassBlock(BlockBehaviour.Properties.of(Material.GRASS).sound(SoundType.GRASS).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BURGEONING_ROOTS              = registerBlock("burgeoning_roots", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GLEAMSHROOM                   = registerBlock("gleamshroom", () -> new GleamshroomBlock(BlockBehaviour.Properties.of(Material.VEGETABLE).lightLevel(litBlockEmission(10)).strength(9f).noOcclusion().requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> STEMSHROOM                    = registerBlock("stemshroom", () -> new StemshroomBlock(BlockBehaviour.Properties.of(Material.VEGETABLE).lightLevel(value -> 4).strength(9f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> STEMSHROOM                    = registerBlock("stemshroom", () -> new StemshroomBlock(BlockBehaviour.Properties.of(Material.VEGETABLE).randomTicks().lightLevel(value -> 4).strength(9f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> PARAGENETIC_CORE              = registerBlock("paragenetic_core", () -> new ParageneticCoreBlock(BlockBehaviour.Properties.of(Material.AMETHYST).strength(9f).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> NECKLACE_SLOTTER = registerBlock("necklace_slotter",

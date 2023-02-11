@@ -5,6 +5,8 @@ import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.networking.ModMessages;
+import net.AbraXator.chakral.networking.packet.ChakraHeartsS2CPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
