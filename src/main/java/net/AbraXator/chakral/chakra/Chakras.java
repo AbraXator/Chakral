@@ -4,6 +4,7 @@ import net.AbraXator.chakral.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.chakra.chakras.*;
 import net.AbraXator.chakral.items.ModItems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.extensions.IForgeItem;
@@ -41,7 +42,8 @@ public class Chakras {
     public static final RegistryObject<Chakra> MAHOGANY_CHAKRA =           ChakraRegistries.CHAKRA.register("mahogany_chakra", DefaultChakra::new);
 
     private static void tick(TickEvent.PlayerTickEvent event){
-        if(event.phase == TickEvent.Phase.END){
+        if(event.phase == TickEvent.Phase.END && event.side.isServer()){
+            ServerPlayer player = ((ServerPlayer) event.player);
             ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
                 Chakra chakra = s.get();
                 event.player.getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
@@ -59,9 +61,6 @@ public class Chakras {
         if(!player.getLevel().isClientSide()) {
             ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
                 Chakra chakra = s.get();
-                player.getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
-                    chakra.necklace = necklaceCap.getNecklace();
-                });
                 if (chakra.isEnabled()) {
                     chakra.onRightClickBlock(player, player.level, event);
                 }

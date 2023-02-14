@@ -50,7 +50,6 @@ public class MineralEnricherRenderer implements BlockEntityRenderer<MineralEnric
         MineralEnricherBlockEntity blockEntity = ((MineralEnricherBlockEntity) pBlockEntity.getLevel().getBlockEntity(pBlockEntity.getBlockPos()));
         float k = MineralEnricherBlockEntity.getProgress(pBlockEntity);
         ContainerData data = pBlockEntity.data;
-        System.out.println(data.get(0));
         pPoseStack.scale(k, k, k);
         blockRenderDispatcher.renderSingleBlock(block2, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, net.minecraftforge.client.model.data.ModelData.EMPTY, RenderType.cutout());
         pPoseStack.popPose();

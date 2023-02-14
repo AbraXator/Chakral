@@ -41,7 +41,6 @@ public class HagStone extends Chakra {
         }else if(!isInTag(player, Tags.Items.TOOLS_AXES, Tags.Items.TOOLS_PICKAXES, Tags.Items.TOOLS_SHOVELS)) {
             player.getAttribute(ForgeMod.REACH_DISTANCE.get()).removeModifier(uuid);
         }
-        System.out.println(player.getAttribute(ForgeMod.REACH_DISTANCE.get()).getBaseValue());
     }
 
     @SafeVarargs

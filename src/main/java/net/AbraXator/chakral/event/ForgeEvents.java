@@ -7,6 +7,7 @@ import net.AbraXator.chakral.capability.AdditionalHealthCap;
 import net.AbraXator.chakral.capability.AdditionalHealthCapProvider;
 import net.AbraXator.chakral.chakra.*;
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
+import net.AbraXator.chakral.client.ChakraHeartData;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
 import net.AbraXator.chakral.utils.PlayerUtil;
@@ -14,6 +15,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -91,54 +93,51 @@ public class ForgeEvents {
 
     @SubscribeEvent
     public static void PlayerDamageEvent(LivingDamageEvent event){
-        if(event.getEntity() instanceof Player player){
+        if(event.getEntity() instanceof Player player && ChakraHeartData.getEnabled()){
             player.getCapability(AdditionalHealthCapProvider.ADD_HEALTH_CAP).ifPresent(additionalHealthCap -> {
                 float dmgAmount = event.getAmount();
-                float dmgAmountAfterAbsorption = dmgAmount - additionalHealthCap.getHealth();
-                additionalHealthCap.setHealth(additionalHealthCap.getHealth() - dmgAmountAfterAbsorption);
-                player.hurt(event.getSource(), dmgAmountAfterAbsorption);
-                event.setCanceled(true);
+                float hp = additionalHealthCap.getHealth();
+                float toHurt = 0;
+                if(hp > 0){
+                    if(dmgAmount > hp){
+                        additionalHealthCap.setHealth(dmgAmount - hp);
+                        toHurt = dmgAmount - hp;
+                    }
+                    if(dmgAmount < hp){
+                        additionalHealthCap.setHealth(hp - dmgAmount);
+                        toHurt = 0;
+                    }
+                    if(dmgAmount == hp){
+                        additionalHealthCap.setHealth(hp - dmgAmount);
+                        toHurt = 0;
+                    }
+                    player.hurt(event.getSource(), toHurt);
+                    ChakraHeartData.setHealth(ChakraHeartData.getHealth());
+                    event.setCanceled(true);
+                }else {
+                    event.setCanceled(false);
+                }
             });
         }
     }
 
     @SubscribeEvent
-    public static void TickEvent(TickEvent.PlayerTickEvent event){
+    public static void TickEvent(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
         Level level = event.player.getLevel();
         BlockPos pos = player.getOnPos();
         Random random = new Random();
         BlockState state = level.getBlockState(pos);
-        if(state.is(ModTags.Blocks.CRYSTALS) && random.nextDouble() < 0.03D){
-            if(state.is(ModBlocks.ORANGE_CRYSTAL.get())){
+        if (state.is(ModTags.Blocks.CRYSTALS) && random.nextDouble() < 0.03D) {
+            if (state.is(ModBlocks.ORANGE_CRYSTAL.get())) {
                 player.setSecondsOnFire(5);
             }
         }
 
         player.getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
-            if(!level.isClientSide) {
+            if (!level.isClientSide) {
                 //System.out.println(necklaceCap.getNecklace());
             }
         });
-    }
-
-    @SubscribeEvent
-    public static void chakraTick(TickEvent.PlayerTickEvent event) {
-        event.player.getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
-            //System.out.println(necklaceCap.getNecklace());
-        });
-        Collection<RegistryObject<Chakra>> collection = ChakraRegistries.CHAKRA.getEntries();
-        collection.stream().toList().get(1);
-        ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
-            Chakra chakra = s.get();
-            if (chakra.isEnabled()) {
-                chakra.tick(event.player, event.player.level);
-            }
-        });
-        if (!event.player.level.isClientSide) {
-            if (event.phase == TickEvent.Phase.END) {
-
-            }
-        }
     }
 }

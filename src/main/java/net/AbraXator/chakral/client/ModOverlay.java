@@ -31,20 +31,34 @@ public class ModOverlay {
     });
 
     private static void setupRenderer(float health, Minecraft minecraft, ForgeGui gui, PoseStack poseStack, int x, int y){
-        if(!minecraft.options.hideGui && gui.shouldDrawSurvivalElements()){
+        if(!minecraft.options.hideGui && gui.shouldDrawSurvivalElements() && ChakraHeartData.getEnabled()){
             renderHealth(poseStack, x, y, health);
         }
     }
 
-    private static void renderHealth(PoseStack poseStack, int x, int y, double health){
+    private static void renderHealth(PoseStack poseStack, int x, int y, float health){
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1,1, 1, 1);
         RenderSystem.setShaderTexture(0, LOCATION);
-        for(int i = 0; i <= health; i++){
-            System.out.println(i);
-            if(health == Mth.ceil(health)){
-                GuiComponent.blit(poseStack, x - 94 + (i * 9), y - 54, 0, 0, 9, 9, 72, 9);
+        float hpDecimal = health - (int)health;
+        renderEmptyHearts(poseStack, x, y);
+        for(int i = 0; i < health; i++){
+            if(i == health - hpDecimal){
+                GuiComponent.blit(poseStack, x - 94 + (i * 9), y - 54, 45, 0, 9, 9, 72, 9);
+                break;
+            }else if(hpDecimal >= 0.5){
+                break;
+            } else {
+                GuiComponent.blit(poseStack, x - 94 + (i * 9), y - 54, 36, 0, 9, 9, 72, 9);
             }
+        }
+    }
+
+    private static void renderHearts(){}
+
+    private static void renderEmptyHearts(PoseStack poseStack, int x, int y){
+        for(int i = 0; i < AdditionalHealthCap.maxHealth; i++){
+            GuiComponent.blit(poseStack, x - 94 + (i * 9), y - 54, 0, 0, 9, 9, 72, 9);
         }
     }
 }

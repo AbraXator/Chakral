@@ -41,6 +41,10 @@ public abstract class Chakra {
         return necklace;
     }
 
+    public void setNecklace(ItemStack stack){
+        this.necklace = stack;
+    }
+
     @NotNull
     public List<Item> stones(){
         if (necklace != null && necklace.hasTag()) {
@@ -75,8 +79,8 @@ public abstract class Chakra {
 
     public void onFunctionKeyPressUpgraded(Player player, Level level){}
 
-    public boolean isUpgraded(ChakraType type){
-        return stones().contains(type.getTier4(type));
+    public boolean isUpgraded(){
+        return stones().contains(this.type.getTier4(this.type));
     }
 
     public void tick(Player player, Level level){}

@@ -34,7 +34,7 @@ public class CommonModEvents {
             event.getOriginal().getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(oldStore -> {
                 player.drop(oldStore.getNecklace(), false);
                 event.getEntity().getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(newStore -> {
-                    newStore.setNecklace(ItemStack.EMPTY);
+                    newStore.copyFrom(oldStore);
                 });
             });
             event.getOriginal().getCapability(ChakraMasteryCapProvider.CHAKRA_MASTERY_CAP).ifPresent(oldStore -> {
