@@ -7,6 +7,7 @@ import net.AbraXator.chakral.capability.AdditionalHealthCap;
 import net.AbraXator.chakral.capability.AdditionalHealthCapProvider;
 import net.AbraXator.chakral.chakra.*;
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
+import net.AbraXator.chakral.chakra.chakras.AmazoniteChakra;
 import net.AbraXator.chakral.client.ChakraHeartData;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
@@ -93,32 +94,7 @@ public class ForgeEvents {
 
     @SubscribeEvent
     public static void PlayerDamageEvent(LivingDamageEvent event){
-        if(event.getEntity() instanceof Player player && ChakraHeartData.getEnabled()){
-            player.getCapability(AdditionalHealthCapProvider.ADD_HEALTH_CAP).ifPresent(additionalHealthCap -> {
-                float dmgAmount = event.getAmount();
-                float hp = additionalHealthCap.getHealth();
-                float toHurt = 0;
-                if(hp > 0){
-                    if(dmgAmount > hp){
-                        additionalHealthCap.setHealth(dmgAmount - hp);
-                        toHurt = dmgAmount - hp;
-                    }
-                    if(dmgAmount < hp){
-                        additionalHealthCap.setHealth(hp - dmgAmount);
-                        toHurt = 0;
-                    }
-                    if(dmgAmount == hp){
-                        additionalHealthCap.setHealth(hp - dmgAmount);
-                        toHurt = 0;
-                    }
-                    player.hurt(event.getSource(), toHurt);
-                    ChakraHeartData.setHealth(ChakraHeartData.getHealth());
-                    event.setCanceled(true);
-                }else {
-                    event.setCanceled(false);
-                }
-            });
-        }
+        AmazoniteChakra.hurt(event);
     }
 
     @SubscribeEvent
