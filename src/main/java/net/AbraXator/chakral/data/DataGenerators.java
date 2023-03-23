@@ -3,6 +3,7 @@ package net.AbraXator.chakral.data;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.chakra.Chakra;
+import net.AbraXator.chakral.world.WorldGenerator;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.TagsProvider;
@@ -29,6 +30,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ModBlockModelGenerator(generator.getPackOutput(), Chakral.MOD_ID, existingFileHelper));
         generator.addProvider(event.includeServer(), new ItemModelGenerator(generator.getPackOutput(), Chakral.MOD_ID, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModBlockStateProvider(generator.getPackOutput(), Chakral.MOD_ID, existingFileHelper));
+        WorldGenerator.addProvider(event.includeServer(), generator, generator.getPackOutput(), event.getLookupProvider(), existingFileHelper);
     }
 
     public static List<Block> getCrystals(){

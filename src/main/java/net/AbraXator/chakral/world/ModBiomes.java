@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModBiomes {
-    public static DeferredRegister<Biome> BIOMES
+    /*public static DeferredRegister<Biome> BIOMES
             = DeferredRegister.create(ForgeRegistries.BIOMES, Chakral.MOD_ID);
 
     public static void registerBiomes(BootstapContext<Biome> context){
@@ -29,5 +29,5 @@ public class ModBiomes {
 
     public static RegistryObject<Biome> register(ResourceKey<Biome> key, Supplier<Biome> biomeSupplier){
         return BIOMES.register(key.location().getPath(), biomeSupplier);
-    }
+    }*/
 }

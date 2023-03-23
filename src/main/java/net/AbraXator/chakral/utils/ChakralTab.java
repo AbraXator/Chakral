@@ -27,7 +27,7 @@ public class ChakralTab {
         TAB = event.registerCreativeModeTab(
                 new ResourceLocation(Chakral.MOD_ID, "chakral_tab"), builder -> builder
                         .icon(() -> new ItemStack(ModItems.GOLDEN_NECKLACE.get()))
-                        .displayItems((featureFlags, output, hasOp) -> ModItems.ITEMS.getEntries().forEach(o -> {
+                        .displayItems((parameters, output) -> ModItems.ITEMS.getEntries().forEach(o -> {
                             output.accept(o.get());
                             if(o.get().equals(ModItems.TOURMALINE.get())){
                                 output.accept(Items.AMETHYST_SHARD);

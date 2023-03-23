@@ -40,10 +40,6 @@ import java.util.Random;
 @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ForgeEvents {
     public static boolean EQUIPPED = false;
-    @SubscribeEvent
-    public static void EnderManAngerReset(EnderManAngerEvent event){
-        ChakrasEquip.sugiliteEnderMan(event.getPlayer(), event);
-    }
 
     @SubscribeEvent
     public static void refinerInteract(PlayerInteractEvent.RightClickBlock event){

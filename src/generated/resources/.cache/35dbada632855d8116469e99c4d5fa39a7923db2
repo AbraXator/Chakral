@@ -1,4 +1,4 @@
-// 1.19.3	2023-02-09T19:03:09.1279539	Tags for minecraft:block mod id chakral
+// 1.19.3	2023-03-11T21:05:54.3016006	Tags for minecraft:block mod id chakral
 d220783c76ee528b573d60b77f9cb8a601632fb0 data/chakral/tags/blocks/crystals.json
 4d161707d813f2f501d921ce3bd0a89c7e4ac9b6 data/minecraft/tags/blocks/dirt.json
-47ff5a81884ed9521e17a27bb9fa17f5292457fe data/minecraft/tags/blocks/mineable/pickaxe.json
+17ccd42404f9c11239a229e648c64c28c859f89a data/minecraft/tags/blocks/mineable/pickaxe.json

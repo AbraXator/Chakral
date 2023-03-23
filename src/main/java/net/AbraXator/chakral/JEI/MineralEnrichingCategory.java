@@ -1,12 +1,5 @@
 package net.AbraXator.chakral.JEI;
 
-import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
-import mezz.jei.api.gui.drawable.IDrawable;
-import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.recipe.IFocusGroup;
-import mezz.jei.api.recipe.RecipeIngredientRole;
-import mezz.jei.api.recipe.RecipeType;
-import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.recipes.MineralEnricherRecipe;
@@ -16,7 +9,7 @@ import net.AbraXator.chakral.screen.refiner.ShardRefinerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
-
+/*
 public class MineralEnrichingCategory implements IRecipeCategory<MineralEnricherRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(Chakral.MOD_ID, "enriching");
     public static final int width = 116;
@@ -57,4 +50,4 @@ public class MineralEnrichingCategory implements IRecipeCategory<MineralEnricher
         builder.addSlot(RecipeIngredientRole.INPUT, 134, 53).addIngredients(recipe.getIngredients().get(0));
         builder.addSlot(RecipeIngredientRole.OUTPUT, 77, 66).addItemStack(recipe.getResultItem());
     }
-}
+}*/

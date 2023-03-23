@@ -8,6 +8,9 @@ import net.AbraXator.chakral.utils.ShapeMerger;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
@@ -29,7 +32,7 @@ public class Dumortierite extends Chakra {
         Player player = ((Player) event.getEntity());
         Level level = event.getEntity().level;
         DamageSource damageSource = event.getSource();
-        if(damageSource.isFall()){
+        if(damageSource.is(DamageTypes.FALL)){
             float amount = event.getAmount();
             int range = Mth.ceil(amount * 0.5);
 

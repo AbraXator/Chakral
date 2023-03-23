@@ -37,10 +37,10 @@ public class ModMessages {
                 .encoder(NecklaceC2SPacket::toBytes)
                 .consumerMainThread(NecklaceC2SPacket::handle)
                 .add();
-        net.messageBuilder(ItemStackSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(ItemStackSyncS2CPacket::new)
-                .encoder(ItemStackSyncS2CPacket::toBytes)
-                .consumerMainThread(ItemStackSyncS2CPacket::handle)
+        net.messageBuilder(EnricherSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(EnricherSyncS2CPacket::new)
+                .encoder(EnricherSyncS2CPacket::toBytes)
+                .consumerMainThread(EnricherSyncS2CPacket::handle)
                 .add();
         net.messageBuilder(FluidSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(FluidSyncS2CPacket::new)

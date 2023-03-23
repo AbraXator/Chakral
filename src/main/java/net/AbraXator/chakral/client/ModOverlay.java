@@ -40,25 +40,40 @@ public class ModOverlay {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1,1, 1, 1);
         RenderSystem.setShaderTexture(0, LOCATION);
+        renderHeartsTexture(poseStack, 0, x, y); //EMPTY HEARTS
+        blink(poseStack, x, y);
+        renderHearts(poseStack, health, x, y);
+    }
+
+    private static void renderHearts(PoseStack poseStack, float health, int x, int y){
         float hpDecimal = health - (int)health;
-        renderEmptyHearts(poseStack, x, y);
         for(int i = 0; i < health; i++){
             if(i == health - hpDecimal){
-                GuiComponent.blit(poseStack, x - 94 + (i * 9), y - 54, 45, 0, 9, 9, 72, 9);
+                renderHeartTexture(poseStack, 46, x, y, i);
                 break;
             }else if(hpDecimal >= 0.5){
                 break;
             } else {
-                GuiComponent.blit(poseStack, x - 94 + (i * 9), y - 54, 36, 0, 9, 9, 72, 9);
+                renderHeartTexture(poseStack, 37, x, y, i);
             }
         }
     }
 
-    private static void renderHearts(){}
-
-    private static void renderEmptyHearts(PoseStack poseStack, int x, int y){
-        for(int i = 0; i < AdditionalHealthCap.maxHealth; i++){
-            GuiComponent.blit(poseStack, x - 94 + (i * 9), y - 54, 0, 0, 9, 9, 72, 9);
+    private static void blink(PoseStack poseStack, int x, int y){
+        if(ChakraHeartData.isBlink()){
+            renderHeartsTexture(poseStack, 9, x, y);
+            //renderHeartsTexture(poseStack, 0, x, y);
         }
+        ChakraHeartData.setBlink(false);
+    }
+
+    private static void renderHeartsTexture(PoseStack poseStack, int u, int x, int y){
+        for(int i = 0; i < AdditionalHealthCap.maxHealth; i++){
+            renderHeartTexture(poseStack, u, x, y, i);
+        }
+    }
+
+    private static void renderHeartTexture(PoseStack poseStack, int u, int x, int y, int i){
+        GuiComponent.blit(poseStack, x - 94 + (i * 9), y - 54, u, 0, 9, 9, 72, 9);
     }
 }

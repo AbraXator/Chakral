@@ -38,18 +38,20 @@ public class MineralEnricherRenderer implements BlockEntityRenderer<MineralEnric
         //--------------BLOCK-----------------
         BlockState block = getBudding(Block.byItem(getCrystal(pBlockEntity))).defaultBlockState();
         pPoseStack.pushPose();
-        pPoseStack.translate(0.15f, 0.1f, 0.15f);
         pPoseStack.scale(0.7f, 0.7f, 0.7f);
+        pPoseStack.translate(0.2175f, 0.1f, 0.2175f);
         blockRenderDispatcher.renderSingleBlock(block, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, net.minecraftforge.client.model.data.ModelData.EMPTY, RenderType.solid());
         pPoseStack.popPose();
         //---------------CRYSTAL--------------
         BlockState block2 = Block.byItem(getCrystal(pBlockEntity)).defaultBlockState();
         pPoseStack.pushPose();
+        //pPoseStack.translate(0.5, 0, 0.5);
         pPoseStack.mulPose(Axis.XP.rotationDegrees(180F));
         pPoseStack.translate(0f, 0f, -1f);
-        MineralEnricherBlockEntity blockEntity = ((MineralEnricherBlockEntity) pBlockEntity.getLevel().getBlockEntity(pBlockEntity.getBlockPos()));
-        float k = MineralEnricherBlockEntity.getProgress(pBlockEntity);
-        ContainerData data = pBlockEntity.data;
+        float k = ((float) pBlockEntity.data.get(0)) / 160;
+        System.out.println(k);
+        float translate = ((float) (0.5 - (k * 0.5)));
+        pPoseStack.translate(translate, 0, translate);
         pPoseStack.scale(k, k, k);
         blockRenderDispatcher.renderSingleBlock(block2, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, net.minecraftforge.client.model.data.ModelData.EMPTY, RenderType.cutout());
         pPoseStack.popPose();
@@ -58,7 +60,7 @@ public class MineralEnricherRenderer implements BlockEntityRenderer<MineralEnric
     private Item getCrystal(MineralEnricherBlockEntity pBlockEntity) {
         Item[] item = new Item[1];
         MineralEnricherBlockEntity.generateRecipe(pBlockEntity).ifPresentOrElse(recipe -> {
-            item[0] = recipe.getResultItem().getItem();
+            item[0] = recipe.getResultItem(pBlockEntity.getLevel().registryAccess()).getItem();
         }, () -> {
             item[0] = Blocks.AIR.asItem();
         });

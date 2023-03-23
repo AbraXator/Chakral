@@ -1,4 +1,4 @@
-// 1.19.3	2023-02-09T20:15:16.1960366	Loot Tables
+// 1.19.3	2023-03-11T21:05:54.2966029	Loot Tables
 8e00841121611180a2949ad70eac90182e18a06a data/chakral/loot_tables/blocks/amethyst_bricks.json
 09ba8f399530dff7a092f9c8478720907bd42da9 data/chakral/loot_tables/blocks/amethyst_brick_stairs.json
 767b8301c1017302eb8b8844e8cb091c3994f83b data/chakral/loot_tables/blocks/big_black_bud.json
@@ -83,6 +83,10 @@ bf9e07fcda6b63df3eddf20548bcf5d7e4b0b6dc data/chakral/loot_tables/blocks/true_wh
 47eef09cdffc0e3e6e427b86eb316bf522ca1a67 data/chakral/loot_tables/blocks/white_crystal.json
 cf517e547a1335c1cc3fc0d5da82e89d64ef9dff data/chakral/loot_tables/blocks/white_mineral.json
 4d82149134424c1e77074ebc0e6d052823b2d2ef data/chakral/loot_tables/blocks/white_mineral_bricks.json
+67bf06c38a7a217a4e76a6aaa7f51ec34e0e181b data/chakral/loot_tables/blocks/wilted_leaves.json
+10ac49a4e36761dbd100f90066cb8d32fac41fd5 data/chakral/loot_tables/blocks/wilted_log.json
+f4b231b1317cb618811aaac1860708974612147e data/chakral/loot_tables/blocks/wilted_planks.json
+7311a52c41be2c68e53edcf01858ad26d89d4a3e data/chakral/loot_tables/blocks/wilted_sapling.json
 6892438dc279d2b044bbe567e02e5c5ebe3c7b60 data/chakral/loot_tables/blocks/yellow_crystal.json
 996a6da4c559bbc7a9e5dbb41d0e9816bda7a266 data/chakral/loot_tables/blocks/yellow_mineral.json
 b41bb134db1a81ab9f5c80ecfaebc8689bf19fb6 data/chakral/loot_tables/blocks/yellow_mineral_bricks.json

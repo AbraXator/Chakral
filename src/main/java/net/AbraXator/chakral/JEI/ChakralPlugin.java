@@ -1,11 +1,5 @@
 package net.AbraXator.chakral.JEI;
 
-import mezz.jei.api.IModPlugin;
-import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.recipe.RecipeType;
-import mezz.jei.api.registration.IRecipeCatalystRegistration;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.client.EdgeClient;
@@ -19,7 +13,7 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import java.util.List;
 import java.util.Objects;
 
-@JeiPlugin
+/*@JeiPlugin
 public class ChakralPlugin implements IModPlugin {
     public static RecipeType<MineralEnricherRecipe> MINERAL_ENRICHING =
             RecipeType.create(Chakral.MOD_ID, "enriching", MineralEnricherRecipe.class);
@@ -45,4 +39,4 @@ public class ChakralPlugin implements IModPlugin {
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.MINERAL_ENRICHER.get()), MINERAL_ENRICHING);
     }
-}
+}*/

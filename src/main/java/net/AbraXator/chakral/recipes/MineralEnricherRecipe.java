@@ -5,7 +5,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
 import net.AbraXator.chakral.Chakral;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -40,7 +42,7 @@ public class MineralEnricherRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public ItemStack assemble(SimpleContainer pContainer) {
+    public ItemStack assemble(SimpleContainer p_44001_, RegistryAccess p_267165_) {
         return output;
     }
 
@@ -49,13 +51,13 @@ public class MineralEnricherRecipe implements Recipe<SimpleContainer> {
         return true;
     }
 
-    public ItemStack getInput(){
-        return input.getItems()[1].copy();
+    @Override
+    public ItemStack getResultItem(RegistryAccess p_267052_) {
+        return output.copy();
     }
 
-    @Override
-    public ItemStack getResultItem() {
-        return output.copy();
+    public ItemStack getInput(){
+        return input.getItems()[1].copy();
     }
 
     public ItemStack getDust() {
@@ -115,7 +117,7 @@ public class MineralEnricherRecipe implements Recipe<SimpleContainer> {
         public void toNetwork(FriendlyByteBuf buf, MineralEnricherRecipe pRecipe) {
             pRecipe.input.toNetwork(buf);
             buf.writeItemStack(pRecipe.getInput(), false);
-            buf.writeItemStack(pRecipe.getResultItem(), false);
+            buf.writeItemStack(pRecipe.getResultItem(Minecraft.getInstance().level.getServer().registryAccess()), false);
             buf.writeItemStack(pRecipe.getDust(), false);
             buf.writeFluidStack(pRecipe.getFluidStack());
         }

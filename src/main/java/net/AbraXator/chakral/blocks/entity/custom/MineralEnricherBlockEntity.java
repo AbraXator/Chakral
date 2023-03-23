@@ -6,7 +6,7 @@ import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.FluidSyncS2CPacket;
-import net.AbraXator.chakral.networking.packet.ItemStackSyncS2CPacket;
+import net.AbraXator.chakral.networking.packet.EnricherSyncS2CPacket;
 import net.AbraXator.chakral.recipes.MineralEnricherRecipe;
 import net.AbraXator.chakral.screen.enricher.MineralEnricherMenu;
 import net.AbraXator.chakral.utils.ModTags;
@@ -20,6 +20,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -27,6 +28,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -81,7 +83,7 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
 
     public final ContainerData data;
     public int progress;
-    private int maxProgress = 60;
+    private int maxProgress = 120;
     private final FluidTank fluidTank = new FluidTank(5000){
         @Override
         protected void onContentsChanged() {
@@ -105,11 +107,11 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
     public FluidStack getFluidStack(){
         return this.fluidTank.getFluid();
     }
+
     private int dustAmount = 16;
 
     public MineralEnricherBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlockEntities.MINERAL_ENRICHER_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
-        MineralEnricherBlockEntity entity = MineralEnricherBlockEntity.this;
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
@@ -228,7 +230,7 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
             return;
         }else {
             //System.out.println("ENTITY: " + MineralEnricherBlockEntity.getProgress(entity));
-            ModMessages.sendToClients(new ItemStackSyncS2CPacket(entity.itemHandler, entity.getBlockPos()));
+            ModMessages.sendToClients(new EnricherSyncS2CPacket(entity.itemHandler, entity.getBlockPos(), getProgress(entity)));
              entity.updateDust(entity.getDust());
             if (hasRecipe(entity) && canPlace(entity)) {
                 entity.progress++;
@@ -242,18 +244,29 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
             }
         }
         if(hasFluidInSourceSlot(entity)){
-        transferItemFluidToFluidTank(entity);
+            transferItemFluidToFluidTank(entity);
+        }
     }
-}
+
+    private static Item getCrystal(MineralEnricherBlockEntity pBlockEntity) {
+        Item[] item = new Item[1];
+        generateRecipe(pBlockEntity).ifPresentOrElse(recipe -> {
+            item[0] = recipe.getResultItem(pBlockEntity.level.registryAccess()).getItem();
+        }, () -> {
+            item[0] = Blocks.AIR.asItem();
+        });
+        return item[0];
+    }
 
     private static void craftItem(MineralEnricherBlockEntity entity) {
         Level level = entity.level;
         Optional<MineralEnricherRecipe> recipe = generateRecipe(entity);
         BlockPos pos = entity.getBlockPos();
         BlockPos crystalPos = new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ());
-        BlockState state = crystalGen(recipe);
+        BlockState state = crystalGen(recipe, entity);
         if (state.is(ModTags.Blocks.CRYSTALS)) {
             level.setBlock(crystalPos, state.setValue(BlockStateProperties.FACING, Direction.DOWN).setValue(Crystal.WATERLOGGED, level.getBlockState(crystalPos).is(Blocks.WATER)), 2);
+            level.gameEvent(GameEvent.BLOCK_CHANGE, crystalPos, GameEvent.Context.of(state));
             entity.itemHandler.extractItem(1, 16, false);
             entity.fluidTank.drain(recipe.get().getFluidStack().getAmount(), IFluidHandler.FluidAction.EXECUTE);
             entity.resetProgress();
@@ -272,13 +285,12 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
     private static boolean canPlace(MineralEnricherBlockEntity entity){
         Level level = entity.level;
         BlockPos pos = entity.getBlockPos();
-        BlockPos crystalPos = new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ());
-        return level.getBlockState(crystalPos).is(ModTags.Blocks.AIR) || level.getBlockState(crystalPos).is(Blocks.WATER);
+        return level.getBlockState(pos.below()).is(Blocks.AIR) || level.getBlockState(pos.below()).is(Blocks.WATER);
     }
 
-    private static BlockState crystalGen(Optional<MineralEnricherRecipe> recipe){
+    private static BlockState crystalGen(Optional<MineralEnricherRecipe> recipe, MineralEnricherBlockEntity entity){
         for (Block block : ForgeRegistries.BLOCKS.tags().getTag(ModTags.Blocks.CRYSTALS)) {
-            if (block.asItem().equals(recipe.get().getResultItem().getItem())) {
+            if (block.asItem().equals(recipe.get().getResultItem(entity.level.registryAccess()).getItem())) {
                 return block.defaultBlockState();
             }
         }

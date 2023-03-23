@@ -5,6 +5,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
@@ -172,7 +173,7 @@ public final class ShapeMerger {
                     Optional<Direction> moveNext = previousCenterPoint.map(
                             v -> {
                                 Vec3 w = centerPoint.subtract(v);
-                                BlockPos onPos = new BlockPos(w);
+                                BlockPos onPos = new BlockPos((int) w.x, (int) w.y, (int) w.z);
                                 return Direction.fromNormal(onPos.getX(), onPos.getY(), onPos.getZ());
                             }
                     );

@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.AbraXator.chakral.Chakral;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -38,7 +39,7 @@ public class ShardRefinerRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container pContainer) {
+    public ItemStack assemble(Container p_44001_, RegistryAccess p_267165_) {
         return stones.get(getRandomStone(getStones().size()));
     }
 
@@ -47,13 +48,13 @@ public class ShardRefinerRecipe implements Recipe<Container> {
         return true;
     }
 
-    public ItemStack getInputItem() {
-        return shard;
+    @Override
+    public ItemStack getResultItem(RegistryAccess p_267052_) {
+        return stones.get(getRandomStone(getStones().size()));
     }
 
-    @Override
-    public ItemStack getResultItem() {
-        return stones.get(getRandomStone(getStones().size()));
+    public ItemStack getInputItem() {
+        return shard;
     }
 
     public ItemStack getDiamond() {

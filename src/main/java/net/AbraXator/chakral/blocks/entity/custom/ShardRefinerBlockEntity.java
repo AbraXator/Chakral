@@ -193,8 +193,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
     }
 
     public static void loadFuel(ShardRefinerBlockEntity entity) {
-        ShardRefinerRecipe recipe = generateRecipe(entity).get();
-        if (entity.itemHandler.getStackInSlot(0).is(recipe.getDiamond().getItem()) && entity.data.get(0) == 0) {
+        if (entity.itemHandler.getStackInSlot(0).is(Items.DIAMOND) && entity.data.get(0) == 0) {
             entity.itemHandler.extractItem(0, 1, false);
             entity.data.set(0, 15);
         }
@@ -208,8 +207,8 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
         if(pLevel.isClientSide){
             return;
         }
+        loadFuel(pBlockEntity);
         if(hasRecipe(pBlockEntity)){
-            loadFuel(pBlockEntity);
             pBlockEntity.progress++;
             if(pBlockEntity.progress >= pBlockEntity.maxProgress){
                 craftItem(pBlockEntity);
@@ -238,7 +237,7 @@ public class ShardRefinerBlockEntity extends BlockEntity implements MenuProvider
 
         entity.itemHandler.extractItem(1, 1, false);
         entity.itemHandler.setStackInSlot(recipe.getRandomStone(tierForCrafting) + 4,
-                new ItemStack(recipe.getResultItem().getItem(),
+                new ItemStack(recipe.getResultItem(entity.level.registryAccess()).getItem(),
                 entity.itemHandler.getStackInSlot(recipe.getRandomStone(tierForCrafting)).getCount() + 1));
         entity.resetProgress();
         --entity.diamondCharge;

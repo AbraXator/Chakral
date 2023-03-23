@@ -3,6 +3,7 @@ package net.AbraXator.chakral.client;
 public class ChakraHeartData {
     private static float health;
     private static boolean enabled;
+    private static boolean blink;
 
     public static void setHealth(float health){
         ChakraHeartData.health = health;
@@ -18,5 +19,13 @@ public class ChakraHeartData {
 
     public static boolean getEnabled(){
         return enabled;
+    }
+
+    public static boolean isBlink() {
+        return blink;
+    }
+
+    public static void setBlink(boolean blink) {
+        ChakraHeartData.blink = blink;
     }
 }

@@ -18,18 +18,20 @@ import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
 import net.AbraXator.chakral.screen.refiner.ShardRefinerScreen;
 import net.AbraXator.chakral.utils.KeyBindings;
+import net.AbraXator.chakral.utils.MouseUtil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.MultiBufferSource.BufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.GrassColor;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -38,6 +40,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.joml.Matrix4f;
 
 @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class ClientEvents {
@@ -53,7 +56,33 @@ public final class ClientEvents {
             }
         }
 
-        @SubscribeEvent
+        public static void render(RenderLevelStageEvent event){
+            Level level = Minecraft.getInstance().level;
+            BlockPos blockPos = new BlockPos(100, 100, 100);
+            BlockState state = level.getBlockState(blockPos);
+            VoxelShape voxelShape = state.getShape(level, blockPos, CollisionContext.empty());
+            drawSelectionBox(event.getLevelRenderer(), Minecraft.getInstance().renderBuffers().bufferSource(), event.getPoseStack(), blockPos, voxelShape);
+        }
+
+        private static void drawSelectionBox(LevelRenderer levelRenderer, MultiBufferSource bufferSource, PoseStack poseStack, BlockPos pos, VoxelShape voxelShape){
+            RenderType type = RenderType.outline(new ResourceLocation(Chakral.MOD_ID, "textures/render_helper.png"));
+            VertexConsumer vertexConsumer = bufferSource.getBuffer(type);
+            Vec3 camPos = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
+            drawShapeOutline(poseStack, vertexConsumer, voxelShape, pos.getX() - camPos.x, pos.getY() - camPos.y, pos.getZ() - camPos.z);
+        }
+
+        private static void drawShapeOutline(PoseStack poseStack, VertexConsumer vertexConsumer, VoxelShape voxelShape, double originX, double originY, double originZ){
+            Matrix4f matrix4f = poseStack.last().pose();
+            voxelShape.forAllEdges((pMinX, pMinY, pMinZ, pMaxX, pMaxY, pMaxZ) -> {
+                vertexConsumer.vertex(matrix4f, (float)(pMinX + originX), (float)(pMinY + originY), (float)(pMinZ + originZ)).color(1, 1, 1,1);
+                vertexConsumer.vertex(matrix4f, (float)(pMaxX + originX), (float)(pMaxY + originY), (float)(pMaxZ + originZ)).color(1, 1, 1,1);
+            });
+        }
+
+
+
+
+
         public static void renderOres(RenderLevelStageEvent event) {
             PoseStack pPoseStack = event.getPoseStack();
             BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
@@ -73,7 +102,7 @@ public final class ClientEvents {
             builder.vertex(matrix4f, -10, -10, 10).color(255, 0, 0, 255).uv(0, 0).endVertex();
             System.out.println(event.getStage().toString());*/
             //pPoseStack.popPose();
-            buffer. endBatch(RenderType.outline(PATH));
+            buffer.endBatch(RenderType.outline(PATH));
         }
 
         private static void renderHitOutline(PoseStack pPoseStack, VertexConsumer pConsumer, Entity pEntity, double pCamX, double pCamY, double pCamZ, BlockPos pPos, BlockState pState) {
@@ -100,19 +129,6 @@ public final class ClientEvents {
         public static void onOpenScreen(ScreenEvent.Opening event){
             if(event.getNewScreen() instanceof ShardRefinerScreen && (Minecraft.getInstance().player != null && Minecraft.getInstance().player.isShiftKeyDown())){
                 event.setCanceled(true);
-            }
-        }
-
-        @SubscribeEvent
-        public static void editInventory(ScreenEvent.Render.Post event){
-            ResourceLocation TEXTURE = new ResourceLocation("textures/gui/container/image.png");
-            if(event.getScreen() instanceof InventoryScreen screen) {
-                int x = (screen.width - 176) / 2;
-                int y = (screen.height - 166) / 2;
-                RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
-                RenderSystem.setShaderColor(1, 1, 1, 1);
-                RenderSystem.setShaderTexture(0, TEXTURE);
-                screen.blit(event.getPoseStack(), x, y, 0, 0, 16, 16);
             }
         }
     }

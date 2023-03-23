@@ -14,7 +14,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import javax.annotation.Nullable;
 
 public class ModOverworldBiomes {
-
+/*
     protected static int calculateSkyColor(float color) {
         float $$1 = color / 3.0F;
         $$1 = Mth.clamp($$1, -1.0F, 1.0F);
@@ -26,7 +26,7 @@ public class ModOverworldBiomes {
     }
 
     private static Biome biome(Biome.Precipitation precipitation, float temperature, float downfall, int waterColor, int waterFogColor, MobSpawnSettings.Builder spawnBuilder, BiomeGenerationSettings.Builder biomeBuilder, @Nullable Music music){
-        return (new Biome.BiomeBuilder()).precipitation(precipitation).temperature(temperature).downfall(downfall).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(waterColor).waterFogColor(waterFogColor).fogColor(12638463).skyColor(calculateSkyColor(temperature)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).backgroundMusic(music).build()).mobSpawnSettings(spawnBuilder.build()).generationSettings(biomeBuilder.build()).build();
+        return (new Biome.BiomeBuilder()).temperature(temperature).downfall(downfall).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(waterColor).waterFogColor(waterFogColor).fogColor(12638463).skyColor(calculateSkyColor(temperature)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).backgroundMusic(music).build()).mobSpawnSettings(spawnBuilder.build()).generationSettings(biomeBuilder.build()).build();
     }
 
     public static Biome mineralCaverns(HolderGetter<PlacedFeature> placedFeatureHolderGetter, HolderGetter<ConfiguredWorldCarver<?>> configuredWorldCarverHolderGetter){
@@ -38,5 +38,5 @@ public class ModOverworldBiomes {
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
 
         return biome(Biome.Precipitation.NONE, -0.25F, 0.5F, 0x3938C9, 0x050533, spawnBuilder, biomeBuilder, Musics.GAME);
-    }
+    }*/
 }

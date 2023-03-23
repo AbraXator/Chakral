@@ -13,23 +13,25 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class ItemStackSyncS2CPacket {
+public class EnricherSyncS2CPacket {
     private final ItemStackHandler itemStackHandler;
     private final BlockPos pos;
+    private final int size;
 
-    public ItemStackSyncS2CPacket(ItemStackHandler itemStackHandler, BlockPos pos) {
+    public EnricherSyncS2CPacket(ItemStackHandler itemStackHandler, BlockPos pos, int size) {
         this.itemStackHandler = itemStackHandler;
         this.pos = pos;
+        this.size = size;
     }
 
-    public ItemStackSyncS2CPacket(FriendlyByteBuf buf){
+    public EnricherSyncS2CPacket(FriendlyByteBuf buf){
         List<ItemStack> collection = buf.readCollection(ArrayList::new, FriendlyByteBuf::readItem);
         itemStackHandler = new ItemStackHandler(collection.size());
         for (int i = 0; i < collection.size(); i++) {
             itemStackHandler.insertItem(i, collection.get(i), false);
         }
-
         this.pos = buf.readBlockPos();
+        this.size = buf.readInt();
     }
 
     public void toBytes(FriendlyByteBuf buf){
@@ -40,6 +42,7 @@ public class ItemStackSyncS2CPacket {
 
         buf.writeCollection(list, FriendlyByteBuf::writeItem);
         buf.writeBlockPos(pos);
+        buf.writeInt(size);
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier){
@@ -47,6 +50,7 @@ public class ItemStackSyncS2CPacket {
         context.enqueueWork(() ->{
            if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof MineralEnricherBlockEntity blockEntity){
                blockEntity.setHandler(this.itemStackHandler);
+               blockEntity.data.set(0, size);
            }
         });
 
