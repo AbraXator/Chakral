@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "chakral:diamond_necklace"
-  }
+  },
+  "show_notification": true
 }

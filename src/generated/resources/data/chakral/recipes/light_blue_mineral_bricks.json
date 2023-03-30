@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "chakral:light_blue_mineral_bricks"
-  }
+  },
+  "show_notification": true
 }

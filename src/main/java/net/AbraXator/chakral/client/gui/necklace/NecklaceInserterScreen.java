@@ -1,4 +1,4 @@
-package net.AbraXator.chakral.screen.necklace;
+package net.AbraXator.chakral.client.gui.necklace;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;

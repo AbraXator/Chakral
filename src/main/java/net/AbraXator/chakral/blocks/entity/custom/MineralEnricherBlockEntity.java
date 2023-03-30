@@ -8,7 +8,7 @@ import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.FluidSyncS2CPacket;
 import net.AbraXator.chakral.networking.packet.EnricherSyncS2CPacket;
 import net.AbraXator.chakral.recipes.MineralEnricherRecipe;
-import net.AbraXator.chakral.screen.enricher.MineralEnricherMenu;
+import net.AbraXator.chakral.client.gui.enricher.MineralEnricherMenu;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

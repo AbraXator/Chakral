@@ -1,4 +1,4 @@
-package net.AbraXator.chakral.screen.renderer;
+package net.AbraXator.chakral.client.gui.renderer;
 
 import com.google.common.base.Preconditions;
 import com.mojang.blaze3d.systems.RenderSystem;

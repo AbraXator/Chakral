@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "chakral:netherite_necklace"
-  }
+  },
+  "show_notification": true
 }

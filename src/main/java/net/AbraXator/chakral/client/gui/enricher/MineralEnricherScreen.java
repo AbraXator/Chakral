@@ -1,9 +1,9 @@
-package net.AbraXator.chakral.screen.enricher;
+package net.AbraXator.chakral.client.gui.enricher;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.screen.renderer.FluidTankRenderer;
+import net.AbraXator.chakral.client.gui.renderer.FluidTankRenderer;
 import net.AbraXator.chakral.utils.MouseUtil;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;

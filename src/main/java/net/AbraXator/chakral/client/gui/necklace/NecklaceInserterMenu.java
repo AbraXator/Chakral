@@ -1,9 +1,9 @@
-package net.AbraXator.chakral.screen.necklace;
+package net.AbraXator.chakral.client.gui.necklace;
 
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.chakra.ChakraStrength;
+import net.AbraXator.chakral.client.gui.ModMenuTypes;
 import net.AbraXator.chakral.items.ModItems;
-import net.AbraXator.chakral.screen.ModMenuTypes;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;

@@ -1,4 +1,4 @@
-package net.AbraXator.chakral.screen.necklace;
+package net.AbraXator.chakral.client.gui.necklace;
 
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.minecraft.nbt.CompoundTag;

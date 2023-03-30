@@ -1,14 +1,5 @@
 package net.AbraXator.chakral.JEI;
 
-import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.blocks.ModBlocks;
-import net.AbraXator.chakral.recipes.MineralEnricherRecipe;
-import net.AbraXator.chakral.recipes.ShardRefinerRecipe;
-import net.AbraXator.chakral.screen.enricher.MineralEnricherScreen;
-import net.AbraXator.chakral.screen.refiner.ShardRefinerScreen;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
 /*
 public class MineralEnrichingCategory implements IRecipeCategory<MineralEnricherRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(Chakral.MOD_ID, "enriching");

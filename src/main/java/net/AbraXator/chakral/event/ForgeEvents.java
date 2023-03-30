@@ -8,6 +8,8 @@ import net.AbraXator.chakral.capability.AdditionalHealthCapProvider;
 import net.AbraXator.chakral.chakra.*;
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.chakra.chakras.AmazoniteChakra;
+import net.AbraXator.chakral.chakra.chakras.BlueLaceAgate;
+import net.AbraXator.chakral.chakra.chakras.HagStone;
 import net.AbraXator.chakral.client.ChakraHeartData;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ModTags;
@@ -29,6 +31,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.EnderManAngerEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -62,7 +65,16 @@ public class ForgeEvents {
         }
     }
 
-
+    @SubscribeEvent
+    public static void BlockBreak(BlockEvent.BreakEvent event){
+        event.getPlayer().getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
+            ChakraRegistries.CHAKRA.getEntries().forEach(chakraRegistryObject -> {
+                if(chakraRegistryObject.get() instanceof HagStone hagStone && hagStone.isEnabled()){
+                    hagStone.onLivingDestroyBlock(event);
+                }
+            });
+        });
+    }
 
     //@SubscribeEvent
     //public static void BlockBreak(BlockEvent.BreakEvent event){
@@ -91,6 +103,7 @@ public class ForgeEvents {
     @SubscribeEvent
     public static void PlayerDamageEvent(LivingDamageEvent event){
         AmazoniteChakra.hurt(event);
+        BlueLaceAgate.onHurt(event);
     }
 
     @SubscribeEvent

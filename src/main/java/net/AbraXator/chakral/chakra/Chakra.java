@@ -6,6 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -64,7 +65,9 @@ public abstract class Chakra {
     }
 
     public boolean isEnabled(){
-        return stones().contains(this.getItem());
+        boolean b = stones().contains(this.getItem());
+
+        return b;
     }
 
     public void setMaxCooldown(int maxCooldown){
@@ -94,4 +97,8 @@ public abstract class Chakra {
     public void onUnequipUpgraded(Player player, Level level){}
 
     public void onRightClickBlock(Player player, Level level, PlayerInteractEvent.RightClickBlock event){}
+
+    public void onHurt(LivingHurtEvent event){
+
+    }
 }

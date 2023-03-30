@@ -22,5 +22,6 @@
   ],
   "result": {
     "item": "chakral:necklace_inserter"
-  }
+  },
+  "show_notification": true
 }

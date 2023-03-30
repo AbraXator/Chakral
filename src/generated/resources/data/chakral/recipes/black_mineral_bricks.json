@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "chakral:black_mineral_bricks"
-  }
+  },
+  "show_notification": true
 }

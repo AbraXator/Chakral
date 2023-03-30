@@ -1,9 +1,6 @@
-package net.AbraXator.chakral.screen.refiner;
+package net.AbraXator.chakral.client.gui.refiner;
 
-import net.minecraft.CharPredicate;
-import net.minecraft.world.Container;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.Slot;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 

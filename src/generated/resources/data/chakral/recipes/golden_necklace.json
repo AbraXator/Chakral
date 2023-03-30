@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "chakral:golden_necklace"
-  }
+  },
+  "show_notification": true
 }

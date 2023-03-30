@@ -1,6 +1,5 @@
 package net.AbraXator.chakral.event;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.AbraXator.chakral.Chakral;
@@ -16,13 +15,9 @@ import net.AbraXator.chakral.entity.stemspore.StemSporeRenderer;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
-import net.AbraXator.chakral.screen.refiner.ShardRefinerScreen;
+import net.AbraXator.chakral.client.gui.refiner.ShardRefinerScreen;
 import net.AbraXator.chakral.utils.KeyBindings;
-import net.AbraXator.chakral.utils.MouseUtil;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.MultiBufferSource.BufferSource;
