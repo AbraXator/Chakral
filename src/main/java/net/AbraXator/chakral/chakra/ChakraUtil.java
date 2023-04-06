@@ -1,5 +1,9 @@
 package net.AbraXator.chakral.chakra;
 
+import net.AbraXator.chakral.items.custom.Gem;
+import net.AbraXator.chakral.items.custom.NecklaceItem;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
@@ -9,22 +13,46 @@ import net.minecraft.world.item.Items;
 import java.util.List;
 
 public class ChakraUtil {
-    public static int moonStoneCooldown = 0;
-    public static int moonStoneMaxCooldown;
-    public static final List<MobEffect> AMETHYST_QUARTZ_EFFECTS = List.of(MobEffects.DIG_SLOWDOWN, MobEffects.CONFUSION, MobEffects.BLINDNESS, MobEffects.HUNGER, MobEffects.WEAKNESS, MobEffects.UNLUCK);
-    public static final List<MobEffect> SUGILITE_EFFECTS = List.of(MobEffects.DIG_SLOWDOWN, MobEffects.MOVEMENT_SLOWDOWN,MobEffects.CONFUSION, MobEffects.BLINDNESS, MobEffects.HUNGER, MobEffects.WEAKNESS, MobEffects.UNLUCK, MobEffects.HARM, MobEffects.POISON, MobEffects.WITHER, MobEffects.DARKNESS);
-    public static final Item CITRINE_FOOD(ItemStack stack){
-        if(stack.is(Items.PORKCHOP)) return Items.COOKED_PORKCHOP;
-        if(stack.is(Items.BEEF)) return Items.COOKED_BEEF;
-        if(stack.is(Items.MUTTON)) return Items.COOKED_MUTTON;
-        if(stack.is(Items.RABBIT)) return Items.COOKED_RABBIT;
-        if(stack.is(Items.CHICKEN)) return Items.COOKED_CHICKEN;
-        if(stack.is(Items.SALMON)) return Items.COOKED_SALMON;
-        if(stack.is(Items.COD)) return Items.COOKED_COD;
-        if(stack.is(Items.KELP)) return Items.DRIED_KELP;
-        if(stack.is(Items.POTATO)) return Items.BAKED_POTATO;
-        if(stack.is(Items.CHORUS_FRUIT)) return Items.POPPED_CHORUS_FRUIT;
-        return ItemStack.EMPTY.getItem();
+    public static void addChakra(ItemStack stack, Chakra chakra, int slot){
+        Item item = stack.getItem();
+        if(item instanceof NecklaceItem necklaceItem){
+            CompoundTag tag = stack.getTag();
+
+            if(tag == null){
+                tag = new CompoundTag();
+                stack.setTag(tag);
+            }
+
+            tag.put("Stone" + slot, stack.serializeNBT());
+        }
+    }
+
+    public static void removeAugment(ItemStack itemStack, int slot){
+        CompoundTag tag = itemStack.getTag();
+        if(tag == null){
+            return;
+        }
+
+        Item item = itemStack.getItem();
+        if(item instanceof NecklaceItem necklaceItem){
+            if(tag.contains("Stone" + slot)){
+                tag.remove("Stone" + slot);
+            }
+        }
+    }
+
+    public static Chakra getChakra(ItemStack itemStack, int index){
+        CompoundTag tag = itemStack.getTag();
+        if(tag == null) return null;
+
+        Item item = itemStack.getItem();
+        if(item instanceof NecklaceItem necklaceItem){
+            if(tag.contains("Stone" + index)){
+                return ((IChakraProvider) tag.get("Stone" + index)).getChakra();
+            }
+        }
+
+        return null;
     }
 }
 

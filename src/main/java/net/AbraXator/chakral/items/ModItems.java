@@ -4,6 +4,7 @@ import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
+import net.AbraXator.chakral.chakra.Chakras;
 import net.AbraXator.chakral.items.custom.*;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -18,7 +19,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, Chakral.MOD_ID);
 
     public static final RegistryObject<Item> AMETHYST_QUARTZ = ITEMS.register("amethyst_quartz", () ->
-            new Gem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.FAINT));
+            new Gem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.FAINT, Chakras.AMETHYST_QUARTZ_CHAKRA.get()));
     public static final RegistryObject<Item> SUGILITE = ITEMS.register("sugilite", () ->
             new Gem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.WEAKENED));
     public static final RegistryObject<Item> MOON_STONE = ITEMS.register("moon_stone", () ->

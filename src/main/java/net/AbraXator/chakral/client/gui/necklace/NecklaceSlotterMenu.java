@@ -95,6 +95,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
             public int getMaxStackSize() {
                 return 1;
             }
+
             @Override
             public void onTake(Player pPlayer, ItemStack pStack) {
                 NecklaceSlotterUtil.onTake(NecklaceSlotterMenu.this.necklaceSlot.getItem(0), ModItems.GOLDEN_NECKLACE.get(), "Stone1");

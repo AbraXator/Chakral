@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class NecklaceCapProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-    public static Capability<NecklaceCap> NECKLACE_CAP = CapabilityManager.get(new CapabilityToken<NecklaceCap>() {});
+    public static Capability<NecklaceCap> NECKLACE_CAP = CapabilityManager.get(new CapabilityToken<>() {});
 
     private NecklaceCap necklaceCap = null;
     private final LazyOptional<NecklaceCap> optional = LazyOptional.of(this::createNecklaceCap);

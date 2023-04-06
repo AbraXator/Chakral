@@ -5,7 +5,6 @@ import net.AbraXator.chakral.capability.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -32,7 +31,9 @@ public class CommonModEvents {
         if(event.isWasDeath()) {
             Player player = event.getOriginal();
             event.getOriginal().getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(oldStore -> {
-                player.drop(oldStore.getNecklace(), false);
+                oldStore.getStones().forEach(itemStack -> {
+                   player.drop(itemStack.copy(), false);
+                });
                 event.getEntity().getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(newStore -> {
                     newStore.copyFrom(oldStore);
                 });

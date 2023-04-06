@@ -1,6 +1,8 @@
 package net.AbraXator.chakral.chakra;
 
+import net.AbraXator.chakral.utils.ChakralLocation;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -13,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public abstract class Chakra {
+    public boolean isEnabled;
     public final Item stone;
     public final ChakraType type;
     public final ChakraStrength strenght;
@@ -65,9 +68,11 @@ public abstract class Chakra {
     }
 
     public boolean isEnabled(){
-        boolean b = stones().contains(this.getItem());
+        return this.isEnabled;
+    }
 
-        return b;
+    public void setEnabled(boolean enabled){
+        this.isEnabled = enabled;
     }
 
     public void setMaxCooldown(int maxCooldown){

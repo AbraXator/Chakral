@@ -3,6 +3,7 @@ package net.AbraXator.chakral.items.custom;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.KeyBindings;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.Item;
@@ -13,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public abstract class NecklaceItem extends Item {
+public class NecklaceItem extends Item {
     public NecklaceItem(Properties pProperties) {
         super(pProperties);
     }

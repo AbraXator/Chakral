@@ -4,27 +4,19 @@ import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.items.ModItems;
-import net.AbraXator.chakral.utils.ShapeMerger;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageSources;
-import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.shapes.BooleanOp;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 import java.util.*;
 
-public class Dumortierite extends Chakra {
-    public Dumortierite() {
+public class DumortieriteChakra extends Chakra {
+    public DumortieriteChakra() {
         super(ModItems.DUMORTIERITE.get(), ChakraType.THIRD_EYE, ChakraStrength.WEAKENED);
     }
 

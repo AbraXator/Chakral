@@ -11,19 +11,23 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.checkerframework.checker.units.qual.C;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
-public class Gem extends Item {
+public class Gem extends Item implements IChakraProvider {
     private ChakraType type;
     private ChakraStrength strength;
+    private Chakra chakra;
 
-    public Gem(Properties pProperties, ChakraType type, ChakraStrength strength) {
+    public Gem(Properties pProperties, ChakraType type, ChakraStrength strength, Chakra chakra) {
         super(pProperties);
         this.type = type;
         this.strength = strength;
+        this.chakra = chakra;
     }
 
     @Override
@@ -44,5 +48,10 @@ public class Gem extends Item {
                 pTooltipComponents.add(gemProperties);
             }
         }
+    }
+
+    @Override
+    public Chakra getChakra() {
+        return this.chakra;
     }
 }
