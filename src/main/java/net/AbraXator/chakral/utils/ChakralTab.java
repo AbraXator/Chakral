@@ -29,9 +29,9 @@ public class ChakralTab {
                         .icon(() -> new ItemStack(ModItems.GOLDEN_NECKLACE.get()))
                         .displayItems((parameters, output) -> ModItems.ITEMS.getEntries().forEach(o -> {
                             output.accept(o.get());
-                            if(o.get().equals(ModItems.TOURMALINE.get())){
+                            /*if(o.get().equals(ModItems.TOURMALINE.get())){
                                 output.accept(Items.AMETHYST_SHARD);
-                            }
+                            }*/
                             if(o.get().equals(ModBlocks.SMALL_TRUE_WHITE_BUD.get().asItem())){
                                 output.accept(Blocks.AMETHYST_BLOCK.asItem());
                                 output.accept(Blocks.BUDDING_AMETHYST.asItem());

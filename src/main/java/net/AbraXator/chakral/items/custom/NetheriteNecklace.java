@@ -21,16 +21,6 @@ public class NetheriteNecklace extends NecklaceItem {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        super.use(pLevel, pPlayer, pUsedHand);
-        ItemStack necklace = pPlayer.getItemInHand(InteractionHand.MAIN_HAND);
-        CompoundTag tag = new CompoundTag();
-        tag.put("Stone3", ModItems.GARNET_SPESSARTINE.get().getDefaultInstance().serializeNBT());
-        necklace.setTag(tag);
-        return InteractionResultHolder.success(necklace);
-    }
-
-    @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         if (pStack.hasTag()) {

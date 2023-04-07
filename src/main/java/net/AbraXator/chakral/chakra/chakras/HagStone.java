@@ -4,6 +4,7 @@ import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.utils.ChakralLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
@@ -36,7 +37,7 @@ public class HagStone extends Chakra {
     public static boolean hasReach;
 
     public HagStone(UUID uuid) {
-        super(ModItems.HAG_STONE.get(), ChakraType.THIRD_EYE, ChakraStrength.FAINT);
+        super(new ChakralLocation("hag_stone"), ChakraType.THIRD_EYE, ChakraStrength.FAINT);
         this.uuid = uuid;
     }
 

@@ -52,6 +52,11 @@ public class ModMessages {
                 .encoder(ChakraHeartsS2CPacket::toBytes)
                 .consumerMainThread(ChakraHeartsS2CPacket::handle)
                 .add();
+        net.messageBuilder(NexusSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(NexusSyncS2CPacket::new)
+                .encoder(NexusSyncS2CPacket::toBytes)
+                .consumerMainThread(NexusSyncS2CPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG msg){

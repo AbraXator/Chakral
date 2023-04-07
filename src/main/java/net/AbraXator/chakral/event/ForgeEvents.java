@@ -3,22 +3,17 @@ package net.AbraXator.chakral.event;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.custom.ShardRefinerBlock;
-import net.AbraXator.chakral.capability.AdditionalHealthCap;
-import net.AbraXator.chakral.capability.AdditionalHealthCapProvider;
 import net.AbraXator.chakral.chakra.*;
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.chakra.chakras.AmazoniteChakra;
 import net.AbraXator.chakral.chakra.chakras.BlueLaceAgate;
 import net.AbraXator.chakral.chakra.chakras.HagStone;
-import net.AbraXator.chakral.client.ChakraHeartData;
+import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusMenu;
 import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.items.custom.NecklaceItem;
 import net.AbraXator.chakral.utils.ModTags;
 import net.AbraXator.chakral.utils.PlayerUtil;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -26,18 +21,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.EnderManAngerEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Collection;
 import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
@@ -68,11 +59,11 @@ public class ForgeEvents {
     @SubscribeEvent
     public static void BlockBreak(BlockEvent.BreakEvent event){
         event.getPlayer().getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
-            ChakraRegistries.CHAKRA.getEntries().forEach(chakraRegistryObject -> {
+            /*ChakraRegistry.CHAKRA.getEntries().forEach(chakraRegistryObject -> {
                 if(chakraRegistryObject.get() instanceof HagStone hagStone && hagStone.isEnabled()){
                     hagStone.onLivingDestroyBlock(event);
                 }
-            });
+            });*/
         });
     }
 
@@ -124,5 +115,14 @@ public class ForgeEvents {
                 //System.out.println(necklaceCap.getNecklace());
             }
         });
+    }
+
+    @SubscribeEvent
+    public static void onPlayerContainer(PlayerContainerEvent.Open event) {
+        if(event.getContainer() instanceof ChakralNexusMenu chakralNexusMenu){
+            event.getEntity().getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
+                chakralNexusMenu.setItemInSlot(0, necklaceCap.getNecklace());
+            });
+        }
     }
 }

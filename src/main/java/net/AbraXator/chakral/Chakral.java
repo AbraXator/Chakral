@@ -3,7 +3,7 @@ package net.AbraXator.chakral;
 import com.mojang.logging.LogUtils;
 import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.blocks.entity.ModBlockEntities;
-import net.AbraXator.chakral.chakra.ChakraRegistries;
+import net.AbraXator.chakral.chakra.ChakraRegistry;
 import net.AbraXator.chakral.chakra.Chakras;
 import net.AbraXator.chakral.client.gui.ModMenuTypes;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
@@ -53,13 +53,15 @@ public class Chakral {
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
+        eventBus.register(new ModItems());
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ChakralClientConfig.CLIENT_SPEC);
         MinecraftForge.EVENT_BUS.register(this);
 
     }
 
     public void register(IEventBus eventBus){
-        ChakraRegistries.CHAKRA.register(eventBus);
+        ChakraRegistry.CHAKRA.register(eventBus);
+        //Chakras.onRegisterChakras();
         Chakras.registerEntries();
         Chakras.registerEvents();
     }

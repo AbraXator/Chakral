@@ -2,16 +2,19 @@ package net.AbraXator.chakral.items;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
+import net.AbraXator.chakral.chakra.ChakraRegistry;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.chakra.Chakras;
 import net.AbraXator.chakral.items.custom.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
@@ -19,61 +22,61 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, Chakral.MOD_ID);
 
     public static final RegistryObject<Item> AMETHYST_QUARTZ = ITEMS.register("amethyst_quartz", () ->
-            new Gem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.FAINT, Chakras.AMETHYST_QUARTZ_CHAKRA.get()));
+            new ChakraItem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.FAINT));
     public static final RegistryObject<Item> SUGILITE = ITEMS.register("sugilite", () ->
-            new Gem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.WEAKENED));
+            new ChakraItem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.WEAKENED));
     public static final RegistryObject<Item> MOON_STONE = ITEMS.register("moon_stone", () ->
-            new Gem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.POWERFUL));
+            new ChakraItem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.POWERFUL));
     public static final RegistryObject<Item> LABBRADORITE = ITEMS.register("labbradorite", () ->
-            new Gem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.ENLIGHTENED));
+            new ChakraItem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.ENLIGHTENED));
     public static final RegistryObject<Item> HAG_STONE = ITEMS.register("hag_stone", () ->
-            new Gem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.FAINT));
+            new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.FAINT));
     public static final RegistryObject<Item> DUMORTIERITE = ITEMS.register("dumortierite", () ->
-            new Gem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.WEAKENED));
+            new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.WEAKENED));
     public static final RegistryObject<Item> LEPIDOLITE = ITEMS.register("lepidolite", () ->
-            new Gem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.POWERFUL));
+            new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.POWERFUL));
     public static final RegistryObject<Item> AZURITE = ITEMS.register("azurite", () ->
-            new Gem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.ENLIGHTENED));
+            new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.ENLIGHTENED));
     public static final RegistryObject<Item> BLUE_LACE_AGATE = ITEMS.register("blue_lace_agate", () ->
-            new Gem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.FAINT));
+            new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.FAINT));
     public static final RegistryObject<Item> KYANITE = ITEMS.register("kyanite", () ->
-            new Gem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.WEAKENED));
+            new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.WEAKENED));
     public static final RegistryObject<Item> BLUE_HOWLITE = ITEMS.register("blue_howlite", () ->
-            new Gem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.POWERFUL));
+            new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.POWERFUL));
     public static final RegistryObject<Item> AQUAMARINE = ITEMS.register("aquamarine", () ->
-            new Gem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.ENLIGHTENED));
+            new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.ENLIGHTENED));
     public static final RegistryObject<Item> AMAZONITE = ITEMS.register("amazonite", () ->
-            new Gem(new Item.Properties(), ChakraType.HEART, ChakraStrength.FAINT));
+            new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.FAINT));
     public static final RegistryObject<Item> RHODONITE = ITEMS.register("rhodonite", () ->
-            new Gem(new Item.Properties(), ChakraType.HEART, ChakraStrength.WEAKENED));
+            new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.WEAKENED));
     public static final RegistryObject<Item> MALACHITE = ITEMS.register("malachite", () ->
-            new Gem(new Item.Properties(), ChakraType.HEART, ChakraStrength.POWERFUL));
+            new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.POWERFUL));
     public static final RegistryObject<Item> GREEN_OPAL = ITEMS.register("green_opal", () ->
-            new Gem(new Item.Properties(), ChakraType.HEART, ChakraStrength.ENLIGHTENED));
+            new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.ENLIGHTENED));
     public static final RegistryObject<Item> HELIOLITE = ITEMS.register("heliolite", () ->
-            new Gem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.FAINT));
+            new ChakraItem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.FAINT));
     public static final RegistryObject<Item> CITRINE = ITEMS.register("citrine", () ->
-            new Gem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.WEAKENED));
+            new ChakraItem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.WEAKENED));
     public static final RegistryObject<Item> AMBER = ITEMS.register("amber", () ->
-            new Gem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.POWERFUL));
+            new ChakraItem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.POWERFUL));
     public static final RegistryObject<Item> FIRE_OPAL = ITEMS.register("fire_opal", () ->
-            new Gem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.ENLIGHTENED));
+            new ChakraItem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.ENLIGHTENED));
     public static final RegistryObject<Item> STILLBITE = ITEMS.register("stillbite", () ->
-            new Gem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.FAINT));
+            new ChakraItem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.FAINT));
     public static final RegistryObject<Item> CARNELIAN = ITEMS.register("carnelian", () ->
-            new Gem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.WEAKENED));
+            new ChakraItem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.WEAKENED));
     public static final RegistryObject<Item> GARNET_SPESSARTINE = ITEMS.register("garnet_spessartine", () ->
-            new Gem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.POWERFUL));
+            new ChakraItem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.POWERFUL));
     public static final RegistryObject<Item> GOLDEN_TIGERS_EYE = ITEMS.register("golden_tigers_eye", () ->
-            new Gem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.ENLIGHTENED));
+            new ChakraItem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.ENLIGHTENED));
     public static final RegistryObject<Item> BLACK_ONYX = ITEMS.register("black_onyx", () ->
-            new Gem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.FAINT));
+            new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.FAINT));
     public static final RegistryObject<Item> MAHOGANY = ITEMS.register("mahogany", () ->
-            new Gem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.WEAKENED));
+            new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.WEAKENED));
     public static final RegistryObject<Item> HELIOTROPE = ITEMS.register("heliotrope", () ->
-            new Gem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.POWERFUL));
+            new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.POWERFUL));
     public static final RegistryObject<Item> TOURMALINE = ITEMS.register("tourmaline", () ->
-            new Gem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.ENLIGHTENED));
+            new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.ENLIGHTENED));
 
     public static final RegistryObject<Item> BLUE_SHARD = ITEMS.register("blue_shard", () ->
             new Shard(new Item.Properties(), ModBlocks.BLUE_CRYSTAL.get()));

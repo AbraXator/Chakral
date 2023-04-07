@@ -1,33 +1,32 @@
 package net.AbraXator.chakral.items.custom;
 
 import net.AbraXator.chakral.chakra.*;
+import net.AbraXator.chakral.chakra.chakras.DefaultChakra;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
-import org.checkerframework.checker.units.qual.C;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Map;
-import java.util.function.Supplier;
 
-public class Gem extends Item implements IChakraProvider {
+public class ChakraItem extends Item implements IChakraProvider {
     private ChakraType type;
     private ChakraStrength strength;
     private Chakra chakra;
 
-    public Gem(Properties pProperties, ChakraType type, ChakraStrength strength, Chakra chakra) {
+    public ChakraItem(Properties pProperties, ChakraType type, ChakraStrength strength, Chakra chakra) {
         super(pProperties);
         this.type = type;
         this.strength = strength;
         this.chakra = chakra;
+    }
+
+    public ChakraItem(Properties pProperties, ChakraType type, ChakraStrength strength) {
+        this(pProperties, type, strength, new DefaultChakra());
     }
 
     @Override

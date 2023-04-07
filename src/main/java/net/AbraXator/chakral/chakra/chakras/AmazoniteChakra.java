@@ -9,6 +9,7 @@ import net.AbraXator.chakral.client.ChakraHeartData;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.ChakraHeartsS2CPacket;
+import net.AbraXator.chakral.utils.ChakralLocation;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
@@ -29,7 +30,7 @@ public class AmazoniteChakra extends Chakra {
     private Level level;
 
     public AmazoniteChakra() {
-        super(ModItems.AMAZONITE.get(), ChakraType.HEART, ChakraStrength.FAINT);
+        super(new ChakralLocation("amazonite"), ChakraType.HEART, ChakraStrength.FAINT);
     }
 
     @Override

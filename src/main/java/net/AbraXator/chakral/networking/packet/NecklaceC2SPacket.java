@@ -1,23 +1,11 @@
 package net.AbraXator.chakral.networking.packet;
 
-import net.AbraXator.chakral.capability.AdditionalHealthCapProvider;
-import net.AbraXator.chakral.capability.NecklaceCapProvider;
-import net.AbraXator.chakral.chakra.Chakra;
-import net.AbraXator.chakral.chakra.ChakraRegistries;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusMenu;
-import net.AbraXator.chakral.networking.ModMessages;
-import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.SimpleMenuProvider;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.NetworkEvent;
 
-import java.util.Collection;
 import java.util.function.Supplier;
 
 public class NecklaceC2SPacket {

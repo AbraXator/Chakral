@@ -1,15 +1,12 @@
 package net.AbraXator.chakral.chakra;
 
-import net.AbraXator.chakral.items.custom.Gem;
+import net.AbraXator.chakral.items.custom.ChakraItem;
 import net.AbraXator.chakral.items.custom.NecklaceItem;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChakraUtil {
@@ -50,6 +47,25 @@ public class ChakraUtil {
             if(tag.contains("Stone" + index)){
                 return ((IChakraProvider) tag.get("Stone" + index)).getChakra();
             }
+        }
+
+        return null;
+    }
+
+    public static List<ChakraItem> getChakras(ItemStack itemStack){
+        CompoundTag tag = itemStack.getTag();
+        if(tag == null) return null;
+
+        Item item = itemStack.getItem();
+        if(item instanceof NecklaceItem necklaceItem){
+            List<ChakraItem> list = new ArrayList<>();
+            for(int i = 1; i <= 4; i++){
+                if(tag.contains("Stone" + i)){
+                    list.add(((ChakraItem) ItemStack.of(itemStack.getTagElement("Stone" + i)).getItem()));
+                }
+            }
+
+            return list;
         }
 
         return null;

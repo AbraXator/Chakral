@@ -1,7 +1,7 @@
 package net.AbraXator.chakral.networking.packet;
 
 import net.AbraXator.chakral.chakra.Chakra;
-import net.AbraXator.chakral.chakra.ChakraRegistries;
+import net.AbraXator.chakral.chakra.ChakraRegistry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
@@ -24,7 +24,7 @@ public class StoneFunctionC2SPacket {
     public boolean handle(Supplier<NetworkEvent.Context> supplier){
         NetworkEvent.Context context = supplier.get();
         Player player = context.getSender();
-        ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
+        /*ChakraRegistry.CHAKRA.getEntries().forEach(s -> {
             Chakra chakra = s.get();
             chakra.onFunctionKeyPress(player, player.level);
             if(chakra.isEnabled()) {
@@ -34,7 +34,7 @@ public class StoneFunctionC2SPacket {
                     chakra.onFunctionKeyPress(player, player.level);
                 }
             }
-        });
+        });*/
         return true;
     }
 }

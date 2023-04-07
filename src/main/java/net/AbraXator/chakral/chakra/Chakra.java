@@ -1,5 +1,6 @@
 package net.AbraXator.chakral.chakra;
 
+import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ChakralLocation;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -10,27 +11,35 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public abstract class Chakra {
+public class Chakra {
+    public final ResourceLocation id;
     public boolean isEnabled;
-    public final Item stone;
+    public final RegistryObject<Item> stone;
     public final ChakraType type;
     public final ChakraStrength strenght;
     public ItemStack necklace;
     public int cooldown;
     public int maxCooldown;
 
-    public Chakra(Item stone, ChakraType type, ChakraStrength chakraStrength){
-        this.stone = stone;
+    public Chakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength){
+        this.id = id;
+        this.stone = RegistryObject.create(new ChakralLocation(id.getPath() + "_chakra"), ForgeRegistries.ITEMS);
         this.type = type;
         this.strenght = chakraStrength;
     }
 
+    public ResourceLocation getId() {
+        return this.id;
+    }
+
     public Item getItem(){
-        return stone;
+        return stone.get();
     }
 
     public ChakraType getType(){

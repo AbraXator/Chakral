@@ -5,6 +5,7 @@ import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.ChakraHeartData;
+import net.AbraXator.chakral.utils.ChakralLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -14,7 +15,7 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 public class BlueLaceAgate extends Chakra {
     public BlueLaceAgate(Item stone, ChakraType type, ChakraStrength chakraStrength) {
-        super(stone, type, chakraStrength);
+        super(new ChakralLocation("blue_lace_agate"), type, chakraStrength);
     }
 
 

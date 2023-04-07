@@ -5,6 +5,7 @@ import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.utils.ChakralLocation;
 import net.AbraXator.chakral.utils.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
@@ -30,7 +31,7 @@ import java.util.List;
 
 public class HelioliteChakra extends Chakra {
     public HelioliteChakra() {
-        super(ModItems.HELIOLITE.get(), ChakraType.SOLAR, ChakraStrength.WEAKENED);
+        super(new ChakralLocation("heliolite"), ChakraType.SOLAR, ChakraStrength.WEAKENED);
     }
 
     @Override

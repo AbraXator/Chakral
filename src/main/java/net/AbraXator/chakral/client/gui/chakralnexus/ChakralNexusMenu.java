@@ -1,7 +1,13 @@
 package net.AbraXator.chakral.client.gui.chakralnexus;
 
 import net.AbraXator.chakral.client.gui.ModMenuTypes;
+import net.AbraXator.chakral.client.gui.necklace.NecklaceInserterMenu;
+import net.AbraXator.chakral.networking.ModMessages;
+import net.AbraXator.chakral.networking.packet.NexusSyncS2CPacket;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -12,13 +18,21 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 public class ChakralNexusMenu extends AbstractContainerMenu {
+    final Container container = new SimpleContainer(1) {
+        public void setChanged() {
+            super.setChanged();
+            ModMessages.sendToClients(new NexusSyncS2CPacket(container.getItem(0)));
+            ChakralNexusMenu.this.slotsChanged(this);
+        }
+    };
+
     public ChakralNexusMenu(int pContainerId, Inventory inv, FriendlyByteBuf friendlyByteBuf) {
         this(pContainerId, inv);
     }
 
     public ChakralNexusMenu(int pContainerId, Inventory inv) {
         super(ModMenuTypes.CHAKRAL_NEXUS_MENU.get(), pContainerId);
-        addSlot(new ChakralNexusSlot(inv, 0, 80, 34) {});
+        addSlot(new ChakralNexusSlot(container, 0, 80, 34, inv.player) {});
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
     }
@@ -35,6 +49,14 @@ public class ChakralNexusMenu extends AbstractContainerMenu {
         for(int k = 0; k < 9; ++k) {
             this.addSlot(new Slot(playerInventory, k, 8 + k * 18, 142));
         }
+    }
+
+    public void setItemInSlot(int slot, ItemStack itemStack){
+        this.container.setItem(slot, itemStack);
+    }
+
+    public ItemStack getItemInSlot(int slot){
+        return this.container.getItem(slot);
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
