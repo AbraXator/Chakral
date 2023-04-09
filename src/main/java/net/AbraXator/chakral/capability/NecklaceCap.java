@@ -13,7 +13,7 @@ public class NecklaceCap {
     }
 
     public ItemStack getNecklace() {
-        return necklace;
+        return !(necklace == null) ? necklace : ItemStack.EMPTY;
     }
 
     public void setStones(NonNullList<ItemStack> stones){

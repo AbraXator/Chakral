@@ -16,7 +16,6 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlotterMenu> {
-    //public static ItemStack itemStack = NecklaceSlotterBlockEntity.getStoneInSlot();
     private static final ResourceLocation TEXTURE_GOLDEN =
             new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/golden_necklace_slotter.png");
     private static final ResourceLocation TEXTURE_DIAMOND =
@@ -60,7 +59,7 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         renderBackground(pPoseStack, x, y);
 
         //SVĚTÝLKA
-        this.blit(pPoseStack, x + 70, y + 40, 220, vOffset(stone) * 29 + 2 , 36, 29);
+        this.blit(pPoseStack, x + 70, y + 40, 220, vOffset(stone) * 29, 36, 29);
 
         //BUTTON
         if(isMouseAboveArea(pMouseX, pMouseY, x, y, 141, 13, 18, 18)){
@@ -118,5 +117,11 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
             return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
         }
         return false;
+    }
+
+    @Override
+    protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
+        this.font.draw(pPoseStack, this.title, (this.imageWidth - this.font.width(this.title)) / 2f, 10, 0x404040);
+        //if(MouseUtil.isMouseOver(pMouseX, pMouseY, x + ))
     }
 }

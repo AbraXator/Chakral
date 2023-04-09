@@ -7,10 +7,8 @@ import net.AbraXator.chakral.chakra.*;
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.chakra.chakras.AmazoniteChakra;
 import net.AbraXator.chakral.chakra.chakras.BlueLaceAgate;
-import net.AbraXator.chakral.chakra.chakras.HagStone;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusMenu;
 import net.AbraXator.chakral.items.ModItems;
-import net.AbraXator.chakral.items.custom.NecklaceItem;
 import net.AbraXator.chakral.utils.ModTags;
 import net.AbraXator.chakral.utils.PlayerUtil;
 import net.minecraft.core.BlockPos;
@@ -57,14 +55,13 @@ public class ForgeEvents {
     }
 
     @SubscribeEvent
+    public static void tick(TickEvent.PlayerTickEvent event){
+        ChakraUtil.getChakrasFromPlayer(event.player).forEach(chakra -> chakra.tick(event.player, event.player.getLevel()));
+    }
+
+    @SubscribeEvent
     public static void BlockBreak(BlockEvent.BreakEvent event){
-        event.getPlayer().getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
-            /*ChakraRegistry.CHAKRA.getEntries().forEach(chakraRegistryObject -> {
-                if(chakraRegistryObject.get() instanceof HagStone hagStone && hagStone.isEnabled()){
-                    hagStone.onLivingDestroyBlock(event);
-                }
-            });*/
-        });
+        ChakraUtil.getChakrasFromPlayer(event.getPlayer()).forEach(chakra -> chakra.onDestroyBlock(event));
     }
 
     //@SubscribeEvent

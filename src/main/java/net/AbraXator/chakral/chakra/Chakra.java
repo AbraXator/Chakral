@@ -1,5 +1,7 @@
 package net.AbraXator.chakral.chakra;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ChakralLocation;
 import net.minecraft.nbt.CompoundTag;
@@ -11,21 +13,22 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class Chakra {
-    public final ResourceLocation id;
-    public boolean isEnabled;
-    public final RegistryObject<Item> stone;
-    public final ChakraType type;
-    public final ChakraStrength strenght;
-    public ItemStack necklace;
-    public int cooldown;
-    public int maxCooldown;
+public class Chakra implements IChakraSidePanel{
+    private final ResourceLocation id;
+    private boolean isEnabled;
+    private final RegistryObject<Item> stone;
+    private final ChakraType type;
+    private final ChakraStrength strenght;
+    private ItemStack necklace;
+    private int cooldown;
+    private int maxCooldown;
 
     public Chakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength){
         this.id = id;
@@ -112,7 +115,10 @@ public class Chakra {
 
     public void onRightClickBlock(Player player, Level level, PlayerInteractEvent.RightClickBlock event){}
 
-    public void onHurt(LivingHurtEvent event){
+    public void onHurt(LivingHurtEvent event){}
 
-    }
+    public void onDestroyBlock(BlockEvent.BreakEvent event){};
+
+    @Override
+    public void openInfoSidePanel(ChakralNexusScreen screen, PoseStack poseStack, int x, int y) {}
 }

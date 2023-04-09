@@ -12,13 +12,14 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ChakraItem extends Item implements IChakraProvider {
     private ChakraType type;
     private ChakraStrength strength;
-    private Chakra chakra;
+    private Supplier<Chakra> chakra;
 
-    public ChakraItem(Properties pProperties, ChakraType type, ChakraStrength strength, Chakra chakra) {
+    public ChakraItem(Properties pProperties, ChakraType type, ChakraStrength strength, Supplier<Chakra> chakra) {
         super(pProperties);
         this.type = type;
         this.strength = strength;
@@ -26,7 +27,7 @@ public class ChakraItem extends Item implements IChakraProvider {
     }
 
     public ChakraItem(Properties pProperties, ChakraType type, ChakraStrength strength) {
-        this(pProperties, type, strength, new DefaultChakra());
+        this(pProperties, type, strength, DefaultChakra::new);
     }
 
     @Override
@@ -51,6 +52,6 @@ public class ChakraItem extends Item implements IChakraProvider {
 
     @Override
     public Chakra getChakra() {
-        return this.chakra;
+        return this.chakra.get();
     }
 }

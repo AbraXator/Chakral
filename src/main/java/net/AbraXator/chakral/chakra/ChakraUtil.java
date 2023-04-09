@@ -1,8 +1,10 @@
 package net.AbraXator.chakral.chakra;
 
+import net.AbraXator.chakral.capability.NecklaceCapProvider;
 import net.AbraXator.chakral.items.custom.ChakraItem;
 import net.AbraXator.chakral.items.custom.NecklaceItem;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -54,7 +56,7 @@ public class ChakraUtil {
 
     public static List<ChakraItem> getChakras(ItemStack itemStack){
         CompoundTag tag = itemStack.getTag();
-        if(tag == null) return null;
+        if(tag == null) return List.of();
 
         Item item = itemStack.getItem();
         if(item instanceof NecklaceItem necklaceItem){
@@ -68,7 +70,17 @@ public class ChakraUtil {
             return list;
         }
 
-        return null;
+        return List.of();
+    }
+
+    public static List<Chakra> getChakrasFromPlayer(Player player){
+        List<Chakra> chakras = new ArrayList<>();
+        player.getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
+            getChakras(necklaceCap.getNecklace()).forEach(chakraItem -> {
+                chakras.add(chakraItem.getChakra());
+            });
+        });
+        return chakras;
     }
 }
 

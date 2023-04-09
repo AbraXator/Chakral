@@ -15,6 +15,7 @@ import net.AbraXator.chakral.config.ChakralClientConfig;
 import net.AbraXator.chakral.entity.ModEntities;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.networking.ModMessages;
+import net.AbraXator.chakral.particle.ModParticles;
 import net.AbraXator.chakral.recipes.ModRecipes;
 import net.AbraXator.chakral.utils.ModItemProperties;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -45,6 +46,7 @@ public class Chakral {
         ModMenuTypes.       register(eventBus);
         ModRecipes.         register(eventBus);
         ModEntities.        register(eventBus);
+        ModParticles.       register(eventBus);
         //ModFeatures.        register(eventBus);
         //ModConfigFeatures.  register(eventBus);
         //ModPlacedFeature.   register(eventBus);

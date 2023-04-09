@@ -105,6 +105,7 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
             x += corner.getXoffset() + client.buttonXOffset.get();
             y += corner.getYoffset() + client.buttonYOffset.get();
         }
+
         return new Tuple<>(x, y);
     }
 
@@ -133,8 +134,4 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
 
         return list;
     }
-
-    //public boolean isMouseOver(double pMouseX, double pMouseY, int x, int y, int offsetX, int offsetY) {
-    //    return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, renderer.getWidth(), renderer.getHeight());
-    //}
 }

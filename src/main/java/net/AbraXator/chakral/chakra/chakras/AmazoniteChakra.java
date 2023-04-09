@@ -6,6 +6,7 @@ import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.ChakraHeartData;
+import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.ChakraHeartsS2CPacket;
@@ -52,11 +53,6 @@ public class AmazoniteChakra extends Chakra {
         if(level.getGameTime() % 22 == 0){
 
         }
-    }
-
-    @Override
-    public boolean isUpgraded() {
-        return super.isUpgraded();
     }
 
     @Override

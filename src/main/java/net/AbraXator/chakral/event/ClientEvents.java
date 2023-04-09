@@ -60,7 +60,7 @@ public final class ClientEvents {
             }
         }
 
-        @SubscribeEvent
+        //@SubscribeEvent
         public static void renderLevel(RenderLevelStageEvent event){
             if(event.getStage() != RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS){
                 return;

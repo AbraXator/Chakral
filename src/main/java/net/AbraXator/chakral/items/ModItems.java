@@ -2,19 +2,15 @@ package net.AbraXator.chakral.items;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
-import net.AbraXator.chakral.chakra.ChakraRegistry;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.chakra.Chakras;
 import net.AbraXator.chakral.items.custom.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
@@ -30,7 +26,7 @@ public class ModItems {
     public static final RegistryObject<Item> LABBRADORITE = ITEMS.register("labbradorite", () ->
             new ChakraItem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.ENLIGHTENED));
     public static final RegistryObject<Item> HAG_STONE = ITEMS.register("hag_stone", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.FAINT));
+            new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.FAINT, Chakras.HAG_STONE_CHAKRA));
     public static final RegistryObject<Item> DUMORTIERITE = ITEMS.register("dumortierite", () ->
             new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.WEAKENED));
     public static final RegistryObject<Item> LEPIDOLITE = ITEMS.register("lepidolite", () ->
