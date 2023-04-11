@@ -32,7 +32,7 @@ public class Chakras {
     public static final RegistryObject<Chakra> STILLBITE_CHAKRA =          ChakraRegistry.CHAKRA.register("stillbite_chakra", DefaultChakra::new);
     public static final RegistryObject<Chakra> CARNELIAN_CHAKRA =          ChakraRegistry.CHAKRA.register("carnelian_chakra", DefaultChakra::new);
     //ROOT
-    public static final RegistryObject<Chakra> BLACK_ONYX_CHAKRA =         ChakraRegistry.CHAKRA.register("black_onyx_chakra", DefaultChakra::new);
+    public static final RegistryObject<Chakra> BLACK_ONYX_CHAKRA =         ChakraRegistry.CHAKRA.register("black_onyx_chakra", BlackOnyx::new);
     public static final RegistryObject<Chakra> MAHOGANY_CHAKRA =           ChakraRegistry.CHAKRA.register("mahogany_chakra", DefaultChakra::new);
 
     private static void playerUseOnBlock(PlayerInteractEvent.RightClickBlock event){

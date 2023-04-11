@@ -2,7 +2,6 @@ package net.AbraXator.chakral.chakra;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
-import net.AbraXator.chakral.items.ModItems;
 import net.AbraXator.chakral.utils.ChakralLocation;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -11,7 +10,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -117,7 +118,15 @@ public class Chakra implements IChakraSidePanel{
 
     public void onHurt(LivingHurtEvent event){}
 
+    public void onDamage(LivingDamageEvent event){}
+
     public void onDestroyBlock(BlockEvent.BreakEvent event){};
+
+    public void onAttack(AttackEntityEvent event){};
+
+    public void leftClick(PlayerInteractEvent.LeftClickEmpty event){}
+
+    public void interact(PlayerInteractEvent event){}
 
     @Override
     public void openInfoSidePanel(ChakralNexusScreen screen, PoseStack poseStack, int x, int y) {}

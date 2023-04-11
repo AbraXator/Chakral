@@ -9,6 +9,7 @@ import net.AbraXator.chakral.chakra.chakras.AmazoniteChakra;
 import net.AbraXator.chakral.chakra.chakras.BlueLaceAgate;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusMenu;
 import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.items.custom.ChakraItem;
 import net.AbraXator.chakral.utils.ModTags;
 import net.AbraXator.chakral.utils.PlayerUtil;
 import net.minecraft.core.BlockPos;
@@ -21,6 +22,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
@@ -90,8 +93,12 @@ public class ForgeEvents {
 
     @SubscribeEvent
     public static void PlayerDamageEvent(LivingDamageEvent event){
-        AmazoniteChakra.hurt(event);
-        BlueLaceAgate.onHurt(event);
+        if(event.getEntity() instanceof Player player) ChakraUtil.getChakrasFromPlayer(player).forEach(chakra -> chakra.onDamage(event));
+    }
+
+    @SubscribeEvent
+    public void onAttackEntity(AttackEntityEvent event) {
+        ChakraUtil.getChakrasFromPlayer(event.getEntity()).forEach(chakra -> chakra.onAttack(event));
     }
 
     @SubscribeEvent
@@ -112,6 +119,16 @@ public class ForgeEvents {
                 //System.out.println(necklaceCap.getNecklace());
             }
         });
+    }
+
+    @SubscribeEvent
+    public void onPlayerInteractLeftClickBlock(PlayerInteractEvent.LeftClickEmpty event) {
+        ChakraUtil.getChakrasFromPlayer(event.getEntity()).forEach(chakra -> chakra.leftClick(event));
+    }
+
+    @SubscribeEvent
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        ChakraUtil.getChakrasFromPlayer(event.getEntity()).forEach(chakra -> chakra.interact(event));
     }
 
     @SubscribeEvent

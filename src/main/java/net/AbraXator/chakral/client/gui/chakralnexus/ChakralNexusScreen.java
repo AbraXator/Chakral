@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.chakra.Chakra;
+import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraUtil;
 import net.AbraXator.chakral.config.ChakralClientConfig;
 import net.AbraXator.chakral.items.custom.ChakraItem;
@@ -78,18 +79,20 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
     }
 
     private Map<ItemStack, Tuple<Integer, Integer>> getLinkedPosChakras(ItemStack necklace){
-        CompoundTag tag = necklace.getTag();
-        if(tag == null) return null;
-
-        Item item = necklace.getItem();
         Map<ItemStack, Tuple<Integer, Integer>> map = new LinkedHashMap<>();
-
-        map.put((ItemStack.of(tag.getCompound("Stone1"))), new Tuple<>(55, 34));
-        map.put((ItemStack.of(tag.getCompound("Stone2"))), new Tuple<>(77, 55));
-        map.put((ItemStack.of(tag.getCompound("Stone3"))), new Tuple<>(101, 33));
-        map.put((ItemStack.of(tag.getCompound("Stone4"))), new Tuple<>(78, 11));
-
+        ChakraUtil.getChakras(necklace).forEach(chakraItem -> {
+            map.put(new ItemStack(chakraItem), getPosFromChakra(chakraItem.getChakra().getStrenght()));
+        });
         return map;
+    }
+
+    private Tuple<Integer, Integer> getPosFromChakra(ChakraStrength chakraStrength){
+        return switch (chakraStrength){
+            case FAINT -> new Tuple<>(55, 34);
+            case WEAKENED -> new Tuple<>(77, 55);
+            case POWERFUL -> new Tuple<>(101, 33);
+            case ENLIGHTENED -> new Tuple<>(78, 11);
+        };
     }
 
     public static Tuple<Integer, Integer> getButtonOffset(boolean isCreative) {

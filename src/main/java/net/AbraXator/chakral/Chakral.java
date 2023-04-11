@@ -18,6 +18,7 @@ import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.particle.ModParticles;
 import net.AbraXator.chakral.recipes.ModRecipes;
 import net.AbraXator.chakral.utils.ModItemProperties;
+import net.AbraXator.chakral.utils.VanillaCompat;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -81,6 +82,9 @@ public class Chakral {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getName());
-        event.enqueueWork(ModMessages::register);
+        event.enqueueWork(() -> {
+            ModMessages.register();
+            VanillaCompat.register();
+        });
     }
 }

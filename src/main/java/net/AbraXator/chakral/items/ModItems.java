@@ -5,6 +5,7 @@ import net.AbraXator.chakral.blocks.ModBlocks;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.chakra.Chakras;
+import net.AbraXator.chakral.chakra.chakras.BlackOnyx;
 import net.AbraXator.chakral.items.custom.*;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -66,7 +67,7 @@ public class ModItems {
     public static final RegistryObject<Item> GOLDEN_TIGERS_EYE = ITEMS.register("golden_tigers_eye", () ->
             new ChakraItem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.ENLIGHTENED));
     public static final RegistryObject<Item> BLACK_ONYX = ITEMS.register("black_onyx", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.FAINT));
+            new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.FAINT, Chakras.BLACK_ONYX_CHAKRA::get));
     public static final RegistryObject<Item> MAHOGANY = ITEMS.register("mahogany", () ->
             new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.WEAKENED));
     public static final RegistryObject<Item> HELIOTROPE = ITEMS.register("heliotrope", () ->

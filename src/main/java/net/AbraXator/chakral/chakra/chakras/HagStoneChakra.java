@@ -26,12 +26,11 @@ import java.util.List;
 import java.util.UUID;
 
 public class HagStoneChakra extends Chakra {
-    UUID uuid;
+    private static final  UUID uuid = UUID.fromString("a2595d43-41b2-4429-80ec-f141ae6d6778");
     public static boolean hasReach;
 
     public HagStoneChakra(UUID uuid) {
         super(new ChakralLocation("hag_stone"), ChakraType.THIRD_EYE, ChakraStrength.FAINT);
-        this.uuid = uuid;
     }
 
     @Override
