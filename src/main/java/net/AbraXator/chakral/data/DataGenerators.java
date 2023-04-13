@@ -1,32 +1,16 @@
 package net.AbraXator.chakral.data;
 
-import com.google.gson.JsonElement;
-import com.mojang.serialization.JsonOps;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.ModBlocks;
-import net.AbraXator.chakral.chakra.Chakra;
-import net.AbraXator.chakral.world.ModConfiguredFeatures;
-import net.AbraXator.chakral.world.WorldGenerator;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.registries.VanillaRegistries;
 import net.minecraft.data.tags.TagsProvider;
-import net.minecraft.resources.RegistryOps;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
-import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
@@ -43,7 +27,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ModBlockModelGenerator(generator.getPackOutput(), Chakral.MOD_ID, existingFileHelper));
         generator.addProvider(event.includeServer(), new ItemModelGenerator(generator.getPackOutput(), Chakral.MOD_ID, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModBlockStateProvider(generator.getPackOutput(), Chakral.MOD_ID, existingFileHelper));
-        generator.addProvider(event.includeServer(), new WorldGenerator(generator.getPackOutput(), event.getLookupProvider()));
+        generator.addProvider(event.includeServer(), new RegistryDataGenerator(generator.getPackOutput(), event.getLookupProvider()));
     }
 
     public static List<Block> getCrystals(){

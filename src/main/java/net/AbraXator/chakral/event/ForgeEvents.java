@@ -103,7 +103,7 @@ public class ForgeEvents {
             if(chakra instanceof BlackOnyx blackOnyx){
                 event.setCanceled(true);
                 event.getTarget();
-                //blackOnyx.onAttackEntity(event.getEntity(), event.getEntity().getLevel(), event.getTarget());
+                blackOnyx.onAttackEntity(event.getEntity(), event.getEntity().getLevel(), event.getTarget());
             }
         });
     }
