@@ -27,22 +27,13 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider p_256380_) {
-        DataGenerators.getCrystals().forEach(block -> {
-            this.tag(ModTags.Blocks.CRYSTALS).add(block);
-        });
-        ModBlocks.BLOCKS.getEntries().forEach(blockRegistryObject -> {
-            Block block = blockRegistryObject.get();
-            List<RegistryObject<Block>> stone_block = List.of(ModBlocks.BLACK_MINERAL_IRON_ORE, ModBlocks.BLACK_MINERAL_COPPER_ORE);
-            List<RegistryObject<Block>> iron_block = List.of(ModBlocks.BLACK_MINERAL_DIAMOND_ORE, ModBlocks.BLACK_MINERAL_LAPIS_ORE, ModBlocks.BLACK_MINERAL_GOLD_ORE, ModBlocks.BLACK_MINERAL_REDSTONE_ORE, ModBlocks.BLACK_MINERAL_EMERALD_ORE);
+        List<RegistryObject<Block>> iron_block = List.of(ModBlocks.BLACK_MINERAL_DIAMOND_ORE, ModBlocks.BLACK_MINERAL_LAPIS_ORE, ModBlocks.BLACK_MINERAL_GOLD_ORE, ModBlocks.BLACK_MINERAL_REDSTONE_ORE, ModBlocks.BLACK_MINERAL_EMERALD_ORE);
+        List<RegistryObject<Block>> stone_block = List.of(ModBlocks.BLACK_MINERAL_IRON_ORE, ModBlocks.BLACK_MINERAL_COPPER_ORE);
 
-            if(!(block.asItem().getDefaultInstance().is(ModTags.Items.MINERAL_RICH) || block.asItem().getDefaultInstance().is(ModTags.Items.SHROOMS))) {
-                this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
-            } else if(stone_block.contains(blockRegistryObject)){
-                this.tag(BlockTags.NEEDS_STONE_TOOL).add(block);
-            } else if(iron_block.contains(blockRegistryObject)){
-                this.tag(BlockTags.NEEDS_IRON_TOOL).add(block);
-            }
-        });
+        DataGenerators.getCrystals().forEach(block -> this.tag(ModTags.Blocks.CRYSTALS).add(block));
+        iron_block.forEach(blockRegistryObject -> this.tag(BlockTags.NEEDS_IRON_TOOL).add(blockRegistryObject.get()));
+        stone_block.forEach(blockRegistryObject -> this.tag(BlockTags.NEEDS_STONE_TOOL).add(blockRegistryObject.get()));
+
         this.tag(BlockTags.DIRT).add(ModBlocks.MINERAL_RICH_DIRT.get(), ModBlocks.MINERAL_RICH_GRASS.get());
     }
 }

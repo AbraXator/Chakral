@@ -1,4 +1,5 @@
-// 1.19.4	2023-03-30T17:17:00.3394223	Tags for minecraft:block mod id chakral
+// 1.19.4	2023-04-13T17:24:19.3042844	Tags for minecraft:block mod id chakral
 d220783c76ee528b573d60b77f9cb8a601632fb0 data/chakral/tags/blocks/crystals.json
 4d161707d813f2f501d921ce3bd0a89c7e4ac9b6 data/minecraft/tags/blocks/dirt.json
-17ccd42404f9c11239a229e648c64c28c859f89a data/minecraft/tags/blocks/mineable/pickaxe.json
+2583c014ea89b8388c4c04c4cf831a06d20ee200 data/minecraft/tags/blocks/needs_iron_tool.json
+13d788356b03efc864d8db2a5696a1d4056b529a data/minecraft/tags/blocks/needs_stone_tool.json
