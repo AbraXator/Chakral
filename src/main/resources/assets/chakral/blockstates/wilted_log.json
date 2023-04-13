@@ -1,7 +1,16 @@
 {
- "variants": {
-  "": {
-   "model": "chakral:block/wilted/wilted_log"
+  "variants": {
+    "axis=x": {
+      "model": "chakral:block/wilted/wilted_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "chakral:block/wilted/wilted_log"
+    },
+    "axis=z": {
+      "model": "chakral:block/wilted/wilted_log_horizontal",
+      "x": 90
+    }
   }
- }
 }

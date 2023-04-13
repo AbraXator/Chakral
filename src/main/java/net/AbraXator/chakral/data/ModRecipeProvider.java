@@ -8,6 +8,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.function.Consumer;
@@ -48,5 +49,6 @@ public class ModRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(p_251297_, RecipeCategory.BUILDING_BLOCKS, ModBlocks.YELLOW_MINERAL_BRICKS.get(), ModBlocks.YELLOW_MINERAL.get());
         stonecutterResultFromBase(p_251297_, RecipeCategory.BUILDING_BLOCKS, ModBlocks.ORANGE_MINERAL_BRICKS.get(), ModBlocks.ORANGE_MINERAL.get());
         stonecutterResultFromBase(p_251297_, RecipeCategory.BUILDING_BLOCKS, ModBlocks.RED_MINERAL_BRICKS.get(), ModBlocks.RED_MINERAL.get());
+        woodFromLogs(p_251297_, ModBlocks.WILTED_PLANKS.get(), ModBlocks.WILTED_LOG.get());
     }
 }

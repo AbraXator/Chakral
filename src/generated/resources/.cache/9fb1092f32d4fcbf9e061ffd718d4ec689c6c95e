@@ -1,4 +1,4 @@
-// 1.19.4	2023-03-30T17:17:00.3384127	Recipes
+// 1.19.4	2023-04-13T21:24:07.8763334	Recipes
 8eccaef899331f65a5c7b18040f49cfd498e9228 data/chakral/advancements/recipes/building_blocks/black_mineral_bricks.json
 dd73d9ffa647dc20ff207f8cd7eb8a960cbafdf8 data/chakral/advancements/recipes/building_blocks/blue_mineral_bricks.json
 bcc2cdab6b9d99d2e60783cb4bb77c62345a9fb8 data/chakral/advancements/recipes/building_blocks/green_mineral_bricks.json
@@ -10,6 +10,7 @@ c28c75b7db1236f7115b70004c2efc465a574a83 data/chakral/advancements/recipes/build
 9db7873f133c8fde31248c90f5b1aad4b375c342 data/chakral/advancements/recipes/building_blocks/shard_refiner.json
 48027fbf5028beaa4c4fbd7094dfb9f324f2ffb3 data/chakral/advancements/recipes/building_blocks/true_white_mineral_bricks.json
 f9af18f840b1199926a1234193807f2bed57d699 data/chakral/advancements/recipes/building_blocks/white_mineral_bricks.json
+b16bf1b1edd38af8b7767e1327ed8d50d9bfb54c data/chakral/advancements/recipes/building_blocks/wilted_planks.json
 56a642037ee25a82eb654c9bf0e922d1794f638f data/chakral/advancements/recipes/building_blocks/yellow_mineral_bricks.json
 20e1006ae5ca89d64f18505631a6b9b8c8011e52 data/chakral/advancements/recipes/food/cooked_stemshroom_stem.json
 dae54eb242c4ed21226871e7cd5cdfa5c7714927 data/chakral/advancements/recipes/misc/diamond_necklace.json
@@ -32,6 +33,7 @@ cbdf6cb7f4437059f3f3297e4214b6c0a852abb7 data/chakral/recipes/orange_mineral_bri
 9eb0de13e666027859bed944ff38071d7f822d0f data/chakral/recipes/shard_refiner.json
 f7e43487ae57d7db9375b7c8964cef4cc3017bc3 data/chakral/recipes/true_white_mineral_bricks.json
 086424ce71bc3055f469f5647ea97ebb8224ca53 data/chakral/recipes/white_mineral_bricks.json
+a62715975e5f82b33efc09aa99e659c6811ee924 data/chakral/recipes/wilted_planks.json
 e199bc863ece4de5a567868427fd43f7b1046d76 data/chakral/recipes/yellow_mineral_bricks.json
 0d32f397fd523090c2f9de44e720c223f2fa9386 data/minecraft/advancements/recipes/building_blocks/amethyst_block.json
 b6efb9349615cca9072af35f2310d56208ab933d data/minecraft/advancements/recipes/building_blocks/amethyst_bricks_from_amethyst_block_stonecutting.json
