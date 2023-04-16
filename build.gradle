@@ -172,9 +172,9 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft fg.deobf("net.minecraftforge:forge:${forge_ver}")
     //JEI
-    //compileOnly fg.deobf("mezz.jei:jei-${jei_mc_ver}-common-api:${jei_version}")
-    //compileOnly fg.deobf("mezz.jei:jei-${jei_mc_ver}-forge-api:${jei_version}")
-    //runtimeOnly fg.deobf("mezz.jei:jei-${jei_mc_ver}-forge:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${jei_mc_ver}-common-api:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${jei_mc_ver}-forge-api:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${jei_mc_ver}-forge:${jei_version}")
     //Patchouli
     //compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77:api")
     //runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77")

@@ -57,6 +57,11 @@ public class ModMessages {
                 .encoder(NexusSyncS2CPacket::toBytes)
                 .consumerMainThread(NexusSyncS2CPacket::handle)
                 .add();
+        net.messageBuilder(BlackOnyxLandS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(BlackOnyxLandS2CPacket::new)
+                .encoder(BlackOnyxLandS2CPacket::toBytes)
+                .consumerMainThread(BlackOnyxLandS2CPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG msg){

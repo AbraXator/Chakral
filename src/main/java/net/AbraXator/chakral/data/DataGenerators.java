@@ -23,7 +23,7 @@ public class DataGenerators {
         //generator.addProvider(event.includeClient(), new ItemModelGenerator(generator.getPackOutput(), Chakral.MOD_ID, existingFileHelper));
         TagsProvider<Block> blockTagsProvider = new ModBlockTagsProvider(event.getGenerator().getPackOutput(), event.getLookupProvider(), Chakral.MOD_ID, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTagsProvider);
-        //generator.addProvider(event.includeServer(), new ModItemTagsProvider(event.getGenerator().getPackOutput(), event.getLookupProvider(), blockTagsProvider, Chakral.MOD_ID, existingFileHelper));
+        generator.addProvider(event.includeServer(), new ModItemTagsProvider(event.getGenerator().getPackOutput(), event.getLookupProvider(), blockTagsProvider.contentsGetter(), existingFileHelper));
         generator.addProvider(event.includeServer(), new ModBlockModelGenerator(generator.getPackOutput(), Chakral.MOD_ID, existingFileHelper));
         generator.addProvider(event.includeServer(), new ItemModelGenerator(generator.getPackOutput(), Chakral.MOD_ID, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModBlockStateProvider(generator.getPackOutput(), Chakral.MOD_ID, existingFileHelper));
