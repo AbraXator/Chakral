@@ -137,7 +137,7 @@ public class ModBlocks {
             () -> new NecklaceSlotterBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3.0F, 6.0F)));
     public static final RegistryObject<Block> NECKLACE_INSERTER = registerBlock("necklace_inserter",
-            () -> new NecklaceInserterBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new NecklaceInserterBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(3.0F, 6.0F)));
     public static final RegistryObject<Block> SHARD_REFINER = registerBlock("shard_refiner",
             () -> new ShardRefinerBlock(BlockBehaviour.Properties.of(Material.WOOD)

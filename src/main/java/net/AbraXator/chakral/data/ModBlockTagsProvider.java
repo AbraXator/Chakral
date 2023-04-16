@@ -25,8 +25,13 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         List<RegistryObject<Block>> iron_tier_block = List.of(ModBlocks.BLACK_MINERAL_DIAMOND_ORE, ModBlocks.BLACK_MINERAL_LAPIS_ORE, ModBlocks.BLACK_MINERAL_GOLD_ORE, ModBlocks.BLACK_MINERAL_REDSTONE_ORE, ModBlocks.BLACK_MINERAL_EMERALD_ORE);
         List<RegistryObject<Block>> stone_tier_block = List.of(ModBlocks.BLACK_MINERAL_IRON_ORE, ModBlocks.BLACK_MINERAL_COPPER_ORE);
         List<RegistryObject<Block>> axe = List.of(ModBlocks.WILTED_LOG, ModBlocks.WILTED_PLANKS, ModBlocks.SHARD_REFINER);
-        List<RegistryObject<Block>> leaves = List.of(ModBlocks.WILTED_LEAVES, ModBlocks.GLEAMSHROOM, ModBlocks.STEMSHROOM);
+        List<RegistryObject<Block>> hoe = List.of(ModBlocks.WILTED_LEAVES, ModBlocks.GLEAMSHROOM, ModBlocks.STEMSHROOM);
         List<RegistryObject<Block>> dirt = List.of(ModBlocks.MINERAL_RICH_DIRT, ModBlocks.MINERAL_RICH_FARMLAND, ModBlocks.BURGEONING_ROOTS, ModBlocks.MINERAL_RICH_GRASS);
+        List<RegistryObject<Block>> logs = List.of(ModBlocks.WILTED_LOG);
+        List<RegistryObject<Block>> planks = List.of(ModBlocks.WILTED_PLANKS);
+        List<RegistryObject<Block>> leaves = List.of(ModBlocks.WILTED_LEAVES);
+
+
 
 
         DataGenerators.getCrystals().forEach(block -> this.tag(ModTags.Blocks.CRYSTALS).add(block));
@@ -34,10 +39,14 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         stone_tier_block.forEach(blockRegistryObject -> this.tag(BlockTags.NEEDS_STONE_TOOL).add(blockRegistryObject.get()));
         axe.forEach(blockRegistryObject -> this.tag(BlockTags.MINEABLE_WITH_AXE).add(blockRegistryObject.get()));
         dirt.forEach(blockRegistryObject -> this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(blockRegistryObject.get()));
-        leaves.forEach(blockRegistryObject -> this.tag(BlockTags.MINEABLE_WITH_HOE).add(blockRegistryObject.get()));
+        hoe.forEach(blockRegistryObject -> this.tag(BlockTags.MINEABLE_WITH_HOE).add(blockRegistryObject.get()));
+        logs.forEach(blockRegistryObject -> this.tag(BlockTags.LOGS_THAT_BURN).add(blockRegistryObject.get()));
+        planks.forEach(blockRegistryObject -> this.tag(BlockTags.PLANKS).add(blockRegistryObject.get()));
+        leaves.forEach(blockRegistryObject -> this.tag(BlockTags.LEAVES).add(blockRegistryObject.get()));
+
 
         ModBlocks.BLOCKS.getEntries().forEach(blockRegistryObject -> {
-           if(!Stream.of(iron_tier_block, stone_tier_block, axe, leaves, dirt).toList().contains(blockRegistryObject)){
+           if(!Stream.of(axe).toList().contains(blockRegistryObject)){
                this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blockRegistryObject.get());
            }
         });
