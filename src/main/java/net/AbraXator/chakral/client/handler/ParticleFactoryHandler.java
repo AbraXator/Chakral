@@ -3,7 +3,7 @@ package net.AbraXator.chakral.client.handler;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.client.particle.HagstoneFragmentiumParticle;
-import net.AbraXator.chakral.particle.ModParticles;
+import net.AbraXator.chakral.init.ModParticles;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

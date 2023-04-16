@@ -1,20 +1,14 @@
 package net.AbraXator.chakral.data;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.blocks.ModBlocks;
-import net.AbraXator.chakral.blocks.custom.Crystal;
+import net.AbraXator.chakral.blocks.Crystal;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import org.checkerframework.checker.units.qual.C;
-
-import java.util.List;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     final ExistingFileHelper existingFileHelper;

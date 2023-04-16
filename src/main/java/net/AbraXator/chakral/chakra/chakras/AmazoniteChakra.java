@@ -5,26 +5,14 @@ import net.AbraXator.chakral.capability.AdditionalHealthCapProvider;
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
-import net.AbraXator.chakral.client.ChakraHeartData;
-import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
-import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.client.overlays.ChakraHeartData;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.ChakraHeartsS2CPacket;
 import net.AbraXator.chakral.utils.ChakralLocation;
-import net.AbraXator.chakral.utils.ModTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.Set;
 
 public class AmazoniteChakra extends Chakra {
     public static float hp = 0;

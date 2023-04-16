@@ -1,7 +1,7 @@
 package net.AbraXator.chakral.data;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.world.ModConfiguredFeatures;
+import net.AbraXator.chakral.init.ModConfiguredFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;

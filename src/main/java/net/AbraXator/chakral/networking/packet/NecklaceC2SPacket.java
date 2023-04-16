@@ -25,44 +25,6 @@ public class NecklaceC2SPacket {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             context.getSender().openMenu(new SimpleMenuProvider((pContainerId, pPlayerInventory, pPlayer) -> new ChakralNexusMenu(pContainerId, pPlayerInventory), Component.translatable("")));
-            /*Player player = context.getSender();
-            ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
-            player.getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
-                ItemStack necklace = necklaceCap.getNecklace() != null ? necklaceCap.getNecklace() : ItemStack.EMPTY;
-                    if(necklaceCap.getNecklace().is(ItemStack.EMPTY.getItem()) && stack.is(ModTags.Items.NECKLACES)){
-                    necklaceCap.setNecklace(stack);
-                    player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
-                    ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
-                        Chakra chakra = s.get();
-                        chakra.setNecklace(stack);
-                        if(chakra.isEnabled()) {
-                            if (chakra.isUpgraded()) {
-                                chakra.onEquipUpgraded(player, player.level);
-                            } else {
-                                chakra.onEquip(player, player.level);
-                            }
-                        }
-                    });
-                } else {
-                    ChakraRegistries.CHAKRA.getEntries().forEach(s -> {
-                        Chakra chakra = s.get();
-                        chakra.setNecklace(necklaceCap.getNecklace());
-                        if(chakra.isEnabled()) {
-                            if(chakra.isUpgraded()) {
-                                chakra.onUnequipUpgraded(player, player.level);
-                            } else {
-                                chakra.onUnequip(player, player.level);
-                            }
-                        }
-                    });
-                    if(player.getInventory().getFreeSlot() == -1){
-                        player.drop(necklace, false);
-                    }else {
-                        player.addItem(necklace);
-                    }
-                    necklaceCap.setNecklace(ItemStack.EMPTY);
-                }
-            });*/
         });
         return true;
     }

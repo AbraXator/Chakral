@@ -1,6 +1,6 @@
 package net.AbraXator.chakral.networking.packet;
 
-import net.AbraXator.chakral.client.ChakraHeartData;
+import net.AbraXator.chakral.client.overlays.ChakraHeartData;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 

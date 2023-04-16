@@ -1,8 +1,8 @@
 package net.AbraXator.chakral.chakra;
 
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
-import net.AbraXator.chakral.items.custom.ChakraItem;
-import net.AbraXator.chakral.items.custom.NecklaceItem;
+import net.AbraXator.chakral.items.ChakraItem;
+import net.AbraXator.chakral.items.NecklaceItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -26,7 +26,7 @@ public class ChakraUtil {
         }
     }
 
-    public static void removeAugment(ItemStack itemStack, int slot){
+    public static void removeChakra(ItemStack itemStack, int slot){
         CompoundTag tag = itemStack.getTag();
         if(tag == null){
             return;

@@ -1,13 +1,11 @@
 package net.AbraXator.chakral.chakra;
 
-import net.AbraXator.chakral.items.ModItems;
-import net.AbraXator.chakral.utils.ModTags;
+import net.AbraXator.chakral.init.ModTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 
 public enum ChakraStrength implements StringRepresentable {
     FAINT("faint", 0, Component.translatable("chakra_strength.faint")),
@@ -41,10 +39,6 @@ public enum ChakraStrength implements StringRepresentable {
             case POWERFUL -> ModTags.Items.POWERFUL;
             case ENLIGHTENED -> ModTags.Items.ENLIGHTENED;
         };
-    }
-
-    public int getIndex() {
-        return index;
     }
 
 

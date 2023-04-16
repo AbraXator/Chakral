@@ -1,9 +1,8 @@
 package net.AbraXator.chakral.utils;
 
-import net.AbraXator.chakral.items.ModItems;
+import net.AbraXator.chakral.init.ModItems;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.registries.RegistryObject;
 
 public enum NecklaceType implements StringRepresentable {

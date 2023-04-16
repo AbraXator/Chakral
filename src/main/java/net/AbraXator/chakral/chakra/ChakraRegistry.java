@@ -1,18 +1,13 @@
 package net.AbraXator.chakral.chakra;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.items.custom.ChakraItem;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegistryBuilder;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 
 public class ChakraRegistry {
