@@ -1,15 +1,12 @@
 package net.AbraXator.chakral.client.gui.chakralnexus;
 
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
-import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.IChakraProvider;
-import net.AbraXator.chakral.items.custom.NecklaceItem;
-import net.minecraft.client.Minecraft;
+import net.AbraXator.chakral.items.NecklaceItem;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 

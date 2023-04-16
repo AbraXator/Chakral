@@ -1,21 +1,16 @@
 package net.AbraXator.chakral.client.gui.chakralnexus;
 
-import net.AbraXator.chakral.client.gui.ModMenuTypes;
-import net.AbraXator.chakral.client.gui.necklace.NecklaceInserterMenu;
+import net.AbraXator.chakral.init.ModMenuTypes;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.NexusSyncS2CPacket;
-import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.InventoryMenu;
-import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
 
 public class ChakralNexusMenu extends AbstractContainerMenu {
     final Container container = new SimpleContainer(1) {

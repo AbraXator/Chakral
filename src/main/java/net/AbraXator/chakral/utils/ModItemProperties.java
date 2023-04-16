@@ -1,17 +1,12 @@
 package net.AbraXator.chakral.utils;
 
 import net.AbraXator.chakral.chakra.ChakraType;
-import net.AbraXator.chakral.items.ModItems;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
-
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
 
 public class ModItemProperties {
     public static void addCustomProperties(){

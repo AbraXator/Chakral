@@ -1,7 +1,7 @@
 package net.AbraXator.chakral.data;
 
-import net.AbraXator.chakral.blocks.ModBlocks;
-import net.AbraXator.chakral.utils.ModTags;
+import net.AbraXator.chakral.init.ModBlocks;
+import net.AbraXator.chakral.init.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;

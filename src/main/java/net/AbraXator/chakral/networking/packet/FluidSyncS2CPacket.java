@@ -1,6 +1,6 @@
 package net.AbraXator.chakral.networking.packet;
 
-import net.AbraXator.chakral.blocks.entity.custom.MineralEnricherBlockEntity;
+import net.AbraXator.chakral.blocks.entity.MineralEnricherBlockEntity;
 import net.AbraXator.chakral.client.gui.enricher.MineralEnricherMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;

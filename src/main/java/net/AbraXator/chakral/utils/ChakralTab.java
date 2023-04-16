@@ -1,21 +1,16 @@
 package net.AbraXator.chakral.utils;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.blocks.ModBlocks;
-import net.AbraXator.chakral.items.ModItems;
-import net.minecraft.core.NonNullList;
-import net.minecraft.core.Registry;
+import net.AbraXator.chakral.init.ModBlocks;
+import net.AbraXator.chakral.init.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ChakralTab {

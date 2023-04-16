@@ -1,18 +1,14 @@
 package net.AbraXator.chakral.event;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.blocks.ModBlocks;
-import net.AbraXator.chakral.blocks.custom.ShardRefinerBlock;
+import net.AbraXator.chakral.init.ModBlocks;
+import net.AbraXator.chakral.blocks.ShardRefinerBlock;
 import net.AbraXator.chakral.chakra.*;
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
-import net.AbraXator.chakral.chakra.chakras.AmazoniteChakra;
 import net.AbraXator.chakral.chakra.chakras.BlackOnyx;
-import net.AbraXator.chakral.chakra.chakras.BlueLaceAgate;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusMenu;
-import net.AbraXator.chakral.items.ModItems;
-import net.AbraXator.chakral.items.custom.ChakraItem;
-import net.AbraXator.chakral.utils.ModTags;
-import net.AbraXator.chakral.utils.PlayerUtil;
+import net.AbraXator.chakral.init.ModItems;
+import net.AbraXator.chakral.init.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -23,7 +19,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -52,7 +47,7 @@ public class ForgeEvents {
                 case ENLIGHTENED -> ModItems.ENGLIGHTENED_REFINER_KIT.get();
             };
             if(!kit.getDefaultInstance().is(ItemStack.EMPTY.getItem())){
-                PlayerUtil.addItemToInventory(event.getEntity(), kit.getDefaultInstance());
+                addItemToInventory(event.getEntity(), kit.getDefaultInstance());
             }
             level.setBlock(pos, level.getBlockState(pos).setValue(ShardRefinerBlock.TIER, ChakraStrength.FAINT), 3);
         }
@@ -66,6 +61,14 @@ public class ForgeEvents {
     @SubscribeEvent
     public static void BlockBreak(BlockEvent.BreakEvent event){
         ChakraUtil.getChakrasFromPlayer(event.getPlayer()).forEach(chakra -> chakra.onDestroyBlock(event));
+    }
+
+    public static void addItemToInventory(Player player, ItemStack stack){
+        if(player.getInventory().getFreeSlot() == -1){
+            player.drop(stack, false);
+        }else {
+            player.addItem(stack);
+        }
     }
 
     //@SubscribeEvent

@@ -101,9 +101,9 @@ public class Chakra implements IChakraSidePanel{
 
     public void onFunctionKeyPressUpgraded(Player player, Level level){}
 
-    public boolean isUpgraded(){
+    /*public boolean isUpgraded(){
         return stones().contains(this.type.getTier4(this.type));
-    }
+    }*/
 
     public void tick(Player player, Level level){}
 
