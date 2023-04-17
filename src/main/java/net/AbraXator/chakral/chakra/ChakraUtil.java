@@ -1,28 +1,31 @@
 package net.AbraXator.chakral.chakra;
 
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
+import net.AbraXator.chakral.client.gui.necklace.NecklaceInserterMenu;
 import net.AbraXator.chakral.items.ChakraItem;
 import net.AbraXator.chakral.items.NecklaceItem;
+import net.AbraXator.chakral.items.StoneHoldingItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ChakraUtil {
-    public static void addChakra(ItemStack stack, Chakra chakra, int slot){
-        Item item = stack.getItem();
-        if(item instanceof NecklaceItem necklaceItem){
-            CompoundTag tag = stack.getTag();
+    public static void addChakra(ItemStack necklace, ItemStack stone, int slot){
+        if(necklace.getItem() instanceof NecklaceItem necklaceItem){
+            CompoundTag tag = necklace.getTag();
 
             if(tag == null){
                 tag = new CompoundTag();
-                stack.setTag(tag);
+                necklace.setTag(tag);
             }
 
-            tag.put("Stone" + slot, stack.serializeNBT());
+            tag.put("Stone" + slot, stone.serializeNBT());
         }
     }
 
@@ -52,6 +55,21 @@ public class ChakraUtil {
         }
 
         return null;
+    }
+
+    public static Map<ItemStack, Integer> stoneIndexInSlot(ItemStack itemStack) {
+        Map<ItemStack, Integer> map = new LinkedHashMap<>();
+
+        if (itemStack.getItem() instanceof StoneHoldingItem stoneHoldingItem) {
+            for (int i = 1; i <= stoneHoldingItem.stonesAmount(); i++) {
+                ItemStack stone = ItemStack.of(itemStack.getTagElement("Stone" + i));
+                map.put(stone, i);
+            }
+
+            return map;
+        }
+
+        return map;
     }
 
     public static List<ChakraItem> getChakras(ItemStack itemStack){

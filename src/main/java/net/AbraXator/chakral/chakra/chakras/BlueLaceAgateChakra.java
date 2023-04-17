@@ -1,12 +1,16 @@
 package net.AbraXator.chakral.chakra.chakras;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
+import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.AbraXator.chakral.utils.ChakralLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectUtil;
@@ -19,9 +23,9 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 import java.util.List;
 
-public class BlueLaceAgate extends Chakra {
-    public BlueLaceAgate(Item stone, ChakraType type, ChakraStrength chakraStrength) {
-        super(new ChakralLocation("blue_lace_agate"), type, chakraStrength);
+public class BlueLaceAgateChakra extends Chakra {
+    public BlueLaceAgateChakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength) {
+        super(id, type, chakraStrength);
     }
 
     @Override
@@ -58,5 +62,15 @@ public class BlueLaceAgate extends Chakra {
             event.setCanceled(true);
             event.getEntity().hurt(event.getSource(), event.getAmount() / 2);
         }
+    }
+
+    @Override
+    public void openInfoSidePanel(ChakralNexusScreen screen, PoseStack poseStack, int x, int y) {
+
+    }
+
+    @Override
+    public Style getColor() {
+        return null;
     }
 }

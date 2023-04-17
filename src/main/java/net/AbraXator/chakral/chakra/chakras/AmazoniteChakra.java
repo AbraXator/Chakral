@@ -1,14 +1,18 @@
 package net.AbraXator.chakral.chakra.chakras;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.capability.AdditionalHealthCap;
 import net.AbraXator.chakral.capability.AdditionalHealthCapProvider;
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
+import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.AbraXator.chakral.client.overlays.ChakraHeartData;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.ChakraHeartsS2CPacket;
 import net.AbraXator.chakral.utils.ChakralLocation;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -18,8 +22,8 @@ public class AmazoniteChakra extends Chakra {
     public static float hp = 0;
     private Level level;
 
-    public AmazoniteChakra() {
-        super(new ChakralLocation("amazonite"), ChakraType.HEART, ChakraStrength.FAINT);
+    public AmazoniteChakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength) {
+        super(id, type, chakraStrength);
     }
 
     @Override
@@ -87,5 +91,15 @@ public class AmazoniteChakra extends Chakra {
                 }
             });
         }
+    }
+
+    @Override
+    public void openInfoSidePanel(ChakralNexusScreen screen, PoseStack poseStack, int x, int y) {
+
+    }
+
+    @Override
+    public Style getColor() {
+        return null;
     }
 }

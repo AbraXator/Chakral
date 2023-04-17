@@ -8,10 +8,10 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
 
 public enum ChakraStrength implements StringRepresentable {
-    FAINT("faint", 0, Component.translatable("chakra_strength.faint")),
-    WEAKENED("weakened", 1, Component.translatable("chakra_strength.weakened")),
-    POWERFUL("powerful", 2, Component.translatable("chakra_strength.powerful")),
-    ENLIGHTENED("enlightened", 3, Component.translatable("chakra_strength.enlightened"));
+    FAINT("faint", 1, Component.translatable("chakra_strength.faint")),
+    WEAKENED("weakened", 2, Component.translatable("chakra_strength.weakened")),
+    POWERFUL("powerful", 3, Component.translatable("chakra_strength.powerful")),
+    ENLIGHTENED("enlightened", 4, Component.translatable("chakra_strength.enlightened"));
 
     public static ChatFormatting getColorFromChakra(ChakraStrength chakra){
         return switch (chakra){
@@ -53,6 +53,10 @@ public enum ChakraStrength implements StringRepresentable {
 
     public Component getLocalizedName() {
         return localizedName;
+    }
+
+    public int getIndex() {
+        return index;
     }
 
     public boolean is(ChakraStrength strenght){

@@ -1,16 +1,14 @@
 package net.AbraXator.chakral.chakra;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.AbraXator.chakral.utils.ChakralLocation;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -22,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class Chakra implements IChakraSidePanel{
+public abstract class Chakra implements IChakra {
     private final ResourceLocation id;
     private boolean isEnabled;
     private final RegistryObject<Item> stone;
@@ -129,6 +127,7 @@ public class Chakra implements IChakraSidePanel{
 
     public void interact(PlayerInteractEvent event){}
 
-    @Override
-    public void openInfoSidePanel(ChakralNexusScreen screen, PoseStack poseStack, int x, int y) {}
+    private int chakraColor(float pHue, float pSaturation, float pValue){
+        return Mth.hsvToRgb(pHue, pSaturation, pValue);
+    }
 }

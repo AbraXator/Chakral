@@ -1,24 +1,18 @@
 package net.AbraXator.chakral;
 
 import com.mojang.logging.LogUtils;
-import net.AbraXator.chakral.init.ModBlocks;
-import net.AbraXator.chakral.init.ModBlockEntities;
+import net.AbraXator.chakral.init.*;
 import net.AbraXator.chakral.chakra.ChakraRegistry;
-import net.AbraXator.chakral.chakra.Chakras;
-import net.AbraXator.chakral.init.ModMenuTypes;
+import net.AbraXator.chakral.init.ModChakras;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.AbraXator.chakral.client.gui.enricher.MineralEnricherScreen;
 import net.AbraXator.chakral.client.gui.necklace.NecklaceInserterScreen;
 import net.AbraXator.chakral.client.gui.necklace.NecklaceSlotterScreen;
 import net.AbraXator.chakral.client.gui.refiner.ShardRefinerScreen;
 import net.AbraXator.chakral.config.ChakralClientConfig;
-import net.AbraXator.chakral.init.ModEntities;
-import net.AbraXator.chakral.init.ModItems;
 import net.AbraXator.chakral.networking.ModMessages;
-import net.AbraXator.chakral.init.ModParticles;
 import net.AbraXator.chakral.recipes.ModRecipes;
 import net.AbraXator.chakral.utils.ModItemProperties;
-import net.AbraXator.chakral.init.VanillaCompat;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -65,8 +59,8 @@ public class Chakral {
     public void register(IEventBus eventBus){
         ChakraRegistry.CHAKRA.register(eventBus);
         //Chakras.onRegisterChakras();
-        Chakras.registerEntries();
-        Chakras.registerEvents();
+        ModChakras.registerEntries();
+        ModChakras.registerEvents();
     }
 
     public void clientSetup(final FMLClientSetupEvent event){

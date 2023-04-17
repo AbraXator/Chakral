@@ -1,16 +1,15 @@
 package net.AbraXator.chakral.chakra.chakras;
 
-import com.sun.jna.platform.win32.WinBase;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
+import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.BlackOnyxLandS2CPacket;
-import net.AbraXator.chakral.utils.ChakralLocation;
 import net.minecraft.client.renderer.debug.DebugRenderer;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -18,20 +17,19 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class BlackOnyx extends Chakra {
+public class BlackOnyxChakra extends Chakra {
     private static int countdown = 0;
     private static int countdownForAttack = 0;
     private static int charge = 0;
     private boolean canCauseDamage = false;
     private static final UUID uuid = UUID.fromString("a9fa91ef-9368-46be-bf36-9a342a662dec") ;
 
-    public BlackOnyx() {
-        super(new ChakralLocation("black_onyx"), ChakraType.ROOT, ChakraStrength.FAINT);
+    public BlackOnyxChakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength) {
+        super(id, type, chakraStrength);
     }
 
     public void onAttackEntity(Player player, Level level, Entity target){
@@ -96,5 +94,15 @@ public class BlackOnyx extends Chakra {
                 countdown = 50;
             }
         });
+    }
+
+    @Override
+    public void openInfoSidePanel(ChakralNexusScreen screen, PoseStack poseStack, int x, int y) {
+
+    }
+
+    @Override
+    public Style getColor() {
+        return null;
     }
 }

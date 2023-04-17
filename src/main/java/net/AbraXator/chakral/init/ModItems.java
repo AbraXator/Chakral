@@ -3,7 +3,6 @@ package net.AbraXator.chakral.init;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
-import net.AbraXator.chakral.chakra.Chakras;
 import net.AbraXator.chakral.items.*;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -25,7 +24,7 @@ public class ModItems {
     public static final RegistryObject<Item> LABBRADORITE = ITEMS.register("labbradorite", () ->
             new ChakraItem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.ENLIGHTENED));
     public static final RegistryObject<Item> HAG_STONE = ITEMS.register("hag_stone", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.FAINT, Chakras.HAG_STONE_CHAKRA));
+            new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.FAINT, ModChakras.HAG_STONE_CHAKRA));
     public static final RegistryObject<Item> DUMORTIERITE = ITEMS.register("dumortierite", () ->
             new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.WEAKENED));
     public static final RegistryObject<Item> LEPIDOLITE = ITEMS.register("lepidolite", () ->
@@ -65,7 +64,7 @@ public class ModItems {
     public static final RegistryObject<Item> GOLDEN_TIGERS_EYE = ITEMS.register("golden_tigers_eye", () ->
             new ChakraItem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.ENLIGHTENED));
     public static final RegistryObject<Item> BLACK_ONYX = ITEMS.register("black_onyx", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.FAINT, Chakras.BLACK_ONYX_CHAKRA::get));
+            new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.FAINT, ModChakras.BLACK_ONYX_CHAKRA));
     public static final RegistryObject<Item> MAHOGANY = ITEMS.register("mahogany", () ->
             new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.WEAKENED));
     public static final RegistryObject<Item> HELIOTROPE = ITEMS.register("heliotrope", () ->
@@ -94,13 +93,13 @@ public class ModItems {
             new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationMod(0.6F).build())));
 
     public static final RegistryObject<Item> GOLDEN_NECKLACE = ITEMS.register("golden_necklace", () ->
-            new GoldenNecklace(new Item.Properties().stacksTo(1)));
+            new NecklaceItem(new Item.Properties().stacksTo(1), 1));
     public static final RegistryObject<Item> DIAMOND_NECKLACE = ITEMS.register("diamond_necklace", () ->
-            new DiamondNecklace(new Item.Properties().stacksTo(1)));
+            new NecklaceItem(new Item.Properties().stacksTo(1), 2));
     public static final RegistryObject<Item> NETHERITE_NECKLACE = ITEMS.register("netherite_necklace", () ->
-            new NetheriteNecklace(new Item.Properties().stacksTo(1)));
+            new NecklaceItem(new Item.Properties().stacksTo(1), 3));
     public static final RegistryObject<Item> RAINBOW_NECKLACE = ITEMS.register("rainbow_necklace", () ->
-            new RainbowNecklace(new Item.Properties().stacksTo(1)));
+            new NecklaceItem(new Item.Properties().stacksTo(1), 4));
 
     public static final RegistryObject<Item> WEAK_REFINER_KIT = ITEMS.register("weak_refiner_kit", () ->
             new RefinerKit(new Item.Properties(), ChakraStrength.WEAKENED));

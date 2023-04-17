@@ -5,7 +5,7 @@ import net.AbraXator.chakral.init.ModBlocks;
 import net.AbraXator.chakral.blocks.ShardRefinerBlock;
 import net.AbraXator.chakral.chakra.*;
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
-import net.AbraXator.chakral.chakra.chakras.BlackOnyx;
+import net.AbraXator.chakral.chakra.chakras.BlackOnyxChakra;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusMenu;
 import net.AbraXator.chakral.init.ModItems;
 import net.AbraXator.chakral.init.ModTags;
@@ -103,7 +103,7 @@ public class ForgeEvents {
     @SubscribeEvent
     public void onAttackEntity(AttackEntityEvent event) {
         ChakraUtil.getChakrasFromPlayer(event.getEntity()).forEach(chakra -> {
-            if(chakra instanceof BlackOnyx blackOnyx){
+            if(chakra instanceof BlackOnyxChakra blackOnyx){
                 event.setCanceled(true);
                 event.getTarget();
                 blackOnyx.onAttackEntity(event.getEntity(), event.getEntity().getLevel(), event.getTarget());

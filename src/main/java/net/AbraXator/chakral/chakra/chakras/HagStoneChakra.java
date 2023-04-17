@@ -1,9 +1,13 @@
 package net.AbraXator.chakral.chakra.chakras;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
+import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.AbraXator.chakral.utils.ChakralLocation;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
@@ -26,11 +30,11 @@ import java.util.List;
 import java.util.UUID;
 
 public class HagStoneChakra extends Chakra {
-    private static final  UUID uuid = UUID.fromString("a2595d43-41b2-4429-80ec-f141ae6d6778");
+    private static final UUID uuid = UUID.fromString("a2595d43-41b2-4429-80ec-f141ae6d6778");
     public static boolean hasReach;
 
-    public HagStoneChakra(UUID uuid) {
-        super(new ChakralLocation("hag_stone"), ChakraType.THIRD_EYE, ChakraStrength.FAINT);
+    public HagStoneChakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength) {
+        super(id, type, chakraStrength);
     }
 
     @Override
@@ -71,5 +75,15 @@ public class HagStoneChakra extends Chakra {
             list.add(player.getItemInHand(InteractionHand.MAIN_HAND).is(tagKey1));
         }
         return list.contains(Boolean.TRUE);
+    }
+
+    @Override
+    public void openInfoSidePanel(ChakralNexusScreen screen, PoseStack poseStack, int x, int y) {
+
+    }
+
+    @Override
+    public Style getColor() {
+        return null;
     }
 }

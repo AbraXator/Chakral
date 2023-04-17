@@ -11,7 +11,6 @@ import net.minecraftforge.registries.RegistryBuilder;
 import java.util.function.Supplier;
 
 public class ChakraRegistry {
-    public static final ResourceKey<Registry<Chakra>> RESOURCE_KEY = ResourceKey.createRegistryKey(new ResourceLocation(Chakral.MOD_ID, "chakra"));
-    public static final DeferredRegister<Chakra> CHAKRA = DeferredRegister.create(RESOURCE_KEY, Chakral.MOD_ID);
-    public static final Supplier<IForgeRegistry<Chakra>> CHAKRA_REGISTRY = CHAKRA.makeRegistry(() -> new RegistryBuilder<Chakra>().disableSaving().setMaxID(Integer.MAX_VALUE - 1).setName(RESOURCE_KEY.location()));
+    public static final ResourceKey<Registry<Chakra>> CHAKRA_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(Chakral.MOD_ID, "chakra"));
+    //public static final Supplier<IForgeRegistry<Chakra>> CHAKRA_REGISTRY = CHAKRA.makeRegistry(() -> new RegistryBuilder<Chakra>().disableSaving().setMaxID(Integer.MAX_VALUE - 1).setName(CHAKRA_REGISTRY.location()));
 }

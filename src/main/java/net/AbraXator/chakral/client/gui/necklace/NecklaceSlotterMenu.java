@@ -1,5 +1,6 @@
 package net.AbraXator.chakral.client.gui.necklace;
 
+import net.AbraXator.chakral.chakra.ChakraUtil;
 import net.AbraXator.chakral.init.ModBlocks;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.init.ModMenuTypes;
@@ -38,7 +39,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
         this.access = access;
         this.level = inv.player.level;
         //slot 1 - necklace
-        this.addSlot(new Slot(this.necklaceSlot, 0, 80, 22) {
+        this.addSlot(new NecklaceSlot(this.necklaceSlot, 0, 80, 22) {
             @Override
             public boolean mayPlace(ItemStack necklace) {
                 if(isDiamond){
@@ -48,15 +49,12 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                 }
             }
 
-            @Override
-            public void onTake(Player pPlayer, ItemStack pStack) {
-                if(NecklaceSlotterMenu.this.getSlot(1).hasItem()){
-                    NecklaceSlotterMenu.this.getSlot(1).remove(1);
-                }
-            }
-
-            @Override
+            /*@Override
             public void setChanged() {
+                ChakraUtil.stoneIndexInSlot(getItem()).forEach((itemStack, integer) -> {
+                    getSlot(integer).set(itemStack);
+                });
+
                 ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
                 if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.NECKLACES).contains(necklace.getItem())) {
                     if (necklace.hasTag()) {
@@ -72,21 +70,12 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                         }
                     }
                 }
-            }
+            }*/
         });
         //slot 2 - stone golden necklace
-        this.addSlot(new Slot(this.necklaceSlot, 1, 80, 46){
-            @Override
-            public boolean mayPlace(ItemStack stone){
-                return NecklaceSlotterUtil.mayPlace(ChakraStrength.FAINT, stone);
-            }
+        this.addSlot(new StoneSlot(this.necklaceSlot, 1, 80, 46, ChakraStrength.FAINT, !isDiamond){
 
-            @Override
-            public boolean isActive() {
-                return NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.GOLDEN_NECKLACE.get());
-            }
-
-            @Override
+            /*@Override
             public void setChanged() {
                 NecklaceSlotterUtil.setChanged(NecklaceSlotterMenu.this.necklaceSlot.getItem(1), NecklaceSlotterMenu.this.necklaceSlot.getItem(0),
                         ModItems.GOLDEN_NECKLACE.get(), "Stone1", ChakraStrength.FAINT);
@@ -99,7 +88,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
             @Override
             public void onTake(Player pPlayer, ItemStack pStack) {
                 NecklaceSlotterUtil.onTake(NecklaceSlotterMenu.this.necklaceSlot.getItem(0), ModItems.GOLDEN_NECKLACE.get(), "Stone1");
-            }
+            }*/
         });
         //slot 3 - weakened stone diamond necklace
         this.addSlot(new Slot(this.necklaceSlot, 2, 71, 50){
