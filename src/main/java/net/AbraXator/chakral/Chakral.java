@@ -42,10 +42,10 @@ public class Chakral {
         ModRecipes.         register(eventBus);
         ModEntities.        register(eventBus);
         ModParticles.       register(eventBus);
+        ModChakras.         register(eventBus);
         //ModFeatures.        register(eventBus);
         //ModConfigFeatures.  register(eventBus);
         //ModPlacedFeature.   register(eventBus);
-        register(eventBus);
 
 
         eventBus.addListener(this::setup);
@@ -53,14 +53,6 @@ public class Chakral {
         eventBus.register(new ModItems());
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ChakralClientConfig.CLIENT_SPEC);
         MinecraftForge.EVENT_BUS.register(this);
-
-    }
-
-    public void register(IEventBus eventBus){
-        ChakraRegistry.CHAKRA.register(eventBus);
-        //Chakras.onRegisterChakras();
-        ModChakras.registerEntries();
-        ModChakras.registerEvents();
     }
 
     public void clientSetup(final FMLClientSetupEvent event){

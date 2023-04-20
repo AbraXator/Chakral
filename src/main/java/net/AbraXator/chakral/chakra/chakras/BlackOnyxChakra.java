@@ -9,7 +9,6 @@ import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.BlackOnyxLandS2CPacket;
 import net.minecraft.client.renderer.debug.DebugRenderer;
 import net.minecraft.network.chat.Style;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -28,8 +27,8 @@ public class BlackOnyxChakra extends Chakra {
     private boolean canCauseDamage = false;
     private static final UUID uuid = UUID.fromString("a9fa91ef-9368-46be-bf36-9a342a662dec") ;
 
-    public BlackOnyxChakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength) {
-        super(id, type, chakraStrength);
+    public BlackOnyxChakra(ChakraType type, ChakraStrength chakraStrength) {
+        super(type, chakraStrength);
     }
 
     public void onAttackEntity(Player player, Level level, Entity target){
@@ -39,7 +38,7 @@ public class BlackOnyxChakra extends Chakra {
     public void tick(Player player, Level level) {
         Optional<Entity> optionalEntity = DebugRenderer.getTargetedEntity(player, 15);
         if(countdown == 0) dash(optionalEntity, player);
-        if(!player.isOnGround()) System.out.println(player.getDeltaMovement());
+        //if(!player.isOnGround()) System.out.println(player.getDeltaMovement());
         if(player.fallDistance > 0.0F && player.isOnGround() && canCauseDamage){
             land(player.getOnPos().getCenter(), level, player);
         }
@@ -63,7 +62,6 @@ public class BlackOnyxChakra extends Chakra {
         List<Entity> entities = level.getEntities(player, new AABB(xMin, yMin, zMin, xMax, yMax, zMax));
 
         ModMessages.sendToClients(new BlackOnyxLandS2CPacket(pos));
-
         entities.forEach(entity -> {
             entity.hurt(level.damageSources().playerAttack(player), 5);
             Vec3 vec3 = new Vec3(entity.getX() - pos.x(), entity.getY() - pos.y(), entity.getZ() - pos.z()).scale(0.2);

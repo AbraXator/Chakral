@@ -6,10 +6,9 @@ import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.minecraft.network.chat.Style;
-import net.minecraft.resources.ResourceLocation;
 
-public class DefaultChakra extends Chakra {
-    public DefaultChakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength) {
+public class LepidoliteChakra extends Chakra {
+    public LepidoliteChakra(ChakraType type, ChakraStrength chakraStrength) {
         super(type, chakraStrength);
     }
 

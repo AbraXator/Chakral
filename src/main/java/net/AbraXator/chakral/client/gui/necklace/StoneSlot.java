@@ -2,6 +2,7 @@ package net.AbraXator.chakral.client.gui.necklace;
 
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraUtil;
+import net.AbraXator.chakral.init.ModTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
@@ -20,12 +21,12 @@ public class StoneSlot extends Slot {
 
     @Override
     public boolean mayPlace(ItemStack stone){
-        return ForgeRegistries.ITEMS.tags().getTag(ChakraStrength.getTag(tier)).contains(stone.getItem());
+        return stone.is(ChakraStrength.getTag(tier)) && container.getItem(0).is(ModTags.Items.NECKLACES);
     }
 
     @Override
     public boolean isActive() {
-        return isActive;
+        return isActive && container.getItem(0).is(ModTags.Items.NECKLACES);
     }
 
     @Override

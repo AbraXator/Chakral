@@ -5,9 +5,7 @@ import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
-import net.AbraXator.chakral.utils.ChakralLocation;
 import net.minecraft.network.chat.Style;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
@@ -33,8 +31,8 @@ public class HagStoneChakra extends Chakra {
     private static final UUID uuid = UUID.fromString("a2595d43-41b2-4429-80ec-f141ae6d6778");
     public static boolean hasReach;
 
-    public HagStoneChakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength) {
-        super(id, type, chakraStrength);
+    public HagStoneChakra(ChakraType type, ChakraStrength chakraStrength) {
+        super(type, chakraStrength);
     }
 
     @Override

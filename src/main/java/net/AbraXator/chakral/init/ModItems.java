@@ -15,62 +15,34 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, Chakral.MOD_ID);
 
-    public static final RegistryObject<Item> AMETHYST_QUARTZ = ITEMS.register("amethyst_quartz", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.FAINT));
-    public static final RegistryObject<Item> SUGILITE = ITEMS.register("sugilite", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.WEAKENED));
-    public static final RegistryObject<Item> MOON_STONE = ITEMS.register("moon_stone", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.POWERFUL));
-    public static final RegistryObject<Item> LABBRADORITE = ITEMS.register("labbradorite", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.ENLIGHTENED));
-    public static final RegistryObject<Item> HAG_STONE = ITEMS.register("hag_stone", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.FAINT, ModChakras.HAG_STONE_CHAKRA));
-    public static final RegistryObject<Item> DUMORTIERITE = ITEMS.register("dumortierite", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.WEAKENED));
-    public static final RegistryObject<Item> LEPIDOLITE = ITEMS.register("lepidolite", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.POWERFUL));
-    public static final RegistryObject<Item> AZURITE = ITEMS.register("azurite", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.ENLIGHTENED));
-    public static final RegistryObject<Item> BLUE_LACE_AGATE = ITEMS.register("blue_lace_agate", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.FAINT));
-    public static final RegistryObject<Item> KYANITE = ITEMS.register("kyanite", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.WEAKENED));
-    public static final RegistryObject<Item> BLUE_HOWLITE = ITEMS.register("blue_howlite", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.POWERFUL));
-    public static final RegistryObject<Item> AQUAMARINE = ITEMS.register("aquamarine", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.ENLIGHTENED));
-    public static final RegistryObject<Item> AMAZONITE = ITEMS.register("amazonite", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.FAINT));
-    public static final RegistryObject<Item> RHODONITE = ITEMS.register("rhodonite", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.WEAKENED));
-    public static final RegistryObject<Item> MALACHITE = ITEMS.register("malachite", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.POWERFUL));
-    public static final RegistryObject<Item> GREEN_OPAL = ITEMS.register("green_opal", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.ENLIGHTENED));
-    public static final RegistryObject<Item> HELIOLITE = ITEMS.register("heliolite", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.FAINT));
-    public static final RegistryObject<Item> CITRINE = ITEMS.register("citrine", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.WEAKENED));
-    public static final RegistryObject<Item> AMBER = ITEMS.register("amber", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.POWERFUL));
-    public static final RegistryObject<Item> FIRE_OPAL = ITEMS.register("fire_opal", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.ENLIGHTENED));
-    public static final RegistryObject<Item> STILLBITE = ITEMS.register("stillbite", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.FAINT));
-    public static final RegistryObject<Item> CARNELIAN = ITEMS.register("carnelian", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.WEAKENED));
-    public static final RegistryObject<Item> GARNET_SPESSARTINE = ITEMS.register("garnet_spessartine", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.POWERFUL));
-    public static final RegistryObject<Item> GOLDEN_TIGERS_EYE = ITEMS.register("golden_tigers_eye", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.ENLIGHTENED));
-    public static final RegistryObject<Item> BLACK_ONYX = ITEMS.register("black_onyx", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.FAINT, ModChakras.BLACK_ONYX_CHAKRA));
-    public static final RegistryObject<Item> MAHOGANY = ITEMS.register("mahogany", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.WEAKENED));
-    public static final RegistryObject<Item> HELIOTROPE = ITEMS.register("heliotrope", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.POWERFUL));
-    public static final RegistryObject<Item> TOURMALINE = ITEMS.register("tourmaline", () ->
-            new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.ENLIGHTENED));
+    public static final RegistryObject<Item> AMETHYST_QUARTZ = ITEMS.register("amethyst_quartz", () -> new ChakraItem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.FAINT, ModChakras.AMETHYST_QUARTZ));
+    public static final RegistryObject<Item> SUGILITE = ITEMS.register("sugilite", () -> new ChakraItem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.WEAKENED, ModChakras.SUGILITE));
+    public static final RegistryObject<Item> MOON_STONE = ITEMS.register("moon_stone", () -> new ChakraItem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.POWERFUL, ModChakras.MOON_STONE));
+    public static final RegistryObject<Item> LABBRADORITE = ITEMS.register("labbradorite", () -> new ChakraItem(new Item.Properties(), ChakraType.CROWN, ChakraStrength.ENLIGHTENED, ModChakras.LABBRADORITE));
+    public static final RegistryObject<Item> HAG_STONE = ITEMS.register("hag_stone", () -> new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.FAINT, ModChakras.HAG_STONE));
+    public static final RegistryObject<Item> DUMORTIERITE = ITEMS.register("dumortierite", () -> new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.WEAKENED, ModChakras.DUMORTIERITE));
+    public static final RegistryObject<Item> LEPIDOLITE = ITEMS.register("lepidolite", () -> new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.POWERFUL, ModChakras.LEPIDOLITE));
+    public static final RegistryObject<Item> AZURITE = ITEMS.register("azurite", () -> new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.ENLIGHTENED, ModChakras.AZURITE));
+    public static final RegistryObject<Item> BLUE_LACE_AGATE = ITEMS.register("blue_lace_agate", () -> new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.FAINT, ModChakras.BLUE_LACE_AGATE));
+    public static final RegistryObject<Item> KYANITE = ITEMS.register("kyanite", () -> new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.WEAKENED, ModChakras.KYANITE));
+    public static final RegistryObject<Item> BLUE_HOWLITE = ITEMS.register("blue_howlite", () -> new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.POWERFUL, ModChakras.BLUE_HOWLITE));
+    public static final RegistryObject<Item> AQUAMARINE = ITEMS.register("aquamarine", () -> new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.ENLIGHTENED, ModChakras.AQUAMARINE));
+    public static final RegistryObject<Item> AMAZONITE = ITEMS.register("amazonite", () -> new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.FAINT, ModChakras.AMAZONITE));
+    public static final RegistryObject<Item> RHODONITE = ITEMS.register("rhodonite", () -> new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.WEAKENED, ModChakras.RHODONITE));
+    public static final RegistryObject<Item> MALACHITE = ITEMS.register("malachite", () -> new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.POWERFUL, ModChakras.MALACHITE));
+    public static final RegistryObject<Item> GREEN_OPAL = ITEMS.register("green_opal", () -> new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.ENLIGHTENED, ModChakras.GREEN_OPAL));
+    public static final RegistryObject<Item> HELIOLITE = ITEMS.register("heliolite", () -> new ChakraItem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.FAINT, ModChakras.HELIOLITE));
+    public static final RegistryObject<Item> CITRINE = ITEMS.register("citrine", () -> new ChakraItem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.WEAKENED, ModChakras.CITRINE));
+    public static final RegistryObject<Item> AMBER = ITEMS.register("amber", () -> new ChakraItem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.POWERFUL, ModChakras.AMBER));
+    public static final RegistryObject<Item> FIRE_OPAL = ITEMS.register("fire_opal", () -> new ChakraItem(new Item.Properties(), ChakraType.SOLAR, ChakraStrength.ENLIGHTENED, ModChakras.FIRE_OPAL));
+    public static final RegistryObject<Item> STILLBITE = ITEMS.register("stillbite", () -> new ChakraItem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.FAINT, ModChakras.STILLBITE));
+    public static final RegistryObject<Item> CARNELIAN = ITEMS.register("carnelian", () -> new ChakraItem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.WEAKENED, ModChakras.CARNELIAN));
+    public static final RegistryObject<Item> GARNET_SPESSARTINE = ITEMS.register("garnet_spessartine", () -> new ChakraItem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.POWERFUL, ModChakras.GARNET_SPESSARTINE));
+    public static final RegistryObject<Item> GOLDEN_TIGERS_EYE = ITEMS.register("golden_tigers_eye", () -> new ChakraItem(new Item.Properties(), ChakraType.SACRAL, ChakraStrength.ENLIGHTENED, ModChakras.GOLDEN_TIGERS_EYE));
+    public static final RegistryObject<Item> BLACK_ONYX = ITEMS.register("black_onyx", () -> new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.FAINT, ModChakras.BLACK_ONYX));
+    public static final RegistryObject<Item> MAHOGANY = ITEMS.register("mahogany", () -> new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.WEAKENED, ModChakras.MAHOGANY));
+    public static final RegistryObject<Item> HELIOTROPE = ITEMS.register("heliotrope", () -> new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.POWERFUL, ModChakras.HELIOTROPE));
+    public static final RegistryObject<Item> TOURMALINE = ITEMS.register("tourmaline", () -> new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.ENLIGHTENED, ModChakras.TOURMALINE));
 
     public static final RegistryObject<Item> BLUE_SHARD = ITEMS.register("blue_shard", () ->
             new Shard(new Item.Properties(), ModBlocks.BLUE_CRYSTAL.get()));

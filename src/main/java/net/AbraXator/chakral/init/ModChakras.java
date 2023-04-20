@@ -3,67 +3,62 @@ package net.AbraXator.chakral.init;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraRegistry;
+import net.AbraXator.chakral.chakra.ChakraStrength;
+import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.chakra.chakras.*;
+import net.AbraXator.chakral.items.ChakraItem;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.UUID;
+import java.util.function.Supplier;
+
+import static net.AbraXator.chakral.chakra.ChakraRegistry.CHAKRAS;
 
 public class ModChakras {
     public static void registerEntries(){
         ModChakras chakras = null;
     }
 
-    public static final DeferredRegister<Chakra> CHAKRAS = DeferredRegister.create(
-            ChakraRegistry.CHAKRA_REGISTRY, Chakral.MOD_ID);
+    public static final RegistryObject<Chakra> AMETHYST_QUARTZ = CHAKRAS.register("amethyst_quartz", () -> new AmethystQuartzChakra(ChakraType.CROWN, ChakraStrength.FAINT));
+    public static final RegistryObject<Chakra> SUGILITE = CHAKRAS.register("sugilite", () -> new SugiliteChakra(ChakraType.CROWN, ChakraStrength.WEAKENED));
+    public static final RegistryObject<Chakra> MOON_STONE = CHAKRAS.register("moon_stone", () -> new MoonstoneChakra(ChakraType.CROWN, ChakraStrength.POWERFUL));
+    public static final RegistryObject<Chakra> LABBRADORITE = CHAKRAS.register("labbradorite", () -> new LabbradoriteChakra(ChakraType.CROWN, ChakraStrength.ENLIGHTENED));
+    public static final RegistryObject<Chakra> HAG_STONE = CHAKRAS.register("hag_stone", () -> new HagStoneChakra(ChakraType.THIRD_EYE, ChakraStrength.FAINT));
+    public static final RegistryObject<Chakra> DUMORTIERITE = CHAKRAS.register("dumortierite", () -> new DumortieriteChakra(ChakraType.THIRD_EYE, ChakraStrength.WEAKENED));
+    public static final RegistryObject<Chakra> LEPIDOLITE = CHAKRAS.register("lepidolite", () -> new LepidoliteChakra(ChakraType.THIRD_EYE, ChakraStrength.POWERFUL));
+    public static final RegistryObject<Chakra> AZURITE = CHAKRAS.register("azurite", () -> new AzuriteChakra(ChakraType.THIRD_EYE, ChakraStrength.ENLIGHTENED));
+    public static final RegistryObject<Chakra> BLUE_LACE_AGATE = CHAKRAS.register("blue_lace_agate", () -> new BlueLaceAgateChakra(ChakraType.THROAT, ChakraStrength.FAINT));
+    public static final RegistryObject<Chakra> KYANITE = CHAKRAS.register("kyanite", () -> new KyaniteChakra(ChakraType.THROAT, ChakraStrength.WEAKENED));
+    public static final RegistryObject<Chakra> BLUE_HOWLITE = CHAKRAS.register("blue_howlite", () -> new BlueHowliteChakra(ChakraType.THROAT, ChakraStrength.POWERFUL));
+    public static final RegistryObject<Chakra> AQUAMARINE = CHAKRAS.register("aquamarine", () -> new AquamarineChakra(ChakraType.THROAT, ChakraStrength.ENLIGHTENED));
+    public static final RegistryObject<Chakra> AMAZONITE = CHAKRAS.register("amazonite", () -> new AmazoniteChakra(ChakraType.HEART, ChakraStrength.FAINT));
+    public static final RegistryObject<Chakra> RHODONITE = CHAKRAS.register("rhodonite", () -> new RhodoniteChakra(ChakraType.HEART, ChakraStrength.WEAKENED));
+    public static final RegistryObject<Chakra> MALACHITE = CHAKRAS.register("malachite", () -> new MalachiteChakra(ChakraType.HEART, ChakraStrength.POWERFUL));
+    public static final RegistryObject<Chakra> GREEN_OPAL = CHAKRAS.register("green_opal", () -> new GreenOpalChakra(ChakraType.HEART, ChakraStrength.ENLIGHTENED));
+    public static final RegistryObject<Chakra> HELIOLITE = CHAKRAS.register("heliolite", () -> new HelioliteChakra(ChakraType.SOLAR, ChakraStrength.FAINT));
+    public static final RegistryObject<Chakra> CITRINE = CHAKRAS.register("citrine", () -> new CitrineChakra(ChakraType.SOLAR, ChakraStrength.WEAKENED));
+    public static final RegistryObject<Chakra> AMBER = CHAKRAS.register("amber", () -> new AmberChakra(ChakraType.SOLAR, ChakraStrength.POWERFUL));
+    public static final RegistryObject<Chakra> FIRE_OPAL = CHAKRAS.register("fire_opal", () -> new FireOpalChakra(ChakraType.SOLAR, ChakraStrength.ENLIGHTENED));
+    public static final RegistryObject<Chakra> STILLBITE = CHAKRAS.register("stillbite", () -> new StillbiteChakra(ChakraType.SACRAL, ChakraStrength.FAINT));
+    public static final RegistryObject<Chakra> CARNELIAN = CHAKRAS.register("carnelian", () -> new CarnelianChakra(ChakraType.SACRAL, ChakraStrength.WEAKENED));
+    public static final RegistryObject<Chakra> GARNET_SPESSARTINE = CHAKRAS.register("garnet_spessartine", () -> new GarnetSpessartineChakra(ChakraType.SACRAL, ChakraStrength.POWERFUL));
+    public static final RegistryObject<Chakra> GOLDEN_TIGERS_EYE = CHAKRAS.register("golden_tigers_eye", () -> new GoldenTigersEyeChakra(ChakraType.SACRAL, ChakraStrength.ENLIGHTENED));
+    public static final RegistryObject<Chakra> BLACK_ONYX = CHAKRAS.register("black_onyx", () -> new BlackOnyxChakra(ChakraType.ROOT, ChakraStrength.FAINT));
+    public static final RegistryObject<Chakra> MAHOGANY = CHAKRAS.register("mahogany", () -> new MahoganyChakra(ChakraType.ROOT, ChakraStrength.WEAKENED));
+    public static final RegistryObject<Chakra> HELIOTROPE = CHAKRAS.register("heliotrope", () -> new HeliotropeChakra(ChakraType.ROOT, ChakraStrength.POWERFUL));
+    public static final RegistryObject<Chakra> TOURMALINE = CHAKRAS.register("tourmaline", () -> new TourmalineChakra(ChakraType.ROOT, ChakraStrength.ENLIGHTENED));
 
-
-    //CROWN
-    public static final RegistryObject<Chakra> AMETHYST_QUARTZ_CHAKRA =    CHAKRAS.register();
-    public static final RegistryObject<Chakra> SUGILITE_CHAKRA =           CHAKRAS.register("sugilite_chakra", DefaultChakra::new);
-    //THIRD EYE
-    public static final RegistryObject<Chakra> HAG_STONE_CHAKRA =          CHAKRAS.register("hag_stone_chakra", () -> new HagStoneChakra(UUID.randomUUID())); //TOOL RANGE
-    public static final RegistryObject<Chakra> DUMORTIERITE_CHAKRA =       CHAKRAS.register("dumortierite_chakra", DumortieriteChakra::new);                  //UKÁŽE ORE PO FALL DAMAGE
-    //THROAT
-    public static final RegistryObject<Chakra> BLUE_LACE_AGATE_CHAKRA =    CHAKRAS.register("blue_lace_agate_chakra", DefaultChakra::new);
-    public static final RegistryObject<Chakra> KYANITE_CHAKRA =            CHAKRAS.register("kyanite_chakra", DefaultChakra::new);
-    //HEART
-    public static final RegistryObject<Chakra> AMAZONITE_CHAKRA =          CHAKRAS.register("amazonite_chakra", AmazoniteChakra::new);                  //BONUS HP
-    public static final RegistryObject<Chakra> RHODONITE_CHAKRA =          CHAKRAS.register("rhodonite_chakra", DefaultChakra::new);
-    //SOLAR
-    public static final RegistryObject<Chakra> HELIOLITE_CHAKRA =          CHAKRAS.register("heliolite_chakra", HelioliteChakra::new);                  //3x3 SEEDS
-    public static final RegistryObject<Chakra> CITRINE_CHAKRA =            CHAKRAS.register("citrine_chakra", DefaultChakra::new);
-    //SACRAL
-    public static final RegistryObject<Chakra> STILLBITE_CHAKRA =          CHAKRAS.register("stillbite_chakra", DefaultChakra::new);
-    public static final RegistryObject<Chakra> CARNELIAN_CHAKRA =          CHAKRAS.register("carnelian_chakra", DefaultChakra::new);
-    //ROOT
-    public static final RegistryObject<Chakra> BLACK_ONYX_CHAKRA =         CHAKRAS.register("black_onyx_chakra", BlackOnyxChakra::new);
-    public static final RegistryObject<Chakra> MAHOGANY_CHAKRA =           CHAKRAS.register("mahogany_chakra", DefaultChakra::new);
-
-    private void register(Chakra chakra){
-        CHAKRAS.register(chakra.getId().getPath(), );
-    }
-
-    private static void playerUseOnBlock(PlayerInteractEvent.RightClickBlock event){
-        Player player = event.getEntity();
-        if(!player.getLevel().isClientSide()) {
-            ChakraRegistry.CHAKRA.getEntries().forEach(s -> {
-                Chakra chakra = s.get();
-                if (chakra.isEnabled()) {
-                    chakra.onRightClickBlock(player, player.level, event);
-                }
-            });
-        }
-    }
-
-    //public static void register(IEventBus eventBus){
-    //    CHAKRAS.register(eventBus);
-    //};
-
-    public static void registerEvents(){
-        MinecraftForge.EVENT_BUS.addListener(ModChakras::playerUseOnBlock);
+    public static void register(IEventBus eventBus) {
+        ModChakras chakras = null;
+        CHAKRAS.register(eventBus);
     }
 }

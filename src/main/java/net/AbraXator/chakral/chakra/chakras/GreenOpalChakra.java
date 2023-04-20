@@ -6,11 +6,10 @@ import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.minecraft.network.chat.Style;
-import net.minecraft.resources.ResourceLocation;
 
 public class GreenOpalChakra extends Chakra {
-    public GreenOpalChakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength) {
-        super(id, type, chakraStrength);
+    public GreenOpalChakra(ChakraType type, ChakraStrength chakraStrength) {
+        super(type, chakraStrength);
     }
 
     @Override

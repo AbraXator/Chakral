@@ -1,11 +1,11 @@
 package net.AbraXator.chakral.client.gui.necklace;
 
-import net.AbraXator.chakral.chakra.ChakraUtil;
 import net.AbraXator.chakral.init.ModBlocks;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.init.ModMenuTypes;
 import net.AbraXator.chakral.init.ModItems;
 import net.AbraXator.chakral.init.ModTags;
+import net.AbraXator.chakral.items.ChakraItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -184,6 +184,14 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
     @Override
     public void removed(Player pPlayer) {
         super.removed(pPlayer);
+        for(int i = 0; i < getItems().size(); i++){
+            ItemStack itemStack = getItems().get(i);
+            if(itemStack.getItem() instanceof ChakraItem chakraItem){
+                necklaceSlot.removeItem(i, 1);
+            } else {
+                pPlayer.addItem(itemStack);
+            }
+        }
         if(!pPlayer.level.isClientSide){
             ItemStack necklace = this.necklaceSlot.removeItem(0, this.necklaceSlot.getMaxStackSize());
             ItemStack stone = this.necklaceSlot.removeItem(1, this.necklaceSlot.getMaxStackSize());

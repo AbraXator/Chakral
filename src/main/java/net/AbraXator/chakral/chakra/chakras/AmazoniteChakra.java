@@ -22,8 +22,8 @@ public class AmazoniteChakra extends Chakra {
     public static float hp = 0;
     private Level level;
 
-    public AmazoniteChakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength) {
-        super(id, type, chakraStrength);
+    public AmazoniteChakra(ChakraType type, ChakraStrength chakraStrength) {
+        super(type, chakraStrength);
     }
 
     @Override

@@ -21,28 +21,26 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public abstract class Chakra implements IChakra {
-    private final ResourceLocation id;
+    private ResourceLocation id;
     private boolean isEnabled;
-    private final RegistryObject<Item> stone;
+    private RegistryObject<Item> stone;
     private final ChakraType type;
     private final ChakraStrength strenght;
     private ItemStack necklace;
     private int cooldown;
     private int maxCooldown;
 
-    public Chakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength){
-        this.id = id;
-        this.stone = RegistryObject.create(new ChakralLocation(id.getPath() + "_chakra"), ForgeRegistries.ITEMS);
+    public Chakra(ChakraType type, ChakraStrength chakraStrength){
         this.type = type;
         this.strenght = chakraStrength;
     }
 
     public ResourceLocation getId() {
-        return this.id;
+        return ChakraUtil.getIdForChakra(this);
     }
 
     public Item getItem(){
-        return stone.get();
+        return RegistryObject.create(new ChakralLocation(getId().getPath() + "_chakra"), ForgeRegistries.ITEMS).get();
     }
 
     public ChakraType getType(){

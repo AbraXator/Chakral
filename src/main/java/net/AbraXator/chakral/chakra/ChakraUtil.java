@@ -6,14 +6,19 @@ import net.AbraXator.chakral.items.ChakraItem;
 import net.AbraXator.chakral.items.NecklaceItem;
 import net.AbraXator.chakral.items.StoneHoldingItem;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import static net.AbraXator.chakral.chakra.ChakraRegistry.CHAKRAS;
 
 public class ChakraUtil {
     public static void addChakra(ItemStack necklace, ItemStack stone, int slot){
@@ -75,7 +80,6 @@ public class ChakraUtil {
     public static List<ChakraItem> getChakras(ItemStack itemStack){
         CompoundTag tag = itemStack.getTag();
         if(tag == null) return List.of();
-
         Item item = itemStack.getItem();
         if(item instanceof NecklaceItem necklaceItem){
             List<ChakraItem> list = new ArrayList<>();
@@ -84,7 +88,6 @@ public class ChakraUtil {
                     list.add(((ChakraItem) ItemStack.of(itemStack.getTagElement("Stone" + i)).getItem()));
                 }
             }
-
             return list;
         }
 
@@ -99,6 +102,18 @@ public class ChakraUtil {
             });
         });
         return chakras;
+    }
+
+    public static Map<Chakra, ResourceLocation> createIds(){
+        Map<Chakra, ResourceLocation> map = new LinkedHashMap<>();
+        CHAKRAS.getEntries().forEach(chakraRegistryObject -> {
+            map.put(chakraRegistryObject.get(), chakraRegistryObject.getId());
+        });
+        return map;
+    }
+
+    public static ResourceLocation getIdForChakra(Chakra chakra){
+        return createIds().get(chakra);
     }
 }
 

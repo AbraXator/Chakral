@@ -9,8 +9,8 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 
 public class AmberChakra extends Chakra {
-    public AmberChakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength) {
-        super(id, type, chakraStrength);
+    public AmberChakra(ChakraType type, ChakraStrength chakraStrength) {
+        super(type, chakraStrength);
     }
 
     @Override

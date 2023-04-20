@@ -1,11 +1,15 @@
 package net.AbraXator.chakral.blocks.entity;
 
+import net.AbraXator.chakral.chakra.ChakraUtil;
 import net.AbraXator.chakral.init.ModBlockEntities;
+import net.AbraXator.chakral.init.ModTags;
+import net.AbraXator.chakral.items.ChakraItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,6 +18,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -67,8 +72,17 @@ public class NecklaceSlotterBlockEntity extends BlockEntity {
     public void drops(){
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
         for(int i = 0; i < itemHandler.getSlots(); i++){
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
+            if(itemHandler.getStackInSlot(i).getItem() instanceof ChakraItem chakraItem){
+                inventory.setItem(i, ItemStack.EMPTY);
+            } else {
+                inventory.setItem(i, itemHandler.getStackInSlot(i));
+            }
         }
+        /*ItemStack itemStack = inventory.getItem(0);
+        if(itemStack.is(ModTags.Items.NECKLACES)){
+            ChakraUtil.getChakras(itemStack);
+            inventory.setItem(0, itemStack);
+        }*/
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 

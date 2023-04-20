@@ -26,10 +26,6 @@ public class ChakraItem extends Item implements IChakraProvider {
         this.chakra = chakra;
     }
 
-    public ChakraItem(Properties pProperties, ChakraType type, ChakraStrength strength) {
-        this(pProperties, type, strength, DefaultChakra::new);
-    }
-
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         Component typeComponent = Component.translatable("chakra_type");

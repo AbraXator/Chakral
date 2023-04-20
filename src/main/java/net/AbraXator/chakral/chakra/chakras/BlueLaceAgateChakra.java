@@ -5,17 +5,14 @@ import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
-import net.AbraXator.chakral.utils.ChakralLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
@@ -24,8 +21,8 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import java.util.List;
 
 public class BlueLaceAgateChakra extends Chakra {
-    public BlueLaceAgateChakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength) {
-        super(id, type, chakraStrength);
+    public BlueLaceAgateChakra(ChakraType type, ChakraStrength chakraStrength) {
+        super(type, chakraStrength);
     }
 
     @Override

@@ -12,5 +12,6 @@ import java.util.function.Supplier;
 
 public class ChakraRegistry {
     public static final ResourceKey<Registry<Chakra>> CHAKRA_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(Chakral.MOD_ID, "chakra"));
-    //public static final Supplier<IForgeRegistry<Chakra>> CHAKRA_REGISTRY = CHAKRA.makeRegistry(() -> new RegistryBuilder<Chakra>().disableSaving().setMaxID(Integer.MAX_VALUE - 1).setName(CHAKRA_REGISTRY.location()));
+    public static final DeferredRegister<Chakra> CHAKRAS = DeferredRegister.create(CHAKRA_REGISTRY, Chakral.MOD_ID);
+    public static final Supplier<IForgeRegistry<Chakra>> CHAKRA_REGISTRIES = CHAKRAS.makeRegistry(() -> new RegistryBuilder<Chakra>().disableSaving().setMaxID(Integer.MAX_VALUE - 1).setName(CHAKRA_REGISTRY.location()));
 }

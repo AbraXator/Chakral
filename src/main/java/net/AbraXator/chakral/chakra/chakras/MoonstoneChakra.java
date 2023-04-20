@@ -5,15 +5,13 @@ import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
-import net.AbraXator.chakral.utils.ChakralLocation;
 import net.minecraft.network.chat.Style;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 public class MoonstoneChakra extends Chakra {
-    public MoonstoneChakra(ResourceLocation id, ChakraType type, ChakraStrength chakraStrength) {
-        super(id, type, chakraStrength);
+    public MoonstoneChakra(ChakraType type, ChakraStrength chakraStrength) {
+        super(type, chakraStrength);
     }
 
     @Override
