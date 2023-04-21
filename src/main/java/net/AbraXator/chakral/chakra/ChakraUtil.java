@@ -22,7 +22,7 @@ import static net.AbraXator.chakral.chakra.ChakraRegistry.CHAKRAS;
 
 public class ChakraUtil {
     public static void addChakra(ItemStack necklace, ItemStack stone, int slot){
-        if(necklace.getItem() instanceof NecklaceItem necklaceItem){
+        if(necklace.getItem() instanceof NecklaceItem){
             CompoundTag tag = necklace.getTag();
 
             if(tag == null){
@@ -84,8 +84,8 @@ public class ChakraUtil {
         if(item instanceof NecklaceItem necklaceItem){
             List<ChakraItem> list = new ArrayList<>();
             for(int i = 1; i <= 4; i++){
-                if(tag.contains("Stone" + i)){
-                    list.add(((ChakraItem) ItemStack.of(itemStack.getTagElement("Stone" + i)).getItem()));
+                if(ItemStack.of(itemStack.getTagElement("Stone" + i)).getItem() instanceof ChakraItem chakraItem){
+                    list.add(chakraItem);
                 }
             }
             return list;

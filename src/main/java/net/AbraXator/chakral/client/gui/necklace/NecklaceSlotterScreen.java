@@ -20,7 +20,7 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
             new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/golden_necklace_slotter.png");
     private static final ResourceLocation TEXTURE_DIAMOND =
             new ResourceLocation(Chakral.MOD_ID, "textures/gui/container/diamond_necklace_slotter.png");
-    private boolean isEnabled = this.menu.necklaceSlot.isEmpty();
+    private boolean isEnabled = this.menu.container.isEmpty();
 
     public NecklaceSlotterScreen(NecklaceSlotterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -33,17 +33,17 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        Item goldenStone1 = this.menu.necklaceSlot.getItem(1).getItem();
-        Item diamondStone1 = this.menu.necklaceSlot.getItem(2).getItem();
-        Item diamondStone2 = this.menu.necklaceSlot.getItem(3).getItem();
+        Item goldenStone1 = this.menu.container.getItem(1).getItem();
+        Item diamondStone1 = this.menu.container.getItem(2).getItem();
+        Item diamondStone2 = this.menu.container.getItem(3).getItem();
         if(!NecklaceSlotterMenu.isDiamond){
             goldenScreen(goldenStone1, pPoseStack, x, y, pMouseX, pMouseY);
-            if(!this.menu.necklaceSlot.isEmpty()){
+            if(!this.menu.container.isEmpty()){
                 this.blit(pPoseStack, x + 140, y + 12, 0, 196, 20, 20);
             }
         }else {
             diamondScreen(diamondStone1, diamondStone2, pPoseStack, x, y, pMouseX, pMouseY);
-            if(!this.menu.necklaceSlot.isEmpty()){
+            if(!this.menu.container.isEmpty()){
                 this.blit(pPoseStack, x + 16, y + 12, 20, 196, 20, 20);
             }
         }
@@ -72,8 +72,9 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
         renderBackground(pPoseStack, x, y);
 
         //SVĚTÝLKA
-        this.blit(pPoseStack, x + 62, y + 45, 204, vOffset(stone1) * 30, 26, 30); //LEFT
-        this.blit(pPoseStack, x + 88, y + 45, 230, vOffset(stone2) * 30, 26, 30); //RIGHT
+
+        this.blit(pPoseStack, x + 88, y + 44, 230, vOffset(stone1) * 30, 26, 30); //LEFT
+        this.blit(pPoseStack, x + 62, y + 44, 204, vOffset(stone2) * 30, 26, 30); //RIGHT
 
         //BUTTON
         if (isMouseAboveArea(pMouseX, pMouseY, x, y, 17, 13, 18, 18)) {
@@ -113,7 +114,7 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
     }
 
     private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
-        if(this.menu.necklaceSlot.isEmpty()){
+        if(this.menu.container.isEmpty()){
             return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
         }
         return false;

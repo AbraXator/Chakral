@@ -3,27 +3,22 @@ package net.AbraXator.chakral.client.gui.necklace;
 import net.AbraXator.chakral.init.ModBlocks;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.init.ModMenuTypes;
-import net.AbraXator.chakral.init.ModItems;
 import net.AbraXator.chakral.init.ModTags;
 import net.AbraXator.chakral.items.ChakraItem;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.tags.ITag;
 
 public class NecklaceSlotterMenu extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
     private final Level level;
     public static boolean isDiamond;
-    final Container necklaceSlot = new SimpleContainer(4) {
+    final Container container = new SimpleContainer(4) {
         public void setChanged() {
             super.setChanged();
             NecklaceSlotterMenu.this.slotsChanged(this);
@@ -39,135 +34,26 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
         this.access = access;
         this.level = inv.player.level;
         //slot 1 - necklace
-        this.addSlot(new NecklaceSlot(this.necklaceSlot, 0, 80, 22) {
-            @Override
-            public boolean mayPlace(ItemStack necklace) {
-                if(isDiamond){
-                    return necklace.is(ModItems.DIAMOND_NECKLACE.get());
-                }else {
-                    return necklace.is(ModItems.GOLDEN_NECKLACE.get());
-                }
-            }
-
-            /*@Override
-            public void setChanged() {
-                ChakraUtil.stoneIndexInSlot(getItem()).forEach((itemStack, integer) -> {
-                    getSlot(integer).set(itemStack);
-                });
-
-                ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
-                if(ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.NECKLACES).contains(necklace.getItem())) {
-                    if (necklace.hasTag()) {
-                        CompoundTag tag = necklace.getTag();
-                        if(isDiamond(necklace)){
-                            ItemStack stone1 = tag.get("Stone1") != null ? ItemStack.of(tag.getCompound("Stone1")) : ItemStack.EMPTY;
-                            ItemStack stone2 = tag.get("Stone2") != null ? ItemStack.of(tag.getCompound("Stone2")) : ItemStack.EMPTY;
-                            NecklaceSlotterMenu.this.getSlot(2).set(stone1);
-                            NecklaceSlotterMenu.this.getSlot(3).set(stone2);
-                        }else {
-                            ItemStack stone = tag.get("Stone1") != null ? ItemStack.of(tag.getCompound("Stone1")) : ItemStack.EMPTY;
-                            NecklaceSlotterMenu.this.getSlot(1).set(stone);
-                        }
-                    }
-                }
-            }*/
-        });
+        this.addSlot(new NecklaceSlot(this.container, 0, 80, 22));
         //slot 2 - stone golden necklace
-        this.addSlot(new StoneSlot(this.necklaceSlot, 1, 80, 46, ChakraStrength.FAINT, !isDiamond){
-
-            /*@Override
-            public void setChanged() {
-                NecklaceSlotterUtil.setChanged(NecklaceSlotterMenu.this.necklaceSlot.getItem(1), NecklaceSlotterMenu.this.necklaceSlot.getItem(0),
-                        ModItems.GOLDEN_NECKLACE.get(), "Stone1", ChakraStrength.FAINT);
-            }
-            @Override
-            public int getMaxStackSize() {
-                return 1;
-            }
-
-            @Override
-            public void onTake(Player pPlayer, ItemStack pStack) {
-                NecklaceSlotterUtil.onTake(NecklaceSlotterMenu.this.necklaceSlot.getItem(0), ModItems.GOLDEN_NECKLACE.get(), "Stone1");
-            }*/
-        });
-        //slot 3 - weakened stone diamond necklace
-        this.addSlot(new Slot(this.necklaceSlot, 2, 71, 50){
-            @Override
-            public boolean mayPlace(ItemStack stone){
-                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED).contains(stone.getItem())
-                        && NecklaceSlotterMenu.this.getSlot(0).hasItem();
-            }
-
+        this.addSlot(new StoneSlot(this.container, 1, 80, 46, ChakraStrength.FAINT){
             @Override
             public boolean isActive() {
-                return NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get());
+                return !isDiamond && checkForNeklace();
             }
-
+        });
+        //slot 3 - weakened stone diamond necklace
+        this.addSlot(new StoneSlot(this.container, 2, 89, 50, ChakraStrength.FAINT){
             @Override
-            public void setChanged() {
-                ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(2);
-                ItemStack necklace = NecklaceSlotterMenu.this.necklaceSlot.getItem(0);
-                ITag<Item> weakenedItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.WEAKENED);
-                if(necklace.is(ModItems.DIAMOND_NECKLACE.get())){
-                    if(weakenedItems.contains(stone.getItem())){
-                        CompoundTag nbt = necklace.getOrCreateTag();
-                        nbt.put("Stone2", stone.serializeNBT());
-                        necklace.setTag(nbt);
-                    }
-                }
-            }
-
-            @Override
-            public int getMaxStackSize() {
-                return 1;
-            }
-
-            @Override
-            public void onTake(Player pPlayer, ItemStack pStack) {
-                if (NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get())) {
-                    ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
-                    necklace.addTagElement("Stone2", ItemStack.EMPTY.serializeNBT());
-                }
+            public boolean isActive() {
+                return isDiamond && checkForNeklace();
             }
         });
         //slot 4 - faint stone diamond necklace
-        this.addSlot(new Slot(this.necklaceSlot, 3, 89, 50){
-            @Override
-            public boolean mayPlace(ItemStack stone){
-                return ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT).contains(stone.getItem())
-                        && NecklaceSlotterMenu.this.getSlot(0).hasItem();
-            }
-
+        this.addSlot(new StoneSlot(this.container, 3,71, 50, ChakraStrength.WEAKENED){
             @Override
             public boolean isActive() {
-                return NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get());
-            }
-
-            @Override
-            public void setChanged() {
-                ItemStack stone = NecklaceSlotterMenu.this.necklaceSlot.getItem(3);
-                ItemStack necklace = NecklaceSlotterMenu.this.necklaceSlot.getItem(0);
-                ITag<Item> faintItems = ForgeRegistries.ITEMS.tags().getTag(ModTags.Items.FAINT);
-                if(necklace.is(ModItems.DIAMOND_NECKLACE.get())){
-                    if(faintItems.contains(stone.getItem())){
-                        CompoundTag nbt = necklace.getOrCreateTag();
-                        nbt.put("Stone1", stone.serializeNBT());
-                        necklace.setTag(nbt);
-                    }
-                }
-            }
-
-            @Override
-            public int getMaxStackSize() {
-                return 1;
-            }
-
-            @Override
-            public void onTake(Player pPlayer, ItemStack pStack) {
-                if (NecklaceSlotterMenu.this.getSlot(0).getItem().is(ModItems.DIAMOND_NECKLACE.get())) {
-                    ItemStack necklace = NecklaceSlotterMenu.this.getSlot(0).getItem();
-                    necklace.addTagElement("Stone1", ItemStack.EMPTY.serializeNBT());
-                }
+                return isDiamond && checkForNeklace();
             }
         });
 
@@ -184,17 +70,17 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
     @Override
     public void removed(Player pPlayer) {
         super.removed(pPlayer);
-        for(int i = 0; i < getItems().size(); i++){
-            ItemStack itemStack = getItems().get(i);
-            if(itemStack.getItem() instanceof ChakraItem chakraItem){
-                necklaceSlot.removeItem(i, 1);
+        for(int i = 0; i < container.getContainerSize(); i++){
+            ItemStack itemStack = container.getItem(i);
+            if(itemStack.getItem() instanceof ChakraItem){
+                container.removeItem(i, 1);
             } else {
                 pPlayer.addItem(itemStack);
             }
         }
         if(!pPlayer.level.isClientSide){
-            ItemStack necklace = this.necklaceSlot.removeItem(0, this.necklaceSlot.getMaxStackSize());
-            ItemStack stone = this.necklaceSlot.removeItem(1, this.necklaceSlot.getMaxStackSize());
+            ItemStack necklace = this.container.removeItem(0, this.container.getMaxStackSize());
+            ItemStack stone = this.container.removeItem(1, this.container.getMaxStackSize());
             if(!necklace.isEmpty() && !stone.isEmpty() && necklace.hasTag()){
                 necklace.removeTagKey("chakral.stones");
                 pPlayer.addItem(stone);
@@ -203,10 +89,6 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                 pPlayer.addItem(necklace);
             }
         }
-    }
-
-    public boolean isDiamond(ItemStack stack){
-        return stack.is(ModItems.DIAMOND_NECKLACE.get());
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons

@@ -71,6 +71,6 @@ public class HelioliteChakra extends Chakra {
 
     @Override
     public Style getColor() {
-        return null;
+        return chakraColor("FF852C");
     }
 }

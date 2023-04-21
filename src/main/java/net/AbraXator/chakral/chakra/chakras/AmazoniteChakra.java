@@ -100,6 +100,6 @@ public class AmazoniteChakra extends Chakra {
 
     @Override
     public Style getColor() {
-        return null;
+        return chakraColor("24A78E");
     }
 }

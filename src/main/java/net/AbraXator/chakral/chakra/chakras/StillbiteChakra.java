@@ -19,6 +19,6 @@ public class StillbiteChakra extends Chakra {
 
     @Override
     public Style getColor() {
-        return null;
+        return chakraColor("ED9343");
     }
 }

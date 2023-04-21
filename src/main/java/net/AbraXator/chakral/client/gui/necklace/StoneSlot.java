@@ -7,26 +7,28 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class StoneSlot extends Slot {
     private final ChakraStrength tier;
     private boolean isActive;
 
-    public StoneSlot(Container pContainer, int pSlot, int pX, int pY, ChakraStrength tier, boolean isActive) {
+    public StoneSlot(Container pContainer, int pSlot, int pX, int pY, ChakraStrength tier) {
         super(pContainer, pSlot, pX, pY);
         this.tier = tier;
-        this.isActive = isActive;
     }
 
     @Override
     public boolean mayPlace(ItemStack stone){
-        return stone.is(ChakraStrength.getTag(tier)) && container.getItem(0).is(ModTags.Items.NECKLACES);
+        return stone.is(ChakraStrength.getTag(tier)) && checkForNeklace();
     }
 
     @Override
     public boolean isActive() {
         return isActive && container.getItem(0).is(ModTags.Items.NECKLACES);
+    }
+
+    public boolean checkForNeklace(){
+       return container.getItem(0).is(ModTags.Items.NECKLACES);
     }
 
     @Override

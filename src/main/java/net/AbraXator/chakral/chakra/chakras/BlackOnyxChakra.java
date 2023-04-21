@@ -101,6 +101,6 @@ public class BlackOnyxChakra extends Chakra {
 
     @Override
     public Style getColor() {
-        return null;
+        return chakraColor("281F6C");
     }
 }

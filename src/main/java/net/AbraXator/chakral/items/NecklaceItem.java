@@ -38,7 +38,7 @@ public class NecklaceItem extends Item implements StoneHoldingItem {
     private Component stoneInTooltip(ItemStack itemStack){
         if(itemStack.getItem() instanceof ChakraItem chakraItem){
             Style style = chakraItem.getChakra().getColor();
-            return itemStack.getDisplayName();
+            return itemStack.getDisplayName().copy().withStyle(style);
         }else {
             return Component.translatable("tooltip.chakral.empty");
         }

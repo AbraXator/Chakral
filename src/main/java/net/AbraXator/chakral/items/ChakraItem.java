@@ -1,10 +1,14 @@
 package net.AbraXator.chakral.items;
 
-import net.AbraXator.chakral.chakra.*;
-import net.AbraXator.chakral.chakra.chakras.DefaultChakra;
+import net.AbraXator.chakral.chakra.Chakra;
+import net.AbraXator.chakral.chakra.ChakraStrength;
+import net.AbraXator.chakral.chakra.ChakraType;
+import net.AbraXator.chakral.chakra.IChakraProvider;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -43,6 +47,11 @@ public class ChakraItem extends Item implements IChakraProvider {
                 pTooltipComponents.remove(moreInfo);
                 pTooltipComponents.add(gemProperties);
             }
+        }
+
+        if(getChakra().getColor() != null){
+            String originalName = pStack.getHoverName().getString();
+            pStack.setHoverName(Component.literal(originalName).withStyle(getChakra().getColor()));
         }
     }
 

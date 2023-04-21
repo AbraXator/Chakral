@@ -82,7 +82,7 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
     private Tuple<Integer, Integer> getPosFromChakra(ChakraStrength chakraStrength){
         return switch (chakraStrength){
             case FAINT -> new Tuple<>(55, 34);
-            case WEAKENED -> new Tuple<>(77, 55);
+            case WEAKENED -> new Tuple<>(78, 56);
             case POWERFUL -> new Tuple<>(101, 33);
             case ENLIGHTENED -> new Tuple<>(78, 11);
         };

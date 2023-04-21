@@ -2,6 +2,8 @@ package net.AbraXator.chakral.chakra;
 
 import net.AbraXator.chakral.utils.ChakralLocation;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
@@ -29,6 +31,7 @@ public abstract class Chakra implements IChakra {
     private ItemStack necklace;
     private int cooldown;
     private int maxCooldown;
+    public Style style;
 
     public Chakra(ChakraType type, ChakraStrength chakraStrength){
         this.type = type;
@@ -125,7 +128,8 @@ public abstract class Chakra implements IChakra {
 
     public void interact(PlayerInteractEvent event){}
 
-    private int chakraColor(float pHue, float pSaturation, float pValue){
-        return Mth.hsvToRgb(pHue, pSaturation, pValue);
+    public Style chakraColor(String hex){
+        this.style = Style.EMPTY.withColor(TextColor.parseColor("#" + hex));
+        return this.style;
     }
 }
