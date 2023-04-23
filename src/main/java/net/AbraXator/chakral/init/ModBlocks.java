@@ -11,7 +11,9 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -22,6 +24,8 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
+
+import static net.minecraft.world.level.block.Blocks.OAK_PLANKS;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
@@ -116,6 +120,22 @@ public class ModBlocks {
     //---------------DIVNÝ VĚCI----------------------
     public static final RegistryObject<Block> BROWNSTONE                    = registerBlock("brownstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(3.0F, 6.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> WILTED_LOG                    = registerBlock("wilted_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F)));
+    public static final RegistryObject<Block> STRIPPED_WILTED_LOG           = registerBlock("stripped_wilted_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F)));
+    public static final RegistryObject<Block> WILTED_WOOD                   = registerBlock("wilted_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F)));
+    public static final RegistryObject<Block> STRIPPED_WILTED_WOOD          = registerBlock("stripped_wilted_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F)));
+    public static final RegistryObject<Block> WILTED_TRAPDOOR               = registerBlock("wilted_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).noOcclusion(), BlockSetType.OAK));
+    public static final RegistryObject<Block> WILTED_DOOR                   = registerBlock("wilted_door", () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(3.0F).noOcclusion(), BlockSetType.OAK));
+    public static final RegistryObject<Block> WILTED_FENCE                  = registerBlock("wilted_fence", () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> WILTED_FENCE_GATE             = registerBlock("wilted_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD, OAK_PLANKS.defaultMaterialColor()).strength(2.0F, 3.0F), WoodType.OAK));
+    public static final RegistryObject<Block> WILTED_SLAB                   = registerBlock("wilted_slab", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> WILTED_STAIRS                 = registerBlock("wilted_stairs", () ->  new StairBlock(OAK_PLANKS.defaultBlockState(), BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F)));
+    public static final RegistryObject<Block> WILTED_BUTTON                 = registerBlock("wilted_button", () ->  new ButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5F), BlockSetType.OAK, 30, true));
+    public static final RegistryObject<Block> WILTED_PRESSURE_PLATE         = registerBlock("wilted_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(0.5F), BlockSetType.OAK));
+
+
+
+
+
     public static final RegistryObject<Block> WILTED_PLANKS                 = registerBlock("wilted_planks", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F)));
     public static final RegistryObject<Block> WILTED_LEAVES                 = registerBlock("wilted_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2f).isSuffocating(ModBlocks::never).isViewBlocking(ModBlocks::never).noOcclusion().sound(SoundType.GRASS)));
     public static final RegistryObject<Block> WILTED_SAPLING                = registerBlock("wilted_sapling", () -> new SaplingBlock(new WiltedTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
@@ -154,7 +174,6 @@ public class ModBlocks {
     private static ToIntFunction<BlockState> litBlockEmission(int pLightValue) {
         return (p_50763_) -> p_50763_.getValue(BlockStateProperties.LIT) ? pLightValue : 0;
     }
-
 
     private static boolean never(BlockState p50806, BlockGetter p50807, BlockPos p50808) {
         return false;

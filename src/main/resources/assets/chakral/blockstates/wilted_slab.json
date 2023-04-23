@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "chakral:block/wilted/wilted_slab"
+    },
+    "type=double": {
+      "model": "chakral:block/wilted/wilted_planks"
+    },
+    "type=top": {
+      "model": "chakral:block/wilted/wilted_slab_top"
+    }
+  }
+}

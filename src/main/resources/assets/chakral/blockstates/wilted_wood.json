@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "chakral:block/wilted/wilted_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "chakral:block/wilted/wilted_wood"
+    },
+    "axis=z": {
+      "model": "chakral:block/wilted/wilted_wood",
+      "x": 90
+    }
+  }
+}

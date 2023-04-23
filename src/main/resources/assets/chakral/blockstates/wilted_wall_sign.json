@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "chakral:block/wilted/wilted_sign"
+    }
+  }
+}

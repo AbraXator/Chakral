@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "chakral:block/wilted/wilted_planks",
+    "side": "chakral:block/wilted/wilted_planks",
+    "top": "chakral:block/wilted/wilted_planks"
+  }
+}

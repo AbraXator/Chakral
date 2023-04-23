@@ -2,6 +2,15 @@
   "values": [
     "chakral:wilted_log",
     "chakral:wilted_planks",
-    "chakral:shard_refiner"
+    "chakral:shard_refiner",
+    "chakral:wilted_slab",
+    "chakral:wilted_stairs",
+    "chakral:wilted_door",
+    "chakral:wilted_trapdoor",
+    "chakral:wilted_button",
+    "chakral:wilted_pressure_plate",
+    "chakral:wilted_wood",
+    "chakral:stripped_wilted_wood",
+    "chakral:stripped_wilted_log"
   ]
 }

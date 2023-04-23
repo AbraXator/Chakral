@@ -1,7 +1,6 @@
 {
-    "parent": "chakral:block/shattered/shattered_mineral",
-    "textures": {
-        "0": "chakral:block/shattered/shattered_blue_mineral",
-        "1": "chakral:block/crystal/s"
-    }
+ "parent": "block/cube_all",
+ "textures": {
+  "all": "chakral:block/shattered/shattered_blue_mineral"
+ }
 }
