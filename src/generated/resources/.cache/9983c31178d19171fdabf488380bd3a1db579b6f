@@ -1,4 +1,4 @@
-// 1.19.4	2023-03-30T17:17:00.3339045	Item Models: chakral
+// 1.19.4	2023-04-23T13:30:20.7613026	Item Models: chakral
 390cc5c5f080e3c99703cdbe30658f0a4c2a0ae2 assets/chakral/models/item/big_black_bud.json
 399de9027474189f7ee68d5d49d0d25a92eeb458 assets/chakral/models/item/big_blue_bud.json
 03fc9fc2a2cc94c59137fc9de6409c18a10a5af2 assets/chakral/models/item/big_glowstone_bud.json
@@ -12,7 +12,7 @@ f59c9976ab6a249c98a233d2d22fb47ece842364 assets/chakral/models/item/big_true_whi
 4602cecb9682119cb2fa765dab86149562e97ea4 assets/chakral/models/item/black_crystal.json
 a4c02dfaba5c73c3b06e4a1465eca85244885eca assets/chakral/models/item/blue_crystal.json
 4b7a122133b59f5e3c1e5fb26feb8c2a10798da7 assets/chakral/models/item/glowstone_cluster.json
-bca88fe1131ecaff5796f91ac6c707798fa787f2 assets/chakral/models/item/golden_necklace.json
+aeef997f6bbb14fcbe9c4438b657ed1f0c95d076 assets/chakral/models/item/golden_necklace.json
 6cb4129bd8de79aa0b0aaafdbb416a4dc3a9e9ad assets/chakral/models/item/golden_necklace_crown.json
 a78e0d3d6073de14d08c4ced8a2e07c67383dd59 assets/chakral/models/item/golden_necklace_heart.json
 4fc8d13a3a2ee518d43181d76d788fcc7ae17a64 assets/chakral/models/item/golden_necklace_root.json

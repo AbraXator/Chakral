@@ -9,6 +9,8 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
+import java.util.List;
+
 public class AmethystQuartzChakra extends Chakra {
     public AmethystQuartzChakra(ChakraType type, ChakraStrength chakraStrength) {
         super(type, chakraStrength);
@@ -25,7 +27,7 @@ public class AmethystQuartzChakra extends Chakra {
     }
 
     @Override
-    public Style getColor() {
-        return null;
+    public List<Style> getColors() {
+        return chakraColor( "581384", "964DA2", "B677B7", "CE9FCF", "EACFDB", "F3E3E1");
     }
 }

@@ -1,9 +1,7 @@
 package net.AbraXator.chakral.init;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.chakra.chakras.DefaultChakra;
 import net.minecraft.core.particles.ParticleType;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

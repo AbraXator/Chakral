@@ -32,16 +32,11 @@ public class NecklaceItem extends Item implements StoneHoldingItem {
         MutableComponent necklaceComponent = Component.literal(pStack.getDisplayName().getString());
         MutableComponent component = Component.translatable("necklace.equip", necklaceComponent, key).withStyle(ChatFormatting.GOLD);
         pTooltipComponents.add(component);
-        ChakraUtil.stoneIndexInSlot(pStack).forEach((itemStack, integer) -> pTooltipComponents.add(stoneInTooltip(itemStack)));
-    }
-
-    private Component stoneInTooltip(ItemStack itemStack){
-        if(itemStack.getItem() instanceof ChakraItem chakraItem){
-            Style style = chakraItem.getChakra().getColor();
-            return itemStack.getDisplayName().copy().withStyle(style);
-        }else {
-            return Component.translatable("tooltip.chakral.empty");
-        }
+        ChakraUtil.stoneIndexInSlot(pStack).forEach((itemStack, integer) -> {
+            if(itemStack.getItem() instanceof ChakraItem chakraItem){
+                pTooltipComponents.add(ChakraUtil.getNameWithChakraColor(chakraItem.getChakra(), itemStack));
+            }
+        });
     }
 
     public List<ChatFormatting> necklaceFormatting(ItemStack necklace){

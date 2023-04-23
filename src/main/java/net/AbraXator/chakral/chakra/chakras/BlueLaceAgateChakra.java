@@ -67,7 +67,7 @@ public class BlueLaceAgateChakra extends Chakra {
     }
 
     @Override
-    public Style getColor() {
-        return chakraColor("24A78E");
+    public List<Style> getColors() {
+        return chakraColor("cef4ff", "bfedff", "a7d7ff", "9ecdfc", "92bffa", "84b2f7", "678ce3");
     }
 }

@@ -11,12 +11,17 @@ import net.AbraXator.chakral.client.overlays.ChakraHeartData;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.ChakraHeartsS2CPacket;
 import net.AbraXator.chakral.utils.ChakralLocation;
+import net.minecraft.client.server.IntegratedPlayerList;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.players.PlayerList;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+
+import java.util.List;
 
 public class AmazoniteChakra extends Chakra {
     public static float hp = 0;
@@ -99,7 +104,7 @@ public class AmazoniteChakra extends Chakra {
     }
 
     @Override
-    public Style getColor() {
-        return chakraColor("24A78E");
+    public List<Style> getColors() {
+        return chakraColor("5FBFB0", "24A78E", "0A8F85", "208084", "166D76", "125A6C");
     }
 }

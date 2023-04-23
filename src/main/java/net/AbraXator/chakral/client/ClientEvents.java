@@ -3,17 +3,16 @@ package net.AbraXator.chakral.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.init.ModBlocks;
-import net.AbraXator.chakral.init.ModBlockEntities;
+import net.AbraXator.chakral.chakra.ChakraUtil;
+import net.AbraXator.chakral.init.*;
 import net.AbraXator.chakral.client.renderer.MineralEnricherRenderer;
 import net.AbraXator.chakral.client.overlays.ChakraHearts;
 import net.AbraXator.chakral.entity.dwider.DwiderModel;
 import net.AbraXator.chakral.entity.dwider.DwiderRenderer;
-import net.AbraXator.chakral.init.ModEntities;
 import net.AbraXator.chakral.entity.stemspore.StemSporeModel;
 import net.AbraXator.chakral.entity.stemspore.StemSporeRenderer;
-import net.AbraXator.chakral.init.ModRenderTypes;
 import net.AbraXator.chakral.networking.ModMessages;
+import net.AbraXator.chakral.networking.packet.ChakraItemNameRendererC2SPacket;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
 import net.AbraXator.chakral.client.gui.refiner.ShardRefinerScreen;
@@ -26,6 +25,7 @@ import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.joml.Matrix4f;
@@ -138,6 +138,13 @@ public final class ClientEvents {
         }
     }
 
+    @SubscribeEvent
+    public void onRenderGuiOverlay(RenderGuiOverlayEvent event) {
+        if(event.getOverlay().equals(VanillaGuiOverlay.ITEM_NAME.type())){
+            ModMessages.sendToClients(new ChakraItemNameRendererC2SPacket());
+        }
+    }
+
     @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ClientModBusEvents {
         @SubscribeEvent
@@ -180,5 +187,7 @@ public final class ClientEvents {
     public static void colorEvent(RegisterColorHandlersEvent.Item event){
         event.register((pStack, pTintIndex) -> GrassColor.get(0.5D, 1.0D),
                 ModBlocks.MINERAL_RICH_GRASS.get());
+        event.register((pStack, pTintIndex) -> ChakraUtil.getColorOfNecklace(pStack),
+                 ModItems.GOLDEN_NECKLACE.get());
     }
 }
