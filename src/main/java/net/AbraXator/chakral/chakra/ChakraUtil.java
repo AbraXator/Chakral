@@ -117,14 +117,14 @@ public class ChakraUtil {
         return createIds().get(chakra);
     }
 
-    public static int getColorOfNecklace(ItemStack itemStack){
-        if(getChakra(itemStack, 1) != null){
-            Chakra chakra = getChakra(itemStack, 1);
+    public static int getColorOfNecklace(ItemStack itemStack, int index){
+        if(getChakra(itemStack, index) != null){
+            Chakra chakra = getChakra(itemStack, index);
             List<Style> colorList = chakra.getColors();
             Style colorStyle = colorList.size() % 2 == 0 ? colorList.get(colorList.size() / 2) : colorList.get((colorList.size() / 2) - 1);
             return colorStyle.getColor().getValue();
-        }else {
-            return 1;
+        } else {
+            return -1;
         }
     }
 

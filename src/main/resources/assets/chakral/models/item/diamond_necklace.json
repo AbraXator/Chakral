@@ -1,8 +1,0 @@
-{
- "parent": "item/generated",
- "textures": {
-  "layer0": "chakral:item/necklace/diamond_necklace",
-  "layer1": "chakral:item/necklace/diamond_necklace_slot1",
-  "layer2": "chakral:item/necklace/diamond_necklace_slot2"
- }
-}

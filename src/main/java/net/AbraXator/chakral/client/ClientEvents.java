@@ -187,7 +187,12 @@ public final class ClientEvents {
     public static void colorEvent(RegisterColorHandlersEvent.Item event){
         event.register((pStack, pTintIndex) -> GrassColor.get(0.5D, 1.0D),
                 ModBlocks.MINERAL_RICH_GRASS.get());
-        event.register((pStack, pTintIndex) -> ChakraUtil.getColorOfNecklace(pStack),
+        event.register((pStack, pTintIndex) -> pTintIndex == 1 ? ChakraUtil.getColorOfNecklace(pStack, pTintIndex) : -1,
                  ModItems.GOLDEN_NECKLACE.get());
+        event.register((pStack, pTintIndex) -> {
+            if(pTintIndex == 1) return ChakraUtil.getColorOfNecklace(pStack, pTintIndex);
+            if(pTintIndex == 2) return ChakraUtil.getColorOfNecklace(pStack, pTintIndex);
+            else return -1;
+        }, ModItems.DIAMOND_NECKLACE.get());
     }
 }

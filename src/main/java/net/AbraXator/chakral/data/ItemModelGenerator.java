@@ -21,11 +21,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        for(ChakraType chakraType : ChakraType.values()){
-            oneNecklacePart(ModItems.GOLDEN_NECKLACE, chakraType);
-            goldenNecklace();
-
-        }
+        necklaces();
 
         DataGenerators.getCrystals().forEach(block -> {
             this.getBuilder(DataGenerators.trimmedId(block.getDescriptionId()))
@@ -34,43 +30,21 @@ public class ItemModelGenerator extends ItemModelProvider {
         });
     }
 
+    private void necklaces(){
+        goldenNecklace();
+        diamondNecklace();
+    }
+
     private ItemModelBuilder goldenNecklace(){
         return withExistingParent(ModItems.GOLDEN_NECKLACE.getId().getPath(), new ResourceLocation("item/generated"))
                 .texture("layer0", new ResourceLocation(Chakral.MOD_ID, "item/necklace/golden_necklace"))
                 .texture("layer1", new ResourceLocation(Chakral.MOD_ID, "item/necklace/golden_necklace_slot_1"));
     }
 
-    private ItemModelBuilder oneNecklacePart(RegistryObject<Item> item, ChakraType chakraType){
-        return withExistingParent(item.getId().getPath() + "_" + chakraType.getSerializedName(),
-                new ResourceLocation("item/generated"))
-                .texture("layer0", new ResourceLocation(Chakral.MOD_ID, "item/necklace/" + item.getId().getPath()))
-                .texture("layer1", new ResourceLocation(Chakral.MOD_ID, "item/necklace/" + item.getId().getPath() + "_" + chakraType.getSerializedName() + "_1"));
-    }
-
-    private ItemModelBuilder twoNecklacePart(RegistryObject<Item> item, ChakraType chakraType){
-        return withExistingParent(item.getId().getPath() + "_" + chakraType.getSerializedName(),
-                new ResourceLocation("item/generated"))
-                .texture("layer0", new ResourceLocation(Chakral.MOD_ID, "item/necklace/" + item.getId().getPath()))
-                .texture("layer1", new ResourceLocation(Chakral.MOD_ID, "item/necklace/" + item.getId().getPath() + "_" + chakraType.getSerializedName() + "_1"))
-                .texture("layer2", new ResourceLocation(Chakral.MOD_ID, "item/necklace/" + item.getId().getPath() + "_" + chakraType.getSerializedName() + "_2"));
-    }
-
-    private ItemModelBuilder threeNecklacePart(RegistryObject<Item> item, ChakraType chakraType){
-        return withExistingParent(item.getId().getPath() + "_" + chakraType.getSerializedName(),
-                new ResourceLocation("item/generated"))
-                .texture("layer0", new ResourceLocation(Chakral.MOD_ID, "item/necklace/" + item.getId().getPath()))
-                .texture("layer1", new ResourceLocation(Chakral.MOD_ID, "item/necklace/" + item.getId().getPath() + "_" + chakraType.getSerializedName() + "_1"))
-                .texture("layer2", new ResourceLocation(Chakral.MOD_ID, "item/necklace/" + item.getId().getPath() + "_" + chakraType.getSerializedName() + "_2"))
-                .texture("layer3", new ResourceLocation(Chakral.MOD_ID, "item/necklace/" + item.getId().getPath() + "_" + chakraType.getSerializedName() + "_3"));
-    }
-
-    private ItemModelBuilder fourNecklacePart(RegistryObject<Item> item, ChakraType chakraType){
-        return withExistingParent(item.getId().getPath() + "_" + chakraType.getSerializedName(),
-                new ResourceLocation("item/generated"))
-                .texture("layer0", new ResourceLocation(Chakral.MOD_ID, "item/necklace/" + item.getId().getPath()))
-                .texture("layer1", new ResourceLocation(Chakral.MOD_ID, "item/necklace/" + item.getId().getPath() + "_" + chakraType.getSerializedName() + "_1"))
-                .texture("layer2", new ResourceLocation(Chakral.MOD_ID, "item/necklace/" + item.getId().getPath() + "_" + chakraType.getSerializedName() + "_2"))
-                .texture("layer3", new ResourceLocation(Chakral.MOD_ID, "item/necklace/" + item.getId().getPath() + "_" + chakraType.getSerializedName() + "_3"))
-                .texture("layer4", new ResourceLocation(Chakral.MOD_ID, "item/necklace/" + item.getId().getPath() + "_" + chakraType.getSerializedName() + "_4"));
+    private ItemModelBuilder diamondNecklace(){
+        return withExistingParent(ModItems.DIAMOND_NECKLACE.getId().getPath(), new ResourceLocation("item/generated"))
+                .texture("layer0", new ResourceLocation(Chakral.MOD_ID, "item/necklace/diamond_necklace"))
+                .texture("layer1", new ResourceLocation(Chakral.MOD_ID, "item/necklace/diamond_necklace_slot_1"))
+                .texture("layer2", new ResourceLocation(Chakral.MOD_ID, "item/necklace/diamond_necklace_slot_2"));
     }
 }
