@@ -8,6 +8,8 @@ import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.List;
+
 public class AmberChakra extends Chakra {
     public AmberChakra(ChakraType type, ChakraStrength chakraStrength) {
         super(type, chakraStrength);
@@ -19,7 +21,7 @@ public class AmberChakra extends Chakra {
     }
 
     @Override
-    public Style getColor() {
-        return null;
+    public List<Style> getColors() {
+        return chakraColor("FBFC33", "FFC91A", "FFA41A", "F07500");
     }
 }

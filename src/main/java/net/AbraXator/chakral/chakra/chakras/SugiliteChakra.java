@@ -7,6 +7,8 @@ import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.minecraft.network.chat.Style;
 
+import java.util.List;
+
 public class SugiliteChakra extends Chakra {
     public SugiliteChakra(ChakraType type, ChakraStrength chakraStrength) {
         super(type, chakraStrength);
@@ -18,7 +20,7 @@ public class SugiliteChakra extends Chakra {
     }
 
     @Override
-    public Style getColor() {
-        return null;
+    public List<Style> getColors() {
+        return chakraColor("ff77ac", "f654a4", "e733bc", "c937b5", "94359c", "69248a", "481799");
     }
 }

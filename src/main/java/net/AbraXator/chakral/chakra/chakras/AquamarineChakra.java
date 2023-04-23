@@ -7,6 +7,8 @@ import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.minecraft.network.chat.Style;
 
+import java.util.List;
+
 public class AquamarineChakra extends Chakra {
     public AquamarineChakra(ChakraType type, ChakraStrength chakraStrength) {
         super(type, chakraStrength);
@@ -18,7 +20,7 @@ public class AquamarineChakra extends Chakra {
     }
 
     @Override
-    public Style getColor() {
-        return null;
+    public List<Style> getColors() {
+        return chakraColor("1779BD", "299BE4", "33B3E7", "47D0ED", "40EADF", "82F3E5", "ABFFE5");
     }
 }

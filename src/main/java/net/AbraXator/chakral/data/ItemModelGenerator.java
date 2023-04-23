@@ -37,35 +37,7 @@ public class ItemModelGenerator extends ItemModelProvider {
     private ItemModelBuilder goldenNecklace(){
         return withExistingParent(ModItems.GOLDEN_NECKLACE.getId().getPath(), new ResourceLocation("item/generated"))
                 .texture("layer0", new ResourceLocation(Chakral.MOD_ID, "item/necklace/golden_necklace"))
-                .texture("layer1", new ResourceLocation(Chakral.MOD_ID, "item/necklace/golden_necklace_slot_1"))
-                .override()
-                .predicate(new ResourceLocation("crown"), 1.0F)
-                .model(new ItemModelBuilder(new ResourceLocation(Chakral.MOD_ID, "item/golden_necklace_crown"), existingModelFile))
-                .end()
-                .override()
-                .predicate(new ResourceLocation("heart"), 1.0F)
-                .model(new ItemModelBuilder(new ResourceLocation(Chakral.MOD_ID, "item/golden_necklace_heart"), existingModelFile))
-                .end()
-                .override()
-                .predicate(new ResourceLocation("root"), 1.0F)
-                .model(new ItemModelBuilder(new ResourceLocation(Chakral.MOD_ID, "item/golden_necklace_root"), existingModelFile))
-                .end()
-                .override()
-                .predicate(new ResourceLocation("sacral"), 1.0F)
-                .model(new ItemModelBuilder(new ResourceLocation(Chakral.MOD_ID, "item/golden_necklace_sacral"), existingModelFile))
-                .end()
-                .override()
-                .predicate(new ResourceLocation("solar"), 1.0F)
-                .model(new ItemModelBuilder(new ResourceLocation(Chakral.MOD_ID, "item/golden_necklace_solar"), existingModelFile))
-                .end()
-                .override()
-                .predicate(new ResourceLocation("third_eye"), 1.0F)
-                .model(new ItemModelBuilder(new ResourceLocation(Chakral.MOD_ID, "item/golden_necklace_third_eye"), existingModelFile))
-                .end()
-                .override()
-                .predicate(new ResourceLocation("throat"), 1.0F)
-                .model(new ItemModelBuilder(new ResourceLocation(Chakral.MOD_ID, "item/golden_necklace_throat"), existingModelFile))
-                .end();
+                .texture("layer1", new ResourceLocation(Chakral.MOD_ID, "item/necklace/golden_necklace_slot_1"));
     }
 
     private ItemModelBuilder oneNecklacePart(RegistryObject<Item> item, ChakraType chakraType){

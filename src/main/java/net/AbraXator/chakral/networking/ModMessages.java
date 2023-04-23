@@ -62,6 +62,11 @@ public class ModMessages {
                 .encoder(BlackOnyxLandS2CPacket::toBytes)
                 .consumerMainThread(BlackOnyxLandS2CPacket::handle)
                 .add();
+        net.messageBuilder(ChakraItemNameRendererC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(ChakraItemNameRendererC2SPacket::new)
+                .encoder(ChakraItemNameRendererC2SPacket::toBytes)
+                .consumerMainThread(ChakraItemNameRendererC2SPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG msg){

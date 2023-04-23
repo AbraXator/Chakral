@@ -7,6 +7,8 @@ import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.minecraft.network.chat.Style;
 
+import java.util.List;
+
 public class BlueHowliteChakra extends Chakra {
     public BlueHowliteChakra(ChakraType type, ChakraStrength chakraStrength) {
         super(type, chakraStrength);
@@ -18,7 +20,7 @@ public class BlueHowliteChakra extends Chakra {
     }
 
     @Override
-    public Style getColor() {
-        return null;
+    public List<Style> getColors() {
+        return chakraColor("00bfb0", "009da5", "098e9d", "1378a0", "096995", "10416c", "0a3a64");
     }
 }

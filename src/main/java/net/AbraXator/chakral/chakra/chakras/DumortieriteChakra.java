@@ -55,7 +55,7 @@ public class DumortieriteChakra extends Chakra {
     }
 
     @Override
-    public Style getColor() {
-        return null;
+    public List<Style> getColors() {
+        return chakraColor("3b54b5", "374daa", "2b3093", "231e89");
     }
 }

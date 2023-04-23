@@ -7,6 +7,8 @@ import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.minecraft.network.chat.Style;
 
+import java.util.List;
+
 public class MahoganyChakra extends Chakra {
     public MahoganyChakra(ChakraType type, ChakraStrength chakraStrength) {
         super(type, chakraStrength);
@@ -18,7 +20,7 @@ public class MahoganyChakra extends Chakra {
     }
 
     @Override
-    public Style getColor() {
-        return null;
+    public List<Style> getColors() {
+        return chakraColor("ea462d", "e02e1b", "c11310", "a51121", "740718");
     }
 }

@@ -1,25 +1,11 @@
 package net.AbraXator.chakral.init;
 
-import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.chakra.Chakra;
-import net.AbraXator.chakral.chakra.ChakraRegistry;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.chakra.chakras.*;
-import net.AbraXator.chakral.items.ChakraItem;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.UUID;
-import java.util.function.Supplier;
 
 import static net.AbraXator.chakral.chakra.ChakraRegistry.CHAKRAS;
 

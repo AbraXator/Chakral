@@ -81,7 +81,7 @@ public class HagStoneChakra extends Chakra {
     }
 
     @Override
-    public Style getColor() {
-        return null;
+    public List<Style> getColors() {
+        return chakraColor("8fb2ff", "878ff0", "7c5df3", "4d39b4");
     }
 }

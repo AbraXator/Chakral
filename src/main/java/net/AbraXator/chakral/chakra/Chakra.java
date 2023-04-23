@@ -20,6 +20,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class Chakra implements IChakra {
@@ -31,7 +33,7 @@ public abstract class Chakra implements IChakra {
     private ItemStack necklace;
     private int cooldown;
     private int maxCooldown;
-    public Style style;
+    public List<Style> style;
 
     public Chakra(ChakraType type, ChakraStrength chakraStrength){
         this.type = type;
@@ -128,8 +130,10 @@ public abstract class Chakra implements IChakra {
 
     public void interact(PlayerInteractEvent event){}
 
-    public Style chakraColor(String hex){
-        this.style = Style.EMPTY.withColor(TextColor.parseColor("#" + hex));
+    public List<Style> chakraColor(String... hex){
+        List<Style> list = new ArrayList<>();
+        Arrays.stream(hex).forEach(s -> list.add(Style.EMPTY.withColor(TextColor.parseColor("#" + s))));
+        this.style = list;
         return this.style;
     }
 }

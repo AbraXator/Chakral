@@ -70,7 +70,7 @@ public class HelioliteChakra extends Chakra {
     }
 
     @Override
-    public Style getColor() {
-        return chakraColor("FF852C");
+    public List<Style> getColors() {
+        return chakraColor("ffc55c", "fcb042", "ff702c", "ff852c", "ff5b2c");
     }
 }

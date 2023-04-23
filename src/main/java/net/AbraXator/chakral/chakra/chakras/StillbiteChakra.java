@@ -7,6 +7,8 @@ import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.minecraft.network.chat.Style;
 
+import java.util.List;
+
 public class StillbiteChakra extends Chakra {
     public StillbiteChakra(ChakraType type, ChakraStrength chakraStrength) {
         super(type, chakraStrength);
@@ -18,7 +20,7 @@ public class StillbiteChakra extends Chakra {
     }
 
     @Override
-    public Style getColor() {
-        return chakraColor("ED9343");
+    public List<Style> getColors() {
+        return chakraColor("ffda90", "edbf78", "ed9343", "ed8132", "c35a28", "b24319");
     }
 }
