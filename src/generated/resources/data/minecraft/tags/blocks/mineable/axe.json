@@ -11,6 +11,8 @@
     "chakral:wilted_pressure_plate",
     "chakral:wilted_wood",
     "chakral:stripped_wilted_wood",
-    "chakral:stripped_wilted_log"
+    "chakral:stripped_wilted_log",
+    "chakral:wilted_fence",
+    "chakral:wilted_fence_gate"
   ]
 }

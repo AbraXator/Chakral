@@ -3,7 +3,9 @@ package net.AbraXator.chakral.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.AbraXator.chakral.Chakral;
+import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraUtil;
+import net.AbraXator.chakral.chakra.chakras.DumortieriteChakra;
 import net.AbraXator.chakral.init.*;
 import net.AbraXator.chakral.client.renderer.MineralEnricherRenderer;
 import net.AbraXator.chakral.client.overlays.ChakraHearts;
@@ -44,7 +46,7 @@ public final class ClientEvents {
             }
         }
 
-        //@SubscribeEvent
+        @SubscribeEvent
         public static void renderLevel(RenderLevelStageEvent event){
             if(event.getStage() != RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS){
                 return;
@@ -54,80 +56,13 @@ public final class ClientEvents {
             if(player == null){
                 return;
             }
-            render(event, new BlockPos(0, 60, 0));
-        }
-
-        public static void render(RenderLevelStageEvent event, BlockPos blockPos){
-            Vec3 renderPos = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition()
-                    .subtract(blockPos.getX(), blockPos.getY(), blockPos.getZ())
-                    .add(.005F, .005F, .005F);
-
-            MultiBufferSource.BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
-            PoseStack stack = event.getPoseStack();
-            stack.pushPose();
-            stack.translate(-renderPos.x(), -renderPos.y(), -renderPos.z());
-            stack.scale(1.01F, 1.01F, 1.01F);
-            renderBoxSolid(stack.last().pose(), buffer.getBuffer(ModRenderTypes.BlockOverlay), BlockPos.ZERO, 0, 1, 0, 1);
-        }
-
-        public static void renderBoxSolid(Matrix4f matrix, VertexConsumer builder, BlockPos pos, float r, float g, float b, float alpha) {
-            double x = pos.getX() - 0.001;
-            double y = pos.getY() - 0.001;
-            double z = pos.getZ() - 0.001;
-            double xEnd = pos.getX() + 1.0015;
-            double yEnd = pos.getY() + 1.0015;
-            double zEnd = pos.getZ() + 1.0015;
-
-            renderBoxSolid(matrix, builder, x, y, z, xEnd, yEnd, zEnd, r, g, b, alpha);
-        }
-
-        public static void renderBoxSolid(Matrix4f matrix, VertexConsumer builder, double x, double y, double z, double xEnd, double yEnd, double zEnd, float red, float green, float blue, float alpha) {
-            //careful: mc want's it's vertices to be defined CCW - if you do it the other way around weird cullling issues will arise
-            //CCW herby counts as if you were looking at it from the outside
-            float startX = (float) x;
-            float startY = (float) y;
-            float startZ = (float) z;
-            float endX = (float) xEnd;
-            float endY = (float) yEnd;
-            float endZ = (float) zEnd;
-
-//        float startX = 0, startY = 0, startZ = -1, endX = 1, endY = 1, endZ = 0;
-
-            //down
-            builder.vertex(matrix, startX, startY, startZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, endX, startY, startZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, endX, startY, endZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, startX, startY, endZ).color(red, green, blue, alpha).endVertex();
-
-            //up
-            builder.vertex(matrix, startX, endY, startZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, startX, endY, endZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, endX, endY, endZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, endX, endY, startZ).color(red, green, blue, alpha).endVertex();
-
-            //east
-            builder.vertex(matrix, startX, startY, startZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, startX, endY, startZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, endX, endY, startZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, endX, startY, startZ).color(red, green, blue, alpha).endVertex();
-
-            //west
-            builder.vertex(matrix, startX, startY, endZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, endX, startY, endZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, endX, endY, endZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, startX, endY, endZ).color(red, green, blue, alpha).endVertex();
-
-            //south
-            builder.vertex(matrix, endX, startY, startZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, endX, endY, startZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, endX, endY, endZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, endX, startY, endZ).color(red, green, blue, alpha).endVertex();
-
-            //north
-            builder.vertex(matrix, startX, startY, startZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, startX, startY, endZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, startX, endY, endZ).color(red, green, blue, alpha).endVertex();
-            builder.vertex(matrix, startX, endY, startZ).color(red, green, blue, alpha).endVertex();
+            ChakraUtil.getChakrasFromPlayer(player).forEach(chakra -> {
+                if(chakra instanceof DumortieriteChakra dumortieriteChakra){
+                    for (BlockPos block : dumortieriteChakra.getBlocks()) {
+                        dumortieriteChakra.render(event, block);
+                    }
+                }
+            });
         }
 
         @SubscribeEvent
