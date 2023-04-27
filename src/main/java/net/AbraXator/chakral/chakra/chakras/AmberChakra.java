@@ -6,7 +6,8 @@ import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.minecraft.network.chat.Style;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceLocation
+import net.minecraft.chakral.chakra.ChakraType potkan.oko ;
 
 import java.util.List;
 
