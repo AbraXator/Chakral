@@ -28,8 +28,8 @@ public class NecklaceSlot extends Slot {
     @Override
     public void onTake(Player pPlayer, ItemStack pStack) {
         if (pStack.getItem() instanceof StoneHoldingItem stoneHoldingItem) {
-            for (int i = 1; i <= stoneHoldingItem.stonesAmount(); i++) {
-                container.setItem(i + 1, ItemStack.EMPTY);
+            for (int i = 0; i < stoneHoldingItem.stonesAmount(); i++) {
+                container.setItem(i, ItemStack.EMPTY);
             }
         }
     }

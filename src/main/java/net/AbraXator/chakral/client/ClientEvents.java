@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraUtil;
+import net.AbraXator.chakral.chakra.chakras.AmethystQuartzChakra;
 import net.AbraXator.chakral.chakra.chakras.DumortieriteChakra;
 import net.AbraXator.chakral.init.*;
 import net.AbraXator.chakral.client.renderer.MineralEnricherRenderer;
@@ -18,6 +19,7 @@ import net.AbraXator.chakral.networking.packet.ChakraItemNameRendererC2SPacket;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
 import net.AbraXator.chakral.client.gui.refiner.ShardRefinerScreen;
+import net.AbraXator.chakral.utils.ChakralLocation;
 import net.AbraXator.chakral.utils.KeyBindings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
@@ -48,9 +50,9 @@ public final class ClientEvents {
 
         @SubscribeEvent
         public static void renderLevel(RenderLevelStageEvent event){
-            if(event.getStage() != RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS){
+            /*if(event.getStage() != RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS){
                 return;
-            }
+            }*/
 
             Player player = Minecraft.getInstance().player;
             if(player == null){
@@ -61,6 +63,10 @@ public final class ClientEvents {
                     for (BlockPos block : dumortieriteChakra.getBlocks()) {
                         dumortieriteChakra.render(event, block);
                     }
+                }
+                if(chakra instanceof AmethystQuartzChakra quartzChakra){
+                    GameRenderer gameRenderer = Minecraft.getInstance().gameRenderer;
+                    gameRenderer.loadEffect(new ChakralLocation("shaders/novice.json"));
                 }
             });
         }

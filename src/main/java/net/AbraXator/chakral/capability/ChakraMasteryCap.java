@@ -27,7 +27,7 @@ public class ChakraMasteryCap {
     }
 
     public void loadNBT(CompoundTag tag){
-        if(tag.getString("player.chakra.mastery") == ""){
+        if(tag.getString("player.chakra.mastery").equals("")){
             tiers = null;
         }else{
             tiers = ChakraMasteryTiers.valueOf(tag.getString("player.chakra.mastery").toUpperCase());

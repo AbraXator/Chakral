@@ -43,6 +43,7 @@ public class Chakral {
         ModEntities.        register(eventBus);
         ModParticles.       register(eventBus);
         ModChakras.         register(eventBus);
+        ModSoundEvents.     register(eventBus);
         //ModFeatures.        register(eventBus);
         //ModConfigFeatures.  register(eventBus);
         //ModPlacedFeature.   register(eventBus);

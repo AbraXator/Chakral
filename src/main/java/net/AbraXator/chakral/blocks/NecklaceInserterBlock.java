@@ -162,8 +162,6 @@ public class NecklaceInserterBlock extends Block {
 
     @javax.annotation.Nullable
     public MenuProvider getMenuProvider(BlockState pState, Level pLevel, BlockPos pPos) {
-        return new SimpleMenuProvider((p_57074_, p_57075_, p_57076_) -> {
-            return new NecklaceInserterMenu(p_57074_, p_57075_, ContainerLevelAccess.create(pLevel, pPos));
-        }, Component.literal(""));
+        return new SimpleMenuProvider((p_57074_, p_57075_, p_57076_) -> new NecklaceInserterMenu(p_57074_, p_57075_, ContainerLevelAccess.create(pLevel, pPos)), Component.literal(""));
     }
 }

@@ -6,6 +6,7 @@ import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.items.*;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.RecordItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -79,6 +80,9 @@ public class ModItems {
             new RefinerKit(new Item.Properties(), ChakraStrength.POWERFUL));
     public static final RegistryObject<Item> ENGLIGHTENED_REFINER_KIT = ITEMS.register("enlightened_refiner_kit", () ->
             new RefinerKit(new Item.Properties(), ChakraStrength.ENLIGHTENED));
+
+    public static final RegistryObject<Item> MUSIC_DISC = ITEMS.register("music_disc", () ->
+            new RecordItem(10, ModSoundEvents.SOUND1, new Item.Properties(), 3060));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
