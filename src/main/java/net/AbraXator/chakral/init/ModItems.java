@@ -72,7 +72,7 @@ public class ModItems {
     public static final RegistryObject<Item> NETHERITE_NECKLACE = ITEMS.register("netherite_necklace", () ->
             new NecklaceItem(new Item.Properties().stacksTo(1), 3));
     public static final RegistryObject<Item> RAINBOW_NECKLACE = ITEMS.register("rainbow_necklace", () ->
-            new NecklaceItem(new Item.Properties().stacksTo(1),funguje👍 4));
+            new NecklaceItem(new Item.Properties().stacksTo(1), 4));
 
     public static final RegistryObject<Item> WEAK_REFINER_KIT = ITEMS.register("weak_refiner_kit", () ->
             new RefinerKit(new Item.Properties(), ChakraStrength.WEAKENED));

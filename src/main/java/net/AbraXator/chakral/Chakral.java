@@ -72,6 +72,7 @@ public class Chakral {
         event.enqueueWork(() -> {
             ModMessages.register();
             VanillaCompat.register();
+            ModBiomes.setupTerraBlender();
         });
     }
 }

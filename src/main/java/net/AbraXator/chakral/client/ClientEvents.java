@@ -7,6 +7,7 @@ import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraUtil;
 import net.AbraXator.chakral.chakra.chakras.AmethystQuartzChakra;
 import net.AbraXator.chakral.chakra.chakras.DumortieriteChakra;
+import net.AbraXator.chakral.client.particle.HagstoneFragmentiumParticle;
 import net.AbraXator.chakral.init.*;
 import net.AbraXator.chakral.client.renderer.MineralEnricherRenderer;
 import net.AbraXator.chakral.client.overlays.ChakraHearts;
@@ -77,12 +78,9 @@ public final class ClientEvents {
                 event.setCanceled(true);
             }
         }
-    }
 
-    @SubscribeEvent
-    public void onRenderGuiOverlay(RenderGuiOverlayEvent event) {
-        if(event.getOverlay().equals(VanillaGuiOverlay.ITEM_NAME.type())){
-            ModMessages.sendToClients(new ChakraItemNameRendererC2SPacket());
+        @SubscribeEvent
+        public static void onRenderGuiOverlay(RenderGuiOverlayEvent.Pre event) {
         }
     }
 
@@ -135,5 +133,10 @@ public final class ClientEvents {
             if(pTintIndex == 2) return ChakraUtil.getColorOfNecklace(pStack, pTintIndex);
             else return -1;
         }, ModItems.DIAMOND_NECKLACE.get());
+    }
+
+    @SubscribeEvent
+    public static void onRegisterParticleProviders(RegisterParticleProvidersEvent event) {
+        event.register(ModParticles.HAGSTONE_FRAGMNETIUM.get(), HagstoneFragmentiumParticle.Provider::new);
     }
 }

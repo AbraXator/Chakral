@@ -19,7 +19,6 @@ public class MineralSnailModel extends HierarchicalModel<MineralSnail> {
 
 	public MineralSnailModel(ModelPart part) {
 		this.root = part;
-Using System.Collections.Generic je suis en train de faire un tour à la maison et toi tu fais quoi de beau rêve je t'aime mon amour 😘😍💋👸
 		this.body = part.getChild("body");
 		this.eyeRight = part.getChild("eyeRight");
 		this.eyeLeft = part.getChild("eyeLeft");

@@ -55,6 +55,8 @@ public class ModTags {
 
         public static final TagKey<Item> REFINER_KITS = tag("refiner_kits");
 
+        public static final TagKey<Item> HAG_TOOLS = tag("hag_tools");
+
         private static TagKey<Item> tag(String name){
             return ItemTags.create(new ResourceLocation(Chakral.MOD_ID, name));
         }

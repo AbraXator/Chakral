@@ -1,6 +1,7 @@
 package net.AbraXator.chakral.data;
 
 import net.AbraXator.chakral.Chakral;
+import net.AbraXator.chakral.init.ModBiomes;
 import net.AbraXator.chakral.init.ModConfiguredFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
@@ -13,8 +14,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-            .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
-            //.add(Registries.DAMAGE_TYPE, ModDamageTypes::bootstrap);
+            .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
+            .add(Registries.BIOME, ModBiomes::bootstrapBiomes);
 
     public RegistryDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Collections.singleton(Chakral.MOD_ID));

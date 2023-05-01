@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "chakral:mineral_caverns",
-  "features": "chakral:red_geode",
-  "step": "underground_ores"
-}
