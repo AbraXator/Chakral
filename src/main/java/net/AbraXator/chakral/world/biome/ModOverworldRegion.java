@@ -23,6 +23,8 @@ public class ModOverworldRegion extends Region {
 
     @Override
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
-        (new ModOverworldBiomeBuilder()).addBiomes(registry, mapper);
+        this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
+            builder.replaceBiome(Biomes.DEEP_DARK, ModBiomes.BiomeKeys.MINRAL_CAVERNS);
+        });
     }
 }
