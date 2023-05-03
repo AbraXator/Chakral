@@ -17,14 +17,14 @@ import java.util.function.Consumer;
 public class ModOverworldRegion extends Region {
     public static final ResourceLocation LOCATION = new ChakralLocation("overworld");
 
-    public ModOverworldRegion(int weight) {
-        super(LOCATION, RegionType.OVERWORLD, weight);
+    public ModOverworldRegion() {
+        super(LOCATION, RegionType.OVERWORLD, 1);
     }
 
     @Override
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
         this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
-            builder.replaceBiome(Biomes.DEEP_DARK, ModBiomes.BiomeKeys.MINRAL_CAVERNS);
+            builder.replaceBiome(Biomes.DEEP_DARK, ModBiomes.MINRAL_CAVERNS);
         });
     }
 }

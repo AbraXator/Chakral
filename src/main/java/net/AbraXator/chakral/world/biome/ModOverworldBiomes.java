@@ -36,6 +36,27 @@ public class ModOverworldBiomes {
         return (new Biome.BiomeBuilder()).hasPrecipitation(hasPrecipitation).temperature(temperature).downfall(downfall).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(waterColor).waterFogColor(waterFogColor).fogColor(12638463).skyColor(calculateSkyColor(temperature)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).backgroundMusic(music).build()).mobSpawnSettings(spawnBuilder.build()).generationSettings(biomeBuilder.build()).build();
     }
 
+    public static Biome.BiomeBuilder biomeWithDefaults(BiomeSpecialEffects.Builder biomeAmbience, MobSpawnSettings.Builder mobSpawnInfo, BiomeGenerationSettings.Builder biomeGenerationSettings) {
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .temperature(0.5F)
+                .downfall(0.5F)
+                .specialEffects(biomeAmbience.build())
+                .mobSpawnSettings(mobSpawnInfo.build())
+                .generationSettings(biomeGenerationSettings.build())
+                .temperatureAdjustment(Biome.TemperatureModifier.NONE);
+    }
+
+    public static BiomeSpecialEffects.Builder defaultAmbientBuilder() {
+        return new BiomeSpecialEffects.Builder()
+                .fogColor(0xC0FFD8)
+                .waterColor(0x3F76E4)
+                .waterFogColor(0x050533)
+                .skyColor(0x20224A)
+                .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS);
+
+    }
+
     private static void addFeature(BiomeGenerationSettings.Builder builder, GenerationStep.Decoration step, ResourceKey<PlacedFeature> feature) {
         builder.addFeature(step, feature);
     }
