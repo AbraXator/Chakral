@@ -17,7 +17,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import static net.AbraXator.chakral.world.biome.ModOverworldBiomes.*;
+import static net.AbraXator.chakral.world.biome.ModOverworldBiomes.defaultAmbientBuilder;
 
 public class ModBiomes {
     public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, Chakral.MOD_ID);
