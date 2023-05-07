@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:netherrack_replace_blobs",
+  "config": {
+    "radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 9,
+        "min_inclusive": 5
+      }
+    },
+    "state": {
+      "Name": "chakral:black_mineral"
+    },
+    "target": {
+      "Name": "minecraft:deepslate",
+      "Properties": {
+        "axis": "y"
+      }
+    }
+  }
+}

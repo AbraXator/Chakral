@@ -1,8 +1,6 @@
 package net.AbraXator.chakral.world.biome;
 
-import com.mojang.datafixers.util.Pair;
-import net.AbraXator.chakral.init.ModConfiguredFeatures;
-import net.minecraft.core.Holder;
+import net.AbraXator.chakral.world.placements.ModPlacedFeatures;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.Carvers;
@@ -17,7 +15,6 @@ import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import javax.annotation.Nullable;
-import java.util.function.Consumer;
 
 public class ModOverworldBiomes {
     protected static int calculateSkyColor(float p_194844_) {
@@ -43,24 +40,20 @@ public class ModOverworldBiomes {
         return (new Biome.BiomeBuilder()).hasPrecipitation(p_273483_).temperature(p_272621_).downfall(p_273588_).specialEffects(biomespecialeffects$builder.build()).mobSpawnSettings(p_273300_.build()).generationSettings(p_272700_.build()).build();
     }
 
+
+    private static void addFeature(BiomeGenerationSettings.Builder biomeBuilder, GenerationStep.Decoration step, ResourceKey<PlacedFeature> featureResourceKey) {
+        biomeBuilder.addFeature(step, featureResourceKey);
+    }
+
     public static Biome mineralCaverns(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter){
         MobSpawnSettings.Builder mobspawnsettings$builder = new MobSpawnSettings.Builder();
-        BiomeGenerationSettings.Builder biomegenerationsettings$builder = new BiomeGenerationSettings.Builder(placedFeatureGetter, carverGetter);
-        biomegenerationsettings$builder.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE);
-        biomegenerationsettings$builder.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE_EXTRA_UNDERGROUND);
-        biomegenerationsettings$builder.addCarver(GenerationStep.Carving.AIR, Carvers.CANYON);
-        BiomeDefaultFeatures.addDefaultCrystalFormations(biomegenerationsettings$builder);
-        BiomeDefaultFeatures.addDefaultMonsterRoom(biomegenerationsettings$builder);
-        BiomeDefaultFeatures.addDefaultUndergroundVariety(biomegenerationsettings$builder);
-        BiomeDefaultFeatures.addSurfaceFreezing(biomegenerationsettings$builder);
-        BiomeDefaultFeatures.addPlainGrass(biomegenerationsettings$builder);
-        BiomeDefaultFeatures.addDefaultOres(biomegenerationsettings$builder);
-        BiomeDefaultFeatures.addDefaultSoftDisks(biomegenerationsettings$builder);
-        BiomeDefaultFeatures.addPlainVegetation(biomegenerationsettings$builder);
-        BiomeDefaultFeatures.addDefaultMushrooms(biomegenerationsettings$builder);
-        BiomeDefaultFeatures.addDefaultExtraVegetation(biomegenerationsettings$builder);
-        BiomeDefaultFeatures.addSculk(biomegenerationsettings$builder);
+        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(placedFeatureGetter, carverGetter);
+        biomeBuilder.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE);
+        biomeBuilder.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE_EXTRA_UNDERGROUND);
+        biomeBuilder.addCarver(GenerationStep.Carving.AIR, Carvers.CANYON);
+        BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
+        addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.BLACK_MINERAL_BLOB);
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_GAME);
-        return biome(true, 0.8F, 0.4F, mobspawnsettings$builder, biomegenerationsettings$builder, music);
+        return biome(true, 0.8F, 0.4F, mobspawnsettings$builder, biomeBuilder, music);
     }
 }

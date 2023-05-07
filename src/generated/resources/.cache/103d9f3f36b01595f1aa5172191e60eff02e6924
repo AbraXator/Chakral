@@ -1,3 +1,12 @@
-// 1.19.4	2023-05-05T16:37:42.8129771	Registries
-aca9d4ae2b2f2058db3765b58bf7f73b31b949eb data/chakral/worldgen/biome/mineral_caverns.json
+// 1.19.4	2023-05-08T01:50:42.4084791	Registries
+1a45781bf52788123a646e528b9d8622ed1c9e23 data/chakral/worldgen/biome/mineral_caverns.json
+2bc5783123a5c7113ca286b39a957312c31313ec data/chakral/worldgen/configured_feature/black_mineral_blob.json
 6a52c8a5a8f3217b431bb5496183a9857caf8ff8 data/chakral/worldgen/configured_feature/tree/wilted_tree.json
+38794336602e542b49a7b56adc80ee10f2f05731 data/chakral/worldgen/noise/blue_noise.json
+38794336602e542b49a7b56adc80ee10f2f05731 data/chakral/worldgen/noise/green_noise.json
+38794336602e542b49a7b56adc80ee10f2f05731 data/chakral/worldgen/noise/light_blue_noise.json
+38794336602e542b49a7b56adc80ee10f2f05731 data/chakral/worldgen/noise/orange_noise.json
+38794336602e542b49a7b56adc80ee10f2f05731 data/chakral/worldgen/noise/purple_noise.json
+38794336602e542b49a7b56adc80ee10f2f05731 data/chakral/worldgen/noise/red_noise.json
+38794336602e542b49a7b56adc80ee10f2f05731 data/chakral/worldgen/noise/yellow_noise.json
+38981bb778f78525d3b4f506ffef8b8271e0099c data/chakral/worldgen/placed_feature/black_mineral_blob.json

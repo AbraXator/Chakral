@@ -10,9 +10,14 @@ import net.AbraXator.chakral.config.ChakralClientConfig;
 import net.AbraXator.chakral.init.*;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.recipes.ModRecipes;
+import net.AbraXator.chakral.utils.ChakralLocation;
 import net.AbraXator.chakral.utils.ModItemProperties;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -44,7 +49,6 @@ public class Chakral {
         ModSoundEvents.     register(eventBus);
         ModBiomes.          register(eventBus);
 
-
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
         eventBus.register(new ModItems());
@@ -68,7 +72,11 @@ public class Chakral {
         event.enqueueWork(() -> {
             ModMessages.register();
             VanillaCompat.register();
-            //Regions.register(new ModOverworldRegion());
+            ModBiomes.setupBiomes();
         });
+    }
+
+    public static <T> ResourceKey<T> createKey(ResourceKey<Registry<T>> registry, String key){
+        return ResourceKey.create(registry, new ChakralLocation(key));
     }
 }

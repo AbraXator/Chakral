@@ -1,6 +1,6 @@
 package net.AbraXator.chakral.world.tree;
 
-import net.AbraXator.chakral.init.ModConfiguredFeatures;
+import net.AbraXator.chakral.world.feature.ModConfiguredFeatures;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
