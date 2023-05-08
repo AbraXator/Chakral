@@ -1,11 +1,11 @@
 {
-  "type": "minecraft:netherrack_replace_blobs",
+  "type": "chakral:big_replace_blob",
   "config": {
     "radius": {
       "type": "minecraft:uniform",
       "value": {
-        "max_inclusive": 9,
-        "min_inclusive": 5
+        "max_inclusive": 32,
+        "min_inclusive": 32
       }
     },
     "state": {

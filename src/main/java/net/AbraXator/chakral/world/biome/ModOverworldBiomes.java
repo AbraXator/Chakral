@@ -53,6 +53,7 @@ public class ModOverworldBiomes {
         biomeBuilder.addCarver(GenerationStep.Carving.AIR, Carvers.CANYON);
         BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
         addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.BLACK_MINERAL_BLOB);
+        addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.MINERAL_CRYSTAL);
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_GAME);
         return biome(true, 0.8F, 0.4F, mobspawnsettings$builder, biomeBuilder, music);
     }

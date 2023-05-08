@@ -1,0 +1,25 @@
+{
+  "type": "chakral:mineral_crystal",
+  "config": {
+    "budding": {
+      "Name": "chakral:budding_red_mineral"
+    },
+    "height": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 7,
+        "min_inclusive": 3
+      }
+    },
+    "mineral": {
+      "Name": "chakral:red_mineral"
+    },
+    "radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 5,
+        "min_inclusive": 3
+      }
+    }
+  }
+}

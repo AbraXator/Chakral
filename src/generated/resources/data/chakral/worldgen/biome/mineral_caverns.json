@@ -36,7 +36,8 @@
     [],
     [],
     [
-      "chakral:black_mineral_blob"
+      "chakral:black_mineral_blob",
+      "chakral:mineral_crystal"
     ]
   ],
   "has_precipitation": true,

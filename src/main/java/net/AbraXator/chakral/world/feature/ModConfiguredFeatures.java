@@ -2,7 +2,10 @@ package net.AbraXator.chakral.world.feature;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.init.ModBlocks;
+import net.AbraXator.chakral.init.ModFeatures;
 import net.AbraXator.chakral.utils.ChakralLocation;
+import net.AbraXator.chakral.world.feature.configuration.BigReplaceBlobConfiguration;
+import net.AbraXator.chakral.world.feature.configuration.MineralCrystalConfiguration;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -25,11 +28,13 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.DarkOakTrunkPlace
 public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILTED_TREE = Chakral.createKey(Registries.CONFIGURED_FEATURE, "tree/wilted_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLACK_MINERAL_BLOB = Chakral.createKey(Registries.CONFIGURED_FEATURE, "black_mineral_blob");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MINERAL_CRYSTAL = Chakral.createKey(Registries.CONFIGURED_FEATURE, "mineral_crystal");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context){
         HolderGetter<ConfiguredFeature<?, ?>> features = context.lookup(Registries.CONFIGURED_FEATURE);
         registerFeature(context, WILTED_TREE, Feature.TREE, treeConfiguration().build());
-        registerFeature(context, BLACK_MINERAL_BLOB, Feature.REPLACE_BLOBS, new ReplaceSphereConfiguration(Blocks.DEEPSLATE.defaultBlockState(), ModBlocks.BLACK_MINERAL.get().defaultBlockState(), UniformInt.of(5, 9)));
+        registerFeature(context, BLACK_MINERAL_BLOB, ModFeatures.BIG_REPLACE_BLOB.get(), new BigReplaceBlobConfiguration(Blocks.DEEPSLATE.defaultBlockState(), ModBlocks.BLACK_MINERAL.get().defaultBlockState(), UniformInt.of(32, 32)));
+        registerFeature(context, MINERAL_CRYSTAL, ModFeatures.MINERAL_CRYSTAL.get(), new MineralCrystalConfiguration(ModBlocks.RED_MINERAL.get().defaultBlockState(), ModBlocks.BUDDING_RED_MINERAL.get().defaultBlockState(), UniformInt.of(3, 7), UniformInt.of(3, 5)));
     }
 
     private static <FC extends FeatureConfiguration, F extends Feature<FC>> void registerFeature(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureKey, F feature, FC configuration) {

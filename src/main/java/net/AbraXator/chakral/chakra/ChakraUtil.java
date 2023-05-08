@@ -129,10 +129,10 @@ public class ChakraUtil {
     }
 
     public static Component getNameWithChakraColor(Chakra chakra, ItemStack pStack){
-        List<Style> colors = chakra.getColors();
         String originalName = pStack.getItem().getName(pStack).getString();
+        int len = originalName.length();
+        List<Style> colors = cutColors(chakra, len);
         if(colors != null){
-            int len = originalName.length();
             int temp = 0;
             int chars = Math.round(((float) (len / colors.size())));
             if(chars != 0) {
@@ -166,6 +166,16 @@ public class ChakraUtil {
         }
 
         return Component.translatable("tooltip.chakral.empty");
+    }
+
+    private static List<Style> cutColors(Chakra chakra, int len){
+        List<Style> colors = chakra.getColors();
+        int i = len;
+        while(len > colors.size()){
+            i--;
+            colors.remove(i);
+        }
+        return colors;
     }
 }
 
