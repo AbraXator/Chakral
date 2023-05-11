@@ -34,7 +34,7 @@ public class ModConfiguredFeatures {
         HolderGetter<ConfiguredFeature<?, ?>> features = context.lookup(Registries.CONFIGURED_FEATURE);
         registerFeature(context, WILTED_TREE, Feature.TREE, treeConfiguration().build());
         registerFeature(context, BLACK_MINERAL_BLOB, ModFeatures.BIG_REPLACE_BLOB.get(), new BigReplaceBlobConfiguration(Blocks.DEEPSLATE.defaultBlockState(), ModBlocks.BLACK_MINERAL.get().defaultBlockState(), UniformInt.of(32, 32)));
-        registerFeature(context, MINERAL_CRYSTAL, ModFeatures.MINERAL_CRYSTAL.get(), new MineralCrystalConfiguration(ModBlocks.RED_MINERAL.get().defaultBlockState(), ModBlocks.BUDDING_RED_MINERAL.get().defaultBlockState(), UniformInt.of(3, 7), UniformInt.of(3, 5)));
+        registerFeature(context, MINERAL_CRYSTAL, ModFeatures.MINERAL_CRYSTAL.get(), new MineralCrystalConfiguration(ModBlocks.RED_MINERAL.get().defaultBlockState(), ModBlocks.BUDDING_RED_MINERAL.get().defaultBlockState(), UniformInt.of(3, 7), UniformInt.of(6, 14)));
     }
 
     private static <FC extends FeatureConfiguration, F extends Feature<FC>> void registerFeature(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureKey, F feature, FC configuration) {

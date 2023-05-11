@@ -43,7 +43,12 @@ public class MineralCrystalFeature extends Feature<MineralCrystalConfiguration> 
         BlockPos blockPos = pContext.origin();
         if(!isEmptyOrWater(worldGenLevel, blockPos)) return false;
         else {
-            Optional<Column> optionalColumn = Column.scan(worldGenLevel, blockPos, height.sample(randomSource), blockState -> blockState.is(Blocks.AIR), blockState -> blockState.is(mineral));
+            Optional<Column> optionalColumn = Column.scan(
+                    worldGenLevel,
+                    blockPos,
+                    30,
+                    blockState -> blockState.is(Blocks.AIR),
+                    blockState -> !blockState.isAir());
             if (optionalColumn.isPresent() && optionalColumn.get() instanceof Column.Range columnRange) {
                 if(columnRange.height() < height.getMinValue()) return false;
                 else {
@@ -56,7 +61,7 @@ public class MineralCrystalFeature extends Feature<MineralCrystalConfiguration> 
                     if(flag) {
                         mineralCrystal.placeBlocks(worldGenLevel, randomSource, windOffsetter);
                     }
-                    return true;
+                    return false;
                 }
             }else {
                 return false;
@@ -183,7 +188,7 @@ public class MineralCrystalFeature extends Feature<MineralCrystalConfiguration> 
         }
 
         private static boolean isEmptyOrWaterOrLava(LevelAccessor pLevel, BlockPos pPos) {
-            return pLevel.isStateAtPosition(pPos, DripstoneUtils::isEmptyOrWaterOrLava);
+            return pLevel.isStateAtPosition(pPos, blockState -> !blockState.isAir());
         }
     }
 

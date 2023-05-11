@@ -1,7 +1,7 @@
-// 1.19.4	2023-05-08T13:12:38.5242865	Registries
+// 1.19.4	2023-05-10T19:23:06.6872271	Registries
 2dbd978820eb6932b09eed6297f391674a50c2a9 data/chakral/worldgen/biome/mineral_caverns.json
 9803a33fe3dd20d5b6dd3aae0f6ba06383846490 data/chakral/worldgen/configured_feature/black_mineral_blob.json
-128aa2956df040abaf4b5612c9619d71ceefa2cb data/chakral/worldgen/configured_feature/mineral_crystal.json
+eda9d77cb9c6b8c72a215b28754740f838dad79e data/chakral/worldgen/configured_feature/mineral_crystal.json
 6a52c8a5a8f3217b431bb5496183a9857caf8ff8 data/chakral/worldgen/configured_feature/tree/wilted_tree.json
 38794336602e542b49a7b56adc80ee10f2f05731 data/chakral/worldgen/noise/blue_noise.json
 38794336602e542b49a7b56adc80ee10f2f05731 data/chakral/worldgen/noise/green_noise.json

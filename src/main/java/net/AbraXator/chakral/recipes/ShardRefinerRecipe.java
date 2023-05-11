@@ -29,7 +29,6 @@ public class ShardRefinerRecipe implements Recipe<Container> {
         this.stones = stones;
     }
 
-
     @Override
     public boolean matches(Container pContainer, Level pLevel) {
         if(pLevel.isClientSide()){

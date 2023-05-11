@@ -6,6 +6,7 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -34,6 +35,7 @@ public abstract class Chakra implements IChakra {
     private int cooldown;
     private int maxCooldown;
     public List<Style> style;
+    public final RandomSource random = RandomSource.create();
 
     public Chakra(ChakraType type, ChakraStrength chakraStrength){
         this.type = type;

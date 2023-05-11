@@ -49,17 +49,17 @@ public class HagStoneChakra extends Chakra {
     @Override
     public void onUnequip(Player player, Level level) {
         if(isInTag(player.getMainHandItem())) {
-            player.getAttribute(ForgeMod.REACH_DISTANCE.get()).removePermanentModifier(uuid);
+            player.getAttribute(ForgeMod.BLOCK_REACH.get()).removePermanentModifier(uuid);
         }
     }
 
     @Override
     public void tick(Player player, Level level) {
-        if(isInTag(player.getMainHandItem()) && !player.getAttribute(ForgeMod.REACH_DISTANCE.get()).hasModifier(new AttributeModifier(uuid, "hag_stone_range", 1.5, AttributeModifier.Operation.ADDITION))) {
-            player.getAttribute(ForgeMod.REACH_DISTANCE.get()).addPermanentModifier(new AttributeModifier(uuid, "hag_stone_range", 1.5, AttributeModifier.Operation.ADDITION));
+        if(isInTag(player.getMainHandItem()) && !player.getAttribute(ForgeMod.BLOCK_REACH.get()).hasModifier(new AttributeModifier(uuid, "hag_stone_range", 1.5, AttributeModifier.Operation.ADDITION))) {
+            player.getAttribute(ForgeMod.BLOCK_REACH.get()).addPermanentModifier(new AttributeModifier(uuid, "hag_stone_range", 1.5, AttributeModifier.Operation.ADDITION));
             hasReach = true;
         }else if(!isInTag(player.getMainHandItem())) {
-            player.getAttribute(ForgeMod.REACH_DISTANCE.get()).removeModifier(uuid);
+            player.getAttribute(ForgeMod.BLOCK_REACH.get()).removeModifier(uuid);
             hasReach = false;
         }
     }

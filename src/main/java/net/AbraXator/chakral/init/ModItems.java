@@ -6,6 +6,7 @@ import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.items.*;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.RecordItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -25,7 +26,7 @@ public class ModItems {
     public static final RegistryObject<Item> LEPIDOLITE = ITEMS.register("lepidolite", () -> new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.POWERFUL, ModChakras.LEPIDOLITE));
     public static final RegistryObject<Item> AZURITE = ITEMS.register("azurite", () -> new ChakraItem(new Item.Properties(), ChakraType.THIRD_EYE, ChakraStrength.ENLIGHTENED, ModChakras.AZURITE));
     public static final RegistryObject<Item> BLUE_LACE_AGATE = ITEMS.register("blue_lace_agate", () -> new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.FAINT, ModChakras.BLUE_LACE_AGATE));
-    public static final RegistryObject<Item> KYANITE = ITEMS.register("kyanite", () -> new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.WEAKENED, ModChakras.KYANITE));
+    public static final RegistryObject<Item> KYANITE = ITEMS.register("kyanite", () -> new ChakraItem(new Item.Properties().stacksTo(12).rarity(Rarity.COMMON), ChakraType.THROAT, ChakraStrength.WEAKENED, ModChakras.KYANITE));
     public static final RegistryObject<Item> BLUE_HOWLITE = ITEMS.register("blue_howlite", () -> new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.POWERFUL, ModChakras.BLUE_HOWLITE));
     public static final RegistryObject<Item> AQUAMARINE = ITEMS.register("aquamarine", () -> new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.ENLIGHTENED, ModChakras.AQUAMARINE));
     public static final RegistryObject<Item> AMAZONITE = ITEMS.register("amazonite", () -> new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.FAINT, ModChakras.AMAZONITE));

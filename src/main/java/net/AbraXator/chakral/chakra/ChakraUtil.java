@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -170,9 +171,10 @@ public class ChakraUtil {
 
     private static List<Style> cutColors(Chakra chakra, int len){
         List<Style> colors = chakra.getColors();
-        int i = len;
-        while(len > colors.size()){
-            i--;
+        for(int i = len; (i < colors.size() || len <= colors.size()) && len <= colors.size(); i--){
+            while(!(i < colors.size())){
+                i--;
+            }
             colors.remove(i);
         }
         return colors;

@@ -12,7 +12,7 @@ public class MineralCrystalConfiguration implements FeatureConfiguration {
                 BlockState.CODEC.fieldOf("mineral").forGetter(getter -> getter.mineral),
                 BlockState.CODEC.fieldOf("budding").forGetter(getter -> getter.budding),
                 IntProvider.codec(3, 7).fieldOf("height").forGetter(getter -> getter.height),
-                IntProvider.codec(3, 6).fieldOf("radius").forGetter(getter -> getter.radius))
+                IntProvider.codec(6, 14).fieldOf("radius").forGetter(getter -> getter.radius))
                 .apply(objectInstance, MineralCrystalConfiguration::new);
     });
 
