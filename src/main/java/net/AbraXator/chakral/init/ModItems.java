@@ -28,7 +28,7 @@ public class ModItems {
     public static final RegistryObject<Item> BLUE_LACE_AGATE = ITEMS.register("blue_lace_agate", () -> new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.FAINT, ModChakras.BLUE_LACE_AGATE));
     public static final RegistryObject<Item> KYANITE = ITEMS.register("kyanite", () -> new ChakraItem(new Item.Properties().stacksTo(12).rarity(Rarity.COMMON), ChakraType.THROAT, ChakraStrength.WEAKENED, ModChakras.KYANITE));
     public static final RegistryObject<Item> BLUE_HOWLITE = ITEMS.register("blue_howlite", () -> new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.POWERFUL, ModChakras.BLUE_HOWLITE));
-    public static final RegistryObject<Item> AQUAMARINE = ITEMS.register("aquamarine", () -> new ChakraItem(new Item.Properties(), ChakraType.THROAT, ChakraStrength.ENLIGHTENED, ModChakras.AQUAMARINE));
+    public static final RegistryObject<Item> AQUAMARINE = ITEMS.register("aquamarine", () -> new ChakraItem(new Item.Properties().craftRemainder(), ChakraType.THROAT, ChakraStrength.ENLIGHTENED, ModChakras.AQUAMARINE));
     public static final RegistryObject<Item> AMAZONITE = ITEMS.register("amazonite", () -> new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.FAINT, ModChakras.AMAZONITE));
     public static final RegistryObject<Item> RHODONITE = ITEMS.register("rhodonite", () -> new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.WEAKENED, ModChakras.RHODONITE));
     public static final RegistryObject<Item> MALACHITE = ITEMS.register("malachite", () -> new ChakraItem(new Item.Properties(), ChakraType.HEART, ChakraStrength.POWERFUL, ModChakras.MALACHITE));

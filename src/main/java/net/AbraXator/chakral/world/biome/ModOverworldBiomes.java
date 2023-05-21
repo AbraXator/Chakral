@@ -1,8 +1,6 @@
 package net.AbraXator.chakral.world.biome;
 
-import net.AbraXator.chakral.world.placements.ModPlacedFeatures;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.Carvers;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.Music;
@@ -15,6 +13,8 @@ import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import javax.annotation.Nullable;
+
+import static net.AbraXator.chakral.world.placements.ModPlacedFeatures.*;
 
 public class ModOverworldBiomes {
     protected static int calculateSkyColor(float p_194844_) {
@@ -45,15 +45,55 @@ public class ModOverworldBiomes {
         biomeBuilder.addFeature(step, featureResourceKey);
     }
 
-    public static Biome mineralCaverns(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter){
-        MobSpawnSettings.Builder mobspawnsettings$builder = new MobSpawnSettings.Builder();
-        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(placedFeatureGetter, carverGetter);
+    private static void addCaveCarvers(BiomeGenerationSettings.Builder biomeBuilder){
         biomeBuilder.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE);
         biomeBuilder.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE_EXTRA_UNDERGROUND);
         biomeBuilder.addCarver(GenerationStep.Carving.AIR, Carvers.CANYON);
-        BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
-        addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.BLACK_MINERAL_BLOB);
-        addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.MINERAL_CRYSTAL);
+    }
+
+    private static void addModOres(BiomeGenerationSettings.Builder builder){
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_COAL);
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_COAL_BURIED);
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_COPPER_SMALL);
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_COPPER_LARGE);
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_IRON);
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_IRON_SMALL);
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_GOLD);
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_GOLD_BURIED);
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_REDSTONE);
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_LAPIS);
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_LAPIS_BURIED);
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_DIAMOND_SMALL);
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_DIAMOND_LARGE);
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_DIAMOND_BURIED);
+        addFeature(builder, GenerationStep.Decoration.UNDERGROUND_ORES, BLACK_MINERAL_ORE_EMERALD);
+    }
+
+    public static Biome mineralCaverns(HolderGetter<PlacedFeature> placed, HolderGetter<ConfiguredWorldCarver<?>> carver){
+        MobSpawnSettings.Builder mobspawnsettings$builder = new MobSpawnSettings.Builder();
+        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(placed, carver);
+        addCaveCarvers(biomeBuilder);
+        //BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
+        //addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.MINERAL_CRYSTAL);
+        //addFeature(biomeBuilder, GenerationStep.Decoration.RAW_GENERATION, ModPlacedFeatures.BLACK_MINERAL_BLOB);
+        //addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.PURPLE_MINERAL_BLOB);
+        //addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.BLUE_MINERAL_BLOB);
+        //addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.LIGHT_BLUE_MINERAL_BLOB);
+        //addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.GREEN_MINERAL_BLOB);
+        //addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.YELLOW_MINERAL_BLOB);
+        //addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.ORANGE_MINERAL_BLOB);
+        //addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.RED_MINERAL_BLOB);
+        addModOres(biomeBuilder);
+        Music music = Musics.createGameMusic(SoundEvents.MUSIC_GAME);
+        return biome(true, 0.8F, 0.4F, mobspawnsettings$builder, biomeBuilder, music);
+    }
+
+    public static Biome amethystCaverns(HolderGetter<PlacedFeature> placed, HolderGetter<ConfiguredWorldCarver<?>> carver){
+        MobSpawnSettings.Builder mobspawnsettings$builder = new MobSpawnSettings.Builder();
+        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(placed, carver);
+        addCaveCarvers(biomeBuilder);
+        addModOres(biomeBuilder);
+        addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_ORES, BUDDING_AMETHYST);
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_GAME);
         return biome(true, 0.8F, 0.4F, mobspawnsettings$builder, biomeBuilder, music);
     }

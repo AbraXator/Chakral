@@ -1,4 +1,4 @@
-// 1.19.4	2023-04-25T17:09:59.1797005	Tags for minecraft:block mod id chakral
+// 1.19.4	2023-05-19T19:41:11.3098234	Tags for minecraft:block mod id chakral
 d220783c76ee528b573d60b77f9cb8a601632fb0 data/chakral/tags/blocks/crystals.json
 4d161707d813f2f501d921ce3bd0a89c7e4ac9b6 data/minecraft/tags/blocks/dirt.json
 f50cac7c9136f0aa218c8b6879a7edea1aab4d81 data/minecraft/tags/blocks/fences.json
@@ -6,7 +6,7 @@ efbf0aa480660c91034d79a695238e0cc1d13ec0 data/minecraft/tags/blocks/leaves.json
 664a6f6a1f92346cbb96680f1b614c32b1274ce1 data/minecraft/tags/blocks/logs_that_burn.json
 c26268b625b684690a9ed18f856c5d04431f0ad5 data/minecraft/tags/blocks/mineable/axe.json
 78c91d359c861fe7de2a1741e2fa7fa779205c94 data/minecraft/tags/blocks/mineable/hoe.json
-afe2cdeb1fce27f69062facd099566fe4b061e8c data/minecraft/tags/blocks/mineable/pickaxe.json
+4db446eb8d262094bccd35112c5aca13fceacd29 data/minecraft/tags/blocks/mineable/pickaxe.json
 65e77e4688d3924b5076339035f9cddcf7cff6bf data/minecraft/tags/blocks/mineable/shovel.json
 2583c014ea89b8388c4c04c4cf831a06d20ee200 data/minecraft/tags/blocks/needs_iron_tool.json
 13d788356b03efc864d8db2a5696a1d4056b529a data/minecraft/tags/blocks/needs_stone_tool.json

@@ -28,16 +28,26 @@
   "features": [
     [],
     [],
-    [
-      "minecraft:amethyst_geode"
-    ],
     [],
     [],
     [],
     [],
     [
-      "chakral:black_mineral_blob",
-      "chakral:mineral_crystal"
+      "chakral:black_mineral_ore_coal",
+      "chakral:black_mineral_ore_coal_buried",
+      "chakral:black_mineral_ore_copper_small",
+      "chakral:black_mineral_ore_copper_large",
+      "chakral:black_mineral_ore_iron",
+      "chakral:black_mineral_ore_iron_small",
+      "chakral:black_mineral_ore_gold",
+      "chakral:black_mineral_ore_gold_buried",
+      "chakral:black_mineral_ore_redstone",
+      "chakral:black_mineral_ore_lapis",
+      "chakral:black_mineral_ore_lapis_buried",
+      "chakral:black_mineral_ore_diamond_small",
+      "chakral:black_mineral_ore_diamond_large",
+      "chakral:black_mineral_ore_buried",
+      "chakral:black_mineral_ore_emerald"
     ]
   ],
   "has_precipitation": true,

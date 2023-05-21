@@ -42,7 +42,7 @@ public class BigReplaceBlobFeature extends Feature<BigReplaceBlobConfiguration> 
 
                 BlockState blockstate = worldgenlevel.getBlockState(blockpos1);
                 if (blockstate.is(block)) {
-                    this.setBlock(worldgenlevel, blockpos1, replacesphereconfiguration.replaceState);
+                    this.setBlock(worldgenlevel, blockpos1, randomsource.nextDouble() <= 0.05 ? replacesphereconfiguration.secondaryState : replacesphereconfiguration.primaryState);
                     flag = true;
                 }
             }

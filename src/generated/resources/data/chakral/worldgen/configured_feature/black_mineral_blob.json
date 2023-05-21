@@ -1,6 +1,9 @@
 {
   "type": "chakral:big_replace_blob",
   "config": {
+    "primary_state": {
+      "Name": "chakral:black_mineral"
+    },
     "radius": {
       "type": "minecraft:uniform",
       "value": {
@@ -8,7 +11,7 @@
         "min_inclusive": 32
       }
     },
-    "state": {
+    "secondary_state": {
       "Name": "chakral:black_mineral"
     },
     "target": {

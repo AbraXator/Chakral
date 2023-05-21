@@ -5,14 +5,10 @@ import net.AbraXator.chakral.init.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import net.minecraftforge.registries.tags.ITag;
 import org.jetbrains.annotations.Nullable;
 
 import java.rmi.registry.Registry;
@@ -54,8 +50,6 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blockRegistryObject.get());
             }
         });
-
-        Registry
 
         this.tag(BlockTags.DIRT).add(ModBlocks.MINERAL_RICH_DIRT.get(), ModBlocks.MINERAL_RICH_GRASS.get());
     }

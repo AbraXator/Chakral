@@ -1,0 +1,21 @@
+{
+  "type": "chakral:big_replace_blob",
+  "config": {
+    "primary_state": {
+      "Name": "minecraft:amethyst_block"
+    },
+    "radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 32,
+        "min_inclusive": 28
+      }
+    },
+    "secondary_state": {
+      "Name": "minecraft:budding_amethyst"
+    },
+    "target": {
+      "Name": "chakral:black_mineral"
+    }
+  }
+}

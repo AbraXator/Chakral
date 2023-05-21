@@ -10,34 +10,45 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.PushReaction;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ModBuddingBlock extends BuddingAmethystBlock {
     public static final int GROWTH_CHANCE = 5;
     private static final Direction[] DIRECTIONS = Direction.values();
-    private final List<Block> crystal;
+    private final List<Supplier<Block>> crystal;
 
-    public ModBuddingBlock(Properties properties, List<Block> crystal) {
-        super(properties);
-        this.crystal = crystal;
+    public ModBuddingBlock(Properties properties, Supplier<Block> crystal){
+        this(properties, List.of(crystal));
     }
 
+    public ModBuddingBlock(Properties properties, List<Supplier<Block>> crystals) {
+        super(properties);
+        this.crystal = crystals;
+    }
+
+    @Override
     public PushReaction getPistonPushReaction(BlockState pState) {
         return PushReaction.DESTROY;
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
-        if(randomSource.nextInt(5) == 0){
-            Direction direction = DIRECTIONS[randomSource.nextInt(DIRECTIONS.length)];
-            BlockPos growPos = blockPos.relative(direction);
-            BlockState growState = serverLevel.getBlockState(growPos);
+    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+        if (pRandom.nextInt(5) == 0) {
+            Direction direction = DIRECTIONS[pRandom.nextInt(DIRECTIONS.length)];
+            BlockPos blockpos = pPos.relative(direction);
+            BlockState blockstate = pLevel.getBlockState(blockpos);
             Block block = null;
-            if(canClusterGrowAtState(growState)){
-                block = crystal.get(randomSource.nextInt(crystal.size()));
+            if (canClusterGrowAtState(blockstate)) {
+                block = crystal.get(0).get();
+            } else if (blockstate.is(crystal.get(0).get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = crystal.get(1).get();
+            } else if (blockstate.is(crystal.get(1).get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = crystal.get(2).get();
             }
+
             if (block != null) {
-                BlockState budState = block.defaultBlockState().setValue(Crystal.FACING, direction).setValue(Crystal.WATERLOGGED, Boolean.valueOf(growState.getFluidState().getType() == Fluids.WATER));
-                serverLevel.setBlockAndUpdate(growPos, budState);
+                BlockState blockstate1 = block.defaultBlockState().setValue(AmethystClusterBlock.FACING, direction).setValue(AmethystClusterBlock.WATERLOGGED, Boolean.valueOf(blockstate.getFluidState().getType() == Fluids.WATER));
+                pLevel.setBlockAndUpdate(blockpos, blockstate1);
             }
         }
     }

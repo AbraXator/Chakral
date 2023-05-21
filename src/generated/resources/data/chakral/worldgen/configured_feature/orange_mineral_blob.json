@@ -1,0 +1,21 @@
+{
+  "type": "chakral:big_replace_blob",
+  "config": {
+    "primary_state": {
+      "Name": "chakral:orange_mineral"
+    },
+    "radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 32,
+        "min_inclusive": 28
+      }
+    },
+    "secondary_state": {
+      "Name": "chakral:budding_orange_mineral"
+    },
+    "target": {
+      "Name": "chakral:black_mineral"
+    }
+  }
+}
