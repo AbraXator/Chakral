@@ -1,13 +1,11 @@
 package net.AbraXator.chakral.client;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraUtil;
 import net.AbraXator.chakral.chakra.chakras.AmethystQuartzChakra;
 import net.AbraXator.chakral.chakra.chakras.DumortieriteChakra;
 import net.AbraXator.chakral.client.particle.HagstoneFragmentiumParticle;
+import net.AbraXator.chakral.client.particle.StemVaporParticle;
 import net.AbraXator.chakral.init.*;
 import net.AbraXator.chakral.client.renderer.MineralEnricherRenderer;
 import net.AbraXator.chakral.client.overlays.ChakraHearts;
@@ -16,7 +14,6 @@ import net.AbraXator.chakral.entity.dwider.DwiderRenderer;
 import net.AbraXator.chakral.entity.stemspore.StemSporeModel;
 import net.AbraXator.chakral.entity.stemspore.StemSporeRenderer;
 import net.AbraXator.chakral.networking.ModMessages;
-import net.AbraXator.chakral.networking.packet.ChakraItemNameRendererC2SPacket;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
 import net.AbraXator.chakral.client.gui.refiner.ShardRefinerScreen;
@@ -26,15 +23,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.joml.Matrix4f;
 
 @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class ClientEvents {
@@ -139,5 +132,6 @@ public final class ClientEvents {
     @SubscribeEvent
     public static void onRegisterParticleProviders(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(ModParticles.HAGSTONE_FRAGMNETIUM.get(), HagstoneFragmentiumParticle.Provider::new);
+        event.registerSpriteSet(ModParticles.STEM_SPORE.get(), StemVaporParticle.Provider::new);
     }
 }

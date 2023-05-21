@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class StemSporeRenderer<T extends StemSporeEntity> extends EntityRenderer<T> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(Chakral.MOD_ID, "textures/entity/stem_spore.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(Chakral.MOD_ID, "textures/entity/stem_vapor.png");
     private final StemSporeModel<StemSporeEntity> model;
 
     public StemSporeRenderer(EntityRendererProvider.Context pContext) {

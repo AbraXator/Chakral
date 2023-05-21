@@ -12,7 +12,8 @@ public class ModParticles {
     public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(
             ForgeRegistries.PARTICLE_TYPES, Chakral.MOD_ID);
 
-    public static final RegistryObject<SimpleParticleType> HAGSTONE_FRAGMNETIUM = PARTICLES.register("hagstone_fragmentium", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> HAGSTONE_FRAGMNETIUM = PARTICLES.register("hagstone_fragmentium", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> STEM_SPORE = PARTICLES.register("stem_vapor", () -> new SimpleParticleType(false));
 
     public static void register(IEventBus eventBus) {
         PARTICLES.register(eventBus);

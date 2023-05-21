@@ -9,13 +9,12 @@ import org.jetbrains.annotations.Nullable;
 public class HagstoneFragmentiumParticle extends SimpleAnimatedParticle {
     protected HagstoneFragmentiumParticle(ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed, SpriteSet pSprites) {
         super(pLevel, pX, pY, pZ, pSprites, -0.1F);
-        this.friction = 0.6F;
         this.xd = pXSpeed;
         this.yd = pYSpeed;
         this.zd = pZSpeed;
         this.lifetime = 600 + this.random.nextInt(12);
         this.setSpriteFromAge(pSprites);
-
+        this.hasPhysics = false;
     }
 
     public static class Provider implements ParticleProvider<SimpleParticleType> {
