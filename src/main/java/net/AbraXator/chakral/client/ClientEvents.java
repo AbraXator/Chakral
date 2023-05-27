@@ -5,14 +5,15 @@ import net.AbraXator.chakral.chakra.ChakraUtil;
 import net.AbraXator.chakral.chakra.chakras.AmethystQuartzChakra;
 import net.AbraXator.chakral.chakra.chakras.DumortieriteChakra;
 import net.AbraXator.chakral.client.particle.HagstoneFragmentiumParticle;
+import net.AbraXator.chakral.client.particle.LightRayParticle;
 import net.AbraXator.chakral.client.particle.StemVaporParticle;
+import net.AbraXator.chakral.entity.stemspore.MenacingStemshroomSporeModel;
+import net.AbraXator.chakral.entity.stemspore.MenacingStemshroomSporeRenderer;
 import net.AbraXator.chakral.init.*;
 import net.AbraXator.chakral.client.renderer.MineralEnricherRenderer;
 import net.AbraXator.chakral.client.overlays.ChakraHearts;
 import net.AbraXator.chakral.entity.dwider.DwiderModel;
 import net.AbraXator.chakral.entity.dwider.DwiderRenderer;
-import net.AbraXator.chakral.entity.stemspore.StemSporeModel;
-import net.AbraXator.chakral.entity.stemspore.StemSporeRenderer;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
@@ -101,13 +102,13 @@ public final class ClientEvents {
     @SubscribeEvent
     public static void layerDefitions(EntityRenderersEvent.RegisterLayerDefinitions event){
         event.registerLayerDefinition(DwiderModel.LAYER_LOCATION, DwiderModel::createBodyLayer);
-        event.registerLayerDefinition(StemSporeModel.LAYER_LOCATION, StemSporeModel::createBodyLayer);
+        event.registerLayerDefinition(MenacingStemshroomSporeModel.LAYER_LOCATION, MenacingStemshroomSporeModel::createBodyLayer);
     }
 
     @SubscribeEvent
     public static void entityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntities.DWIDER.get(), DwiderRenderer::new);
-        event.registerEntityRenderer(ModEntities.STEM_SPORE.get(), StemSporeRenderer::new);
+        event.registerEntityRenderer(ModEntities.MENACING_STEMSHROOM_SPORE.get(), MenacingStemshroomSporeRenderer::new);
     }
 
     @SubscribeEvent
@@ -132,6 +133,7 @@ public final class ClientEvents {
     @SubscribeEvent
     public static void onRegisterParticleProviders(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(ModParticles.HAGSTONE_FRAGMNETIUM.get(), HagstoneFragmentiumParticle.Provider::new);
-        event.registerSpriteSet(ModParticles.STEM_SPORE.get(), StemVaporParticle.Provider::new);
+        event.registerSpriteSet(ModParticles.MENACING_STEMSHROOM_SPORE.get(), StemVaporParticle.Provider::new);
+        event.registerSpriteSet(ModParticles.LIGHT_RAY.get(), LightRayParticle.Provider::new);
     }
 }

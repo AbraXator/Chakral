@@ -1,24 +1,21 @@
-package net.AbraXator.chakral.entity.stemspore;// Made with Blockbench 4.6.1
-// Exported for Minecraft version 1.17 or later with Mojang mappings
-// Paste this class into your mod and generate all required imports
-
+package net.AbraXator.chakral.entity.stemspore;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.AbraXator.chakral.entity.stemspore.MenacingStemshroomSporeEntity;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
 
-public class StemSporeModel<T extends StemSporeEntity> extends EntityModel<T> {
+public class MenacingStemshroomSporeModel<T extends MenacingStemshroomSporeEntity> extends EntityModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "stem_spore"), "main");
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "menacing_stemshroom_spore"), "main");
 	private final ModelPart bb_main;
 
-	public StemSporeModel(ModelPart root) {
+	public MenacingStemshroomSporeModel(ModelPart root) {
 		this.bb_main = root.getChild("bb_main");
 	}
 

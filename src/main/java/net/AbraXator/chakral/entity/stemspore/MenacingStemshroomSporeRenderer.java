@@ -11,13 +11,13 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-public class StemSporeRenderer<T extends StemSporeEntity> extends EntityRenderer<T> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(Chakral.MOD_ID, "textures/entity/stem_vapor.png");
-    private final StemSporeModel<StemSporeEntity> model;
+public class MenacingStemshroomSporeRenderer<T extends MenacingStemshroomSporeEntity> extends EntityRenderer<T> {
+    private static final ResourceLocation TEXTURE = new ResourceLocation(Chakral.MOD_ID, "textures/entity/menacing_stemshroom_spore.png");
+    private final MenacingStemshroomSporeModel<MenacingStemshroomSporeEntity> model;
 
-    public StemSporeRenderer(EntityRendererProvider.Context pContext) {
+    public MenacingStemshroomSporeRenderer(EntityRendererProvider.Context pContext) {
         super(pContext);
-        this.model = new StemSporeModel<>(pContext.bakeLayer(StemSporeModel.LAYER_LOCATION));
+        this.model = new MenacingStemshroomSporeModel<>(pContext.bakeLayer(MenacingStemshroomSporeModel.LAYER_LOCATION));
     }
 
     @Override

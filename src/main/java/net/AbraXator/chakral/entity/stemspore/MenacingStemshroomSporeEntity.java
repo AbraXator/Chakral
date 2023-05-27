@@ -1,29 +1,24 @@
 package net.AbraXator.chakral.entity.stemspore;
 
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
 
-public class StemSporeEntity extends Projectile {
+public class MenacingStemshroomSporeEntity extends Projectile {
     private float fallingSpeed = 0.001F;
 
-    public StemSporeEntity(EntityType<? extends Projectile> pEntityType, Level pLevel) {
+    public MenacingStemshroomSporeEntity(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+        this.noPhysics = true;
     }
 
     @Override
     public void tick() {
-        super.tick();
+        /*super.tick();
         fallingSpeed -= 0.01;
         HitResult hitResult = ProjectileUtil.getHitResult(this, this::canHitEntity);
         if(hitResult.getType() != HitResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, hitResult)){
@@ -40,7 +35,7 @@ public class StemSporeEntity extends Projectile {
             float finalSpeed = ((float) (-0.1 + fallingSpeed));
             this.setDeltaMovement(0.0, -0.1 + fallingSpeed, 0.0D);
         }
-        this.setPos(d0, d1, d2);
+        this.setPos(d0, d1, d2);*/
     }
 
     @Override

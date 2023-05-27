@@ -1,4 +1,4 @@
-// 1.19.4	2023-05-21T13:28:35.3855286	Registries
+// 1.19.4	2023-05-23T23:16:02.1545488	Registries
 abeec7ef1eebb908a25641f99f80eb3d81ab9657 data/chakral/worldgen/biome/amethyst_caverns.json
 fd647a38ae092bd5330005accf31a33f19d53017 data/chakral/worldgen/biome/mineral_caverns.json
 5102949b350ac1eaeb7be08da35bd04daee50e62 data/chakral/worldgen/configured_feature/black_mineral_blob.json
@@ -29,6 +29,7 @@ c90c852a3c9c52ea9300e3c20f0b0e7153a630cb data/chakral/worldgen/configured_featur
 1c85b37c20591da50b153851bea65f1d7595b83d data/chakral/worldgen/configured_feature/yellow_mineral_blob.json
 644a5ed87419e85f09b401d025e02f9de99ad10f data/chakral/worldgen/noise/budding_noise.json
 d09734d7b24066e421c5837f65362dba35decfbf data/chakral/worldgen/noise/colored_mineral_noise.json
+85a5f3d33bbfbee73c680a28a7443096a5d1cd0b data/chakral/worldgen/noise/mineral_rich_dirt_noise.json
 3d89b942da6910310c0c8723641d4243de3ce395 data/chakral/worldgen/placed_feature/black_mineral_blob.json
 d4731d8ddd585e921e680b90318edf2076007a13 data/chakral/worldgen/placed_feature/black_mineral_ore_buried.json
 51b024957ebe2f4a2487289470215242868647b5 data/chakral/worldgen/placed_feature/black_mineral_ore_coal.json

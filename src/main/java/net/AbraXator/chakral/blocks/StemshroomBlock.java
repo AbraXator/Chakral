@@ -1,22 +1,22 @@
 package net.AbraXator.chakral.blocks;
 
+import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.blocks.entity.StemShroomBlockEntity;
+import net.AbraXator.chakral.entity.stemspore.MenacingStemshroomSporeEntity;
 import net.AbraXator.chakral.init.ModBlockEntities;
 import net.AbraXator.chakral.init.ModEntities;
-import net.AbraXator.chakral.entity.stemspore.StemSporeEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Vec3i;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.DaylightDetectorBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -70,7 +70,7 @@ public class StemshroomBlock extends BaseEntityBlock {
             double x = pPos.getX() + ((pRandom.nextDouble() - pRandom.nextDouble()) * 20);
             double y = pPos.getY() + 5 + ((pRandom.nextDouble() - pRandom.nextDouble()) * 10);
             double z = pPos.getZ() + ((pRandom.nextDouble() - pRandom.nextDouble()) * 20);
-            StemSporeEntity entity = new StemSporeEntity(ModEntities.STEM_SPORE.get(), pLevel);
+            MenacingStemshroomSporeEntity entity = new MenacingStemshroomSporeEntity(ModEntities.menacing_stemshroom_spore.get(), pLevel);
             entity.setPos(x, y, z);
             pLevel.addFreshEntity(entity);
         }
@@ -80,18 +80,18 @@ public class StemshroomBlock extends BaseEntityBlock {
         RandomSource randomSource = level.getRandom();
         if(level.hasNearbyAlivePlayer(pos.getX(), pos.getY(), pos.getZ(), 10)){
             for(int i = 0; i <= randomSource.nextInt(5); i++){
-                StemSporeEntity entity = new StemSporeEntity(ModEntities.STEM_SPORE.get(), level);
+                MenacingStemshroomSporeEntity entity = new MenacingStemshroomSporeEntity(ModEntities.MENACING_STEMSHROOM_SPORE.get(), level);
                 Vec3 pos1;
                 do {
-                    pos1 = generatePos(randomSource, pos);
-                }while (level.getBlockState(new BlockPos(((int) pos1.x()), ((int) pos1.y()), ((int) pos1.z()))).is(Blocks.AIR));
+                    pos1 = generatePos(randomSource, pos.getCenter());
+                }while (!(level.getBlockState(new BlockPos(((int) pos1.x()), ((int) pos1.y()), ((int) pos1.z()))).is(Blocks.AIR)));
                 entity.setPos(pos1);
                 level.addFreshEntity(entity);
             }
         }
     }
 
-    private Vec3 generatePos(RandomSource randomSource, BlockPos blockPos){
+    private Vec3 generatePos(RandomSource randomSource, Vec3 blockPos){
         double u = randomSource.nextDouble();
         double v = randomSource.nextDouble();
         float theta = ((float) (u * 2 * Mth.PI));
@@ -101,9 +101,10 @@ public class StemshroomBlock extends BaseEntityBlock {
         double cosTheta = Mth.cos(theta);
         double sinPhi = Mth.sin(phi);
         double cosPhi = Mth.cos(phi);
-        double x = (r * sinPhi * cosTheta) * 5 + blockPos.getX();
-        double y = (r * sinPhi * sinTheta) * 5 + blockPos.getY();
-        double z = (r * cosPhi) * 5 + blockPos.getZ();
+        double x = (r * sinPhi * cosTheta) * 5 + blockPos.x();
+        double y = (r * sinPhi * sinTheta) * 5 + blockPos.y();
+        double z = (r * cosPhi) * 5 + blockPos.z();
+        Chakral.LOGGER.info("x: {}; y: {}; z: {}; u: {}; v: {}", x, y, z, u, v);
         return new Vec3(x, y, z);
     }
 
