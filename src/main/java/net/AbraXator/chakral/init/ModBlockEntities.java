@@ -27,7 +27,7 @@ public class    ModBlockEntities {
                     BlockEntityType.Builder.of(MineralEnricherBlockEntity::new,
                             ModBlocks.MINERAL_ENRICHER.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<GleamshroomBlockEntity>> GLEAMSHROOM_BLOCK_ENTITY =
+    public static final RegistryObject<BlockEntityType<GleamshroomBlockEntity>> GLEAM_SHROOM_BLOCK_ENTITY =
             BLOCK_ENTITIES.register("gleamshroom_block_entity", () ->
                     BlockEntityType.Builder.of(GleamshroomBlockEntity::new,
                             ModBlocks.GLEAMSHROOM.get()).build(null));

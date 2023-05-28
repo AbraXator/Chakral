@@ -1,33 +1,27 @@
 package net.AbraXator.chakral.blocks.entity;
 
-import net.AbraXator.chakral.init.ModBlocks;
-import net.AbraXator.chakral.blocks.GleamshroomBlock;
 import net.AbraXator.chakral.init.ModBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.SculkSensorBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.gameevent.GameEventListener;
 
-public class GleamshroomBlockEntity extends BlockEntity {
-    public GleamshroomBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(ModBlockEntities.GLEAMSHROOM_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
+public class GleamshroomBlockEntity extends BaseLightrayBlockEntity{
+    public GleamshroomBlockEntity(BlockPos pPos, BlockState pBlockState) {
+        super(ModBlockEntities.GLEAM_SHROOM_BLOCK_ENTITY.get(), pPos, pBlockState);
     }
 
-    public static final int maxCooldown = 999999999;
-    public static int cooldown = 0;
+    @Override
+    public void onSignalReceive(ServerLevel serverLevel, GameEventListener listener, BlockPos pos, GameEvent gameEvent, Entity owner, float distance) {
 
-    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, GleamshroomBlockEntity pBlockEntity){
-        if(pLevel.isClientSide){
-            return;
-        }
-        int lightLevel = pLevel.getBrightness(LightLayer.BLOCK, pPos);
-        if(lightLevel > 2 && cooldown == 0){
-            pLevel.setBlock(pPos, ModBlocks.GLEAMSHROOM.get().defaultBlockState().setValue(GleamshroomBlock.LIT, true), 3);
-            cooldown = maxCooldown;
-        }
-        while (cooldown >= 0){
-            cooldown--;
-        }
+    }
+
+    @Override
+    public void entityTick(Level level, BlockPos blockpos, BlockState state, BaseLightrayBlockEntity entity) {
+
     }
 }

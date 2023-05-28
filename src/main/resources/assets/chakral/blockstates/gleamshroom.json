@@ -1,9 +1,12 @@
 {
  "variants": {
-  "lit=true": {
+  "sculk_sensor_phase=active": {
    "model": "chakral:block/gleamshroom_on"
   },
-  "lit=false": {
+  "sculk_sensor_phase=cooldown": {
+   "model": "chakral:block/gleamshroom_off"
+  },
+  "sculk_sensor_phase=inactive": {
    "model": "chakral:block/gleamshroom_off"
   }
  }

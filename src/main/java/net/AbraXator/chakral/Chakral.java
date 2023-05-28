@@ -45,6 +45,7 @@ public class Chakral {
         ModSoundEvents.     register(eventBus);
         ModBiomes.          register(eventBus);
         ModFeatures.        register(eventBus);
+        ModGameEvents.      register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);

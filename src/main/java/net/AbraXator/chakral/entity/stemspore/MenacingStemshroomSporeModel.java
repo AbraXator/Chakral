@@ -2,6 +2,7 @@ package net.AbraXator.chakral.entity.stemspore;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.entity.stemspore.MenacingStemshroomSporeEntity;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -12,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class MenacingStemshroomSporeModel<T extends MenacingStemshroomSporeEntity> extends EntityModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "menacing_stemshroom_spore"), "main");
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(Chakral.MOD_ID, "menacing_stemshroom_spore"), "main");
 	private final ModelPart bb_main;
 
 	public MenacingStemshroomSporeModel(ModelPart root) {

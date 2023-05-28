@@ -34,7 +34,7 @@ public class LightraySelector {
     }
 
     private boolean shouldReplaceRay(LightrayData data, long ticks) {
-        if (this.currentLightray.isEmpty()) return false;
+        if (this.currentLightray.isEmpty()) return true;
         else {
             Pair<LightrayData, Long> pair = this.currentLightray.get();
             long ticks1 = pair.getRight();
@@ -47,11 +47,7 @@ public class LightraySelector {
     }
 
     public Optional<LightrayData> chosenRay(long ticks){
-        if (this.currentLightray.isEmpty()){
-            return Optional.empty();
-        }else {
-            return this.currentLightray.get().getRight() < ticks ? Optional.of(currentLightray.get().getLeft()) : Optional.empty();
-        }
+        return this.currentLightray.filter(lightrayDataLongPair -> lightrayDataLongPair.getRight() < ticks).map(lightrayDataLongPair -> currentLightray.get().getLeft());
     }
 
     public void startOver(){

@@ -7,7 +7,6 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SimpleAnimatedParticle;
 import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.gameevent.PositionSource;
 import net.minecraft.world.phys.Vec3;
@@ -87,9 +86,9 @@ public class LightRayParticle extends SimpleAnimatedParticle {
         this.xo = this.x;
         this.yo = y;
         this.zo = z;
-        if(this.age++ >= this.lifetime){
+        if (this.age++ >= this.lifetime) {
             this.remove();
-        }else {
+        } else {
             Optional<Vec3> optional = this.target.getPosition(this.level);
             optional.ifPresentOrElse(vec3 -> {
                 int lifetimeRemaining = this.lifetime - this.age;
@@ -119,7 +118,7 @@ public class LightRayParticle extends SimpleAnimatedParticle {
         @Nullable
         @Override
         public Particle createParticle(LightRayParticleOption pType, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
-            return new LightRayParticle(pLevel, pX, pY, pZ, sprites, pType.getDestination(), pType.getArrivalInTicks());
+            return new LightRayParticle(pLevel, pX, pY, pZ, sprites, pType.destination(), pType.arrivalInTicks());
         }
     }
 }

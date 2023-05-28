@@ -8,7 +8,6 @@ import net.AbraXator.chakral.init.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.BlockPositionSource;
@@ -19,7 +18,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Locale;
 
-public class LightRayParticleOption implements ParticleOptions {
+public record LightRayParticleOption(PositionSource destination, int arrivalInTicks) implements ParticleOptions {
     public static final Codec<LightRayParticleOption> CODEC = RecordCodecBuilder.create(objectInstance -> {
         return objectInstance.group(
                 PositionSource.CODEC.fieldOf("destination").forGetter(o -> o.destination),
@@ -27,7 +26,7 @@ public class LightRayParticleOption implements ParticleOptions {
         ).apply(objectInstance, LightRayParticleOption::new);
     });
 
-    public static final ParticleOptions.Deserializer<LightRayParticleOption> DESERIALIZER = new Deserializer<LightRayParticleOption>() {
+    public static final Deserializer<LightRayParticleOption> DESERIALIZER = new Deserializer<LightRayParticleOption>() {
         @Override
         public LightRayParticleOption fromCommand(ParticleType<LightRayParticleOption> pParticleType, StringReader pReader) throws CommandSyntaxException {
             pReader.expect(' ');
@@ -50,14 +49,6 @@ public class LightRayParticleOption implements ParticleOptions {
         }
     };
 
-    private final PositionSource destination;
-    private final int arrivalInTicks;
-
-    public LightRayParticleOption(PositionSource destination, int arrivalInTicks) {
-        this.destination = destination;
-        this.arrivalInTicks = arrivalInTicks;
-    }
-
     @Override
     public ParticleType<?> getType() {
         return ModParticles.LIGHT_RAY.get();
@@ -71,18 +62,10 @@ public class LightRayParticleOption implements ParticleOptions {
 
     @Override
     public String writeToString() {
-        Vec3 vec3 = this.destination.getPosition((Level)null).get();
+        Vec3 vec3 = this.destination.getPosition((Level) null).get();
         double d0 = vec3.x();
         double d1 = vec3.y();
         double d2 = vec3.z();
         return String.format(Locale.ROOT, "%s %.2f %.2f %.2f %d", ForgeRegistries.PARTICLE_TYPES.getKey(this.getType()), d0, d1, d2, this.arrivalInTicks);
-    }
-
-    public PositionSource getDestination() {
-        return this.destination;
-    }
-
-    public int getArrivalInTicks() {
-        return this.arrivalInTicks;
     }
 }
