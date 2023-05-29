@@ -2,6 +2,7 @@ package net.AbraXator.chakral.data;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.init.ModBlocks;
+import net.AbraXator.chakral.init.ModItems;
 import net.AbraXator.chakral.init.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -24,6 +25,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         this.tag(ModTags.Items.SHROOMS).add(ModBlocks.STEMSHROOM.get().asItem(), ModBlocks.GLEAMSHROOM.get().asItem());
         this.tag(ItemTags.LOGS).add(ModBlocks.WILTED_LOG.get().asItem());
         this.tag(ItemTags.PLANKS).add(ModBlocks.WILTED_PLANKS.get().asItem());
+        this.tag(ItemTags.MUSIC_DISCS).add(ModItems.MUSIC_DISC_CRYSTALLIZE.get());
         this.copy(ModTags.Blocks.CRYSTALS, ModTags.Items.CRYSTALS);
     }
 }

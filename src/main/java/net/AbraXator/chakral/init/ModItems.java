@@ -61,6 +61,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> SHARD_DUST = ITEMS.register("shard_dust", () ->
             new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> MUSIC_DISC_CRYSTALLIZE = ITEMS.register("music_disc_crystallize", () ->
+            new RecordItem(8, ModSoundEvents.CRYSTALLIZE, new Item.Properties().stacksTo(1).rarity(Rarity.RARE), 3400));
+
     public static final RegistryObject<Item> RAW_STEMSHROOM_STEM = ITEMS.register("raw_stemshroom_stem", () ->
             new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationMod(0.3F).build())));
     public static final RegistryObject<Item> COOKED_STEMSHROOM_STEM = ITEMS.register("cooked_stemshroom_stem", () ->
@@ -81,9 +85,6 @@ public class ModItems {
             new RefinerKit(new Item.Properties(), ChakraStrength.POWERFUL));
     public static final RegistryObject<Item> ENGLIGHTENED_REFINER_KIT = ITEMS.register("enlightened_refiner_kit", () ->
             new RefinerKit(new Item.Properties(), ChakraStrength.ENLIGHTENED));
-
-    public static final RegistryObject<Item> MUSIC_DISC = ITEMS.register("music_disc", () ->
-            new RecordItem(10, ModSoundEvents.SOUND1, new Item.Properties(), 3060));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

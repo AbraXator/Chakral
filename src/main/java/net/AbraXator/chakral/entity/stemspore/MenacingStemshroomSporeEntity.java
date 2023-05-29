@@ -20,16 +20,14 @@ public class MenacingStemshroomSporeEntity extends Projectile {
     public void tick() {
         Player player = level.getNearestPlayer(position().x(), position().y(), position().z(), 6D, false);
         if(player != null) {
-            float distance = ((float) position().distanceTo(player.getPosition(0)));
+            float distance = ((float) position().distanceTo(player.position()));
             double distanceFraction = 1.0D / distance;
             float x = (float) Mth.lerp(distanceFraction, this.getX(), player.getX());
             float y = (float) Mth.lerp(distanceFraction, this.getY(), player.getY());
             float z = (float) Mth.lerp(distanceFraction, this.getZ(), player.getZ());
-            this.setPos(x, y, z);
-
 
             HitResult hitresult = ProjectileUtil.getHitResult(this, this::canHitEntity);
-            if (hitresult.getType() != HitResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, hitresult)) {
+            if (hitresult.getType() != HitResult.Type.MISS) {
                 this.onHit(hitresult);
                 this.discard();
             }
