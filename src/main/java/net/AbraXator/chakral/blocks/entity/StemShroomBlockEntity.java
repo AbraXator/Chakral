@@ -1,6 +1,5 @@
 package net.AbraXator.chakral.blocks.entity;
 
-import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.entity.stemspore.MenacingStemshroomSporeEntity;
 import net.AbraXator.chakral.init.ModBlockEntities;
 import net.AbraXator.chakral.init.ModEntities;
@@ -10,15 +9,15 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.gameevent.GameEventListener;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class StemShroomBlockEntity extends BaseLightrayBlockEntity {
+public class StemShroomBlockEntity extends BaseLightrayBlockEntity{
     public StemShroomBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlockEntities.STEMSHROOM_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
     }
@@ -26,14 +25,23 @@ public class StemShroomBlockEntity extends BaseLightrayBlockEntity {
     @Override
     public void onSignalReceive(ServerLevel serverLevel, GameEventListener listener, BlockPos pos, GameEvent gameEvent, @Nullable Entity owner, float distance) {
         RandomSource randomSource = serverLevel.getRandom();
-        for(int i = 0; i <= randomSource.nextInt(5); i++){
-            MenacingStemshroomSporeEntity entity = new MenacingStemshroomSporeEntity(ModEntities.MENACING_STEMSHROOM_SPORE.get(), level);
-            Vec3 pos1;
+        for(int i = 0; i <= (randomSource.nextInt(7)) - 3; i++){
+            MenacingStemshroomSporeEntity entity = new MenacingStemshroomSporeEntity(ModEntities.MENACING_STEMSHROOM_SPORE.get(), serverLevel);
+            Vec3 vec3;
+            Vec3 vec31 = this.getBlockPos().getCenter();
             do {
-                pos1 = generatePos(randomSource, pos.getCenter());
-            }while (!(level.getBlockState(new BlockPos(((int) pos1.x()), ((int) pos1.y()), ((int) pos1.z()))).is(Blocks.AIR)));
-            entity.setPos(pos1);
-            level.addFreshEntity(entity);
+                vec3 = generatePos(randomSource, this.getBlockPos().getCenter());
+            }while(!(serverLevel.getBlockState(BlockPos.containing(vec3)).is(Blocks.AIR)));
+            do {
+                vec31.offsetRandom(randomSource, 0.5F);
+            }while(!(serverLevel.getBlockState(BlockPos.containing(vec31)).is(Blocks.AIR)));
+            float powX = (float) (vec31.x() - vec3.x());
+            float powY = (float) (vec31.y() - vec3.y());
+            float powZ = (float) (vec31.z() - vec3.z());
+            Vec3 deltaMov = new Vec3(powX, powY, powZ);
+            entity.setPos(vec31);
+            entity.addDeltaMovement(deltaMov);
+            serverLevel.addFreshEntity(entity);
         }
     }
 
@@ -50,7 +58,6 @@ public class StemShroomBlockEntity extends BaseLightrayBlockEntity {
         double x = (r * sinPhi * cosTheta) * 5 + blockPos.x();
         double y = (r * sinPhi * sinTheta) * 5 + blockPos.y();
         double z = (r * cosPhi) * 5 + blockPos.z();
-        Chakral.LOGGER.info("x: {}; y: {}; z: {}; u: {}; v: {}", x, y, z, u, v);
         return new Vec3(x, y, z);
     }
 

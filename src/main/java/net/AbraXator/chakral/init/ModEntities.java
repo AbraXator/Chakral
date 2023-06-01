@@ -18,7 +18,7 @@ public class ModEntities {
             .sized(1.5F, 1.5F)
             .build("dwider"));
 
-    public static final RegistryObject<EntityType<MenacingStemshroomSporeEntity>> MENACING_STEMSHROOM_SPORE = ENTITIES.register("menacing_stemshroom_spore", () -> EntityType.Builder.of(MenacingStemshroomSporeEntity::new, MobCategory.MISC)
+    public static final RegistryObject<EntityType<MenacingStemshroomSporeEntity>> MENACING_STEMSHROOM_SPORE = ENTITIES.register("menacing_stemshroom_spore", () -> EntityType.Builder.<MenacingStemshroomSporeEntity>of(MenacingStemshroomSporeEntity::new, MobCategory.MISC)
             .noSave()
             .sized(1F, 1F)
             .clientTrackingRange(4)

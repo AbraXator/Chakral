@@ -5,8 +5,8 @@ import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 import org.jetbrains.annotations.Nullable;
 
-public class StemVaporParticle extends TextureSheetParticle {
-    public StemVaporParticle(ClientLevel pLevel, double pX, double pY, double pZ) {
+public class StemshroomSporeParticle extends TextureSheetParticle {
+    public StemshroomSporeParticle(ClientLevel pLevel, double pX, double pY, double pZ) {
         super(pLevel, pX, pY, pZ);
         this.setSize(0.05F, 0.05F);
         this.gravity = 0.006F;
@@ -28,7 +28,7 @@ public class StemVaporParticle extends TextureSheetParticle {
         @Nullable
         @Override
         public Particle createParticle(SimpleParticleType pType, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
-            StemVaporParticle particle = new StemVaporParticle(pLevel, pX, pY, pZ);
+            StemshroomSporeParticle particle = new StemshroomSporeParticle(pLevel, pX, pY, pZ);
             particle.pickSprite(spriteSet);
             return particle;
         }

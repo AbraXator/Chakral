@@ -6,7 +6,7 @@ import net.AbraXator.chakral.chakra.chakras.AmethystQuartzChakra;
 import net.AbraXator.chakral.chakra.chakras.DumortieriteChakra;
 import net.AbraXator.chakral.client.particle.HagstoneFragmentiumParticle;
 import net.AbraXator.chakral.client.particle.LightRayParticle;
-import net.AbraXator.chakral.client.particle.StemVaporParticle;
+import net.AbraXator.chakral.client.particle.StemshroomSporeParticle;
 import net.AbraXator.chakral.entity.stemspore.MenacingStemshroomSporeModel;
 import net.AbraXator.chakral.entity.stemspore.MenacingStemshroomSporeRenderer;
 import net.AbraXator.chakral.init.*;
@@ -133,7 +133,7 @@ public final class ClientEvents {
     @SubscribeEvent
     public static void onRegisterParticleProviders(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(ModParticles.HAGSTONE_FRAGMNETIUM.get(), HagstoneFragmentiumParticle.Provider::new);
-        event.registerSpriteSet(ModParticles.MENACING_STEMSHROOM_SPORE.get(), StemVaporParticle.Provider::new);
+        event.registerSpriteSet(ModParticles.STEMSHROOM_SPORE.get(), StemshroomSporeParticle.Provider::new);
         event.registerSpriteSet(ModParticles.LIGHT_RAY.get(), LightRayParticle.Provider::new);
     }
 }

@@ -57,7 +57,7 @@ public class LightrayListener implements GameEventListener {
     }
 
     public LightrayListener(PositionSource source, int listenerRange, LightrayConfig config){
-        this(source, listenerRange, config, (LightrayData) null, new LightraySelector(), 0);
+        this(source, listenerRange, config, null, new LightraySelector(), 0);
     }
 
     @Override
