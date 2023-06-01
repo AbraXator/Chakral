@@ -5,6 +5,7 @@ import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -23,7 +24,7 @@ public class AmethystQuartzChakra extends Chakra {
 
     @Override
     public void openInfoSidePanel(ChakralNexusScreen screen, PoseStack poseStack, int x, int y) {
-
+        screen.blit(poseStack, x + 173, y, 176, 0, 68, 85);
     }
 
     @Override

@@ -60,10 +60,10 @@ public final class ClientEvents {
                         dumortieriteChakra.render(event, block);
                     }
                 }
-                if(chakra instanceof AmethystQuartzChakra quartzChakra){
+                /*if(chakra instanceof AmethystQuartzChakra quartzChakra){
                     GameRenderer gameRenderer = Minecraft.getInstance().gameRenderer;
                     gameRenderer.loadEffect(new ChakralLocation("shaders/novice.json"));
-                }
+                }*/
             });
         }
 
