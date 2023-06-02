@@ -1,6 +1,8 @@
 package net.AbraXator.chakral.chakra;
 
 import net.AbraXator.chakral.utils.ChakralLocation;
+import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
@@ -35,11 +37,16 @@ public abstract class Chakra implements IChakra {
     private int cooldown;
     private int maxCooldown;
     public List<Style> style;
+    public boolean showSideTip = false;
     public final RandomSource random = RandomSource.create();
 
     public Chakra(ChakraType type, ChakraStrength chakraStrength){
         this.type = type;
         this.strenght = chakraStrength;
+    }
+
+    public AbstractWidget openInfoSidePanel(int x, int y) {
+        return null;
     }
 
     public ResourceLocation getId() {
@@ -124,13 +131,14 @@ public abstract class Chakra implements IChakra {
 
     public void onDamage(LivingDamageEvent event){}
 
-    public void onDestroyBlock(BlockEvent.BreakEvent event){};
+    public void onDestroyBlock(BlockEvent.BreakEvent event){}
 
-    public void onAttack(AttackEntityEvent event){};
+    public void onAttack(AttackEntityEvent event){}
 
     public void leftClick(PlayerInteractEvent.LeftClickEmpty event){}
 
     public void interact(PlayerInteractEvent event){}
+
 
     public List<Style> chakraColor(String... hex){
         List<Style> list = new ArrayList<>();

@@ -1,41 +1,43 @@
 package net.AbraXator.chakral.client.gui.chakralnexus;
 
-import com.electronwill.nightconfig.core.CommentedConfig;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraUtil;
-import net.AbraXator.chakral.chakra.IChakra;
+import net.AbraXator.chakral.client.gui.MouseUtil;
 import net.AbraXator.chakral.config.ChakralClientConfig;
-import net.AbraXator.chakral.items.ChakraItem;
 import net.AbraXator.chakral.items.NecklaceItem;
 import net.AbraXator.chakral.utils.ChakralLocation;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
+import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.components.AbstractButton;
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Renderable;
+import net.minecraft.client.gui.components.events.GuiEventListener;
+import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.commands.arguments.coordinates.Vec2Argument;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec2;
+import org.jline.reader.Widget;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu> {
-    public static final ResourceLocation BACKGROUND_TEXTURE =
+public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu> implements GuiEventListener {
+    public static final ResourceLocation CHAKRAL_NEXUS_LOCATION =
             new ChakralLocation("textures/gui/container/chakral_nexus.png");
-    public static final ResourceLocation INVENTORY =
-            new ChakralLocation("textures/gui/container/chakral_nexus.png");
+    public static boolean hasSideTip;
 
     private final Map<ChakraStrength, Vec2> posMap = Util.make(new LinkedHashMap<>(), (map) -> {
         map.put(ChakraStrength.FAINT, new Vec2(55, 34));
@@ -52,15 +54,18 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
     protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1, 1, 1, 1);
-        RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
+        RenderSystem.setShaderTexture(0, CHAKRAL_NEXUS_LOCATION);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
+        var map = posMap.entrySet()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
         //imageWidth = 176;
         //imageHeight = 166;
         //resize(Minecraft.getInstance(), 256, 256);
-        this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
-        this.blit(pPoseStack, x + 130, y + 10, 204, 192, 22, 63);
-        renderChakras(pPoseStack, pPartialTick, pMouseX, pMouseY, x, y);
+        blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+        blit(pPoseStack, x + 130, y + 10, 204, 192, 22, 63);
+        renderChakras(pPoseStack, pPartialTick, pMouseX, pMouseY, x, y, map);
     }
 
     @Override
@@ -70,29 +75,29 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
         renderTooltip(pPoseStack, pMouseX, pMouseY);
     }
 
-    private void renderChakras(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY, int x, int y){
+    private void renderChakras(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY, int x, int y, Map<Vec2, ChakraStrength> map){
         ItemStack item = this.menu.getItemInSlot(0);
         if(!(item.getItem() instanceof NecklaceItem)) return;
         ChakraUtil.getChakras(item).forEach(chakraItem -> {
             Vec2 pos = posMap.get(chakraItem.getChakra().getStrenght());
             ChakralLocation chakralLocation = new ChakralLocation("textures/gui/button/" + chakraItem.getDescriptionId().replace("item.chakral.", "") + "_button.png");
-            RenderSystem.setShaderTexture(0, chakralLocation);
-            blit(pPoseStack, (int) (x + pos.x), (int) (y + pos.y), 0, 0, 19, 16);
+            addWidget(new ChakralButton((int) (x + pos.x), (int) (y + pos.y), 19, 16, chakraItem.getChakra(), chakralLocation, pButton -> {
+                AbstractWidget guiComponent = chakraItem.getChakra().openInfoSidePanel(x, y);
+                if(guiComponent != null) addWidget(guiComponent);
+            }));
         });
-
-        Chakra selectedChakra = mouseAboveChakra(item, pMouseX, pMouseY);
-        if(selectedChakra != null){
-            selectedChakra.openInfoSidePanel(this, pPoseStack, x, y);
-        }
     }
 
-    public Chakra mouseAboveChakra(ItemStack necklace, int pMouseX, int pMouseY){
-        Map<Vec2, ChakraStrength> map = posMap.entrySet()
-                .stream()
-                .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
-        ChakraStrength strength = map.get(new Vec2(pMouseX, pMouseY));
-        if(strength == null) return null;
-        else return ChakraUtil.getChakra(necklace, strength.getIndex());
+    public Optional<Chakra> mouseAboveChakra(ItemStack necklace, int x, int y, int pMouseX, int pMouseY, Map<Vec2, ChakraStrength> map){
+        AtomicReference<Optional<ChakraStrength>> strength = new AtomicReference<>(Optional.empty());
+        map.forEach((vec2, chakraStrength1) -> {
+            boolean flag = MouseUtil.isMouseOver(pMouseX, pMouseY, x, y, (int) vec2.x, (int) vec2.y, 19, 16);
+            if(flag){
+                strength.set(Optional.of(chakraStrength1));
+            }
+        });
+        if(strength.get().isEmpty()) return Optional.empty();
+        else return ChakraUtil.getChakra(necklace, strength.get().get());
     }
 
     public static Tuple<Integer, Integer> getButtonOffset(boolean isCreative) {
@@ -137,5 +142,27 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
         }
 
         return list;
+    }
+
+    public class ChakralButton extends Button {
+        private final Chakra chakra;
+        private final ResourceLocation textureLocation;
+
+        public ChakralButton(int pX, int pY, int pWidth, int pHeight, Chakra chakra, ChakralLocation textureLocation, Button.OnPress onPress) {
+            super(pX, pY, pWidth, pHeight, CommonComponents.EMPTY, onPress, DEFAULT_NARRATION);
+            this.chakra = chakra;
+            this.textureLocation = textureLocation;
+        }
+
+        @Override
+        public void render(PoseStack poseStack, int pMouseX, int pMouseY, float pPartialTick) {
+            RenderSystem.setShaderTexture(0, textureLocation);
+            blit(poseStack, this.getX(), this.getY(), 0, 0, this.getWidth(), this.getHeight());
+            if(this.isHoveredOrFocused()){
+                RenderSystem.setShaderTexture(0, CHAKRAL_NEXUS_LOCATION);
+                blit(poseStack, this.getX(), this.getY(), 234, 85, this.getWidth(), this.getHeight());
+            }
+            super.renderWidget(poseStack, pMouseX, pMouseY, pPartialTick);
+        }
     }
 }

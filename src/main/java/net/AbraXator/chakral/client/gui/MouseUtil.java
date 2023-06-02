@@ -1,4 +1,4 @@
-package net.AbraXator.chakral.utils;
+package net.AbraXator.chakral.client.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.MouseHandler;
@@ -10,6 +10,10 @@ public class MouseUtil {
 
     public static boolean isMouseOver(double mouseX, double mouseY, int x, int y, int size) {
         return isMouseOver(mouseX, mouseY, x, y, size, size);
+    }
+
+    public static boolean isMouseOver(double mouseX, double mouseY, int x, int y, int offsetX, int offsetY, int sizeX, int sizeY) {
+        return isMouseOver(mouseX, mouseY, x + offsetX, y + offsetY, sizeX, sizeY);
     }
 
     public static boolean isMouseOver(double mouseX, double mouseY, int x, int y, int sizeX, int sizeY) {

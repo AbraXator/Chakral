@@ -14,10 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static net.AbraXator.chakral.chakra.ChakraRegistry.CHAKRAS;
 
@@ -62,6 +59,11 @@ public class ChakraUtil {
         }
 
         return null;
+    }
+
+    public static Optional<Chakra> getChakra(ItemStack itemStack, ChakraStrength chakraStrength){
+        Chakra chakra = getChakra(itemStack, chakraStrength.getIndex());
+        return chakra != null ? Optional.of(chakra) : Optional.empty();
     }
 
     public static Map<ItemStack, Integer> stoneIndexInSlot(ItemStack itemStack) {

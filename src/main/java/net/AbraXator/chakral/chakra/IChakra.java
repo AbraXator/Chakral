@@ -7,7 +7,5 @@ import net.minecraft.network.chat.Style;
 import java.util.List;
 
 public interface IChakra {
-    void openInfoSidePanel(ChakralNexusScreen screen, PoseStack poseStack, int x, int y);
-
     List<Style> getColors();
 }

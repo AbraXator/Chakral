@@ -4,7 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.client.gui.renderer.FluidTankRenderer;
-import net.AbraXator.chakral.utils.MouseUtil;
+import net.AbraXator.chakral.client.gui.MouseUtil;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
