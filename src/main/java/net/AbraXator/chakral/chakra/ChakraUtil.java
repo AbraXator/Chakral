@@ -88,9 +88,8 @@ public class ChakraUtil {
         if(item instanceof NecklaceItem necklaceItem){
             List<ChakraItem> list = new ArrayList<>();
             for(int i = 1; i <= 4; i++){
-                if(ItemStack.of(itemStack.getTagElement("Stone" + i)).getItem() instanceof ChakraItem chakraItem){
-                    list.add(chakraItem);
-                }
+                if(ItemStack.of(itemStack.getTagElement("Stone" + i)).getItem() instanceof ChakraItem chakraItem) list.add(chakraItem);
+                else list.add(null);
             }
             return list;
         }
@@ -102,7 +101,7 @@ public class ChakraUtil {
         List<Chakra> chakras = new ArrayList<>();
         player.getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(necklaceCap -> {
             getChakras(necklaceCap.getNecklace()).forEach(chakraItem -> {
-                chakras.add(chakraItem.getChakra());
+                if(chakraItem != null) chakras.add(chakraItem.getChakra());
             });
         });
         return chakras;
