@@ -4,7 +4,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.AbraXator.chakral.blocks.BaseLightrayBlock;
 import net.AbraXator.chakral.blocks.entity.BaseLightrayBlockEntity;
-import net.AbraXator.chakral.blocks.entity.GleamshroomBlockEntity;
 import net.AbraXator.chakral.client.particle.LightRayParticleOption;
 import net.AbraXator.chakral.init.ModGameEvents;
 import net.minecraft.core.BlockPos;
@@ -13,20 +12,18 @@ import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SculkSensorPhase;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.gameevent.GameEventListener;
 import net.minecraft.world.level.gameevent.PositionSource;
-import net.minecraft.world.level.gameevent.vibrations.VibrationListener;
-import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.phys.Vec3;
 
-import javax.annotation.Nullable;;
-import java.util.Objects;
+import javax.annotation.Nullable;
 import java.util.Optional;
+
+;
 
 public class LightrayListener implements GameEventListener {
     protected final PositionSource listenerSource;

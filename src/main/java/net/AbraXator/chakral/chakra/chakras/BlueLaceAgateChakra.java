@@ -1,10 +1,8 @@
 package net.AbraXator.chakral.chakra.chakras;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
-import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Style;
@@ -39,7 +37,7 @@ public class BlueLaceAgateChakra extends Chakra {
                         double d2 = level.random.nextDouble() - level.random.nextDouble();
                         double d3 = level.random.nextDouble() - level.random.nextDouble();
                         double d4 = level.random.nextDouble() - level.random.nextDouble();
-                        player.level.addParticle(ParticleTypes.BUBBLE, player.getX() + d2, player.getY() + d3, player.getZ() + d4, vec3.x, vec3.y, vec3.z);
+                        player.level().addParticle(ParticleTypes.BUBBLE, player.getX() + d2, player.getY() + d3, player.getZ() + d4, vec3.x, vec3.y, vec3.z);
                     }
 
                     player.hurt(player.damageSources().drown(), 2.0F);
@@ -61,10 +59,6 @@ public class BlueLaceAgateChakra extends Chakra {
         }
     }
 
-    @Override
-    public void openInfoSidePanel(ChakralNexusScreen screen, PoseStack poseStack, int x, int y) {
-
-    }
 
     @Override
     public List<Style> getColors() {

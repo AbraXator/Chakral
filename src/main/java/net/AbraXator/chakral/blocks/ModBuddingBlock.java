@@ -18,17 +18,12 @@ public class ModBuddingBlock extends BuddingAmethystBlock {
     private final List<Supplier<Block>> crystal;
 
     public ModBuddingBlock(Properties properties, Supplier<Block> crystal){
-        this(properties, List.of(crystal));
+        this(properties.pushReaction(PushReaction.DESTROY), List.of(crystal));
     }
 
     public ModBuddingBlock(Properties properties, List<Supplier<Block>> crystals) {
         super(properties);
         this.crystal = crystals;
-    }
-
-    @Override
-    public PushReaction getPistonPushReaction(BlockState pState) {
-        return PushReaction.DESTROY;
     }
 
     @Override

@@ -1,16 +1,17 @@
 package net.AbraXator.chakral.client.gui.necklace;
 
-import net.AbraXator.chakral.init.ModBlocks;
 import net.AbraXator.chakral.chakra.ChakraStrength;
+import net.AbraXator.chakral.init.ModBlocks;
 import net.AbraXator.chakral.init.ModMenuTypes;
-import net.AbraXator.chakral.init.ModTags;
 import net.AbraXator.chakral.items.ChakraItem;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.*;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
@@ -32,7 +33,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
     public NecklaceSlotterMenu(int pContainerId, Inventory inv, final ContainerLevelAccess access) {
         super(ModMenuTypes.NECKLACE_SLOTTER_MENU.get(), pContainerId);
         this.access = access;
-        this.level = inv.player.level;
+        this.level = inv.player.level();
         //slot 1 - necklace
         this.addSlot(new NecklaceSlot(this.container, 0, 80, 22));
         //slot 2 - stone golden necklace
@@ -78,7 +79,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
                 pPlayer.addItem(itemStack);
             }
         }
-        if(!pPlayer.level.isClientSide){
+        if(!pPlayer.level().isClientSide){
             ItemStack necklace = this.container.removeItem(0, this.container.getMaxStackSize());
             ItemStack stone = this.container.removeItem(1, this.container.getMaxStackSize());
             if(!necklace.isEmpty() && !stone.isEmpty() && necklace.hasTag()){

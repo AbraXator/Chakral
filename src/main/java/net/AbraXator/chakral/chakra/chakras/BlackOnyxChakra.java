@@ -1,10 +1,8 @@
 package net.AbraXator.chakral.chakra.chakras;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
-import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.BlackOnyxLandS2CPacket;
 import net.minecraft.client.renderer.debug.DebugRenderer;
@@ -39,7 +37,7 @@ public class BlackOnyxChakra extends Chakra {
         Optional<Entity> optionalEntity = DebugRenderer.getTargetedEntity(player, 15);
         if(countdown == 0) dash(optionalEntity, player);
         //if(!player.isOnGround()) System.out.println(player.getDeltaMovement());
-        if(player.fallDistance > 0.0F && player.isOnGround() && canCauseDamage){
+        if(player.fallDistance > 0.0F && player.onGround() && canCauseDamage){
             land(player.getOnPos().getCenter(), level, player);
         }
 
@@ -92,11 +90,6 @@ public class BlackOnyxChakra extends Chakra {
                 countdown = 50;
             }
         });
-    }
-
-    @Override
-    public void openInfoSidePanel(ChakralNexusScreen screen, PoseStack poseStack, int x, int y) {
-
     }
 
     @Override

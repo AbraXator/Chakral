@@ -1,9 +1,9 @@
 package net.AbraXator.chakral.client.gui.necklace;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.client.gui.MouseUtil;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -28,36 +28,34 @@ public class NecklaceInserterScreen extends AbstractContainerScreen<NecklaceInse
     }
 
     @Override
-    protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
+    protected void renderBg(GuiGraphics guiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1, 1, 1, 1);
-        if(this.menu.isRainbow){
-            RenderSystem.setShaderTexture(0, TEXTURE_RAINBOW);
-        }else {
-            RenderSystem.setShaderTexture(0, TEXTURE_NETHERITE);
-        }
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+        if(this.menu.isRainbow){
+            guiGraphics.blit(TEXTURE_RAINBOW, x, y, 0, 0, imageWidth, imageHeight);
+        }else {
+            guiGraphics.blit(TEXTURE_NETHERITE, x, y, 0, 0, imageWidth, imageHeight);
+        }
 
         if(this.menu.isRainbow){
             if(isMouseAboveArea(pMouseX, pMouseY, x, y, 16, 11, 20, 20)){
-                this.blit(pPoseStack, x + 16, y + 11, 196, 40, 20, 20);
+                guiGraphics.blit(TEXTURE_RAINBOW, x + 16, y + 11, 196, 40, 20, 20);
             }
         }else {
             if(isMouseAboveArea(pMouseX, pMouseY, x, y, 140, 11, 20, 20)){
-                this.blit(pPoseStack, x + 140, y + 11, 176, 40, 20, 20);
+                guiGraphics.blit(TEXTURE_NETHERITE, x + 140, y + 11, 176, 40, 20, 20);
             }
         }
-        RenderSystem.setShaderTexture(0, INVENTIORY);
-        this.blit(pPoseStack, x, y + 125, 0, 0, imageWidth, INVENTORY_Y);
+        guiGraphics.blit(INVENTIORY, x, y + 125, 0, 0, imageWidth, INVENTORY_Y);
     }
 
     @Override
-    public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
-        renderBackground(pPoseStack);
-        super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
-        renderTooltip(pPoseStack, pMouseX, pMouseY);
+    public void render(GuiGraphics guiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        renderBackground(guiGraphics);
+        super.render(guiGraphics, pMouseX, pMouseY, pPartialTick);
+        renderTooltip(guiGraphics, pMouseX, pMouseY);
     }
 
     @Override
@@ -83,19 +81,7 @@ public class NecklaceInserterScreen extends AbstractContainerScreen<NecklaceInse
     }
 
     @Override
-    protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
-        this.font.draw(pPoseStack, this.title, (this.imageWidth - this.font.width(this.title)) / 2f, 10, 0x404040);
-    }
+    protected void renderLabels(GuiGraphics p_281635_, int p_282681_, int p_283686_) {
 
-    //public void drawTexturedRect(int x, int y, int u, int v, int width, int height) {
-    //    float f = 1F / (float)textureXSize;
-    //    float f1 = 1F / (float)textureYSize;
-    //    BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
-    //    bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-    //    bufferBuilder.vertex(x, (y + height), 0).uv((u * f), (v + height) * f1).endVertex();
-    //    bufferBuilder.vertex((x + width), (y + height), 0).uv((u + width) * f, (v + height) * f1);
-    //    bufferBuilder.vertex((x + width), (y), 0).uv((u + width) * f, v * f1);
-    //    bufferBuilder.vertex(x, y, 0).uv(u * f, v * f1);
-    //    BufferUploader.drawWithShader(bufferBuilder.end());
-    //}
+    }
 }

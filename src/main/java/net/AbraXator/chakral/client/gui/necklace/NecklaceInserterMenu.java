@@ -44,7 +44,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
     public NecklaceInserterMenu(int pContainerId, Inventory inv, final ContainerLevelAccess access) {
         super(ModMenuTypes.NECKLACE_INSERTER_MENU.get(), pContainerId);
         this.access = access;
-        this.level = inv.player.level;
+        this.level = inv.player.level();
         ItemStack NECKLACE = NecklaceInserterMenu.this.container.getItem(0);
         //slot 0 - necklace
         this.addSlot(new Slot(this.container, 0, 80, 37) {
@@ -298,7 +298,7 @@ public class NecklaceInserterMenu extends AbstractContainerMenu {
     @Override
     public void removed(Player pPlayer) {
         super.removed(pPlayer);
-        if(!pPlayer.level.isClientSide){
+        if(!pPlayer.level().isClientSide){
             ItemStack necklace = this.container.removeItem(0, this.container.getMaxStackSize());
             ItemStack stone = this.container.removeItem(1, this.container.getMaxStackSize());
             if(!necklace.isEmpty() && !stone.isEmpty() && necklace.hasTag()){

@@ -21,14 +21,14 @@ public class MineralEnricherMenu extends AbstractContainerMenu {
     private FluidStack fluidStack;
 
     public MineralEnricherMenu(int pContainerId, Inventory inv, FriendlyByteBuf friendlyByteBuf) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(friendlyByteBuf.readBlockPos()), new SimpleContainerData(3));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(friendlyByteBuf.readBlockPos()), new SimpleContainerData(3));
     }
 
     public MineralEnricherMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.MINERAL_ENRICHER_MENU.get(), pContainerId);
         checkContainerSize(inv,3);
         blockEntity = ((MineralEnricherBlockEntity) entity);
-        level = inv.player.level;
+        level = inv.player.level();
         this.data = data;
         this.fluidStack = this.blockEntity.getFluidStack();
 

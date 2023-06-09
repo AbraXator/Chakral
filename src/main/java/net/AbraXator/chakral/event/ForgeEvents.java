@@ -1,18 +1,17 @@
 package net.AbraXator.chakral.event;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.init.ModBlocks;
 import net.AbraXator.chakral.blocks.ShardRefinerBlock;
-import net.AbraXator.chakral.chakra.*;
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
+import net.AbraXator.chakral.chakra.ChakraStrength;
+import net.AbraXator.chakral.chakra.ChakraUtil;
 import net.AbraXator.chakral.chakra.chakras.BlackOnyxChakra;
 import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusMenu;
+import net.AbraXator.chakral.init.ModBlocks;
 import net.AbraXator.chakral.init.ModItems;
 import net.AbraXator.chakral.init.ModTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -20,7 +19,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -38,7 +36,7 @@ public class ForgeEvents {
 
     @SubscribeEvent
     public static void refinerInteract(PlayerInteractEvent.RightClickBlock event){
-        Level level = event.getEntity().level;
+        Level level = event.getEntity().level();
         BlockPos pos = event.getPos();
         if(event.getHand().equals(InteractionHand.MAIN_HAND)
                 && level.getBlockState(pos).getBlock() instanceof ShardRefinerBlock block
@@ -59,7 +57,7 @@ public class ForgeEvents {
 
     @SubscribeEvent
     public static void tick(TickEvent.PlayerTickEvent event){
-        ChakraUtil.getChakrasFromPlayer(event.player).forEach(chakra -> chakra.tick(event.player, event.player.getLevel()));
+        ChakraUtil.getChakrasFromPlayer(event.player).forEach(chakra -> chakra.tick(event.player, event.player.level()));
     }
 
     @SubscribeEvent
@@ -112,7 +110,7 @@ public class ForgeEvents {
             if(chakra instanceof BlackOnyxChakra blackOnyx){
                 event.setCanceled(true);
                 event.getTarget();
-                blackOnyx.onAttackEntity(event.getEntity(), event.getEntity().getLevel(), event.getTarget());
+                blackOnyx.onAttackEntity(event.getEntity(), event.getEntity().level(), event.getTarget());
             }
         });
     }
@@ -120,7 +118,7 @@ public class ForgeEvents {
     @SubscribeEvent
     public static void TickEvent(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
-        Level level = event.player.getLevel();
+        Level level = event.player.level();
         BlockPos pos = player.getOnPos();
         Random random = new Random();
         BlockState state = level.getBlockState(pos);

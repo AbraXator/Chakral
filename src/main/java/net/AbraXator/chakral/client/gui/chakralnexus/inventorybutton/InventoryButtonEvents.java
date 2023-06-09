@@ -27,7 +27,7 @@ public class InventoryButtonEvents {
             int size = isCreative ? 10 : 14;
             int textureOffsetX = isCreative ? 64 : 50;
             int yOffset = isCreative ? 68 : 83;
-            event.addListener(new ChakraInventoryButton(gui, gui.getGuiLeft() + x, gui.getGuiTop() + y + yOffset, size, size, textureOffsetX, 0, ChakralNexusScreen.INVENTORY));
+            event.addListener(new ChakraInventoryButton(gui, gui.getGuiLeft() + x, gui.getGuiTop() + y + yOffset, size, size, textureOffsetX, 0, ChakralNexusScreen.CHAKRAL_NEXUS_LOCATION));
         }
     }
 }

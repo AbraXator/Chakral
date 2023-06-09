@@ -4,7 +4,6 @@ import net.AbraXator.chakral.chakra.ChakraUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -26,7 +25,7 @@ public class StoneFunctionC2SPacket {
         NetworkEvent.Context context = supplier.get();
         supplier.get().enqueueWork(() -> {
             Player player = context.getSender();
-            Level level = player.getLevel();
+            Level level = player.level();
             ChakraUtil.getChakrasFromPlayer(player).forEach(chakra -> chakra.onFunctionKeyPress(player, level));
         });
 

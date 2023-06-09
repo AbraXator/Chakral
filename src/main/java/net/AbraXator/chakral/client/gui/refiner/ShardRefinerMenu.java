@@ -19,14 +19,14 @@ public class ShardRefinerMenu extends AbstractContainerMenu {
     public final ContainerData data;
 
     public ShardRefinerMenu(int pContainerId, Inventory inv, FriendlyByteBuf friendlyByteBuf) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(friendlyByteBuf.readBlockPos()), new SimpleContainerData(4));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(friendlyByteBuf.readBlockPos()), new SimpleContainerData(4));
     }
 
     public ShardRefinerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.SHARD_REFINER_MENU.get(), pContainerId);
         checkContainerSize(inv,8);
         blockEntity = ((ShardRefinerBlockEntity) entity);
-        level = inv.player.level;
+        level = inv.player.level();
         this.data = data;
 
         addPlayerInventory(inv);

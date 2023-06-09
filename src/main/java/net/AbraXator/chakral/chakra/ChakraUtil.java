@@ -1,6 +1,7 @@
 package net.AbraXator.chakral.chakra;
 
 import net.AbraXator.chakral.capability.NecklaceCapProvider;
+import net.AbraXator.chakral.init.ModChakras;
 import net.AbraXator.chakral.items.ChakraItem;
 import net.AbraXator.chakral.items.NecklaceItem;
 import net.AbraXator.chakral.items.StoneHoldingItem;
@@ -9,7 +10,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

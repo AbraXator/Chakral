@@ -46,10 +46,10 @@ public class Chakral {
         ModBiomes.          register(eventBus);
         ModFeatures.        register(eventBus);
         ModGameEvents.      register(eventBus);
+        ModCreativeTabs.    register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
-        eventBus.register(new ModItems());
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ChakralClientConfig.CLIENT_SPEC);
         MinecraftForge.EVENT_BUS.register(this);
     }

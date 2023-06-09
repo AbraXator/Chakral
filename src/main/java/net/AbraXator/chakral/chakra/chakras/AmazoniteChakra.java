@@ -1,26 +1,17 @@
 package net.AbraXator.chakral.chakra.chakras;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.capability.AdditionalHealthCap;
 import net.AbraXator.chakral.capability.AdditionalHealthCapProvider;
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
-import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.AbraXator.chakral.client.overlays.ChakraHeartData;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.ChakraHeartsS2CPacket;
-import net.AbraXator.chakral.utils.ChakralLocation;
-import net.minecraft.client.server.IntegratedPlayerList;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Style;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.players.PlayerList;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 import java.util.List;
@@ -98,11 +89,6 @@ public class AmazoniteChakra extends Chakra {
                 }
             });
         }
-    }
-
-    @Override
-    public void openInfoSidePanel(ChakralNexusScreen screen, PoseStack poseStack, int x, int y) {
-
     }
 
     @Override

@@ -54,6 +54,7 @@ public final class ClientEvents {
             if(player == null){
                 return;
             }
+
             ChakraUtil.getChakrasFromPlayer(player).forEach(chakra -> {
                 if(chakra instanceof DumortieriteChakra dumortieriteChakra){
                     for (BlockPos block : dumortieriteChakra.getBlocks()) {

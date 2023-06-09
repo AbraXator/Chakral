@@ -5,23 +5,20 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.AbraXator.chakral.chakra.Chakra;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
-import net.AbraXator.chakral.client.gui.chakralnexus.ChakralNexusScreen;
 import net.AbraXator.chakral.init.ModRenderTypes;
-import net.AbraXator.chakral.networking.ModMessages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Style;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import org.joml.Matrix4f;
 
-import java.util.*;
+import java.util.List;
 
 public class DumortieriteChakra extends Chakra {
     public List<BlockPos> blocks;
@@ -32,7 +29,7 @@ public class DumortieriteChakra extends Chakra {
 
     @Override
     public void onDamage(LivingDamageEvent event) {
-        if(event.getSource().is(DamageTypes.FALL)) searchForBlocks(event.getEntity().getOnPos(), event.getEntity().getLevel(), (float) (event.getAmount() * 0.5));
+        if(event.getSource().is(DamageTypes.FALL)) searchForBlocks(event.getEntity().getOnPos(), event.getEntity().level(), (float) (event.getAmount() * 0.5));
     }
 
     private void searchForBlocks(BlockPos pos, Level level, float range){
@@ -124,11 +121,6 @@ public class DumortieriteChakra extends Chakra {
         builder.vertex(matrix, startX, startY, endZ).color(red, green, blue, alpha).endVertex();
         builder.vertex(matrix, startX, endY, endZ).color(red, green, blue, alpha).endVertex();
         builder.vertex(matrix, startX, endY, startZ).color(red, green, blue, alpha).endVertex();
-    }
-
-    @Override
-    public void openInfoSidePanel(ChakralNexusScreen screen, PoseStack poseStack, int x, int y) {
-
     }
 
     @Override

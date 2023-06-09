@@ -1,17 +1,16 @@
 package net.AbraXator.chakral.client.gui.enricher;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.client.gui.renderer.FluidTankRenderer;
 import net.AbraXator.chakral.client.gui.MouseUtil;
+import net.AbraXator.chakral.client.gui.renderer.FluidTankRenderer;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.TooltipFlag;
-
 
 import java.util.Optional;
 
@@ -29,65 +28,59 @@ public class MineralEnricherScreen extends AbstractContainerScreen<MineralEnrich
         assignFluidRenderer();
     }
 
-    private void assignFluidRenderer() {
-        renderer = new FluidTankRenderer(5000, true, 16, 40);
-    }
-
     @Override
-    protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
-        int x = (width - imageWidth) / 2;
-        int y = (height - imageHeight) / 2;
-
-        renderFluidAreaTooltip(pPoseStack, pMouseX, pMouseY, x, y);
-    }
-
-    private void renderFluidAreaTooltip(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
-        if(isMouseOver(pMouseX, pMouseY, x, y, 21, 29)){
-            renderTooltip(pPoseStack, renderer.getTooltip(menu.getFluidStack(), TooltipFlag.Default.NORMAL),
-                    Optional.empty(), pMouseX - x, pMouseY - y);
-        }
-    }
-
-    @Override
-    protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
+    protected void renderBg(GuiGraphics guiGraphics, float p_97788_, int p_97789_, int p_97790_) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1, 1, 1, 1);
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
         int j = menu.data.get(2);
         int k = menu.getDust();
+        guiGraphics.blit(TEXTURE, x + 77, y + 38, 200, (j - 1) * 24, 24, 24);
 
-         switch (j){
-            case 1 -> this.blit(pPoseStack, x + 77, y + 38, 200, 0, 24, 24);
-            case 2 -> this.blit(pPoseStack, x + 77, y + 38, 200, 24, 24, 24);
-            case 3 -> this.blit(pPoseStack, x + 77, y + 38, 200, 48, 24, 24);
-            case 4 -> this.blit(pPoseStack, x + 77, y + 38, 200, 72, 24, 24);
-            case 5 -> this.blit(pPoseStack, x + 77, y + 38, 200, 96, 24, 24);
-            case 6 -> this.blit(pPoseStack, x + 77, y + 38, 200, 120, 24, 24);
-            case 7 -> this.blit(pPoseStack, x + 77, y + 38, 200, 144, 24, 24);
-            case 8 -> this.blit(pPoseStack, x + 77, y + 38, 200, 168, 24, 24);
-            case 9 -> this.blit(pPoseStack, x + 77, y + 38, 200, 192, 24, 24);
-            case 10 -> this.blit(pPoseStack, x + 77, y + 38, 200, 216, 24, 24);
-        }
         switch (k){
-             case 1 -> this.blit(pPoseStack, x + 100, y + 41, 176, 42, 3, 6);
-             case 2 -> this.blit(pPoseStack, x + 100, y + 39, 176, 31, 5, 8);
-             case 3 -> this.blit(pPoseStack, x + 100, y + 37, 176, 18, 7, 10);
-             case 4 -> this.blit(pPoseStack, x + 100, y + 35, 176, 4, 10, 12);
+            case 1 -> guiGraphics.blit(TEXTURE, x + 100, y + 41, 176, 42, 3, 6);
+            case 2 -> guiGraphics.blit(TEXTURE, x + 100, y + 39, 176, 31, 5, 8);
+            case 3 -> guiGraphics.blit(TEXTURE, x + 100, y + 37, 176, 18, 7, 10);
+            case 4 -> guiGraphics.blit(TEXTURE, x + 100, y + 35, 176, 4, 10, 12);
         }
         if(menu.hasWater()){
-            this.blit(pPoseStack, x + 86, y + 24, 176, 0, 12, 4);
+            guiGraphics.blit(TEXTURE, x + 86, y + 24, 176, 0, 12, 4);
         }
-        renderer.render(pPoseStack, x + 26, y + 29, menu.getFluidStack());
+        renderer.render(guiGraphics.pose(), x + 26, y + 29, menu.getFluidStack());
+    }
+
+    private void assignFluidRenderer() {
+        renderer = new FluidTankRenderer(5000, true, 16, 40);
     }
 
     @Override
-    public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
-        renderBackground(pPoseStack);
-        super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
-        renderTooltip(pPoseStack, pMouseX, pMouseY);
+    protected void renderLabels(GuiGraphics p_281635_, int p_282681_, int p_283686_) {
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+
+        renderFluidAreaTooltip(p_281635_, p_282681_, p_283686_, x, y);
+        super.renderLabels(p_281635_, p_282681_, p_283686_);
+    }
+
+    private void renderFluidAreaTooltip(GuiGraphics guiGraphics, int pMouseX, int pMouseY, int x, int y) {
+        if(isMouseOver(pMouseX, pMouseY, x, y, 21, 29)){
+            guiGraphics.renderTooltip(this.font,
+                    renderer.getTooltip(menu.getFluidStack(),
+                            TooltipFlag.Default.NORMAL),
+                    Optional.empty(),
+                    pMouseX - x,
+                    pMouseY - y);
+        }
+    }
+
+    @Override
+    public void render(GuiGraphics guiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        renderBackground(guiGraphics);
+        super.render(guiGraphics, pMouseX, pMouseY, pMouseX);
+        renderTooltip(guiGraphics, pMouseX, pMouseY);
     }
 
     public boolean isMouseOver(double pMouseX, double pMouseY, int x, int y, int offsetX, int offsetY) {
