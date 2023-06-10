@@ -115,26 +115,31 @@ public class ModBlocks {
     public static final RegistryObject<Block> SMALL_RED_BUD                 = registerBlock("small_red_bud", () -> new Crystal(BlockBehaviour.Properties.of().lightLevel(value -> 4).strength(1.5F).requiresCorrectToolForDrops()));
     //public static final RegistryObject<Block> SHATTERED_RED_MINERAL         = registerBlock("shattered_red_mineral", () -> new Block(BlockBehaviour.Properties.of().instabreak()));
     public static final RegistryObject<Block> BUDDING_RED_MINERAL           = registerBlock("budding_red_mineral", () -> new ModBuddingBlock(BlockBehaviour.Properties.of().strength(1.5F).requiresCorrectToolForDrops().randomTicks(), List.of(SMALL_RED_BUD, BIG_RED_BUD, RED_CRYSTAL)));
-    //---------------DIVNÝ VĚCI----------------------
+    //------------------STONE------------------------
     public static final RegistryObject<Block> BROWNSTONE                    = registerBlock("brownstone", () -> new Block(BlockBehaviour.Properties.of().strength(3.0F, 6.0F).requiresCorrectToolForDrops()));
+    //---------------DIVNÝ VĚCI----------------------
     public static final RegistryObject<Block> WILTED_LOG                    = registerBlock("wilted_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
-    public static final RegistryObject<Block> STRIPPED_WILTED_LOG           = registerBlock("stripped_wilted_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
     public static final RegistryObject<Block> WILTED_WOOD                   = registerBlock("wilted_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
+    public static final RegistryObject<Block> STRIPPED_WILTED_LOG           = registerBlock("stripped_wilted_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
     public static final RegistryObject<Block> STRIPPED_WILTED_WOOD          = registerBlock("stripped_wilted_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
-    public static final RegistryObject<Block> WILTED_TRAPDOOR               = registerBlock("wilted_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of().strength(3.0F).noOcclusion(), BlockSetType.OAK));
-    public static final RegistryObject<Block> WILTED_DOOR                   = registerBlock("wilted_door", () -> new DoorBlock(BlockBehaviour.Properties.of().strength(3.0F).noOcclusion(), BlockSetType.OAK));
+    public static final RegistryObject<Block> WILTED_PLANKS                 = registerBlock("wilted_planks", () -> new Block(BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
+    public static final RegistryObject<Block> WILTED_STAIRS                 = registerBlock("wilted_stairs", () ->  new StairBlock(OAK_PLANKS::defaultBlockState, BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
+    public static final RegistryObject<Block> WILTED_SLAB                   = registerBlock("wilted_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> WILTED_FENCE                  = registerBlock("wilted_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> WILTED_FENCE_GATE             = registerBlock("wilted_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F), WoodType.OAK));
-    public static final RegistryObject<Block> WILTED_SLAB                   = registerBlock("wilted_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> WILTED_STAIRS                 = registerBlock("wilted_stairs", () ->  new StairBlock(OAK_PLANKS::defaultBlockState, BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
-    public static final RegistryObject<Block> WILTED_BUTTON                 = registerBlock("wilted_button", () ->  new ButtonBlock(BlockBehaviour.Properties.of().noCollission().strength(0.5F), BlockSetType.OAK, 30, true));
+    public static final RegistryObject<Block> WILTED_DOOR                   = registerBlock("wilted_door", () -> new DoorBlock(BlockBehaviour.Properties.of().strength(3.0F).noOcclusion(), BlockSetType.OAK));
+    public static final RegistryObject<Block> WILTED_TRAPDOOR               = registerBlock("wilted_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of().strength(3.0F).noOcclusion(), BlockSetType.OAK));
     public static final RegistryObject<Block> WILTED_PRESSURE_PLATE         = registerBlock("wilted_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of().noCollission().strength(0.5F), BlockSetType.OAK));
-    public static final RegistryObject<Block> WILTED_PLANKS                 = registerBlock("wilted_planks", () -> new Block(BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
+    public static final RegistryObject<Block> WILTED_BUTTON                 = registerBlock("wilted_button", () ->  new ButtonBlock(BlockBehaviour.Properties.of().noCollission().strength(0.5F), BlockSetType.OAK, 30, true));
+    public static final RegistryObject<Block> WILTED_SIGN                   = registerBlock("wilted_sign", () ->  new ChakralSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.WILTED));
+
+    public static final RegistryObject<Block> MINERAL_RICH_PERENNIAL        = registerBlock("mineral_rich_perennial", () -> new FlowerBlock(() -> MobEffects.DIG_SPEED, 15, BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
+    public static final RegistryObject<Block> ROSETTE_CACTOID               = registerBlock("rosette_cactoid", () -> new FlowerBlock(() -> MobEffects.REGENERATION, 15, BlockBehaviour.Properties.copy(Blocks.CORNFLOWER)));
+
     public static final RegistryObject<Block> WILTED_LEAVES                 = registerBlock("wilted_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.of().strength(0.2f).isSuffocating(ModBlocks::never).isViewBlocking(ModBlocks::never).noOcclusion().sound(SoundType.GRASS)));
     public static final RegistryObject<Block> WILTED_SAPLING                = registerBlock("wilted_sapling", () -> new SaplingBlock(new WiltedTreeGrower(), BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static final RegistryObject<Block> MINERAL_RICH_DIRT             = registerBlock("mineral_rich_dirt", () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> MINERAL_RICH_FARMLAND         = registerBlock("mineral_rich_farmland", () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
-    public static final RegistryObject<Block> MINERAL_RICH_PERENNIAL        = registerBlock("mineral_rich_perennial", () -> new FlowerBlock(() -> MobEffects.DIG_SPEED, 15, BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final RegistryObject<Block> MINERAL_RICH_GRASS            = registerBlock("mineral_rich_grass", () -> new MineralRichGrassBlock(BlockBehaviour.Properties.of().sound(SoundType.GRASS).instabreak()));
     public static final RegistryObject<Block> BURGEONING_ROOTS              = registerBlock("burgeoning_roots", () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> GLEAMSHROOM                   = registerBlock("gleamshroom", () -> new GleamshroomBlock(BlockBehaviour.Properties.of().lightLevel(value -> 10).strength(0.2F).noOcclusion()) {});
@@ -154,11 +159,16 @@ public class ModBlocks {
             () -> new MineralEnricherBlock(BlockBehaviour.Properties.of()
                     .strength(5.0F, 6.0F).noOcclusion().sound(SoundType.METAL)));
 
+    private static <T extends Block> RegistryObject<T> registerBlockWithoutItem(String name, Supplier<T> block) {
+        return BLOCKS.register(name, block);
+    }
+
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
+
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(),
                 new Item.Properties()));

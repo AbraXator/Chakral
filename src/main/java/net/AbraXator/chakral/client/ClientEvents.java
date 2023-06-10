@@ -2,26 +2,28 @@ package net.AbraXator.chakral.client;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.chakra.ChakraUtil;
-import net.AbraXator.chakral.chakra.chakras.AmethystQuartzChakra;
 import net.AbraXator.chakral.chakra.chakras.DumortieriteChakra;
+import net.AbraXator.chakral.client.gui.refiner.ShardRefinerScreen;
+import net.AbraXator.chakral.client.overlays.ChakraHearts;
 import net.AbraXator.chakral.client.particle.HagstoneFragmentiumParticle;
 import net.AbraXator.chakral.client.particle.LightRayParticle;
 import net.AbraXator.chakral.client.particle.StemshroomSporeParticle;
+import net.AbraXator.chakral.client.renderer.MineralEnricherRenderer;
+import net.AbraXator.chakral.client.renderer.entity.ChakralBoatRenderer;
+import net.AbraXator.chakral.entity.boat.ChakralBoat;
+import net.AbraXator.chakral.entity.dwider.DwiderModel;
+import net.AbraXator.chakral.entity.dwider.DwiderRenderer;
 import net.AbraXator.chakral.entity.stemspore.MenacingStemshroomSporeModel;
 import net.AbraXator.chakral.entity.stemspore.MenacingStemshroomSporeRenderer;
 import net.AbraXator.chakral.init.*;
-import net.AbraXator.chakral.client.renderer.MineralEnricherRenderer;
-import net.AbraXator.chakral.client.overlays.ChakraHearts;
-import net.AbraXator.chakral.entity.dwider.DwiderModel;
-import net.AbraXator.chakral.entity.dwider.DwiderRenderer;
 import net.AbraXator.chakral.networking.ModMessages;
 import net.AbraXator.chakral.networking.packet.NecklaceC2SPacket;
 import net.AbraXator.chakral.networking.packet.StoneFunctionC2SPacket;
-import net.AbraXator.chakral.client.gui.refiner.ShardRefinerScreen;
-import net.AbraXator.chakral.utils.ChakralLocation;
 import net.AbraXator.chakral.utils.KeyBindings;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.ChestBoatModel;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GrassColor;
@@ -29,6 +31,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.Arrays;
 
 @Mod.EventBusSubscriber(modid = Chakral.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class ClientEvents {
@@ -104,12 +108,18 @@ public final class ClientEvents {
     public static void layerDefitions(EntityRenderersEvent.RegisterLayerDefinitions event){
         event.registerLayerDefinition(DwiderModel.LAYER_LOCATION, DwiderModel::createBodyLayer);
         event.registerLayerDefinition(MenacingStemshroomSporeModel.LAYER_LOCATION, MenacingStemshroomSporeModel::createBodyLayer);
+        Arrays.stream(ChakralBoat.Type.values()).forEach(type -> {
+            event.registerLayerDefinition(ChakralBoatRenderer.createBoatModelName(type), BoatModel::createBodyModel);
+            event.registerLayerDefinition(ChakralBoatRenderer.createChestBoatModelName(type), ChestBoatModel::createBodyModel);
+        });
     }
 
     @SubscribeEvent
     public static void entityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntities.DWIDER.get(), DwiderRenderer::new);
         event.registerEntityRenderer(ModEntities.MENACING_STEMSHROOM_SPORE.get(), MenacingStemshroomSporeRenderer::new);
+        event.registerEntityRenderer(ModEntities.BOAT.get(), pContext -> new ChakralBoatRenderer(pContext, false));
+        event.registerEntityRenderer(ModEntities.CHEST_BOAT.get(), pContext -> new ChakralBoatRenderer(pContext, true));
     }
 
     @SubscribeEvent

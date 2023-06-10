@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "chakral:block/cactoid/rosette_cactoid", "weight": 1
+      },
+      {
+        "model": "chakral:block/cactoid/rosette_cactoid_1", "weight": 1
+      },
+      {
+        "model": "chakral:block/cactoid/rosette_cactoid_2", "weight": 1
+      }
+    ]
+  }
+}

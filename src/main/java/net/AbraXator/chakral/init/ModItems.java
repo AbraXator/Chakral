@@ -3,6 +3,7 @@ package net.AbraXator.chakral.init;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.chakra.ChakraType;
+import net.AbraXator.chakral.entity.boat.ChakralBoat;
 import net.AbraXator.chakral.items.*;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -46,6 +47,15 @@ public class ModItems {
     public static final RegistryObject<Item> HELIOTROPE = ITEMS.register("heliotrope", () -> new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.POWERFUL, ModChakras.HELIOTROPE));
     public static final RegistryObject<Item> TOURMALINE = ITEMS.register("tourmaline", () -> new ChakraItem(new Item.Properties(), ChakraType.ROOT, ChakraStrength.ENLIGHTENED, ModChakras.TOURMALINE));
 
+    public static final RegistryObject<Item> GOLDEN_NECKLACE = ITEMS.register("golden_necklace", () ->
+            new NecklaceItem(new Item.Properties().stacksTo(1), 1));
+    public static final RegistryObject<Item> DIAMOND_NECKLACE = ITEMS.register("diamond_necklace", () ->
+            new NecklaceItem(new Item.Properties().stacksTo(1), 2));
+    public static final RegistryObject<Item> NETHERITE_NECKLACE = ITEMS.register("netherite_necklace", () ->
+            new NecklaceItem(new Item.Properties().stacksTo(1), 3));
+    public static final RegistryObject<Item> RAINBOW_NECKLACE = ITEMS.register("rainbow_necklace", () ->
+            new NecklaceItem(new Item.Properties().stacksTo(1), 4));
+
     public static final RegistryObject<Item> BLUE_SHARD = ITEMS.register("blue_shard", () ->
             new Shard(new Item.Properties(), ModBlocks.BLUE_CRYSTAL.get()));
     public static final RegistryObject<Item> LIGHT_BLUE_SHARD = ITEMS.register("light_blue_shard", () ->
@@ -59,8 +69,20 @@ public class ModItems {
     public static final RegistryObject<Item> RED_SHARD = ITEMS.register("red_shard", () ->
             new Shard(new Item.Properties(), ModBlocks.RED_CRYSTAL.get()));
 
+    public static final RegistryObject<Item> WEAK_REFINER_KIT = ITEMS.register("weak_refiner_kit", () ->
+            new RefinerKit(new Item.Properties(), ChakraStrength.WEAKENED));
+    public static final RegistryObject<Item> POWERFUL_REFINER_KIT = ITEMS.register("powerful_refiner_kit", () ->
+            new RefinerKit(new Item.Properties(), ChakraStrength.POWERFUL));
+    public static final RegistryObject<Item> ENGLIGHTENED_REFINER_KIT = ITEMS.register("enlightened_refiner_kit", () ->
+            new RefinerKit(new Item.Properties(), ChakraStrength.ENLIGHTENED));
+
     public static final RegistryObject<Item> SHARD_DUST = ITEMS.register("shard_dust", () ->
             new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> WILTED_BOAT = ITEMS.register("wilted_boat", () ->
+            new ChakralBoatItem(new Item.Properties(), ChakralBoat.Type.WILTED, false));
+    public static final RegistryObject<Item> WILTED_CHEST_BOAT = ITEMS.register("wilted_chest_boat", () ->
+            new ChakralBoatItem(new Item.Properties(), ChakralBoat.Type.WILTED, true));
 
     public static final RegistryObject<Item> MUSIC_DISC_CRYSTALLIZE = ITEMS.register("music_disc_crystallize", () ->
             new RecordItem(8, ModSoundEvents.CRYSTALLIZE, new Item.Properties().stacksTo(1).rarity(Rarity.RARE), 3400));
@@ -69,22 +91,6 @@ public class ModItems {
             new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationMod(0.3F).build())));
     public static final RegistryObject<Item> COOKED_STEMSHROOM_STEM = ITEMS.register("cooked_stemshroom_stem", () ->
             new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationMod(0.6F).build())));
-
-    public static final RegistryObject<Item> GOLDEN_NECKLACE = ITEMS.register("golden_necklace", () ->
-            new NecklaceItem(new Item.Properties().stacksTo(1), 1));
-    public static final RegistryObject<Item> DIAMOND_NECKLACE = ITEMS.register("diamond_necklace", () ->
-            new NecklaceItem(new Item.Properties().stacksTo(1), 2));
-    public static final RegistryObject<Item> NETHERITE_NECKLACE = ITEMS.register("netherite_necklace", () ->
-            new NecklaceItem(new Item.Properties().stacksTo(1), 3));
-    public static final RegistryObject<Item> RAINBOW_NECKLACE = ITEMS.register("rainbow_necklace", () ->
-            new NecklaceItem(new Item.Properties().stacksTo(1), 4));
-
-    public static final RegistryObject<Item> WEAK_REFINER_KIT = ITEMS.register("weak_refiner_kit", () ->
-            new RefinerKit(new Item.Properties(), ChakraStrength.WEAKENED));
-    public static final RegistryObject<Item> POWERFUL_REFINER_KIT = ITEMS.register("powerful_refiner_kit", () ->
-            new RefinerKit(new Item.Properties(), ChakraStrength.POWERFUL));
-    public static final RegistryObject<Item> ENGLIGHTENED_REFINER_KIT = ITEMS.register("enlightened_refiner_kit", () ->
-            new RefinerKit(new Item.Properties(), ChakraStrength.ENLIGHTENED));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
