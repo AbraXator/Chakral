@@ -28,5 +28,6 @@
     "recipes": [
       "chakral:shard_refiner"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

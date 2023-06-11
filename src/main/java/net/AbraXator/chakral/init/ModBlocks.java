@@ -72,7 +72,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> BLUE_CRYSTAL                  = registerBlock("blue_crystal", () -> new Crystal(BlockBehaviour.Properties.of().strength(1.5F).lightLevel(value -> 4).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BIG_BLUE_BUD                  = registerBlock("big_blue_bud", () -> new Crystal(BlockBehaviour.Properties.of().strength(1.5F).lightLevel(value -> 4).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> SMALL_BLUE_BUD                = registerBlock("small_blue_bud", () -> new Crystal(BlockBehaviour.Properties.of().strength(1.5F).lightLevel(value -> 4).requiresCorrectToolForDrops()));
-    //public static final RegistryObject<Block> SHATTERED_BLUE_MINERAL        = registerBlock("shattered_blue_mineral", () -> new Block(BlockBehaviour.Properties.of().instabreak().requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> SHATTERED_BLUE_MINERAL        = registerBlock("shattered_blue_mineral", () -> new ShatteredBlock(BlockBehaviour.Properties.of().instabreak().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BUDDING_BLUE_MINERAL          = registerBlock("budding_blue_mineral", () -> new ModBuddingBlock(BlockBehaviour.Properties.of().strength(1.5F).requiresCorrectToolForDrops().randomTicks(), List.of(SMALL_BLUE_BUD, BIG_BLUE_BUD, BLUE_CRYSTAL)));
     //--------------------LIGHT BLUE-----------------
     public static final RegistryObject<Block> LIGHT_BLUE_MINERAL            = registerBlock("light_blue_mineral", () -> new Block(BlockBehaviour.Properties.of().strength(1.5F).requiresCorrectToolForDrops()));
@@ -113,7 +113,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> RED_CRYSTAL                   = registerBlock("red_crystal", () -> new Crystal(BlockBehaviour.Properties.of().lightLevel(value -> 4).strength(1.5F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BIG_RED_BUD                   = registerBlock("big_red_bud", () -> new Crystal(BlockBehaviour.Properties.of().lightLevel(value -> 4).strength(1.5F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> SMALL_RED_BUD                 = registerBlock("small_red_bud", () -> new Crystal(BlockBehaviour.Properties.of().lightLevel(value -> 4).strength(1.5F).requiresCorrectToolForDrops()));
-    //public static final RegistryObject<Block> SHATTERED_RED_MINERAL         = registerBlock("shattered_red_mineral", () -> new Block(BlockBehaviour.Properties.of().instabreak()));
+    public static final RegistryObject<Block> SHATTERED_RED_MINERAL         = registerBlock("shattered_red_mineral", () -> new ShatteredBlock(BlockBehaviour.Properties.of().instabreak()));
     public static final RegistryObject<Block> BUDDING_RED_MINERAL           = registerBlock("budding_red_mineral", () -> new ModBuddingBlock(BlockBehaviour.Properties.of().strength(1.5F).requiresCorrectToolForDrops().randomTicks(), List.of(SMALL_RED_BUD, BIG_RED_BUD, RED_CRYSTAL)));
     //------------------STONE------------------------
     public static final RegistryObject<Block> BROWNSTONE                    = registerBlock("brownstone", () -> new Block(BlockBehaviour.Properties.of().strength(3.0F, 6.0F).requiresCorrectToolForDrops()));
@@ -133,8 +133,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> WILTED_BUTTON                 = registerBlock("wilted_button", () ->  new ButtonBlock(BlockBehaviour.Properties.of().noCollission().strength(0.5F), BlockSetType.OAK, 30, true));
     public static final RegistryObject<Block> WILTED_SIGN                   = registerBlock("wilted_sign", () ->  new ChakralSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.WILTED));
 
-    public static final RegistryObject<Block> MINERAL_RICH_PERENNIAL        = registerBlock("mineral_rich_perennial", () -> new FlowerBlock(() -> MobEffects.DIG_SPEED, 15, BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
-    public static final RegistryObject<Block> ROSETTE_CACTOID               = registerBlock("rosette_cactoid", () -> new FlowerBlock(() -> MobEffects.REGENERATION, 15, BlockBehaviour.Properties.copy(Blocks.CORNFLOWER)));
+    public static final RegistryObject<Block> MINERAL_RICH_PERENNIAL        = registerBlock("mineral_rich_perennial", () -> new ChakralFlowerBlock(() -> MobEffects.DIG_SPEED, 15, BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
+    public static final RegistryObject<Block> ROSETTE_CACTOID               = registerBlock("rosette_cactoid", () -> new RosetteCactoidBlock(() -> MobEffects.REGENERATION, 15, BlockBehaviour.Properties.copy(Blocks.CORNFLOWER)));
 
     public static final RegistryObject<Block> WILTED_LEAVES                 = registerBlock("wilted_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.of().strength(0.2f).isSuffocating(ModBlocks::never).isViewBlocking(ModBlocks::never).noOcclusion().sound(SoundType.GRASS)));
     public static final RegistryObject<Block> WILTED_SAPLING                = registerBlock("wilted_sapling", () -> new SaplingBlock(new WiltedTreeGrower(), BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));

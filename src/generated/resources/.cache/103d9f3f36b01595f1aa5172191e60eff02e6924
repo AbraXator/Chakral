@@ -1,4 +1,5 @@
-// 1.19.4	2023-05-23T23:16:02.1545488	Registries
+// 1.20	2023-06-11T13:45:13.5358634	Registries
+6ce1086a2831bf584fcdfeb62db02f8890bf8afc data/chakral/damage_type/rosette_cactoid.json
 abeec7ef1eebb908a25641f99f80eb3d81ab9657 data/chakral/worldgen/biome/amethyst_caverns.json
 fd647a38ae092bd5330005accf31a33f19d53017 data/chakral/worldgen/biome/mineral_caverns.json
 5102949b350ac1eaeb7be08da35bd04daee50e62 data/chakral/worldgen/configured_feature/black_mineral_blob.json

@@ -227,5 +227,7 @@
 
     "biome.chakral.mineral_caverns": "Mineral Caverns",
 
-    "chakral.jei.recipe.shard_refining": "Mineral Enriching"
+    "chakral.jei.recipe.shard_refining": "Mineral Enriching",
+
+    "death.attack.chakral.rosette_cactoid": "%s was pricked to death by Rosette Cactoid"
 }

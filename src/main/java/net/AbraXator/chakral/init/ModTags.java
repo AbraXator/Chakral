@@ -14,7 +14,7 @@ public class ModTags {
         public static final TagKey<Block> BUDDING_BLOCKS = tag("budding_blocks");
         public static final TagKey<Block> BW_MINERALS = tag("bw_minerals");
         public static final TagKey<Block> MINERALS = tag("minerals");
-        public static final TagKey<Block> AIR = tag("air");
+        public static final TagKey<Block> MINERAL_RICH_TURFS = tag("mineral_rich_turfs");
 
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(Chakral.MOD_ID, name));

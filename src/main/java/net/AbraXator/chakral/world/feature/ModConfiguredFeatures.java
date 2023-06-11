@@ -8,7 +8,6 @@ import net.AbraXator.chakral.world.feature.configuration.MineralCrystalConfigura
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
-import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -17,10 +16,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.OreFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.ReplaceBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
@@ -58,6 +55,8 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLACK_MINERAL_ORE_COPPER_SMALL = Chakral.createKey(Registries.CONFIGURED_FEATURE, "black_mineral_ore_copper_small");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLACK_MINERAL_ORE_COPPER_LARGE = Chakral.createKey(Registries.CONFIGURED_FEATURE, "black_mineral_ore_copper_large");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BUDDING_AMETHYST = Chakral.createKey(Registries.CONFIGURED_FEATURE, "budding_amethyst");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CACTOID_PATCH = Chakral.createKey(Registries.CONFIGURED_FEATURE, "budding_amethyst");
 
     private static final RuleTest BLACK_MINERAL_TEST = new BlockMatchTest(ModBlocks.BLACK_MINERAL.get());
     private static final BlockState COAL = ModBlocks.BLACK_MINERAL_COAL_ORE.get().defaultBlockState();

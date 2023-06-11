@@ -30,5 +30,6 @@
     "recipes": [
       "chakral:diamond_necklace"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

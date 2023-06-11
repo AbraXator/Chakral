@@ -2,6 +2,7 @@ package net.AbraXator.chakral.data;
 
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.init.ModBiomes;
+import net.AbraXator.chakral.init.ModDamageTypes;
 import net.AbraXator.chakral.world.feature.ModConfiguredFeatures;
 import net.AbraXator.chakral.world.noise.ModNoises;
 import net.AbraXator.chakral.world.placements.ModPlacedFeatures;
@@ -21,7 +22,8 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
             .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
             .add(Registries.BIOME, ModBiomes::bootstrap)
-            .add(Registries.NOISE, ModNoises::bootstrap);
+            .add(Registries.NOISE, ModNoises::bootstrap)
+            .add(Registries.DAMAGE_TYPE, ModDamageTypes::bootstrap);
 
     public RegistryDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of("minecraft", Chakral.MOD_ID));

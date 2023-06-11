@@ -30,5 +30,6 @@
     "recipes": [
       "chakral:mineral_enricher"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "chakral:light_blue_mineral_bricks"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

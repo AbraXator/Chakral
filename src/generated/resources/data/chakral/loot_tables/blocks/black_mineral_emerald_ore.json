@@ -16,5 +16,6 @@
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "chakral:blocks/black_mineral_emerald_ore"
 }
