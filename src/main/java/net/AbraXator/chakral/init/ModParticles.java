@@ -2,7 +2,7 @@ package net.AbraXator.chakral.init;
 
 import com.mojang.serialization.Codec;
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.client.particle.LightRayParticleOption;
+import net.AbraXator.chakral.client.particle.TravelingParticle;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -14,12 +14,17 @@ public class ModParticles {
     public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(
             ForgeRegistries.PARTICLE_TYPES, Chakral.MOD_ID);
 
-    public static final RegistryObject<SimpleParticleType> HAGSTONE_FRAGMNETIUM = PARTICLES.register("hagstone_fragmentium", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> STEMSHROOM_SPORE = PARTICLES.register("stemshroom_spore", () -> new SimpleParticleType(false));
-    public static final RegistryObject<ParticleType<LightRayParticleOption>> LIGHT_RAY = PARTICLES.register("light_ray", () -> new ParticleType<LightRayParticleOption>(false, LightRayParticleOption.DESERIALIZER) {
+    public static final RegistryObject<ParticleType<TravelingParticle>> HAGSTONE_FRAGMNETIUM = PARTICLES.register("hagstone_fragmentium", () -> new ParticleType<>(false, TravelingParticle.DESERIALIZER) {
         @Override
-        public Codec<LightRayParticleOption> codec() {
-            return LightRayParticleOption.CODEC;
+        public Codec<TravelingParticle> codec() {
+            return TravelingParticle.CODEC;
+        }
+    });
+    public static final RegistryObject<SimpleParticleType> STEMSHROOM_SPORE = PARTICLES.register("stemshroom_spore", () -> new SimpleParticleType(false));
+    public static final RegistryObject<ParticleType<TravelingParticle>> LIGHT_RAY = PARTICLES.register("light_ray", () -> new ParticleType<>(false, TravelingParticle.DESERIALIZER) {
+        @Override
+        public Codec<TravelingParticle> codec() {
+            return TravelingParticle.CODEC;
         }
     });
 

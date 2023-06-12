@@ -83,7 +83,7 @@ public class LightRayParticle extends SimpleAnimatedParticle {
 
     @Override
     public void tick() {
-        this.xo = this.x;
+        this.xo = x;
         this.yo = y;
         this.zo = z;
         if (this.age++ >= this.lifetime) {
@@ -108,7 +108,7 @@ public class LightRayParticle extends SimpleAnimatedParticle {
         }
     }
 
-    public static class Provider implements ParticleProvider<LightRayParticleOption> {
+    public static class Provider implements ParticleProvider<TravelingParticle> {
         private final SpriteSet sprites;
 
         public Provider(SpriteSet sprites) {
@@ -117,7 +117,7 @@ public class LightRayParticle extends SimpleAnimatedParticle {
 
         @Nullable
         @Override
-        public Particle createParticle(LightRayParticleOption pType, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
+        public Particle createParticle(TravelingParticle pType, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
             return new LightRayParticle(pLevel, pX, pY, pZ, sprites, pType.destination(), pType.arrivalInTicks());
         }
     }

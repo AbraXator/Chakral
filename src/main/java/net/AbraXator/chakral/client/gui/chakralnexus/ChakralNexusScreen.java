@@ -75,12 +75,14 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
         ItemStack item = this.menu.getItemInSlot(0);
         if(!(item.getItem() instanceof NecklaceItem)) return;
         ChakraUtil.getChakras(item).forEach(chakraItem -> {
-            Vec2 pos = posMap.get(chakraItem.getChakra().getStrenght());
-            ChakralLocation chakralLocation = new ChakralLocation("textures/gui/button/" + chakraItem.getDescriptionId().replace("item.chakral.", "") + "_button.png");
-            addWidget(new ChakralButton((int) (x + pos.x), (int) (y + pos.y), 19, 16, chakraItem.getChakra(), chakralLocation, pButton -> {
-                AbstractWidget guiComponent = chakraItem.getChakra().openInfoSidePanel(x, y);
-                if(guiComponent != null) addWidget(guiComponent);
-            }));
+            if(chakraItem != null) {
+                Vec2 pos = posMap.get(chakraItem.getChakra().getStrenght());
+                ChakralLocation chakralLocation = new ChakralLocation("textures/gui/button/" + chakraItem.getDescriptionId().replace("item.chakral.", "") + "_button.png");
+                addWidget(new ChakralButton((int) (x + pos.x), (int) (y + pos.y), 19, 16, chakraItem.getChakra(), chakralLocation, pButton -> {
+                    AbstractWidget guiComponent = chakraItem.getChakra().openInfoSidePanel(x, y);
+                    if (guiComponent != null) addWidget(guiComponent);
+                }));
+            }
         });
     }
 

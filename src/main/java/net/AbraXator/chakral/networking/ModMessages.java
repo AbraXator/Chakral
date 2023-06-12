@@ -67,11 +67,6 @@ public class ModMessages {
                 .encoder(ChakraItemNameRendererC2SPacket::toBytes)
                 .consumerMainThread(ChakraItemNameRendererC2SPacket::handle)
                 .add();
-        net.messageBuilder(HagStoneS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(HagStoneS2CPacket::new)
-                .encoder(HagStoneS2CPacket::toBytes)
-                .consumerMainThread(HagStoneS2CPacket::handle)
-                .add();
     }
 
     public static <MSG> void sendToServer(MSG msg){
