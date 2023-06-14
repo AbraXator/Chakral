@@ -1,10 +1,13 @@
-package net.AbraXator.chakral.client.gui.necklace;
+package net.AbraXator.chakral.client.gui.necklace.slotter;
 
 import net.AbraXator.chakral.chakra.ChakraStrength;
+import net.AbraXator.chakral.client.gui.necklace.NecklaceSlot;
+import net.AbraXator.chakral.client.gui.necklace.StoneSlot;
 import net.AbraXator.chakral.init.ModBlocks;
 import net.AbraXator.chakral.init.ModMenuTypes;
 import net.AbraXator.chakral.items.ChakraItem;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -14,6 +17,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class NecklaceSlotterMenu extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
@@ -111,9 +115,9 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_SLOT_COUNT = 4;  // must be the number of slots you have!
 
     @Override
-    public ItemStack quickMoveStack(Player playerIn, int index) {
+    public ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
         Slot sourceSlot = slots.get(index);
-        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
+        if (!sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
@@ -139,7 +143,7 @@ public class NecklaceSlotterMenu extends AbstractContainerMenu {
         } else {
             sourceSlot.setChanged();
         }
-        sourceSlot.onTake(playerIn, sourceStack);
+        if(playerIn instanceof ServerPlayer player) sourceSlot.onTake(playerIn, copyOfSourceStack);
         return copyOfSourceStack;
     }
 

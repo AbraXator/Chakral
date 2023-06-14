@@ -1,7 +1,7 @@
 package net.AbraXator.chakral.blocks;
 
 import net.AbraXator.chakral.blocks.entity.NecklaceSlotterBlockEntity;
-import net.AbraXator.chakral.client.gui.necklace.NecklaceSlotterMenu;
+import net.AbraXator.chakral.client.gui.necklace.slotter.NecklaceSlotterMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;

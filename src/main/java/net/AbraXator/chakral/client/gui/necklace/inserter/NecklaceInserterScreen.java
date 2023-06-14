@@ -1,4 +1,4 @@
-package net.AbraXator.chakral.client.gui.necklace;
+package net.AbraXator.chakral.client.gui.necklace.inserter;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.AbraXator.chakral.Chakral;

@@ -1,9 +1,9 @@
-package net.AbraXator.chakral.client.gui.necklace;
+package net.AbraXator.chakral.client.gui.necklace.slotter;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.gui.MouseUtil;
+import net.AbraXator.chakral.items.ChakraItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -13,7 +13,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlotterMenu> {
@@ -82,12 +81,8 @@ public class NecklaceSlotterScreen extends AbstractContainerScreen<NecklaceSlott
     }
 
     public int vOffset(Item stone){
-        for (ChakraType type : ChakraType.values()){
-            if(ForgeRegistries.ITEMS.tags().getTag(type.getTagKey()).contains(stone)){
-                return type.getIndex();
-            }
-        }
-        return 0;
+        if(stone instanceof ChakraItem chakraItem) return chakraItem.getChakra().getType().ordinal() + 1;
+        else return 0;
     }
 
     @Override

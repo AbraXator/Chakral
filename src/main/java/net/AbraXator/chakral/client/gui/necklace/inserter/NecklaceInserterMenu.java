@@ -1,5 +1,6 @@
-package net.AbraXator.chakral.client.gui.necklace;
+package net.AbraXator.chakral.client.gui.necklace.inserter;
 
+import net.AbraXator.chakral.client.gui.necklace.NecklaceSlotterUtil;
 import net.AbraXator.chakral.init.ModBlocks;
 import net.AbraXator.chakral.chakra.ChakraStrength;
 import net.AbraXator.chakral.init.ModMenuTypes;

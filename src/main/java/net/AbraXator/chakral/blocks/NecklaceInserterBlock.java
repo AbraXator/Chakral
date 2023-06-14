@@ -1,6 +1,6 @@
 package net.AbraXator.chakral.blocks;
 
-import net.AbraXator.chakral.client.gui.necklace.NecklaceInserterMenu;
+import net.AbraXator.chakral.client.gui.necklace.inserter.NecklaceInserterMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
