@@ -6,7 +6,7 @@ import net.AbraXator.chakral.chakra.ChakraType;
 import net.AbraXator.chakral.client.particle.TravelingParticle;
 import net.AbraXator.chakral.init.ModParticles;
 import net.AbraXator.chakral.init.ModTags;
-import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Style;
@@ -19,7 +19,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.gameevent.BlockPositionSource;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
@@ -68,10 +67,10 @@ public class HagStoneChakra extends Chakra {
                 event.getLevel().setBlock(event.getPos(), Blocks.AIR.defaultBlockState(), 3);
                 player.addItem(itemStack);
                 Vec3 pos = event.getPos().getCenter();
-                Vec3 playerPos = player.position();
+                Vec3 playerPos = player.getPosition(0).relative(Direction.UP, 1);
                 float distanceToPlayer = (float) event.getPos().getCenter().distanceTo(player.position());
                 level.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, event.getState()), pos.x(), pos.y(), pos.z(), 10, 0, 0, 0, 0);
-                level.sendParticles(new TravelingParticle(ModParticles.HAGSTONE_FRAGMNETIUM.get(), new BlockPositionSource(BlockPos.containing(playerPos)), Mth.floor(distanceToPlayer)), pos.x(), pos.y(), pos.z(), 1, 0, 0, 0, 0);
+                level.sendParticles(new TravelingParticle(ModParticles.HAGSTONE_FRAGMNETIUM.get(), playerPos, Mth.floor(distanceToPlayer)), pos.x(), pos.y(), pos.z(), 1, 0, 0, 0, 0);
             }
         }
     }

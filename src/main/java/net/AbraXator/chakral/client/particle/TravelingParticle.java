@@ -2,15 +2,14 @@ package net.AbraXator.chakral.client.particle;
 
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.core.BlockPos;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.level.gameevent.BlockPositionSource;
-import net.minecraft.world.level.gameevent.PositionSource;
-import net.minecraft.world.level.gameevent.PositionSourceType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.joml.Vector3f;
 
 import java.util.Locale;
 
@@ -26,26 +25,35 @@ public class TravelingParticle implements ParticleOptions {
             float f2 = ((float) pReader.readDouble());
             pReader.expect(' ');
             int i = pReader.readInt();
-            BlockPos blockPos = BlockPos.containing(f, f1, f2);
-            return new TravelingParticle(pParticleType, new BlockPositionSource(blockPos), i);
+            Vec3 pos = new Vec3(f, f1, f2);
+            return new TravelingParticle(pParticleType, pos, i);
         }
 
         @Override
         public TravelingParticle fromNetwork(ParticleType<TravelingParticle> pParticleType, FriendlyByteBuf pBuffer) {
-            PositionSource positionSource = PositionSourceType.fromNetwork(pBuffer);
+            Vector3f pos = pBuffer.readVector3f();
             int i = pBuffer.readVarInt();
-            return new TravelingParticle(pParticleType , positionSource, i);
+            return new TravelingParticle(pParticleType , new Vec3(pos.x, pos.y, pos.z), i);
         }
     };
 
     public final ParticleType<?> type;
-    public final PositionSource destination;
+    public final Vec3 destination;
     public final int arrivalInTicks;
 
-    public TravelingParticle(ParticleType<?> type, PositionSource destination, int arrivalInTicks) {
+    public TravelingParticle(ParticleType<?> type, Vec3 destination, int arrivalInTicks) {
         this.type = type;
         this.destination = destination;
         this.arrivalInTicks = arrivalInTicks;
+    }
+
+    public static Codec<TravelingParticle> codec(ParticleType<TravelingParticle> type) {
+        return RecordCodecBuilder.create(instance -> {
+            return instance.group(
+                    Vec3.CODEC.fieldOf("destination").forGetter(o -> o.destination),
+                    Codec.INT.fieldOf("arrival_in_ticks").forGetter(o -> o.arrivalInTicks)
+            ).apply(instance, (positionSource, integer) -> new TravelingParticle(type, positionSource, integer));
+        });
     }
 
     @Override
@@ -55,16 +63,15 @@ public class TravelingParticle implements ParticleOptions {
 
     @Override
     public void writeToNetwork(FriendlyByteBuf pBuffer) {
-        PositionSourceType.toNetwork(this.destination, pBuffer);
+        pBuffer.writeVector3f(destination.toVector3f());
         pBuffer.writeVarInt(this.arrivalInTicks);
     }
 
     @Override
     public String writeToString() {
-        Vec3 vec3 = this.destination.getPosition(null).get();
-        double d0 = vec3.x();
-        double d1 = vec3.y();
-        double d2 = vec3.z();
+        double d0 = destination.x();
+        double d1 = destination.y();
+        double d2 = destination.z();
         return String.format(Locale.ROOT, "%s %.2f %.2f %.2f %d", ForgeRegistries.PARTICLE_TYPES.getKey(this.getType()), d0, d1, d2, this.arrivalInTicks);
     }
 }

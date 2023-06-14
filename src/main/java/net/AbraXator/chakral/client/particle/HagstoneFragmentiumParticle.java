@@ -47,7 +47,7 @@ public class HagstoneFragmentiumParticle extends SimpleAnimatedParticle {
         @Nullable
         @Override
         public Particle createParticle(TravelingParticle pType, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
-            return new HagstoneFragmentiumParticle(pLevel, pX, pY, pZ, sprites, pType.destination.getPosition(pLevel).get(), pType.arrivalInTicks);
+            return new HagstoneFragmentiumParticle(pLevel, pX, pY, pZ, sprites, pType.destination, pType.arrivalInTicks);
         }
     }
 }

@@ -8,37 +8,32 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SimpleAnimatedParticle;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.gameevent.PositionSource;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
-import java.util.Optional;
 import java.util.function.Consumer;
 
 public class LightRayParticle extends SimpleAnimatedParticle {
-    private final PositionSource target;
+    private final Vec3 target;
     private float rot;
     private float rotO;
     private float pitch;
     private float pitchO;
 
-    protected LightRayParticle(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet pSprites, PositionSource positionSource, int lifetime) {
+    protected LightRayParticle(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet pSprites, Vec3 pos, int lifetime) {
         super(pLevel, pX, pY, pZ, pSprites, 0);
         this.quadSize = 0.3F;
-        this.target = positionSource;
+        this.target = pos;
         this.lifetime = lifetime;
         this.setSpriteFromAge(pSprites);
         this.hasPhysics = false;
-        Optional<Vec3> optional = target.getPosition(pLevel);
-        optional.ifPresent(vec3 -> {
-            double d0 = pX - vec3.x();
-            double d1 = pY - vec3.y();
-            double d2 = pZ - vec3.z();
-            this.rotO = this.rot = (float) Mth.atan2(d0, d2);
-            this.pitchO = this.pitch = (float) Mth.atan2(d1, Mth.sqrt(((float) (d0 * d0 + d2 * d2))));
-        });
+        double d0 = pX - pos.x();
+        double d1 = pY - pos.y();
+        double d2 = pZ - pos.z();
+        this.rotO = this.rot = (float) Mth.atan2(d0, d2);
+        this.pitchO = this.pitch = (float) Mth.atan2(d1, Mth.sqrt(((float) (d0 * d0 + d2 * d2))));
     }
 
     @Override
@@ -89,22 +84,19 @@ public class LightRayParticle extends SimpleAnimatedParticle {
         if (this.age++ >= this.lifetime) {
             this.remove();
         } else {
-            Optional<Vec3> optional = this.target.getPosition(this.level);
-            optional.ifPresentOrElse(vec3 -> {
-                int lifetimeRemaining = this.lifetime - this.age;
-                double lifetimeRemainingFraction = 1.0D / lifetimeRemaining;
-                this.x = Mth.lerp(lifetimeRemainingFraction, this.x, vec3.x);
-                this.y = Mth.lerp(lifetimeRemainingFraction, this.y, vec3.y);
-                this.z = Mth.lerp(lifetimeRemainingFraction, this.z, vec3.z);
-                this.setPos(this.x, this.y, this.z);
-                double XposMinDest = this.x - vec3.x();
-                double YposMinDest = this.y - vec3.y();
-                double ZposMinDest = this.z - vec3.z();
-                this.rotO = this.rot;
-                this.rot = (float) Mth.atan2(XposMinDest, ZposMinDest);
-                this.pitchO = this.pitch;
-                this.pitch = (float) Mth.atan2(YposMinDest, Mth.sqrt((float) (XposMinDest * XposMinDest + ZposMinDest * ZposMinDest)));
-            }, this::remove);
+            int lifetimeRemaining = this.lifetime - this.age;
+            double lifetimeRemainingFraction = 1.0D / lifetimeRemaining;
+            this.x = Mth.lerp(lifetimeRemainingFraction, this.x, target.x);
+            this.y = Mth.lerp(lifetimeRemainingFraction, this.y, target.y);
+            this.z = Mth.lerp(lifetimeRemainingFraction, this.z, target.z);
+            this.setPos(this.x, this.y, this.z);
+            double XposMinDest = this.x - target.x();
+            double YposMinDest = this.y - target.y();
+            double ZposMinDest = this.z - target.z();
+            this.rotO = this.rot;
+            this.rot = (float) Mth.atan2(XposMinDest, ZposMinDest);
+            this.pitchO = this.pitch;
+            this.pitch = (float) Mth.atan2(YposMinDest, Mth.sqrt((float) (XposMinDest * XposMinDest + ZposMinDest * ZposMinDest)));
         }
     }
 
@@ -118,7 +110,7 @@ public class LightRayParticle extends SimpleAnimatedParticle {
         @Nullable
         @Override
         public Particle createParticle(TravelingParticle pType, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
-            return new LightRayParticle(pLevel, pX, pY, pZ, sprites, pType.destination(), pType.arrivalInTicks());
+            return new LightRayParticle(pLevel, pX, pY, pZ, sprites, pType.destination, pType.arrivalInTicks);
         }
     }
 }

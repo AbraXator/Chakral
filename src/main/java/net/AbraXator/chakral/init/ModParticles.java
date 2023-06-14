@@ -17,14 +17,14 @@ public class ModParticles {
     public static final RegistryObject<ParticleType<TravelingParticle>> HAGSTONE_FRAGMNETIUM = PARTICLES.register("hagstone_fragmentium", () -> new ParticleType<>(false, TravelingParticle.DESERIALIZER) {
         @Override
         public Codec<TravelingParticle> codec() {
-            return TravelingParticle.CODEC;
+            return TravelingParticle.codec(this);
         }
     });
     public static final RegistryObject<SimpleParticleType> STEMSHROOM_SPORE = PARTICLES.register("stemshroom_spore", () -> new SimpleParticleType(false));
     public static final RegistryObject<ParticleType<TravelingParticle>> LIGHT_RAY = PARTICLES.register("light_ray", () -> new ParticleType<>(false, TravelingParticle.DESERIALIZER) {
         @Override
         public Codec<TravelingParticle> codec() {
-            return TravelingParticle.CODEC;
+            return TravelingParticle.codec(this);
         }
     });
 

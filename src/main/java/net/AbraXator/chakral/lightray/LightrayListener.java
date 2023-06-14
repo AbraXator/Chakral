@@ -76,7 +76,7 @@ public class LightrayListener implements GameEventListener {
                     this.currentLightray = lightrayData;
                     Vec3 vec3 = lightrayData.pos();
                     this.travelTimeInTicks = Mth.floor(this.currentLightray.distance());
-                    serverLevel.sendParticles(new TravelingParticle(ModParticles.LIGHT_RAY.get(), this.listenerSource, this.travelTimeInTicks), vec3.x(), vec3.y(), vec3.z(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
+                    serverLevel.sendParticles(new TravelingParticle(ModParticles.LIGHT_RAY.get(), this.listenerSource.getPosition(serverLevel).get(), this.travelTimeInTicks), vec3.x(), vec3.y(), vec3.z(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
                     this.config.onSignalSchedule();
                     this.lightraySelector.startOver();
                 });
