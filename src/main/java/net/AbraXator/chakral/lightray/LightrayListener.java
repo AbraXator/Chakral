@@ -88,7 +88,7 @@ public class LightrayListener implements GameEventListener {
                     this.travelTimeInTicks = 0;
                     this.config.onSignalReceive(serverLevel, this, BlockPos.containing(this.currentLightray.pos()), this.currentLightray.event(), this.currentLightray.getOwner(serverLevel).orElse(null), this.currentLightray.distance());
                     level.setBlock(pos, state.setValue(BaseLightrayBlock.PHASE, SculkSensorPhase.ACTIVE), 3);
-                    level.gameEvent(ModGameEvents.LIGHT_RAY_HIT.get(), pos, GameEvent.Context.of(state));
+                    if(!(level.getRandom().nextDouble() <= config.getAbsorbChance())) level.gameEvent(ModGameEvents.LIGHT_RAY_HIT.get(), pos, GameEvent.Context.of(state));
                     level.scheduleTick(pos, state.getBlock(), 40);
                     this.currentLightray = null;
                 }
@@ -115,6 +115,10 @@ public class LightrayListener implements GameEventListener {
     }
 
     public interface LightrayConfig {
+        default double getAbsorbChance(){
+            return 0.15D;
+        }
+
         boolean shouldListen(ServerLevel serverLevel, GameEventListener listener, BlockPos pos,  GameEvent gameEvent, GameEvent.Context context);
 
         void onSignalReceive(ServerLevel serverLevel, GameEventListener listener, BlockPos pos, GameEvent gameEvent, @Nullable Entity owner, float distance);

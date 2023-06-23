@@ -24,7 +24,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GrassColor;
 import net.minecraftforge.api.distmarker.Dist;
@@ -50,20 +49,19 @@ public final class ClientEvents {
 
         @SubscribeEvent
         public static void renderLevel(RenderLevelStageEvent event){
-            /*if(event.getStage() != RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS){
+            if(event.getStage() != RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS){
                 return;
-            }*/
+            }
 
             Player player = Minecraft.getInstance().player;
             if(player == null){
                 return;
             }
-
             ChakraUtil.getChakrasFromPlayer(player).forEach(chakra -> {
                 if(chakra instanceof DumortieriteChakra dumortieriteChakra){
-                    for (BlockPos block : dumortieriteChakra.getBlocks()) {
-                        dumortieriteChakra.render(event, block);
-                    }
+                    dumortieriteChakra.getBlocks().forEach(pos -> {
+                        dumortieriteChakra.render(event, pos);
+                    });
                 }
                 /*if(chakra instanceof AmethystQuartzChakra quartzChakra){
                     GameRenderer gameRenderer = Minecraft.getInstance().gameRenderer;

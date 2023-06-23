@@ -34,6 +34,7 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
     public static final ResourceLocation CHAKRAL_NEXUS_LOCATION =
             new ChakralLocation("textures/gui/container/chakral_nexus.png");
     public static boolean hasSideTip;
+    private final List<ChakralButton> currentButtons;
 
     private final Map<ChakraStrength, Vec2> posMap = Util.make(new LinkedHashMap<>(), (map) -> {
         map.put(ChakraStrength.FAINT, new Vec2(55, 34));
@@ -44,6 +45,7 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
 
     public ChakralNexusScreen(ChakralNexusMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
+        this.currentButtons = new ArrayList<>();
     }
 
     @Override
@@ -61,7 +63,7 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
         //resize(Minecraft.getInstance(), 256, 256);
         guiGraphics.blit(CHAKRAL_NEXUS_LOCATION, x, y, 0, 0, imageWidth, imageHeight);
         guiGraphics.blit(CHAKRAL_NEXUS_LOCATION, x + 130, y + 10, 204, 192, 22, 63);
-        renderChakras(guiGraphics, pPartialTick, pMouseX, pMouseY, x, y, map);
+        renderChakras(x, y);
     }
 
     @Override
@@ -71,19 +73,31 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
         renderTooltip(guiGraphics, pMouseX, pMouseY);
     }
 
-    private void renderChakras(@NotNull GuiGraphics pPoseStack, float pPartialTick, int pMouseX, int pMouseY, int x, int y, Map<Vec2, ChakraStrength> map){
-        ItemStack item = this.menu.getItemInSlot(0);
-        if(!(item.getItem() instanceof NecklaceItem)) return;
-        ChakraUtil.getChakras(item).forEach(chakraItem -> {
-            if(chakraItem != null) {
-                Vec2 pos = posMap.get(chakraItem.getChakra().getStrenght());
-                ChakralLocation chakralLocation = new ChakralLocation("textures/gui/button/" + chakraItem.getDescriptionId().replace("item.chakral.", "") + "_button.png");
-                addWidget(new ChakralButton((int) (x + pos.x), (int) (y + pos.y), 19, 16, chakraItem.getChakra(), chakralLocation, pButton -> {
-                    AbstractWidget guiComponent = chakraItem.getChakra().openInfoSidePanel(x, y);
-                    if (guiComponent != null) addWidget(guiComponent);
-                }));
+    private void renderChakras(int x, int y){
+        setupChakras(x, y);
+        currentButtons.forEach(button -> {
+            if(!this.children().contains(button.chakra)){
+                addRenderableWidget(button);
             }
         });
+    }
+
+    private void setupChakras(int x, int y){
+        ItemStack item = this.menu.getItemInSlot(0);
+        if((item.getItem() instanceof NecklaceItem)) {
+            ChakraUtil.getChakras(item).forEach(chakraItem -> {
+                if (chakraItem != null) {
+                    Vec2 pos = posMap.get(chakraItem.getChakra().getStrenght());
+                    ChakralLocation chakralLocation = new ChakralLocation("textures/gui/button/" + chakraItem.getDescriptionId().replace("item.chakral.", "") + "_button.png");
+                    currentButtons.add(new ChakralButton((int) (x + pos.x), (int) (y + pos.y), chakraItem.getChakra(), chakralLocation, pButton -> {
+                        AbstractWidget guiComponent = chakraItem.getChakra().openInfoSidePanel(x, y);
+                        if (guiComponent != null) addWidget(guiComponent);
+                    }));
+                }
+            });
+        } else {
+            currentButtons.forEach(button -> removeWidget(button));
+        }
     }
 
     public Optional<Chakra> mouseAboveChakra(ItemStack necklace, int x, int y, int pMouseX, int pMouseY, Map<Vec2, ChakraStrength> map){
@@ -141,18 +155,16 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
         private final Chakra chakra;
         private final ResourceLocation textureLocation;
 
-        public ChakralButton(int pX, int pY, int pWidth, int pHeight, Chakra chakra, ChakralLocation textureLocation, Button.OnPress onPress) {
-            super(pX, pY, pWidth, pHeight, CommonComponents.EMPTY, onPress, DEFAULT_NARRATION);
+        public ChakralButton(int pX, int pY, Chakra chakra, ChakralLocation textureLocation, Button.OnPress onPress) {
+            super(pX, pY, 19, 16, CommonComponents.EMPTY, onPress, DEFAULT_NARRATION);
             this.chakra = chakra;
             this.textureLocation = textureLocation;
         }
 
         @Override
         public void render(GuiGraphics guiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
-            RenderSystem.setShaderTexture(0, textureLocation);
             guiGraphics.blit(textureLocation, this.getX(), this.getY(), 0, 0, this.getWidth(), this.getHeight());
             if(this.isHoveredOrFocused()){
-                RenderSystem.setShaderTexture(0, CHAKRAL_NEXUS_LOCATION);
                 guiGraphics.blit(textureLocation, this.getX(), this.getY(), 234, 85, this.getWidth(), this.getHeight());
             }
             super.renderWidget(guiGraphics, pMouseX, pMouseY, pPartialTick);

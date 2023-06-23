@@ -3,13 +3,10 @@ package net.AbraXator.chakral.world.surfacerule;
 import net.AbraXator.chakral.init.ModBiomes;
 import net.AbraXator.chakral.init.ModBlocks;
 import net.AbraXator.chakral.world.noise.ModNoises;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.SurfaceRules;
-import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
-
-import java.util.Arrays;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
 
 public class ModSurfaceRuleData {
     private static final SurfaceRules.RuleSource BLACK = makeStateRule(ModBlocks.BLACK_MINERAL.get());
@@ -34,19 +31,26 @@ public class ModSurfaceRuleData {
 
     public static SurfaceRules.RuleSource overworld() {
         return SurfaceRules.sequence(
-            SurfaceRules.ifTrue(AMETHYST_CAVERNS,
-                baseBiomeSurfaceRules()
+            SurfaceRules.ifTrue(SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), makeStateRule(Blocks.BEDROCK)),
+            SurfaceRules.ifTrue(AMETHYST_CAVERNS, SurfaceRules.sequence(
+                            SurfaceRules.ifTrue(COLORED_MINERAL_NOISE, SurfaceRules.sequence(
+                                    onCeilingOrFloorOrDownABit(AMETHYST)
+                            )),
+                            SurfaceRules.ifTrue(BLACK_MINERAL_NOISE, BLACK),
+                            SurfaceRules.ifTrue(SurfaceRules.noiseCondition(ModNoises.MINERAL_RICH_DIRT_NOISE, 0.41D, 0.5D), BROWN),
+                            SurfaceRules.ifTrue(SurfaceRules.noiseCondition(ModNoises.MINERAL_RICH_DIRT_NOISE, 0D, 0.4D), MINERAL_RICH_DIRT),
+                            BROWN
+                    )
             )
         );
     }
 
-    private static SurfaceRules.RuleSource baseBiomeSurfaceRules(BlockPos... blockPos){
+    private static SurfaceRules.RuleSource onCeilingOrFloorOrDownABit(SurfaceRules.RuleSource block){
         return SurfaceRules.sequence(
-                SurfaceRules.ifTrue(COLORED_MINERAL_NOISE, AMETHYST),
-                SurfaceRules.ifTrue(BLACK_MINERAL_NOISE, BLACK),
-                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(ModNoises.MINERAL_RICH_DIRT_NOISE, 0D, 0.4D), MINERAL_RICH_DIRT),
-                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(ModNoises.MINERAL_RICH_DIRT_NOISE, 0.41D, 0.5D), BROWN),
-                BROWN
+                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, block),
+                SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, block),
+                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, block),
+                SurfaceRules.ifTrue(SurfaceRules.UNDER_CEILING, block)
         );
     }
 

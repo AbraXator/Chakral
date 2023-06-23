@@ -1,7 +1,6 @@
 package net.AbraXator.chakral.networking.packet;
 
 import net.AbraXator.chakral.chakra.ChakraUtil;
-import net.AbraXator.chakral.chakra.chakras.DumortieriteChakra;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -30,9 +29,6 @@ public class DumortieriteSyncS2CPacket {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             ChakraUtil.getChakrasFromPlayer(Minecraft.getInstance().player).forEach(chakra -> {
-                if(chakra instanceof DumortieriteChakra dumortieriteChakra){
-                    dumortieriteChakra.setBlocks(pos);
-                }
             });
         });
         return true;

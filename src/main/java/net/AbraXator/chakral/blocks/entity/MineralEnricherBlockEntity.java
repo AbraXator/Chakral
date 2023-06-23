@@ -229,9 +229,8 @@ public class MineralEnricherBlockEntity extends BlockEntity implements MenuProvi
         if (level.isClientSide()) {
             return;
         }else {
-            //System.out.println("ENTITY: " + MineralEnricherBlockEntity.getProgress(entity));
             ModMessages.sendToClients(new EnricherSyncS2CPacket(entity.itemHandler, entity.getBlockPos(), getProgress(entity)));
-             entity.updateDust(entity.getDust());
+            entity.updateDust(entity.getDust());
             if (hasRecipe(entity) && canPlace(entity)) {
                 entity.progress++;
                 setChanged(level, pos, state);

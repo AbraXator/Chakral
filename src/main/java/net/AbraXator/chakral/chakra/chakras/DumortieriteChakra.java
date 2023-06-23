@@ -9,6 +9,7 @@ import net.AbraXator.chakral.init.ModRenderTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Style;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.level.Level;
@@ -21,7 +22,7 @@ import org.joml.Matrix4f;
 import java.util.List;
 
 public class DumortieriteChakra extends Chakra {
-    public List<BlockPos> blocks;
+    private NonNullList<BlockPos> blocks = NonNullList.create();
 
     public DumortieriteChakra(ChakraType type, ChakraStrength chakraStrength) {
         super(type, chakraStrength);
@@ -29,6 +30,7 @@ public class DumortieriteChakra extends Chakra {
 
     @Override
     public void onDamage(LivingDamageEvent event) {
+        blocks = NonNullList.create();
         if(event.getSource().is(DamageTypes.FALL)) searchForBlocks(event.getEntity().getOnPos(), event.getEntity().level(), (float) (event.getAmount() * 0.5));
     }
 
@@ -36,21 +38,16 @@ public class DumortieriteChakra extends Chakra {
         for (BlockPos blockPos : BlockPos.betweenClosed(
                 (int) (pos.getX() + range), (int) (pos.getY() + range), (int) (pos.getZ() + range),
                 (int) (pos.getX() - range), (int) (pos.getY() - range), (int) (pos.getZ() - range))) {
-            if(level.getBlockState(blockPos).is(Tags.Blocks.ORES)){
-                blocks.add(blockPos);
-            }
+            if(level.getBlockState(blockPos).is(Tags.Blocks.ORES)) blocks.add(blockPos);
         }
     }
 
-    public void setBlocks(List<BlockPos> blocks) {
-        this.blocks = blocks;
-    }
-
-    public List<BlockPos> getBlocks() {
+    public NonNullList<BlockPos> getBlocks() {
         return blocks;
     }
 
     public void render(RenderLevelStageEvent event, BlockPos blockPos){
+        if(blockPos == null) return;
         Vec3 renderPos = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition()
                 .subtract(blockPos.getX(), blockPos.getY(), blockPos.getZ())
                 .add(.005F, .005F, .005F);
@@ -63,26 +60,15 @@ public class DumortieriteChakra extends Chakra {
         renderBoxSolid(stack.last().pose(), buffer.getBuffer(ModRenderTypes.BlockOverlay), BlockPos.ZERO, 0, 1, 0, 1);
     }
 
-    public void renderBoxSolid(Matrix4f matrix, VertexConsumer builder, BlockPos pos, float r, float g, float b, float alpha) {
-        double x = pos.getX() - 0.001;
-        double y = pos.getY() - 0.001;
-        double z = pos.getZ() - 0.001;
-        double xEnd = pos.getX() + 1.0015;
-        double yEnd = pos.getY() + 1.0015;
-        double zEnd = pos.getZ() + 1.0015;
-
-        renderBoxSolid(matrix, builder, x, y, z, xEnd, yEnd, zEnd, r, g, b, alpha);
-    }
-
-    public void renderBoxSolid(Matrix4f matrix, VertexConsumer builder, double x, double y, double z, double xEnd, double yEnd, double zEnd, float red, float green, float blue, float alpha) {
+    public void renderBoxSolid(Matrix4f matrix, VertexConsumer builder, BlockPos pos, float red, float green, float blue, float alpha) {
         //careful: mc want's it's vertices to be defined CCW - if you do it the other way around weird cullling issues will arise
         //CCW herby counts as if you were looking at it from the outside
-        float startX = (float) x;
-        float startY = (float) y;
-        float startZ = (float) z;
-        float endX = (float) xEnd;
-        float endY = (float) yEnd;
-        float endZ = (float) zEnd;
+        float startX = (float) (pos.getX() - 0.001);
+        float startY = (float) (pos.getY() - 0.001);
+        float startZ = (float) (pos.getZ() - 0.001);
+        float endX = (float) (pos.getX() + 1.0015);
+        float endY = (float) (pos.getY() + 1.0015);
+        float endZ = (float) (pos.getZ() + 1.0015);
 
 //        float startX = 0, startY = 0, startZ = -1, endX = 1, endY = 1, endZ = 0;
 

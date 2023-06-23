@@ -25,15 +25,11 @@ public class CommonModEvents {
         }
     }
 
-    //TODO: Fix not being able to equip necklace after death
     @SubscribeEvent
     public static void onPlayerCloned(PlayerEvent.Clone event) {
         if(event.isWasDeath()) {
             Player player = event.getOriginal();
             event.getOriginal().getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(oldStore -> {
-                oldStore.getStones().forEach(itemStack -> {
-                   player.drop(itemStack.copy(), false);
-                });
                 event.getEntity().getCapability(NecklaceCapProvider.NECKLACE_CAP).ifPresent(newStore -> {
                     newStore.copyFrom(oldStore);
                 });
