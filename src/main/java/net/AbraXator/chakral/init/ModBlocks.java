@@ -117,6 +117,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> BUDDING_RED_MINERAL           = registerBlock("budding_red_mineral", () -> new ModBuddingBlock(BlockBehaviour.Properties.of().strength(1.5F).requiresCorrectToolForDrops().randomTicks(), List.of(SMALL_RED_BUD, BIG_RED_BUD, RED_CRYSTAL)));
     //------------------STONE------------------------
     public static final RegistryObject<Block> BROWNSTONE                    = registerBlock("brownstone", () -> new Block(BlockBehaviour.Properties.of().strength(3.0F, 6.0F).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> COBBLED_BROWNSTONE            = registerBlock("cobbled_brownstone", () -> new Block(BlockBehaviour.Properties.of().strength(3.0F, 6.0F).requiresCorrectToolForDrops()));
     //---------------DIVNÝ VĚCI----------------------
     public static final RegistryObject<Block> WILTED_LOG                    = registerBlock("wilted_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
     public static final RegistryObject<Block> WILTED_WOOD                   = registerBlock("wilted_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
