@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -66,6 +67,9 @@ public class HagStoneChakra extends Chakra {
                 event.setCanceled(true);
                 event.getLevel().setBlock(event.getPos(), Blocks.AIR.defaultBlockState(), 3);
                 player.addItem(itemStack);
+                player.getMainHandItem().hurtAndBreak(1, player, player1 -> {
+                    player1.broadcastBreakEvent(InteractionHand.MAIN_HAND);
+                });
                 Vec3 pos = event.getPos().getCenter();
                 Vec3 playerPos = player.getPosition(0).relative(Direction.UP, 1);
                 float distanceToPlayer = (float) event.getPos().getCenter().distanceTo(player.position());
