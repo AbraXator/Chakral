@@ -1,11 +1,11 @@
 package net.AbraXator.chakral.data;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.init.ModBiomes;
-import net.AbraXator.chakral.init.ModDamageTypes;
-import net.AbraXator.chakral.world.feature.ModConfiguredFeatures;
-import net.AbraXator.chakral.world.noise.ModNoises;
-import net.AbraXator.chakral.world.placements.ModPlacedFeatures;
+import net.AbraXator.chakral.server.init.ModBiomes;
+import net.AbraXator.chakral.server.init.ModDamageTypes;
+import net.AbraXator.chakral.server.world.feature.ModConfiguredFeatures;
+import net.AbraXator.chakral.server.world.noise.ModNoises;
+import net.AbraXator.chakral.server.world.placements.ModPlacedFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.RegistrySetBuilder;

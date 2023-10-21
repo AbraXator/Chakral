@@ -1,10 +1,10 @@
 package net.AbraXator.chakral.data;
 
-import net.AbraXator.chakral.init.ModBlocks;
-import net.AbraXator.chakral.blocks.Crystal;
-import net.AbraXator.chakral.init.ModItems;
-import net.AbraXator.chakral.items.Shard;
-import net.AbraXator.chakral.init.ModTags;
+import net.AbraXator.chakral.server.init.ModBlocks;
+import net.AbraXator.chakral.server.blocks.Crystal;
+import net.AbraXator.chakral.server.init.ModItems;
+import net.AbraXator.chakral.server.items.Shard;
+import net.AbraXator.chakral.server.init.ModTags;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.flag.FeatureFlags;

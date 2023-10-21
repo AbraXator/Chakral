@@ -1,7 +1,7 @@
 package net.AbraXator.chakral.data;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.blocks.Crystal;
+import net.AbraXator.chakral.server.blocks.Crystal;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;

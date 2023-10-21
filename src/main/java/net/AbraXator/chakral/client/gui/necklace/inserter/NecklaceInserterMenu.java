@@ -1,11 +1,11 @@
 package net.AbraXator.chakral.client.gui.necklace.inserter;
 
 import net.AbraXator.chakral.client.gui.necklace.NecklaceSlotterUtil;
-import net.AbraXator.chakral.init.ModBlocks;
-import net.AbraXator.chakral.chakra.ChakraStrength;
-import net.AbraXator.chakral.init.ModMenuTypes;
-import net.AbraXator.chakral.init.ModItems;
-import net.AbraXator.chakral.init.ModTags;
+import net.AbraXator.chakral.server.init.ModBlocks;
+import net.AbraXator.chakral.server.chakra.ChakraStrength;
+import net.AbraXator.chakral.server.init.ModMenuTypes;
+import net.AbraXator.chakral.server.init.ModItems;
+import net.AbraXator.chakral.server.init.ModTags;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;

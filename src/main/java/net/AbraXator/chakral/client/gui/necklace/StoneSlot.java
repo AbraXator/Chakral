@@ -1,8 +1,8 @@
 package net.AbraXator.chakral.client.gui.necklace;
 
-import net.AbraXator.chakral.chakra.ChakraStrength;
-import net.AbraXator.chakral.chakra.ChakraUtil;
-import net.AbraXator.chakral.init.ModTags;
+import net.AbraXator.chakral.server.chakra.ChakraStrength;
+import net.AbraXator.chakral.server.chakra.ChakraUtil;
+import net.AbraXator.chakral.server.init.ModTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;

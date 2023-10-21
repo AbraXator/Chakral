@@ -5,8 +5,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.math.Axis;
-import net.AbraXator.chakral.entity.boat.ChakralBoat;
-import net.AbraXator.chakral.utils.ChakralLocation;
+import net.AbraXator.chakral.Chakral;
+import net.AbraXator.chakral.server.entity.boat.ChakralBoat;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -30,7 +30,7 @@ public class ChakralBoatRenderer extends EntityRenderer<ChakralBoat> {
     public ChakralBoatRenderer(EntityRendererProvider.Context pContext, boolean chest) {
         super(pContext);
         this.shadowRadius = 0.8F;
-        this.boatResources = Stream.of(ChakralBoat.Type.values()).collect(ImmutableMap.toImmutableMap(type -> type, type -> Pair.of(new ChakralLocation(getTextureLocation(type, chest)), this.createBoatModel(pContext, type, chest))));
+        this.boatResources = Stream.of(ChakralBoat.Type.values()).collect(ImmutableMap.toImmutableMap(type -> type, type -> Pair.of(Chakral.loc(getTextureLocation(type, chest)), this.createBoatModel(pContext, type, chest))));
     }
 
     private BoatModel createBoatModel(EntityRendererProvider.Context context, ChakralBoat.Type type, boolean chest){
@@ -41,7 +41,7 @@ public class ChakralBoatRenderer extends EntityRenderer<ChakralBoat> {
 
 
     private static ModelLayerLocation createLocation(String path){
-        return new ModelLayerLocation(new ChakralLocation(path), "main");
+        return new ModelLayerLocation(Chakral.loc(path), "main");
     }
 
     public static ModelLayerLocation createBoatModelName(ChakralBoat.Type type){

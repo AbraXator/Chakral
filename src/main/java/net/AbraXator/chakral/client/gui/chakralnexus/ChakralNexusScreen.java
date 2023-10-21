@@ -2,13 +2,11 @@ package net.AbraXator.chakral.client.gui.chakralnexus;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.chakra.Chakra;
-import net.AbraXator.chakral.chakra.ChakraStrength;
-import net.AbraXator.chakral.chakra.ChakraUtil;
 import net.AbraXator.chakral.client.gui.MouseUtil;
-import net.AbraXator.chakral.config.ChakralClientConfig;
-import net.AbraXator.chakral.items.NecklaceItem;
-import net.AbraXator.chakral.utils.ChakralLocation;
+import net.AbraXator.chakral.server.chakra.Chakra;
+import net.AbraXator.chakral.server.chakra.ChakraStrength;
+import net.AbraXator.chakral.server.chakra.ChakraUtil;
+import net.AbraXator.chakral.server.items.NecklaceItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.gui.GuiGraphics;
@@ -32,7 +30,7 @@ import java.util.stream.Collectors;
 
 public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu> implements GuiEventListener {
     public static final ResourceLocation CHAKRAL_NEXUS_LOCATION =
-            new ChakralLocation("textures/gui/container/chakral_nexus.png");
+            Chakral.loc("textures/gui/container/chakral_nexus.png");
     public static boolean hasSideTip;
     private final List<ChakralButton> currentButtons;
 
@@ -88,7 +86,7 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
             ChakraUtil.getChakras(item).forEach(chakraItem -> {
                 if (chakraItem != null) {
                     Vec2 pos = posMap.get(chakraItem.getChakra().getStrenght());
-                    ChakralLocation chakralLocation = new ChakralLocation("textures/gui/button/" + chakraItem.getDescriptionId().replace("item.chakral.", "") + "_button.png");
+                    ResourceLocation chakralLocation = Chakral.loc("textures/gui/button/" + chakraItem.getDescriptionId().replace("item.chakral.", "") + "_button.png");
                     currentButtons.add(new ChakralButton((int) (x + pos.x), (int) (y + pos.y), chakraItem.getChakra(), chakralLocation, pButton -> {
                         AbstractWidget guiComponent = chakraItem.getChakra().openInfoSidePanel(x, y);
                         if (guiComponent != null) addWidget(guiComponent);
@@ -113,17 +111,15 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
     }
 
     public static Tuple<Integer, Integer> getButtonOffset(boolean isCreative) {
-        ChakralClientConfig.Client client = ChakralClientConfig.CLIENT;
-        ChakralClientConfig.Client.ButtonCorner corner = client.buttonCorner.get();
         int x = 0;
         int y = 0;
 
         if (isCreative) {
-            x += corner.getCreativeXoffset() + client.creativeButtonXOffset.get();
-            y += corner.getCreativeYoffset() + client.creativeButtonYOffset.get();
+            x += 73;
+            y += -62;
         } else {
-            x += corner.getXoffset() + client.buttonXOffset.get();
-            y += corner.getYoffset() + client.buttonYOffset.get();
+            x += 26;
+            y += 75;
         }
 
         return new Tuple<>(x, y);
@@ -155,7 +151,7 @@ public class ChakralNexusScreen extends AbstractContainerScreen<ChakralNexusMenu
         private final Chakra chakra;
         private final ResourceLocation textureLocation;
 
-        public ChakralButton(int pX, int pY, Chakra chakra, ChakralLocation textureLocation, Button.OnPress onPress) {
+        public ChakralButton(int pX, int pY, Chakra chakra, ResourceLocation textureLocation, Button.OnPress onPress) {
             super(pX, pY, 19, 16, CommonComponents.EMPTY, onPress, DEFAULT_NARRATION);
             this.chakra = chakra;
             this.textureLocation = textureLocation;

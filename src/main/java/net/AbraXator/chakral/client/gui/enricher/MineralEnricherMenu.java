@@ -1,8 +1,8 @@
 package net.AbraXator.chakral.client.gui.enricher;
 
-import net.AbraXator.chakral.init.ModBlocks;
-import net.AbraXator.chakral.blocks.entity.MineralEnricherBlockEntity;
-import net.AbraXator.chakral.init.ModMenuTypes;
+import net.AbraXator.chakral.server.init.ModBlocks;
+import net.AbraXator.chakral.server.blocks.entity.MineralEnricherBlockEntity;
+import net.AbraXator.chakral.server.init.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

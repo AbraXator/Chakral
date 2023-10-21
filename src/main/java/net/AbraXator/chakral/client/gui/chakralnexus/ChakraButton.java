@@ -1,6 +1,6 @@
 package net.AbraXator.chakral.client.gui.chakralnexus;
 
-import net.AbraXator.chakral.chakra.Chakra;
+import net.AbraXator.chakral.server.chakra.Chakra;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.resources.ResourceLocation;
 

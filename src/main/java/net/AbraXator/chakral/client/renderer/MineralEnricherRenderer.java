@@ -2,8 +2,8 @@ package net.AbraXator.chakral.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.AbraXator.chakral.init.ModBlocks;
-import net.AbraXator.chakral.blocks.entity.MineralEnricherBlockEntity;
+import net.AbraXator.chakral.server.init.ModBlocks;
+import net.AbraXator.chakral.server.blocks.entity.MineralEnricherBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;

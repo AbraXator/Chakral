@@ -1,8 +1,8 @@
 package net.AbraXator.chakral.client.gui.chakralnexus;
 
-import net.AbraXator.chakral.capability.NecklaceCapProvider;
-import net.AbraXator.chakral.chakra.IChakraProvider;
-import net.AbraXator.chakral.items.NecklaceItem;
+import net.AbraXator.chakral.server.capability.NecklaceCapProvider;
+import net.AbraXator.chakral.server.chakra.IChakraProvider;
+import net.AbraXator.chakral.server.items.NecklaceItem;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
@@ -29,6 +29,7 @@ public class ChakralNexusSlot extends Slot {
                 }
                 necklaceCap.getStones().forEach(itemStack -> {
                     if (itemStack.getItem() instanceof IChakraProvider iChakraProvider){
+                        iChakraProvider.getChakra().onEquip(player, player.level());
                         iChakraProvider.getChakra().setEnabled(true);
                     }
                 });

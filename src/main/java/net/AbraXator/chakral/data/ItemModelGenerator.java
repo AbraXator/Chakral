@@ -1,16 +1,13 @@
 package net.AbraXator.chakral.data;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.chakra.ChakraType;
-import net.AbraXator.chakral.init.ModItems;
+import net.AbraXator.chakral.server.init.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
 
 public class ItemModelGenerator extends ItemModelProvider {
     private ExistingFileHelper existingModelFile;

@@ -1,7 +1,7 @@
 package net.AbraXator.chakral.data;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.init.ModBlocks;
+import net.AbraXator.chakral.server.init.ModBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.world.level.block.Block;

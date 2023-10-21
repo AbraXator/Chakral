@@ -2,7 +2,7 @@ package net.AbraXator.chakral.client.overlays;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.capability.AdditionalHealthCap;
+import net.AbraXator.chakral.server.capability.AdditionalHealthCap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;

@@ -1,6 +1,6 @@
 package net.AbraXator.chakral.client.gui.necklace;
 
-import net.AbraXator.chakral.chakra.ChakraStrength;
+import net.AbraXator.chakral.server.chakra.ChakraStrength;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

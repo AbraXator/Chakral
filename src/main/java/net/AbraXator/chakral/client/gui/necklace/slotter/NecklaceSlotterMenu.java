@@ -1,11 +1,11 @@
 package net.AbraXator.chakral.client.gui.necklace.slotter;
 
-import net.AbraXator.chakral.chakra.ChakraStrength;
+import net.AbraXator.chakral.server.chakra.ChakraStrength;
 import net.AbraXator.chakral.client.gui.necklace.NecklaceSlot;
 import net.AbraXator.chakral.client.gui.necklace.StoneSlot;
-import net.AbraXator.chakral.init.ModBlocks;
-import net.AbraXator.chakral.init.ModMenuTypes;
-import net.AbraXator.chakral.items.ChakraItem;
+import net.AbraXator.chakral.server.init.ModBlocks;
+import net.AbraXator.chakral.server.init.ModMenuTypes;
+import net.AbraXator.chakral.server.items.ChakraItem;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;

@@ -3,7 +3,7 @@ package net.AbraXator.chakral.client.gui.necklace.slotter;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.client.gui.MouseUtil;
-import net.AbraXator.chakral.items.ChakraItem;
+import net.AbraXator.chakral.server.items.ChakraItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;

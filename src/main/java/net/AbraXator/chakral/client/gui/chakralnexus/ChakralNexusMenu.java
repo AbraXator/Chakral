@@ -1,8 +1,8 @@
 package net.AbraXator.chakral.client.gui.chakralnexus;
 
-import net.AbraXator.chakral.init.ModMenuTypes;
-import net.AbraXator.chakral.networking.ModMessages;
-import net.AbraXator.chakral.networking.packet.NexusSyncS2CPacket;
+import net.AbraXator.chakral.server.init.ModMenuTypes;
+import net.AbraXator.chakral.server.networking.ModPacketHandler;
+import net.AbraXator.chakral.server.networking.packet.NexusSyncS2CPacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -16,7 +16,7 @@ public class ChakralNexusMenu extends AbstractContainerMenu {
     final Container container = new SimpleContainer(1) {
         public void setChanged() {
             super.setChanged();
-            ModMessages.sendToClients(new NexusSyncS2CPacket(container.getItem(0)));
+            ModPacketHandler.sendToClients(new NexusSyncS2CPacket(container.getItem(0)));
             ChakralNexusMenu.this.slotsChanged(this);
         }
     };
