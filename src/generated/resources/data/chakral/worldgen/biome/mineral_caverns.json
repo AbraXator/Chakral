@@ -48,6 +48,9 @@
       "chakral:black_mineral_ore_diamond_large",
       "chakral:black_mineral_ore_buried",
       "chakral:black_mineral_ore_emerald"
+    ],
+    [
+      "chakral:wilted_tree"
     ]
   ],
   "has_precipitation": true,

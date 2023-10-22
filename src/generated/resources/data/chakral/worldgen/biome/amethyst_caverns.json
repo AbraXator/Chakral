@@ -49,6 +49,9 @@
       "chakral:black_mineral_ore_buried",
       "chakral:black_mineral_ore_emerald",
       "chakral:budding_amethyst"
+    ],
+    [
+      "chakral:wilted_tree"
     ]
   ],
   "has_precipitation": true,

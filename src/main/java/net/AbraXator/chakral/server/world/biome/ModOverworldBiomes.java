@@ -83,6 +83,7 @@ public class ModOverworldBiomes {
         //addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.ORANGE_MINERAL_BLOB);
         //addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.RED_MINERAL_BLOB);
         addModOres(biomeBuilder);
+        addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.WILTED_TREE);
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_GAME);
         return biome(true, 0.8F, 0.4F, mobspawnsettings$builder, biomeBuilder, music);
     }
@@ -92,6 +93,7 @@ public class ModOverworldBiomes {
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(placed, carver);
         addCaveCarvers(biomeBuilder);
         addModOres(biomeBuilder);
+        addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.WILTED_TREE);
         addFeature(biomeBuilder, GenerationStep.Decoration.UNDERGROUND_ORES, ModPlacedFeatures.BUDDING_AMETHYST);
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_GAME);
         return biome(true, 0.8F, 0.4F, mobspawnsettings$builder, biomeBuilder, music);

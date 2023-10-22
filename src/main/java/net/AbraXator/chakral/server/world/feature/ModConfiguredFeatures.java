@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
@@ -70,7 +71,7 @@ public class ModConfiguredFeatures {
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context){
         HolderGetter<ConfiguredFeature<?, ?>> features = context.lookup(Registries.CONFIGURED_FEATURE);
-        registerFeature(context, WILTED_TREE, Feature.TREE, treeConfiguration().build());
+        registerFeature(context, WILTED_TREE, ModFeatures.WILTED_TREE.get(), new NoneFeatureConfiguration());
         registerFeature(context, MINERAL_CRYSTAL, ModFeatures.MINERAL_CRYSTAL.get(), new MineralCrystalConfiguration(ModBlocks.RED_MINERAL.get().defaultBlockState(), ModBlocks.BUDDING_RED_MINERAL.get().defaultBlockState(), UniformInt.of(3, 7), UniformInt.of(6, 14)));
         registerFeature(context, BLACK_MINERAL_BLOB, ModFeatures.BIG_REPLACE_BLOB.get(), new BigReplaceBlobConfiguration(Blocks.DEEPSLATE.defaultBlockState(), ModBlocks.BLACK_MINERAL.get().defaultBlockState(), UniformInt.of(32, 32)));
         registerFeature(context, PURPLE_MINERAL_BLOB, ModFeatures.BIG_REPLACE_BLOB.get(), coloredMineralBlobConfig(Blocks.AMETHYST_BLOCK, Blocks.BUDDING_AMETHYST));
@@ -116,10 +117,6 @@ public class ModConfiguredFeatures {
 
     private static <FC extends FeatureConfiguration, F extends Feature<FC>> void registerFeature(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureKey, F feature, FC configuration) {
         context.register(configuredFeatureKey, new ConfiguredFeature<>(feature, configuration));
-    }
-
-    private static TreeConfiguration.TreeConfigurationBuilder treeConfiguration(){
-        return createStraightBlobTree(ModBlocks.WILTED_LOG.get(), ModBlocks.WILTED_LEAVES.get(), 4, 2, 0, 2).ignoreVines();
     }
 
     private static TreeConfiguration.TreeConfigurationBuilder createStraightBlobTree(Block p_195147_, Block p_195148_, int pBaseHeight, int pHeightRandA, int pHeightRandB, int p_195152_) {

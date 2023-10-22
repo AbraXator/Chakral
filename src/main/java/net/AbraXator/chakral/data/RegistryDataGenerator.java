@@ -1,7 +1,7 @@
 package net.AbraXator.chakral.data;
 
 import net.AbraXator.chakral.Chakral;
-import net.AbraXator.chakral.server.init.ModBiomes;
+import net.AbraXator.chakral.server.world.biome.ModBiomes;
 import net.AbraXator.chakral.server.init.ModDamageTypes;
 import net.AbraXator.chakral.server.world.feature.ModConfiguredFeatures;
 import net.AbraXator.chakral.server.world.noise.ModNoises;

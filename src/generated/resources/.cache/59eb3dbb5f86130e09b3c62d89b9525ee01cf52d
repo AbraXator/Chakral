@@ -1,4 +1,4 @@
-// 1.20	2023-06-12T18:35:32.5394476	Loot Tables
+// 1.20.1	2023-10-22T00:28:23.5318229	Loot Tables
 838d56a6b22dee8c573ad0e56aaab3719fabd022 data/chakral/loot_tables/blocks/amethyst_bricks.json
 2a552a14c4ff289d815018ecfe84454518c7627f data/chakral/loot_tables/blocks/amethyst_brick_stairs.json
 6b82b9090fde102be8bc270f6337736927997b49 data/chakral/loot_tables/blocks/big_black_bud.json
@@ -37,6 +37,7 @@ fb802e33548124e8262c261cebc4b44a3821efbf data/chakral/loot_tables/blocks/budding
 93d3b3cc42cc789420987e90b33faa4aa3de8e83 data/chakral/loot_tables/blocks/budding_white_mineral.json
 434d9324205f284d797ad537f629f6f7ac574dbb data/chakral/loot_tables/blocks/budding_yellow_mineral.json
 0c613b66841b654a7f16c1cd331990b3f2df2a1c data/chakral/loot_tables/blocks/burgeoning_roots.json
+20ae9a7bd1258b1193849061c3489d94e35e0ac4 data/chakral/loot_tables/blocks/cobbled_brownstone.json
 7bbb96b07ec97286e5005ce72ca04a33a0ca504f data/chakral/loot_tables/blocks/gleamshroom.json
 9d522a9dfcf53b36aee74685f7ac7e32fdad01ca data/chakral/loot_tables/blocks/glowstone_cluster.json
 cd3445171cb6038186423833a36068bb3fca7692 data/chakral/loot_tables/blocks/green_crystal.json

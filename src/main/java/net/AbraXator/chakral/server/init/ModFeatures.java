@@ -3,9 +3,11 @@ package net.AbraXator.chakral.server.init;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.server.world.feature.configuration.BigReplaceBlobConfiguration;
 import net.AbraXator.chakral.server.world.feature.configuration.MineralCrystalConfiguration;
+import net.AbraXator.chakral.server.world.feature.configuration.WiltedTreeFeature;
 import net.AbraXator.chakral.server.world.placements.feature.BigReplaceBlobFeature;
 import net.AbraXator.chakral.server.world.placements.feature.MineralCrystalFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -17,6 +19,7 @@ public class ModFeatures {
 
     public static final RegistryObject<Feature<BigReplaceBlobConfiguration>> BIG_REPLACE_BLOB = FEATURES.register("big_replace_blob", () -> new BigReplaceBlobFeature(BigReplaceBlobConfiguration.CODEC));
     public static final RegistryObject<Feature<MineralCrystalConfiguration>> MINERAL_CRYSTAL = FEATURES.register("mineral_crystal", () -> new MineralCrystalFeature(MineralCrystalConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> WILTED_TREE = FEATURES.register("wilted_tree", () -> new WiltedTreeFeature(NoneFeatureConfiguration.CODEC));
 
     public static void register(IEventBus eventBus) {
         FEATURES.register(eventBus);

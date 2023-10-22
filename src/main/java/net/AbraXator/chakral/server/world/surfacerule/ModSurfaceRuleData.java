@@ -1,6 +1,7 @@
 package net.AbraXator.chakral.server.world.surfacerule;
 
-import net.AbraXator.chakral.server.init.ModBiomes;
+import com.github.alexthe666.citadel.server.generation.SurfaceRulesManager;
+import net.AbraXator.chakral.server.world.biome.ModBiomes;
 import net.AbraXator.chakral.server.init.ModBlocks;
 import net.AbraXator.chakral.server.world.noise.ModNoises;
 import net.minecraft.world.level.block.Block;
@@ -28,6 +29,9 @@ public class ModSurfaceRuleData {
     private static final SurfaceRules.ConditionSource COLORED_MINERAL_NOISE = SurfaceRules.noiseCondition(ModNoises.COLORED_MINERAL_NOISE, 0D, 0.5);
     private static final SurfaceRules.ConditionSource BUDDING_NOISE = SurfaceRules.noiseCondition(ModNoises.BUDDING_NOISE, 0.2D, 0.3D);
 
+    public static void setup() {
+        SurfaceRulesManager.registerOverworldSurfaceRule(overworld());
+    }
 
     public static SurfaceRules.RuleSource overworld() {
         return SurfaceRules.sequence(

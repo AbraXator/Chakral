@@ -47,6 +47,8 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> BLACK_MINERAL_ORE_COPPER_LARGE = Chakral.createKey(Registries.PLACED_FEATURE, "black_mineral_ore_copper_large");
     public static final ResourceKey<PlacedFeature> BUDDING_AMETHYST = Chakral.createKey(Registries.PLACED_FEATURE, "budding_amethyst");
 
+    public static final ResourceKey<PlacedFeature> WILTED_TREE = Chakral.createKey(Registries.PLACED_FEATURE, "wilted_tree");
+
 
 
     public static void bootstrap(BootstapContext<PlacedFeature> context){
@@ -78,6 +80,8 @@ public class ModPlacedFeatures {
         final Holder<ConfiguredFeature<?, ?>> BLACK_MINERAL_ORE_COPPER_LARGE = configuredFeatureGetter.getOrThrow(ModConfiguredFeatures.BLACK_MINERAL_ORE_COPPER_LARGE);
         final Holder<ConfiguredFeature<?, ?>> BLACK_MINERAL_ORE_COPPER_SMALL = configuredFeatureGetter.getOrThrow(ModConfiguredFeatures.BLACK_MINERAL_ORE_COPPER_SMALL);
         final Holder<ConfiguredFeature<?, ?>> BUDDING_AMETHYST = configuredFeatureGetter.getOrThrow(ModConfiguredFeatures.BUDDING_AMETHYST);
+
+        final Holder<ConfiguredFeature<?, ?>> WILTED_TREE = configuredFeatureGetter.getOrThrow(ModConfiguredFeatures.WILTED_TREE);
 
         registerFeature(context, ModPlacedFeatures.BLACK_MINERAL_BLOB, BLACK_MINERAL_BLOB, List.of(
                 CountPlacement.of(150),
@@ -117,6 +121,13 @@ public class ModPlacedFeatures {
         registerFeature(context, ModPlacedFeatures.BLACK_MINERAL_ORE_COPPER_SMALL, BLACK_MINERAL_ORE_COPPER_SMALL, commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112))));
         registerFeature(context, ModPlacedFeatures.BLACK_MINERAL_ORE_COPPER_LARGE, BLACK_MINERAL_ORE_COPPER_LARGE, commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112))));
         registerFeature(context, ModPlacedFeatures.BUDDING_AMETHYST, BUDDING_AMETHYST, commonOrePlacement(32, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(480))));
+
+        registerFeature(context, ModPlacedFeatures.WILTED_TREE, WILTED_TREE, List.of(
+                NoiseBasedCountPlacement.of(15, 24D, 0.2D),
+                InSquarePlacement.spread(),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(256)),
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.not(BlockPredicate.ONLY_IN_AIR_PREDICATE), 32),
+                BiomeFilter.biome()));
     }
 
     private static List<PlacementModifier> coloredMineraBlobModifiers(){

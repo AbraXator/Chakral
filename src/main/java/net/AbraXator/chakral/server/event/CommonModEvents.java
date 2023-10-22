@@ -1,18 +1,32 @@
 package net.AbraXator.chakral.server.event;
 
+import com.github.alexthe666.citadel.server.event.EventReplaceBiome;
 import net.AbraXator.chakral.Chakral;
 import net.AbraXator.chakral.server.capability.*;
+import net.AbraXator.chakral.server.world.biome.ModBiomeGeneration;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Chakral.MOD_ID)
 public class CommonModEvents {
+    @SubscribeEvent
+    public static void onReplaceBiome(EventReplaceBiome event) {
+        ResourceKey<Biome> biome = ModBiomeGeneration.getBiomeForEvent(event);
+        if(biome != null) {
+            event.setResult(Event.Result.ALLOW);
+            event.setBiomeToGenerate(event.getBiomeSource().getResourceKeyMap().get(biome));
+        }
+    }
+
     @SubscribeEvent
     public static void attachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
         if(event.getObject() instanceof Player) {
