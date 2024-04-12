@@ -21,7 +21,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
  apply plugin: 'org.spongepowered.mixin'
 
-version = '0.0.0-1.20.x'
+version = '0.0.9-1.20.1'
 group = 'net.AbraXator.chakral' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'chakral'
 
@@ -115,7 +115,7 @@ repositories {
 }
 
 dependencies {
-    minecraft fg.deobf("net.minecraftforge:forge:${forge_ver}")
+    minecraft("net.minecraftforge:forge:${mc_version}-${forge_version}")
     //JEI
     compileOnly fg.deobf("mezz.jei:jei-${jei_mc_ver}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${jei_mc_ver}-forge-api:${jei_version}")
